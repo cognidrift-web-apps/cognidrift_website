@@ -1,0 +1,424 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg 
+           shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 
+           hover:from-blue-600 hover:to-cyan-600 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg border-2 border-blue-500
+           shadow-md hover:shadow-lg hover:bg-blue-50 transform hover:scale-105 
+           transition-all duration-300 active:scale-95;
+  }
+  
+  .btn-animated {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-animated::before {
+    content: '';
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+  }
+  
+  .btn-animated:hover::before {
+    @apply opacity-20;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold rounded-lg 
+           shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 
+           hover:from-blue-600 hover:to-cyan-600 active:scale-95;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg border-2 border-blue-500
+           shadow-md hover:shadow-lg hover:bg-blue-50 transform hover:scale-105 
+           transition-all duration-300 active:scale-95;
+  }
+  
+  .btn-animated {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-animated::before {
+    content: '';
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+  }
+  
+  .btn-animated:hover::before {
+    @apply opacity-20;
+  }
+  
+  .card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  }
+}
+
+/* Custom Floating Button - Unique Design */
+elevenlabs-convai::part(button) {
+  width: 70px !important;
+  height: 70px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%) !important;
+  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4),
+              0 0 0 0 rgba(139, 92, 246, 0.4) !important;
+  border: 4px solid rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  animation: morphing-float 4s ease-in-out infinite !important;
+  position: relative !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+elevenlabs-convai::part(button):hover {
+  transform: scale(1.2) rotate(90deg) !important;
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.6),
+              0 0 0 20px rgba(139, 92, 246, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
+  background: linear-gradient(135deg, #ec4899 0%, #f59e0b 50%, #8b5cf6 100%) !important;
+}
+
+elevenlabs-convai::part(button):active {
+  transform: scale(1.1) rotate(45deg) !important;
+}
+
+/* Custom Icon Styling */
+elevenlabs-convai::part(button-icon) {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) !important;
+  animation: spin-subtle 8s linear infinite !important;
+}
+
+/* Widget Window - Complete Redesign */
+elevenlabs-convai::part(window) {
+  border-radius: 24px !important;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(139, 92, 246, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  overflow: hidden !important;
+  animation: window-pop-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 2px solid rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Header - Custom Brand Style */
+elevenlabs-convai::part(header) {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  padding: 24px !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 30px rgba(139, 92, 246, 0.3) !important;
+  position: relative !important;
+}
+
+elevenlabs-convai::part(header)::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%) !important;
+  pointer-events: none !important;
+}
+
+elevenlabs-convai::part(header-title) {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 20px !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+  letter-spacing: 0.5px !important;
+}
+
+elevenlabs-convai::part(header-subtitle) {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: 13px !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Close Button */
+elevenlabs-convai::part(close-button) {
+  background: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+elevenlabs-convai::part(close-button):hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: rotate(90deg) scale(1.1) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Messages Container */
+elevenlabs-convai::part(messages-container) {
+  background: linear-gradient(to bottom, #1a1a2e, #16213e) !important;
+  padding: 20px !important;
+}
+
+/* User Message Bubbles */
+elevenlabs-convai::part(user-message) {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  border-radius: 20px 20px 4px 20px !important;
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4) !important;
+  color: #ffffff !important;
+  padding: 14px 18px !important;
+  animation: message-bounce-in-right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  max-width: 80% !important;
+}
+
+/* Bot Message Bubbles */
+elevenlabs-convai::part(bot-message) {
+  background: linear-gradient(135deg, #2a2a4e 0%, #1f2937 100%) !important;
+  border-radius: 20px 20px 20px 4px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  color: #e5e7eb !important;
+  padding: 14px 18px !important;
+  animation: message-bounce-in-left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  max-width: 80% !important;
+}
+
+/* Input Container */
+elevenlabs-convai::part(input-container) {
+  background: linear-gradient(to top, #16213e, #1a1a2e) !important;
+  border-top: 2px solid rgba(139, 92, 246, 0.3) !important;
+  padding: 20px !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Input Field */
+elevenlabs-convai::part(input) {
+  background: rgba(42, 42, 78, 0.6) !important;
+  border: 2px solid rgba(139, 92, 246, 0.4) !important;
+  border-radius: 16px !important;
+  color: #ffffff !important;
+  padding: 14px 18px !important;
+  font-size: 15px !important;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+elevenlabs-convai::part(input)::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+elevenlabs-convai::part(input):focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2),
+              0 8px 20px rgba(139, 92, 246, 0.3) !important;
+  background: rgba(42, 42, 78, 0.8) !important;
+  outline: none !important;
+}
+
+/* Send Button */
+elevenlabs-convai::part(send-button) {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  border-radius: 14px !important;
+  padding: 12px 24px !important;
+  border: 2px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4) !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+elevenlabs-convai::part(send-button):hover {
+  transform: translateY(-3px) scale(1.05) !important;
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.6) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%) !important;
+}
+
+elevenlabs-convai::part(send-button):active {
+  transform: translateY(-1px) scale(1) !important;
+}
+
+/* Typing Indicator */
+elevenlabs-convai::part(typing-indicator) {
+  background: linear-gradient(135deg, #2a2a4e 0%, #1f2937 100%) !important;
+  border-radius: 20px !important;
+  padding: 12px 18px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+elevenlabs-convai::part(typing-dot) {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+  animation: typing-pulse 1.4s ease-in-out infinite !important;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Avatar */
+elevenlabs-convai::part(avatar) {
+  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  border: 3px solid rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* Scrollbar */
+elevenlabs-convai::part(messages-container)::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+elevenlabs-convai::part(messages-container)::-webkit-scrollbar-track {
+  background: rgba(42, 42, 78, 0.3) !important;
+  border-radius: 10px !important;
+}
+
+elevenlabs-convai::part(messages-container)::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+  border-radius: 10px !important;
+  border: 2px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+elevenlabs-convai::part(messages-container)::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #ec4899, #f59e0b) !important;
+}
+
+/* Advanced Animations */
+@keyframes morphing-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    border-radius: 50%;
+    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+  }
+  25% {
+    transform: translateY(-10px) rotate(5deg);
+    border-radius: 45% 55% 50% 50%;
+  }
+  50% {
+    transform: translateY(-5px) rotate(-5deg);
+    border-radius: 50% 50% 45% 55%;
+    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.6),
+                0 0 0 20px rgba(139, 92, 246, 0);
+  }
+  75% {
+    transform: translateY(-8px) rotate(3deg);
+    border-radius: 55% 45% 55% 45%;
+  }
+}
+
+@keyframes spin-subtle {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes window-pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8) rotate(-5deg);
+  }
+  60% {
+    transform: translateY(-10px) scale(1.05) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes message-bounce-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(50px) scale(0.8);
+  }
+  60% {
+    transform: translateX(-5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes message-bounce-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px) scale(0.8);
+  }
+  60% {
+    transform: translateX(5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes typing-pulse {
+  0%, 60%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  30% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* Position Widget */
+elevenlabs-convai {
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 9999 !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  elevenlabs-convai {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+  
+  elevenlabs-convai::part(button) {
+    width: 60px !important;
+    height: 60px !important;
+  }
+  
+  elevenlabs-convai::part(window) {
+    max-width: calc(100vw - 32px) !important;
+    max-height: calc(100vh - 100px) !important;
+    border-radius: 20px !important;
+  }
+}
