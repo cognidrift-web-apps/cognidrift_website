@@ -1,82 +1,172 @@
 import { Link } from 'react-router-dom'
-import { FaBrain, FaTwitter, FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa'
+import { Brain, Twitter, Linkedin, Github, Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear()
+
+  const footerLinks = {
+    product: [
+      { name: 'Features', path: '/services' },
+      { name: 'Integrations', path: '/services' },
+      { name: 'Pricing', path: '/contact' },
+      { name: 'Demo', path: '/contact' },
+    ],
+    solutions: [
+      { name: 'Healthcare', path: '/services' },
+      { name: 'Insurance', path: '/services' },
+      { name: 'Real Estate', path: '/services' },
+      { name: 'Custom', path: '/contact' },
+    ],
+    company: [
+      { name: 'About', path: '/about' },
+      { name: 'Contact', path: '/contact' },
+      { name: 'Privacy Policy', path: '/privacy' },
+      { name: 'Terms of Service', path: '/terms' },
+    ],
+  }
+
+  const socialLinks = [
+    { icon: Twitter, href: '#', label: 'Twitter' },
+    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Github, href: '#', label: 'GitHub' },
+    { icon: Mail, href: 'mailto:contact@cognidrift.com', label: 'Email' },
+  ]
+
   return (
-    <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <FaBrain className="text-3xl text-blue-400" />
-              <span className="text-2xl font-bold">CogniDrift</span>
-            </div>
-            <p className="text-gray-400">
-              Building intelligent AI agents and software solutions for the future.
+    <footer className="bg-text-primary">
+      {/* Main Footer */}
+      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+          {/* Brand Column */}
+          <div className="lg:col-span-2">
+            <Link to="/" className="flex items-center space-x-2 mb-6">
+              <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center">
+                <Brain className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-xl font-bold text-white">
+                Cogni<span className="text-primary-400">Drift</span>
+              </span>
+            </Link>
+            <p className="text-gray-400 mb-6 max-w-sm">
+              AI-powered voice agents that never miss a call. Transform your customer 
+              communications with intelligent automation.
             </p>
+            
+            {/* Newsletter Signup */}
+            <div className="mb-6">
+              <p className="text-white font-medium mb-3">Stay updated</p>
+              <div className="flex gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
+                />
+                <button className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Social Links */}
+            <div className="flex gap-4">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  aria-label={social.label}
+                  className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-all duration-300"
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Product Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                  Contact
-                </Link>
-              </li>
+            <h3 className="text-white font-semibold mb-4">Product</h3>
+            <ul className="space-y-3">
+              {footerLinks.product.map((link, index) => (
+                <li key={index}>
+                  <Link 
+                    to={link.path} 
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Solutions Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2 text-gray-400">
-              <li>AI Agent Development</li>
-              <li>Custom Software</li>
-              <li>Maintenance & Support</li>
-              <li>Consulting</li>
+            <h3 className="text-white font-semibold mb-4">Solutions</h3>
+            <ul className="space-y-3">
+              {footerLinks.solutions.map((link, index) => (
+                <li key={index}>
+                  <Link 
+                    to={link.path} 
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Company Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                <FaTwitter size={24} />
+            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link, index) => (
+                <li key={index}>
+                  <Link 
+                    to={link.path} 
+                    className="text-gray-400 hover:text-white transition-colors duration-300"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            
+            {/* Contact Info */}
+            <div className="mt-6 space-y-3">
+              <a 
+                href="mailto:contact@cognidrift.com" 
+                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                <span className="text-sm">contact@cognidrift.com</span>
               </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                <FaLinkedin size={24} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                <FaGithub size={24} />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors duration-300">
-                <FaEnvelope size={24} />
+              <a 
+                href="tel:+15551234567" 
+                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+              >
+                <Phone className="w-4 h-4" />
+                <span className="text-sm">+1 (555) 123-4567</span>
               </a>
             </div>
           </div>
         </div>
+      </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} CogniDrift. All rights reserved.</p>
+      {/* Bottom Bar */}
+      <div className="border-t border-gray-800">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-sm">
+              © {currentYear} CogniDrift. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <span className="text-gray-500 text-sm flex items-center gap-2">
+                <div className="w-2 h-2 bg-accent-teal rounded-full animate-pulse"></div>
+                All systems operational
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

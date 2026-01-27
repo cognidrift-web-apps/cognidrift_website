@@ -1,119 +1,454 @@
-import { FaRobot, FaCode, FaCog, FaUsers, FaChartBar, FaMobile } from 'react-icons/fa'
-import { SiOpenai, SiTensorflow } from 'react-icons/si'
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { 
+  Phone, 
+  Clock, 
+  Calendar, 
+  MessageSquare, 
+  BarChart3, 
+  Shield, 
+  Zap, 
+  Globe,
+  Stethoscope,
+  Building2,
+  HomeIcon,
+  Briefcase,
+  ArrowRight,
+  Check,
+  PhoneCall,
+  Bot,
+  Bell,
+  Settings,
+  Headphones,
+  Users,
+  ChevronRight
+} from 'lucide-react'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
 
 const Services = () => {
+  const [activeTab, setActiveTab] = useState(0)
+
   const services = [
     {
-      icon: <FaRobot className="text-5xl" />,
-      title: 'AI Agent Development',
-      description: 'Custom AI agents powered by advanced machine learning algorithms to automate and optimize your business processes.',
-      features: ['Natural Language Processing', 'Machine Learning Models', 'Automated Decision Making', 'Real-time Analytics'],
-      color: 'from-blue-500 to-blue-600'
+      icon: PhoneCall,
+      title: 'AI Voice Agents',
+      description: 'Intelligent voice AI that handles inbound and outbound calls with natural conversation abilities.',
+      features: ['Natural Language Processing', 'Intent Recognition', 'Context Awareness', 'Multi-turn Conversations'],
+      color: 'primary'
     },
     {
-      icon: <SiOpenai className="text-5xl" />,
-      title: 'ChatGPT Integration',
-      description: 'Integrate powerful conversational AI into your applications with custom ChatGPT solutions.',
-      features: ['Custom Training', 'API Integration', 'Context Management', 'Multi-language Support'],
-      color: 'from-cyan-500 to-cyan-600'
+      icon: Calendar,
+      title: 'Smart Scheduling',
+      description: 'Automated appointment booking that syncs with your calendar and reduces no-shows.',
+      features: ['Calendar Integration', 'Automated Reminders', 'Rescheduling Handling', 'Timezone Management'],
+      color: 'teal'
     },
     {
-      icon: <FaCode className="text-5xl" />,
-      title: 'Custom Software Development',
-      description: 'Full-stack development services using modern technologies and best practices.',
-      features: ['React & Next.js', 'Node.js Backend', 'Database Design', 'Cloud Deployment'],
-      color: 'from-blue-600 to-cyan-600'
+      icon: MessageSquare,
+      title: 'Lead Qualification',
+      description: 'Qualify leads 24/7 with intelligent questioning and scoring systems.',
+      features: ['Custom Qualification Logic', 'Lead Scoring', 'CRM Integration', 'Real-time Notifications'],
+      color: 'purple'
     },
     {
-      icon: <FaMobile className="text-5xl" />,
-      title: 'Mobile Applications',
-      description: 'Native and cross-platform mobile applications for iOS and Android.',
-      features: ['React Native', 'Flutter', 'Progressive Web Apps', 'App Store Deployment'],
-      color: 'from-cyan-600 to-blue-600'
+      icon: BarChart3,
+      title: 'Analytics & Insights',
+      description: 'Comprehensive dashboards to track performance, patterns, and opportunities.',
+      features: ['Call Analytics', 'Conversion Tracking', 'Customer Insights', 'Custom Reports'],
+      color: 'orange'
     },
     {
-      icon: <FaCog className="text-5xl" />,
-      title: 'Maintenance & Support',
-      description: 'Comprehensive maintenance and support services to keep your applications running smoothly.',
-      features: ['24/7 Monitoring', 'Bug Fixes', 'Performance Optimization', 'Security Updates'],
-      color: 'from-blue-500 to-cyan-500'
+      icon: Zap,
+      title: 'CRM Integration',
+      description: 'Seamless connection with your existing tools and workflows.',
+      features: ['Salesforce', 'HubSpot', 'Zoho', 'Custom APIs'],
+      color: 'primary'
     },
     {
-      icon: <FaChartBar className="text-5xl" />,
-      title: 'Consulting Services',
-      description: 'Expert guidance on AI implementation, software architecture, and digital transformation.',
-      features: ['Technology Assessment', 'Architecture Design', 'Team Training', 'Project Planning'],
-      color: 'from-cyan-500 to-blue-500'
+      icon: Headphones,
+      title: 'Custom Development',
+      description: 'Tailored AI solutions built specifically for your unique business needs.',
+      features: ['Custom Workflows', 'Industry-specific Logic', 'White-label Options', 'Dedicated Support'],
+      color: 'teal'
+    }
+  ]
+
+  const industries = [
+    {
+      icon: Stethoscope,
+      title: 'Healthcare',
+      description: 'HIPAA-compliant voice AI for medical practices, clinics, and healthcare providers.',
+      useCases: [
+        'Patient appointment scheduling',
+        'Prescription refill requests',
+        'Insurance verification calls',
+        'Post-visit follow-up calls',
+        'Lab result notifications'
+      ],
+      integrations: ['Epic', 'Cerner', 'Athenahealth', 'DrChrono']
+    },
+    {
+      icon: Briefcase,
+      title: 'Insurance',
+      description: 'Handle policy inquiries, claims status, and agent routing around the clock.',
+      useCases: [
+        'Claims status inquiries',
+        'Policy information requests',
+        'Quote generation calls',
+        'Payment processing',
+        'Agent appointment booking'
+      ],
+      integrations: ['Applied Epic', 'Vertafore', 'Salesforce']
+    },
+    {
+      icon: HomeIcon,
+      title: 'Real Estate',
+      description: 'Qualify leads and schedule property viewings automatically.',
+      useCases: [
+        'Lead qualification calls',
+        'Property showing scheduling',
+        'Buyer/seller inquiries',
+        'Open house reminders',
+        'Agent matching'
+      ],
+      integrations: ['Follow Up Boss', 'KvCORE', 'Zillow']
+    },
+    {
+      icon: Building2,
+      title: 'Professional Services',
+      description: 'Custom solutions for law firms, accounting practices, and consultants.',
+      useCases: [
+        'Client intake calls',
+        'Consultation scheduling',
+        'Document request handling',
+        'Case status updates',
+        'Billing inquiries'
+      ],
+      integrations: ['Clio', 'Practice Panther', 'Calendly']
+    }
+  ]
+
+  const process = [
+    { 
+      step: '01', 
+      title: 'Discovery', 
+      description: 'We analyze your call patterns, customer needs, and business workflows to design the perfect AI solution.' 
+    },
+    { 
+      step: '02', 
+      title: 'Configuration', 
+      description: 'Custom training and setup of your AI agent with your specific scripts, FAQs, and decision trees.' 
+    },
+    { 
+      step: '03', 
+      title: 'Integration', 
+      description: 'Seamless connection with your phone system, CRM, calendar, and other business tools.' 
+    },
+    { 
+      step: '04', 
+      title: 'Launch & Optimize', 
+      description: 'Go live with ongoing monitoring, A/B testing, and continuous improvement.' 
     }
   ]
 
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Our Services
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto animate-slide-up">
-            Comprehensive AI and software development solutions tailored to your needs
-          </p>
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-purple/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <motion.span 
+              variants={fadeInUp}
+              className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4"
+            >
+              Our Solutions
+            </motion.span>
+            <motion.h1 
+              variants={fadeInUp}
+              className="text-4xl md:text-6xl font-bold text-white mb-6"
+            >
+              AI That Works<br />While You Sleep
+            </motion.h1>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-lg text-primary-100 mb-8"
+            >
+              Comprehensive voice AI solutions designed to transform how your business 
+              handles customer communications.
+            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Link to="/contact">
+                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2">
+                  Get Started
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Services Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-24 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">What We Offer</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Comprehensive AI Solutions
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Everything you need to automate and enhance your customer communications.
+            </motion.p>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="group card hover:scale-105 animate-scale-in"
-                style={{ animationDelay: `${index * 100}ms` }}
+                variants={fadeInUp}
+                className="card-feature group"
               >
-                <div className={`w-16 h-16 bg-gradient-to-r ${service.color} rounded-lg flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 ${
+                  service.color === 'primary' ? 'bg-primary-50 text-primary-600 group-hover:bg-primary-100' :
+                  service.color === 'teal' ? 'bg-teal-50 text-accent-teal group-hover:bg-teal-100' :
+                  service.color === 'purple' ? 'bg-purple-50 text-accent-purple group-hover:bg-purple-100' :
+                  'bg-orange-50 text-accent-orange group-hover:bg-orange-100'
+                }`}>
+                  <service.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">{service.title}</h3>
-                <p className="text-gray-600 mb-4">{service.description}</p>
+                <h3 className="text-xl font-semibold text-text-primary mb-3">{service.title}</h3>
+                <p className="text-text-secondary mb-6">{service.description}</p>
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-gray-700">
-                      <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
+                    <li key={idx} className="flex items-center gap-2 text-sm text-text-secondary">
+                      <Check className="w-4 h-4 text-accent-teal flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
                 </ul>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Industry Solutions */}
+      <section className="py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Industry Solutions</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Built for Your Industry
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Specialized AI agents trained for the unique needs of your sector.
+            </motion.p>
+          </motion.div>
+          
+          {/* Tabs */}
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="flex flex-wrap justify-center gap-2 mb-12"
+          >
+            {industries.map((industry, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(index)}
+                className={`px-6 py-3 rounded-xl font-medium transition-all duration-300 flex items-center gap-2 ${
+                  activeTab === index 
+                    ? 'bg-primary-600 text-white shadow-button' 
+                    : 'bg-white text-text-secondary hover:bg-primary-50 border border-neutral-border'
+                }`}
+              >
+                <industry.icon className="w-5 h-5" />
+                {industry.title}
+              </button>
+            ))}
+          </motion.div>
+          
+          {/* Active Industry Content */}
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white rounded-3xl p-8 md:p-12 shadow-card border border-neutral-border"
+          >
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6">
+                  {(() => {
+                    const Icon = industries[activeTab].icon
+                    return <Icon className="w-8 h-8" />
+                  })()}
+                </div>
+                <h3 className="text-2xl font-bold text-text-primary mb-4">
+                  {industries[activeTab].title}
+                </h3>
+                <p className="text-text-secondary mb-6">
+                  {industries[activeTab].description}
+                </p>
+                <Link to="/contact">
+                  <button className="btn-primary">
+                    Learn More
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </Link>
+              </div>
+              
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-text-primary mb-4">Use Cases</h4>
+                  <ul className="space-y-3">
+                    {industries[activeTab].useCases.map((useCase, idx) => (
+                      <li key={idx} className="flex items-center gap-3 text-text-secondary">
+                        <div className="w-2 h-2 bg-primary-600 rounded-full flex-shrink-0"></div>
+                        {useCase}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-text-primary mb-4">Integrations</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {industries[activeTab].integrations.map((integration, idx) => (
+                      <span 
+                        key={idx} 
+                        className="px-4 py-2 bg-neutral-offWhite rounded-lg text-sm text-text-secondary"
+                      >
+                        {integration}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Our <span className="gradient-text">Process</span>
-            </h2>
-            <p className="text-xl text-gray-600">Simple, transparent, and effective</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: '01', title: 'Consultation', desc: 'Understand your needs and goals' },
-              { step: '02', title: 'Planning', desc: 'Create a detailed project roadmap' },
-              { step: '03', title: 'Development', desc: 'Build with agile methodology' },
-              { step: '04', title: 'Deployment', desc: 'Launch and provide ongoing support' }
-            ].map((item, index) => (
-              <div key={index} className="text-center animate-slide-up" style={{ animationDelay: `${index * 150}ms` }}>
-                <div className="text-6xl font-bold gradient-text mb-4">{item.step}</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">{item.title}</h3>
-                <p className="text-gray-600">{item.desc}</p>
-              </div>
+      <section className="py-24 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Our Process</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Simple, Transparent, Effective
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              From discovery to launch in weeks, not months.
+            </motion.p>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-4 gap-8"
+          >
+            {process.map((item, index) => (
+              <motion.div 
+                key={index} 
+                variants={fadeInUp}
+                className="text-center relative"
+              >
+                <div className="text-7xl font-bold text-primary-100 mb-4">{item.step}</div>
+                <h3 className="text-xl font-semibold text-text-primary mb-3">{item.title}</h3>
+                <p className="text-text-secondary">{item.description}</p>
+                
+                {index < process.length - 1 && (
+                  <div className="hidden md:block absolute top-10 -right-4 text-primary-200">
+                    <ChevronRight className="w-8 h-8" />
+                  </div>
+                )}
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-br from-primary-600 to-primary-700">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-4xl md:text-5xl font-bold text-white mb-6"
+            >
+              Ready to Get Started?
+            </motion.h2>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto"
+            >
+              Book a demo to see how CogniDrift can transform your customer communications.
+            </motion.p>
+            <motion.div variants={fadeInUp}>
+              <Link to="/contact">
+                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2">
+                  Book Your Demo
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

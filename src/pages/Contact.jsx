@@ -1,12 +1,40 @@
 import { useState } from 'react'
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPaperPlane } from 'react-icons/fa'
-import axios from 'axios'
+import { motion } from 'framer-motion'
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Send, 
+  Clock, 
+  MessageSquare,
+  Calendar,
+  ArrowRight,
+  Check,
+  Building2,
+  Stethoscope,
+  Home as HomeIcon,
+  Briefcase
+} from 'lucide-react'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
+    company: '',
+    industry: '',
     message: ''
   })
 
@@ -25,206 +53,314 @@ const Contact = () => {
     setIsSubmitting(true)
     setStatus({ type: '', message: '' })
 
-    // Simulate API call - Replace with actual API endpoint
+    // Simulate API call
     setTimeout(() => {
       setStatus({
         type: 'success',
-        message: 'Thank you for your message! We will get back to you soon.'
+        message: 'Thank you! We\'ll be in touch within 24 hours.'
       })
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      setFormData({ name: '', email: '', company: '', industry: '', message: '' })
       setIsSubmitting(false)
     }, 1500)
-
-    // Uncomment for actual API call
-    // try {
-    //   const response = await axios.post('/api/contact', formData)
-    //   setStatus({ type: 'success', message: 'Message sent successfully!' })
-    //   setFormData({ name: '', email: '', subject: '', message: '' })
-    // } catch (error) {
-    //   setStatus({ type: 'error', message: 'Failed to send message. Please try again.' })
-    // } finally {
-    //   setIsSubmitting(false)
-    // }
   }
+
+  const industries = [
+    { value: 'healthcare', label: 'Healthcare', icon: Stethoscope },
+    { value: 'insurance', label: 'Insurance', icon: Briefcase },
+    { value: 'real-estate', label: 'Real Estate', icon: HomeIcon },
+    { value: 'professional-services', label: 'Professional Services', icon: Building2 },
+    { value: 'other', label: 'Other', icon: MessageSquare }
+  ]
 
   const contactInfo = [
     {
-      icon: <FaEnvelope className="text-3xl" />,
-      title: 'Email',
+      icon: Mail,
+      title: 'Email Us',
       details: 'contact@cognidrift.com',
+      subtitle: 'We respond within 24 hours',
       link: 'mailto:contact@cognidrift.com'
     },
     {
-      icon: <FaPhone className="text-3xl" />,
-      title: 'Phone',
+      icon: Phone,
+      title: 'Call Us',
       details: '+1 (555) 123-4567',
+      subtitle: 'Mon-Fri, 9am-6pm EST',
       link: 'tel:+15551234567'
     },
     {
-      icon: <FaMapMarkerAlt className="text-3xl" />,
-      title: 'Location',
-      details: 'San Francisco, CA',
+      icon: Calendar,
+      title: 'Book a Demo',
+      details: 'Schedule a 15-min call',
+      subtitle: 'See our AI in action',
       link: '#'
     }
+  ]
+
+  const benefits = [
+    'No commitment required',
+    '15-minute demo call',
+    'See AI handle real calls',
+    'Custom pricing discussion'
   ]
 
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-            Get in Touch
-          </h1>
-          <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto animate-slide-up">
-            Let's discuss how we can help transform your business
-          </p>
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-purple/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <motion.span 
+              variants={fadeInUp}
+              className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4"
+            >
+              Get Started
+            </motion.span>
+            <motion.h1 
+              variants={fadeInUp}
+              className="text-4xl md:text-6xl font-bold text-white mb-6"
+            >
+              Let's Transform Your<br />Customer Communications
+            </motion.h1>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-lg text-primary-100"
+            >
+              Book a demo to see how CogniDrift can help your business never miss another call.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="py-24 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
-            <div className="animate-slide-up">
-              <h2 className="text-3xl font-bold mb-6">Send us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div variants={fadeInUp}>
+                <h2 className="text-3xl font-bold text-text-primary mb-2">Book Your Demo</h2>
+                <p className="text-text-secondary mb-8">
+                  Fill out the form and we'll get back to you within 24 hours.
+                </p>
+              </motion.div>
+              
+              <motion.form variants={fadeInUp} onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                      placeholder="John Doe"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
+                      Work Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
-                    Your Name *
+                  <label htmlFor="company" className="block text-sm font-medium text-text-primary mb-2">
+                    Company Name
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="company"
+                    name="company"
+                    value={formData.company}
                     onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                    placeholder="John Doe"
+                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    placeholder="Your Company"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
-                    Email Address *
+                  <label htmlFor="industry" className="block text-sm font-medium text-text-primary mb-2">
+                    Industry *
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+                  <select
+                    id="industry"
+                    name="industry"
+                    value={formData.industry}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                    placeholder="john@example.com"
-                  />
+                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                  >
+                    <option value="">Select your industry</option>
+                    {industries.map((industry) => (
+                      <option key={industry.value} value={industry.value}>
+                        {industry.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-gray-700 font-medium mb-2">
-                    Subject *
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-                    placeholder="Project Inquiry"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-gray-700 font-medium mb-2">
-                    Message *
+                  <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
+                    Tell us about your needs
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    required
-                    rows="6"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 resize-none"
-                    placeholder="Tell us about your project..."
+                    rows="4"
+                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                    placeholder="What challenges are you looking to solve with AI voice automation?"
                   ></textarea>
                 </div>
 
                 {status.message && (
-                  <div
-                    className={`p-4 rounded-lg ${
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`p-4 rounded-xl flex items-center gap-3 ${
                       status.type === 'success'
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-red-100 text-red-700'
+                        ? 'bg-accent-teal/10 text-accent-teal'
+                        : 'bg-red-50 text-red-600'
                     }`}
                   >
+                    <Check className="w-5 h-5 flex-shrink-0" />
                     {status.message}
-                  </div>
+                  </motion.div>
                 )}
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary btn-animated w-full text-lg py-4 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <FaPaperPlane />
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  <Send className="w-5 h-5" />
+                  {isSubmitting ? 'Sending...' : 'Request Demo'}
                 </button>
-              </form>
-            </div>
+              </motion.form>
+            </motion.div>
 
-            {/* Contact Info */}
-            <div className="space-y-8 animate-slide-up" style={{ animationDelay: '200ms' }}>
-              <div>
-                <h2 className="text-3xl font-bold mb-6">Contact Information</h2>
-                <p className="text-gray-600 mb-8">
-                  Have questions? We're here to help. Reach out to us through any of the following channels.
-                </p>
-              </div>
-
-              <div className="space-y-6">
+            {/* Contact Info & Benefits */}
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+              className="space-y-8"
+            >
+              {/* Contact Cards */}
+              <motion.div variants={fadeInUp} className="space-y-4">
                 {contactInfo.map((info, index) => (
                   <a
                     key={index}
                     href={info.link}
-                    className="card flex items-center gap-4 hover:scale-105"
+                    className="card flex items-center gap-4 group"
                   >
-                    <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center text-white flex-shrink-0">
-                      {info.icon}
+                    <div className="w-14 h-14 bg-primary-50 rounded-xl flex items-center justify-center text-primary-600 flex-shrink-0 group-hover:bg-primary-100 transition-colors">
+                      <info.icon className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-800">{info.title}</h3>
-                      <p className="text-gray-600">{info.details}</p>
+                      <h3 className="text-lg font-semibold text-text-primary">{info.title}</h3>
+                      <p className="text-primary-600 font-medium">{info.details}</p>
+                      <p className="text-sm text-text-muted">{info.subtitle}</p>
                     </div>
+                    <ArrowRight className="w-5 h-5 text-text-muted ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </a>
                 ))}
-              </div>
+              </motion.div>
 
-              {/* Map Placeholder */}
-              <div className="card p-0 overflow-hidden">
-                <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center">
-                  <FaMapMarkerAlt className="text-6xl text-blue-600" />
+              {/* What to Expect */}
+              <motion.div variants={fadeInUp} className="bg-primary-50 rounded-2xl p-8">
+                <h3 className="text-xl font-semibold text-text-primary mb-6">
+                  What to Expect
+                </h3>
+                <ul className="space-y-4">
+                  {benefits.map((benefit, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <Check className="w-4 h-4 text-white" />
+                      </div>
+                      <span className="text-text-primary">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Response Time */}
+              <motion.div variants={fadeInUp} className="flex items-center gap-4 p-6 bg-neutral-offWhite rounded-2xl">
+                <div className="w-12 h-12 bg-accent-teal/10 rounded-xl flex items-center justify-center text-accent-teal">
+                  <Clock className="w-6 h-6" />
                 </div>
-              </div>
-            </div>
+                <div>
+                  <p className="font-semibold text-text-primary">Average Response Time</p>
+                  <p className="text-text-secondary">We typically respond within 2 hours during business hours</p>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-4">Ready to Start Your Project?</h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Let's turn your ideas into reality with our AI-powered solutions
-          </p>
-          <button className="btn-primary btn-animated text-lg px-8 py-4">
-            Schedule a Consultation
-          </button>
+      <section className="py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-4xl font-bold text-text-primary mb-4"
+            >
+              Prefer to Try First?
+            </motion.h2>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-xl text-text-secondary mb-8 max-w-2xl mx-auto"
+            >
+              Click the chat widget in the corner to have a conversation with our AI right now.
+            </motion.p>
+            <motion.button 
+              variants={fadeInUp}
+              className="btn-primary"
+            >
+              <MessageSquare className="w-5 h-5" />
+              Talk to Our AI
+            </motion.button>
+          </motion.div>
         </div>
       </section>
     </div>

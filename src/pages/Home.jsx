@@ -1,121 +1,722 @@
 import { Link } from 'react-router-dom'
-import { FaRobot, FaCode, FaCog, FaRocket, FaShieldAlt, FaChartLine } from 'react-icons/fa'
-import { HiSparkles } from 'react-icons/hi'
+import { motion, useInView, useAnimation } from 'framer-motion'
+import { useRef, useEffect, useState } from 'react'
+import { 
+  Phone, 
+  Clock, 
+  Calendar, 
+  MessageSquare, 
+  BarChart3, 
+  Shield, 
+  Zap, 
+  Globe,
+  Users,
+  Building2,
+  Stethoscope,
+  Home as HomeIcon,
+  Briefcase,
+  ArrowRight,
+  Play,
+  Check,
+  PhoneCall,
+  Bot,
+  Bell,
+  ChevronRight,
+  Mic,
+  Sparkles
+} from 'lucide-react'
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
+
+// Counter animation hook
+const useCounter = (end, duration = 2000, inView) => {
+  const [count, setCount] = useState(0)
+  
+  useEffect(() => {
+    if (!inView) return
+    let startTime
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp
+      const progress = Math.min((timestamp - startTime) / duration, 1)
+      setCount(Math.floor(progress * end))
+      if (progress < 1) requestAnimationFrame(animate)
+    }
+    requestAnimationFrame(animate)
+  }, [end, duration, inView])
+  
+  return count
+}
+
+// Notification Card Component (Virio-style)
+const NotificationCard = ({ avatar, name, title, action, time, delay, className }) => (
+  <motion.div
+    initial={{ opacity: 0, x: 50, y: 20 }}
+    animate={{ opacity: 1, x: 0, y: 0 }}
+    transition={{ delay, duration: 0.6, ease: 'easeOut' }}
+    className={`notification-card ${className}`}
+  >
+    <div className="avatar bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center text-primary-600 font-semibold">
+      {avatar}
+    </div>
+    <div className="content">
+      <p className="text-sm text-text-primary">
+        <span className="font-semibold">{name}</span>
+        <span className="text-text-secondary">, {title}</span>
+      </p>
+      <p className="text-xs text-text-muted">{action}</p>
+    </div>
+    <span className="badge">{time}</span>
+  </motion.div>
+)
+
+// Feature Card Component
+const FeatureCard = ({ icon: Icon, title, description, index }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={fadeInUp}
+      transition={{ delay: index * 0.1 }}
+      className="card-feature group"
+    >
+      <div className="icon-wrapper">
+        <Icon className="w-6 h-6 text-primary-600" />
+      </div>
+      <h3 className="text-xl font-semibold text-text-primary mb-2">{title}</h3>
+      <p className="text-text-secondary">{description}</p>
+    </motion.div>
+  )
+}
+
+// Workflow Step Component
+const WorkflowStep = ({ number, icon: Icon, title, description, isLast }) => (
+  <div className="workflow-step">
+    <div className="step-icon">
+      <Icon className="w-8 h-8" />
+    </div>
+    <div className="step-number absolute -top-2 -right-2 w-8 h-8 bg-primary-600 text-white text-sm rounded-full flex items-center justify-center font-bold">
+      {number}
+    </div>
+    <h4 className="text-lg font-semibold text-text-primary mb-2">{title}</h4>
+    <p className="text-sm text-text-secondary max-w-[200px]">{description}</p>
+  </div>
+)
+
+// Industry Card Component
+const IndustryCard = ({ icon: Icon, title, description, features, isActive }) => (
+  <div className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer ${
+    isActive 
+      ? 'border-primary-600 bg-primary-50 shadow-lg' 
+      : 'border-neutral-border bg-white hover:border-primary-300'
+  }`}>
+    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
+      isActive ? 'bg-primary-600 text-white' : 'bg-primary-50 text-primary-600'
+    }`}>
+      <Icon className="w-6 h-6" />
+    </div>
+    <h3 className="text-xl font-semibold text-text-primary mb-2">{title}</h3>
+    <p className="text-text-secondary mb-4">{description}</p>
+    <ul className="space-y-2">
+      {features.map((feature, i) => (
+        <li key={i} className="flex items-center gap-2 text-sm text-text-secondary">
+          <Check className="w-4 h-4 text-accent-teal" />
+          {feature}
+        </li>
+      ))}
+    </ul>
+  </div>
+)
+
+// Stat Item Component
+const StatItem = ({ number, suffix, label }) => {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+  const count = useCounter(number, 2000, isInView)
+  
+  return (
+    <div ref={ref} className="stat-item">
+      <div className="stat-number">{count}{suffix}</div>
+      <div className="stat-label">{label}</div>
+    </div>
+  )
+}
 
 const Home = () => {
+  const [activeIndustry, setActiveIndustry] = useState(0)
+
   const features = [
     {
-      icon: <FaRobot className="text-4xl text-blue-600" />,
-      title: 'AI Agent Development',
-      description: 'Custom intelligent agents tailored to your business needs'
+      icon: Clock,
+      title: '24/7 Availability',
+      description: 'Never miss a call. Your AI receptionist works around the clock, even on holidays.'
     },
     {
-      icon: <FaCode className="text-4xl text-cyan-600" />,
-      title: 'Custom Software',
-      description: 'Bespoke software solutions built with cutting-edge technology'
+      icon: MessageSquare,
+      title: 'Natural Conversations',
+      description: 'Advanced AI that understands context and responds naturally like a human.'
     },
     {
-      icon: <FaCog className="text-4xl text-blue-600" />,
-      title: 'Maintenance & Support',
-      description: '24/7 support and maintenance for your applications'
+      icon: Calendar,
+      title: 'Smart Scheduling',
+      description: 'Automatically book appointments and sync with your calendar systems.'
     },
     {
-      icon: <FaShieldAlt className="text-4xl text-cyan-600" />,
-      title: 'Secure & Reliable',
-      description: 'Enterprise-grade security and reliability standards'
+      icon: Phone,
+      title: 'Intelligent Routing',
+      description: 'Route calls to the right person or department based on intent detection.'
     },
     {
-      icon: <FaRocket className="text-4xl text-blue-600" />,
-      title: 'Fast Deployment',
-      description: 'Quick turnaround time from concept to deployment'
+      icon: BarChart3,
+      title: 'Analytics Dashboard',
+      description: 'Get insights into call patterns, customer needs, and conversion rates.'
     },
     {
-      icon: <FaChartLine className="text-4xl text-cyan-600" />,
-      title: 'Scalable Solutions',
-      description: 'Built to grow with your business requirements'
+      icon: Globe,
+      title: 'Multi-language',
+      description: 'Communicate with customers in multiple languages seamlessly.'
+    },
+    {
+      icon: Zap,
+      title: 'CRM Integration',
+      description: 'Connect with Salesforce, HubSpot, and other popular CRM platforms.'
+    },
+    {
+      icon: Shield,
+      title: 'Enterprise Security',
+      description: 'HIPAA-ready infrastructure with enterprise-grade encryption.'
     }
   ]
 
-  return (
-    <div className="bg-white">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-cyan-50 overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float top-0 left-0"></div>
-          <div className="absolute w-96 h-96 bg-cyan-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-float animation-delay-2000 bottom-0 right-0"></div>
-        </div>
+  const industries = [
+    {
+      icon: Stethoscope,
+      title: 'Healthcare',
+      description: 'HIPAA-compliant AI for medical practices and clinics.',
+      features: ['Patient scheduling', 'Insurance verification', 'Prescription refills', 'Appointment reminders']
+    },
+    {
+      icon: Briefcase,
+      title: 'Insurance',
+      description: 'Handle claims inquiries and policy questions 24/7.',
+      features: ['Claims status updates', 'Policy information', 'Quote requests', 'Agent routing']
+    },
+    {
+      icon: HomeIcon,
+      title: 'Real Estate',
+      description: 'Qualify leads and schedule property viewings automatically.',
+      features: ['Lead qualification', 'Showing scheduling', 'Property inquiries', 'Agent matching']
+    },
+    {
+      icon: Building2,
+      title: 'Professional Services',
+      description: 'Custom solutions for law firms, accounting, and consulting.',
+      features: ['Consultation booking', 'Client intake', 'Document requests', 'Follow-up calls']
+    }
+  ]
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="animate-fade-in">
-            <HiSparkles className="text-6xl text-blue-600 mx-auto mb-6 animate-pulse-slow" />
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Welcome to <span className="gradient-text">CogniDrift</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              Building the future with intelligent AI agents and innovative software solutions
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link to="/services">
-                <button className="btn-primary btn-animated text-lg px-8 py-4">
-                  Explore Services
+  const integrations = [
+    'Salesforce', 'HubSpot', 'Zoho', 'Google Calendar', 
+    'Calendly', 'Microsoft 365', 'Slack', 'Twilio'
+  ]
+
+  const stats = [
+    { number: 67, suffix: '%', label: 'Calls outside business hours' },
+    { number: 1200, suffix: '+', label: 'Average cost per missed lead' },
+    { number: 35, suffix: '%', label: 'Reduction in no-shows' }
+  ]
+
+  return (
+    <div className="bg-white overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-br from-primary-50 via-white to-neutral-lightBlue overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-purple/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+            >
+              <motion.span 
+                variants={fadeInUp}
+                className="inline-block text-sm uppercase tracking-wider text-primary-600 font-semibold mb-4"
+              >
+                AI-Powered Voice Automation
+              </motion.span>
+              
+              <motion.h1 
+                variants={fadeInUp}
+                className="text-hero lg:text-hero-lg text-text-primary mb-6"
+              >
+                Never Miss
+                <br />
+                <span className="gradient-text">Another Call</span>
+              </motion.h1>
+              
+              <motion.p 
+                variants={fadeInUp}
+                className="text-lg text-text-secondary mb-8 max-w-lg"
+              >
+                AI voice agents that answer calls, qualify leads, and book appointments 24/7. 
+                Your customers get instant responses while you focus on what matters.
+              </motion.p>
+              
+              <motion.div 
+                variants={fadeInUp}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Link to="/contact">
+                  <button className="btn-primary">
+                    Book a Demo
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+                <button className="btn-secondary">
+                  <Play className="w-5 h-5" />
+                  Watch Video
                 </button>
-              </Link>
-              <Link to="/contact">
-                <button className="btn-secondary btn-animated text-lg px-8 py-4">
-                  Get in Touch
-                </button>
-              </Link>
+              </motion.div>
+              
+              <motion.div 
+                variants={fadeInUp}
+                className="mt-12 flex items-center gap-8"
+              >
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-100 to-primary-200 border-2 border-white flex items-center justify-center text-primary-600 text-xs font-semibold">
+                      {String.fromCharCode(64 + i)}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-text-primary">Built with enterprise-grade AI</p>
+                  <p className="text-sm text-text-muted">Powered by advanced language models</p>
+                </div>
+              </motion.div>
+            </motion.div>
+            
+            {/* Right Content - Floating Cards (Virio-style) */}
+            <div className="relative hidden lg:block h-[500px]">
+              {/* Main Visual - Phone/Video Mockup */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-80 bg-gradient-to-br from-primary-100 to-primary-200 rounded-3xl shadow-2xl flex items-center justify-center"
+              >
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
+                    <Mic className="w-10 h-10 text-white" />
+                  </div>
+                  <p className="text-primary-700 font-semibold">AI Speaking...</p>
+                </div>
+              </motion.div>
+              
+              {/* Floating Notification Cards */}
+              <NotificationCard
+                avatar="CS"
+                name="Cody Snow"
+                title="CEO of TechCorp"
+                action="just scheduled a demo call"
+                time="4h"
+                delay={0.5}
+                className="absolute top-0 right-0 animate-float"
+              />
+              
+              <NotificationCard
+                avatar="ES"
+                name="Emily Staley"
+                title="Practice Manager"
+                action="AI handled 12 patient calls"
+                time="2d"
+                delay={0.7}
+                className="absolute top-1/3 -left-8 animate-float animation-delay-1000"
+              />
+              
+              <NotificationCard
+                avatar="DC"
+                name="David Campbell"
+                title="Insurance Agent"
+                action="booked consultation via AI"
+                time="1d"
+                delay={0.9}
+                className="absolute bottom-10 right-4 animate-float animation-delay-2000"
+              />
+            </div>
+          </div>
+        </div>
+        
+        {/* Trust Bar */}
+        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t border-neutral-border py-6">
+          <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+              {integrations.slice(0, 5).map((name, i) => (
+                <span key={i} className="text-text-muted font-medium text-lg opacity-60 hover:opacity-100 transition-opacity">
+                  {name}
+                </span>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Why Choose <span className="gradient-text">CogniDrift</span>?
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              We deliver cutting-edge solutions that transform your business
-            </p>
-          </div>
+      {/* Problem Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">The Problem</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Your Team Shouldn't Be<br />Stuck on the Phone
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Every missed call is a missed opportunity. Every hour on the phone is an hour away from your core business.
+            </motion.p>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {[
+              { icon: Phone, title: 'Missed Calls = Lost Revenue', desc: 'Up to $1,200 lost per unanswered lead call' },
+              { icon: Users, title: 'Staff Burnout', desc: 'Repetitive call handling drains your team' },
+              { icon: Clock, title: 'After-Hours Silence', desc: '67% of calls come outside business hours' },
+              { icon: Calendar, title: 'Manual Scheduling', desc: 'Hours wasted on booking and reminders' }
+            ].map((item, i) => (
+              <motion.div key={i} variants={fadeInUp} className="card text-center">
+                <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-7 h-7 text-red-500" />
+                </div>
+                <h3 className="text-lg font-semibold text-text-primary mb-2">{item.title}</h3>
+                <p className="text-sm text-text-secondary">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="card hover:scale-105 transform transition-all duration-300 animate-scale-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="flex flex-col items-center text-center space-y-4">
-                  <div className="p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-full">
-                    {feature.icon}
+      {/* How It Works Section */}
+      <section className="py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">How It Works</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Meet Your AI Receptionist
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              A simple, powerful process that transforms how you handle calls.
+            </motion.p>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-4 gap-8 relative"
+          >
+            {/* Connection Line */}
+            <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-primary-200 via-primary-400 to-primary-200"></div>
+            
+            {[
+              { icon: PhoneCall, title: 'Call Comes In', desc: 'Customer calls your business number' },
+              { icon: Bot, title: 'AI Engages', desc: 'Natural conversation and intent detection' },
+              { icon: Calendar, title: 'Smart Action', desc: 'Books, routes, or logs automatically' },
+              { icon: Bell, title: "You're Notified", desc: 'Real-time summary and recording' }
+            ].map((step, i) => (
+              <motion.div key={i} variants={fadeInUp}>
+                <WorkflowStep 
+                  number={i + 1} 
+                  icon={step.icon} 
+                  title={step.title} 
+                  description={step.desc}
+                  isLast={i === 3}
+                />
+              </motion.div>
+            ))}
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mt-12"
+          >
+            <Link to="/services">
+              <button className="btn-primary">
+                See How It Works
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Industry Solutions */}
+      <section className="py-24 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Industry Solutions</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Built for Your Industry
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Specialized AI solutions designed for the unique needs of your business sector.
+            </motion.p>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {industries.map((industry, i) => (
+              <motion.div key={i} variants={fadeInUp} onClick={() => setActiveIndustry(i)}>
+                <IndustryCard {...industry} isActive={activeIndustry === i} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Live Demo Section */}
+      <section className="py-24 bg-gradient-to-br from-primary-600 to-primary-700">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.span variants={fadeInUp} className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4">
+                Try It Yourself
+              </motion.span>
+              <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-white mb-6">
+                Don't Take Our Word For It
+              </motion.h2>
+              <motion.p variants={fadeInUp} className="text-lg text-primary-100 mb-8">
+                Experience our AI voice agent firsthand. Click the chat widget in the bottom right corner 
+                to have a conversation with our AI.
+              </motion.p>
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
+                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors flex items-center justify-center gap-2">
+                  <Mic className="w-5 h-5" />
+                  Talk to Our AI
+                </button>
+                <Link to="/contact">
+                  <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white/10 transition-colors">
+                    Want This For Your Business?
+                  </button>
+                </Link>
+              </motion.div>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative"
+            >
+              <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+                <div className="text-center">
+                  <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                    <div className="absolute inset-0 bg-white/10 rounded-full animate-pulse-ring"></div>
+                    <Mic className="w-16 h-16 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800">{feature.title}</h3>
-                  <p className="text-gray-600">{feature.description}</p>
+                  <p className="text-white font-semibold text-lg mb-2">Click to Start</p>
+                  <p className="text-primary-200 text-sm">Experience AI-powered conversations</p>
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
+      <section className="py-24 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Features</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Everything You Need
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Comprehensive features designed to handle any call scenario your business faces.
+            </motion.p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {features.map((feature, index) => (
+              <FeatureCard key={index} {...feature} index={index} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-cyan-600">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Let's build something amazing together. Contact us today for a free consultation.
-          </p>
-          <Link to="/contact">
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 animate-glow">
-              Start Your Project
+      {/* Integrations */}
+      <section className="py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Integrations</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Works With Your Stack
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Seamlessly connects with the tools you already use.
+            </motion.p>
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="flex flex-wrap justify-center gap-8 md:gap-12"
+          >
+            {integrations.map((name, i) => (
+              <motion.div 
+                key={i} 
+                variants={fadeInUp}
+                className="px-6 py-4 bg-white rounded-xl shadow-card border border-neutral-border text-text-secondary font-medium hover:text-primary-600 hover:border-primary-200 transition-all cursor-pointer"
+              >
+                {name}
+              </motion.div>
+            ))}
+          </motion.div>
+          
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mt-12"
+          >
+            <button className="btn-ghost">
+              See All Integrations
+              <ChevronRight className="w-5 h-5" />
             </button>
-          </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-24 bg-gradient-to-r from-primary-700 to-primary-600">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-12"
+          >
+            {stats.map((stat, i) => (
+              <motion.div key={i} variants={fadeInUp}>
+                <StatItem {...stat} />
+              </motion.div>
+            ))}
+          </motion.div>
+          <motion.p 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center text-primary-200 text-sm mt-12"
+          >
+            Sources: Forbes, BIA/Kelsey, Harvard Business Review
+          </motion.p>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="bg-gradient-to-br from-primary-50 to-neutral-lightBlue rounded-3xl p-12 md:p-16 text-center"
+          >
+            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+              Ready to Stop Missing Calls?
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
+              Join businesses that never miss a lead. Book a 15-minute demo to see how 
+              CogniDrift can transform your customer communications.
+            </motion.p>
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link to="/contact">
+                <button className="btn-primary">
+                  Book Your Demo
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </Link>
+              <button className="btn-secondary">
+                <Sparkles className="w-5 h-5" />
+                Try Our AI First
+              </button>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
     </div>

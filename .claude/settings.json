@@ -1,0 +1,13 @@
+{
+  "plugins": {
+    "enabled": [
+      "@anthropic-ai/code-review",
+      "@anthropic-ai/commit-commands",
+      "@anthropic-ai/feature-dev",
+      "@anthropic-ai/frontend-design",
+      "@anthropic-ai/security-guidance"
+    ]
+  },
+  "model": "claude-sonnet-4.5",
+  "outputStyle": "concise"
+}
