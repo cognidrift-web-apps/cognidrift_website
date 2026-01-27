@@ -317,53 +317,151 @@ const Home = () => {
               </motion.div>
             </motion.div>
             
-            {/* Right Content - Floating Cards (Virio-style) */}
-            <div className="relative hidden lg:block h-[500px]">
-              {/* Main Visual - Phone/Video Mockup */}
+            {/* Right Content - Video with Agent Info */}
+            <div className="relative hidden lg:block h-[600px]">
+              {/* Main Video Component with Enhanced Styling */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-80 bg-gradient-to-br from-primary-100 to-primary-200 rounded-3xl shadow-2xl flex items-center justify-center"
+                className="relative w-full h-full max-w-[520px] mx-auto"
               >
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-slow">
-                    <Mic className="w-10 h-10 text-white" />
-                  </div>
-                  <p className="text-primary-700 font-semibold">AI Speaking...</p>
+                {/* Animated Glow Background */}
+                <div className="absolute -inset-3 bg-gradient-to-r from-primary-500 via-accent-purple to-accent-teal rounded-[2.5rem] opacity-30 blur-2xl animate-pulse-slow"></div>
+                
+                {/* Rotating Border Effect */}
+                <motion.div 
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                  className="absolute -inset-1 bg-gradient-to-r from-primary-400 via-accent-purple to-accent-teal rounded-[2rem] opacity-75"
+                ></motion.div>
+                
+                {/* Video Container */}
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 h-full">
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    <source src="/hero.mp4" type="video/mp4" />
+                  </video>
+                  
+                  {/* Video Overlay with Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10 pointer-events-none"></div>
+                  
+                  {/* Corner Accents */}
+                  <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary-400 rounded-tl-lg"></div>
+                  <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-accent-teal rounded-tr-lg"></div>
+                  <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-accent-purple rounded-bl-lg"></div>
+                  <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary-400 rounded-br-lg"></div>
+                  
+                  {/* Animated Dots */}
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    className="absolute top-3 right-3 w-3 h-3 bg-accent-teal rounded-full shadow-lg shadow-accent-teal/50"
+                  ></motion.div>
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                    className="absolute bottom-3 left-3 w-3 h-3 bg-accent-purple rounded-full shadow-lg shadow-accent-purple/50"
+                  ></motion.div>
                 </div>
               </motion.div>
               
-              {/* Floating Notification Cards */}
-              <NotificationCard
-                avatar="CS"
-                name="Cody Snow"
-                title="CEO of TechCorp"
-                action="just scheduled a demo call"
-                time="4h"
-                delay={0.5}
-                className="absolute top-0 right-0 animate-float"
-              />
-              
-              <NotificationCard
-                avatar="ES"
-                name="Emily Staley"
-                title="Practice Manager"
-                action="AI handled 12 patient calls"
-                time="2d"
-                delay={0.7}
-                className="absolute top-1/3 -left-8 animate-float animation-delay-1000"
-              />
-              
-              <NotificationCard
-                avatar="DC"
-                name="David Campbell"
-                title="Insurance Agent"
-                action="booked consultation via AI"
-                time="1d"
-                delay={0.9}
-                className="absolute bottom-10 right-4 animate-float animation-delay-2000"
-              />
+              {/* Agent Info Card - Enhanced */}
+              <motion.div
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ delay: 1.1, duration: 0.6, ease: 'easeOut' }}
+                className="absolute bottom-12 left-6 z-10"
+              >
+                {/* Animated Border Wrapper */}
+                <div className="relative">
+                  {/* Animated Glow Effect */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary-500 via-accent-purple to-accent-teal rounded-2xl opacity-75 blur-sm animate-pulse-slow"></div>
+                  
+                  {/* Main Card */}
+                  <div className="relative bg-gradient-to-br from-neutral-900 to-neutral-800 backdrop-blur-xl border border-white/10 text-white p-5 rounded-2xl shadow-2xl max-w-[300px]">
+                    {/* Header with Avatar Icon */}
+                    <div className="flex items-start gap-3 mb-3">
+                      <motion.div 
+                        animate={{ 
+                          rotate: [0, 5, -5, 0],
+                          scale: [1, 1.05, 1]
+                        }}
+                        transition={{ 
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: 'easeInOut'
+                        }}
+                        className="relative"
+                      >
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary-500 via-accent-purple to-primary-600 flex items-center justify-center flex-shrink-0 shadow-lg">
+                          <Bot className="w-6 h-6 text-white" />
+                        </div>
+                        {/* Pulse Ring */}
+                        <div className="absolute inset-0 rounded-xl bg-primary-500/30 animate-ping"></div>
+                      </motion.div>
+                      
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <h4 className="text-base font-bold bg-gradient-to-r from-white to-primary-200 bg-clip-text text-transparent">
+                            Agentic Avatar
+                          </h4>
+                          <motion.div
+                            animate={{ 
+                              rotate: 360,
+                              scale: [1, 1.2, 1]
+                            }}
+                            transition={{ 
+                              rotate: { duration: 4, repeat: Infinity, ease: 'linear' },
+                              scale: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+                            }}
+                          >
+                            <Sparkles className="w-4 h-4 text-accent-teal" />
+                          </motion.div>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-2 h-2 rounded-full bg-accent-teal animate-pulse shadow-lg shadow-accent-teal/50"></div>
+                          <p className="text-[10px] font-semibold tracking-widest text-primary-300 uppercase">
+                            Virtual Receptionist
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Description */}
+                    <p className="text-xs text-neutral-200 leading-relaxed mb-3">
+                      Answer calls, schedule appointments, qualify leads, and handle customer inquiries 24/7 with human-like conversations.
+                    </p>
+                    
+                    {/* Feature Pills */}
+                    <div className="flex flex-wrap gap-1.5">
+                      <span className="px-2 py-1 bg-primary-500/20 border border-primary-500/30 rounded-full text-[10px] text-primary-300 font-medium">
+                        24/7 Available
+                      </span>
+                      <span className="px-2 py-1 bg-accent-teal/20 border border-accent-teal/30 rounded-full text-[10px] text-accent-teal font-medium">
+                        AI-Powered
+                      </span>
+                      <span className="px-2 py-1 bg-accent-purple/20 border border-accent-purple/30 rounded-full text-[10px] text-accent-purple font-medium">
+                        Multi-lingual
+                      </span>
+                    </div>
+                    
+                    {/* Decorative Corner Element */}
+                    <div className="absolute top-2 right-2">
+                      <motion.div
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                        className="w-2 h-2 rounded-full bg-accent-teal shadow-lg shadow-accent-teal/50"
+                      ></motion.div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </div>
