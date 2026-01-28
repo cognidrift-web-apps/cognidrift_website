@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion, useInView, useAnimation } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
+import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 import { 
   Phone, 
   Clock, 
@@ -678,30 +679,165 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features Grid */}
-      <section className="py-24 bg-white">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainer}
-            className="section-header"
+      {/* Features Grid - Scroll Stack */}
+      <section className="relative py-24 bg-gradient-to-b from-white via-neutral-offWhite to-white">
+        {/* Background Decoration */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-1/4 left-10 w-96 h-96 bg-primary-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent-purple/20 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative">
+          <ScrollStack
+            itemDistance={200}
+            itemScale={0.02}
+            itemStackDistance={60}
+            stackPosition="15%"
+            baseScale={0.95}
+            rotationAmount={0}
+            blurAmount={0}
+            useWindowScroll={true}
           >
-            <motion.span variants={fadeInUp} className="section-eyebrow">Features</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              Everything You Need
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="section-subtitle">
-              Comprehensive features designed to handle any call scenario your business faces.
-            </motion.p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((feature, index) => (
-              <FeatureCard key={index} {...feature} index={index} />
-            ))}
-          </div>
+            {/* Header Card */}
+            <ScrollStackItem itemClassName="!h-auto !min-h-[18rem] !shadow-2xl">
+              <div className="w-full h-full relative bg-gradient-to-br from-primary-600 via-primary-700 to-accent-purple text-white overflow-hidden rounded-3xl">
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <motion.div
+                    animate={{
+                      backgroundPosition: ['0% 0%', '100% 100%']
+                    }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      repeatType: 'reverse'
+                    }}
+                    className="w-full h-full"
+                    style={{
+                      backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+                      backgroundSize: '50px 50px'
+                    }}
+                  />
+                </div>
+                
+                <div className="relative flex flex-col justify-center h-full p-8 md:p-12">
+                  <motion.span 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    className="inline-block text-xs md:text-sm uppercase tracking-wider font-semibold mb-3 text-primary-100"
+                  >
+                    Features
+                  </motion.span>
+                  <motion.h2 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                    className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4"
+                  >
+                    Everything You Need
+                  </motion.h2>
+                  <motion.p 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-base md:text-lg text-primary-100 max-w-2xl"
+                  >
+                    Comprehensive features designed to handle any call scenario your business faces.
+                  </motion.p>
+                </div>
+              </div>
+            </ScrollStackItem>
+
+            {features.map((feature, index) => {
+              const Icon = feature.icon
+              const colors = [
+                { bg: 'from-blue-500 to-indigo-600', iconBg: 'bg-blue-100', iconColor: 'text-blue-600', border: 'border-blue-200', glow: 'bg-blue-400', accent: 'bg-blue-50' },
+                { bg: 'from-purple-500 to-pink-600', iconBg: 'bg-purple-100', iconColor: 'text-purple-600', border: 'border-purple-200', glow: 'bg-purple-400', accent: 'bg-purple-50' },
+                { bg: 'from-teal-500 to-cyan-600', iconBg: 'bg-teal-100', iconColor: 'text-teal-600', border: 'border-teal-200', glow: 'bg-teal-400', accent: 'bg-teal-50' },
+                { bg: 'from-green-500 to-emerald-600', iconBg: 'bg-green-100', iconColor: 'text-green-600', border: 'border-green-200', glow: 'bg-green-400', accent: 'bg-green-50' },
+                { bg: 'from-orange-500 to-red-600', iconBg: 'bg-orange-100', iconColor: 'text-orange-600', border: 'border-orange-200', glow: 'bg-orange-400', accent: 'bg-orange-50' },
+                { bg: 'from-indigo-500 to-purple-600', iconBg: 'bg-indigo-100', iconColor: 'text-indigo-600', border: 'border-indigo-200', glow: 'bg-indigo-400', accent: 'bg-indigo-50' },
+                { bg: 'from-pink-500 to-rose-600', iconBg: 'bg-pink-100', iconColor: 'text-pink-600', border: 'border-pink-200', glow: 'bg-pink-400', accent: 'bg-pink-50' },
+                { bg: 'from-cyan-500 to-blue-600', iconBg: 'bg-cyan-100', iconColor: 'text-cyan-600', border: 'border-cyan-200', glow: 'bg-cyan-400', accent: 'bg-cyan-50' },
+              ]
+              const color = colors[index % colors.length]
+              
+              return (
+                <ScrollStackItem key={index} itemClassName="!h-auto !min-h-[14rem] !shadow-2xl">
+                  <div className={`w-full h-full relative bg-white border-2 ${color.border} overflow-hidden group hover:shadow-3xl transition-all duration-500 rounded-3xl`}>
+                    {/* Gradient Accent Background */}
+                    <div className={`absolute top-0 right-0 w-1/3 h-full ${color.accent} opacity-50`}></div>
+                    
+                    {/* Gradient on Hover */}
+                    <motion.div 
+                      className={`absolute inset-0 bg-gradient-to-br ${color.bg} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
+                    />
+                    
+                    {/* Floating Sparkle */}
+                    <motion.div
+                      animate={{
+                        rotate: 360,
+                        scale: [1, 1.2, 1]
+                      }}
+                      transition={{
+                        rotate: { duration: 10, repeat: Infinity, ease: 'linear' },
+                        scale: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+                      }}
+                      className="absolute top-4 right-4 md:top-6 md:right-6 z-10"
+                    >
+                      <Sparkles className={`w-6 h-6 md:w-8 md:h-8 ${color.iconColor} opacity-30`} />
+                    </motion.div>
+                    
+                    <div className="relative flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 h-full p-6 md:p-8">
+                      {/* Icon */}
+                      <motion.div 
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                        className="relative flex-shrink-0"
+                      >
+                        <div className={`w-20 h-20 md:w-24 md:h-24 rounded-2xl ${color.iconBg} flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-shadow duration-500`}>
+                          <Icon className={`w-10 h-10 md:w-12 md:h-12 ${color.iconColor}`} />
+                        </div>
+                        
+                        {/* Pulse Ring */}
+                        <motion.div
+                          animate={{
+                            scale: [1, 1.3, 1],
+                            opacity: [0.5, 0, 0.5]
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: 'easeInOut'
+                          }}
+                          className={`absolute inset-0 rounded-2xl ${color.glow} opacity-20`}
+                        />
+                      </motion.div>
+                      
+                      {/* Text Content */}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-text-primary mb-2 md:mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:bg-clip-text group-hover:from-primary-600 group-hover:to-accent-purple transition-all duration-300">
+                          {feature.title}
+                        </h3>
+                        <p className="text-text-secondary text-sm md:text-base lg:text-lg leading-relaxed">
+                          {feature.description}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* Animated Border Bottom */}
+                    <motion.div
+                      initial={{ width: '0%' }}
+                      whileInView={{ width: '100%' }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      viewport={{ once: true }}
+                      className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${color.bg}`}
+                    />
+                  </div>
+                </ScrollStackItem>
+              )
+            })}
+          </ScrollStack>
         </div>
       </section>
 
