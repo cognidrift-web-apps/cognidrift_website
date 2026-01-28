@@ -100,10 +100,10 @@ const About = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-primary-600 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-purple/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-coral/20 rounded-full blur-3xl"></div>
         </div>
         
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -149,7 +149,7 @@ const About = () => {
               <motion.span variants={fadeInUp} className="section-eyebrow">Our Mission</motion.span>
               <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
                 AI That Works
-                <span className="gradient-text"> For You</span>
+                <span className="text-primary-600"> For You</span>
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-lg text-text-secondary mb-6">
                 At CogniDrift, we believe every business deserves access to enterprise-grade 
@@ -164,8 +164,8 @@ const About = () => {
               <motion.ul variants={staggerContainer} className="space-y-4">
                 {techStack.map((tech, i) => (
                   <motion.li key={i} variants={fadeInUp} className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-accent-teal/10 rounded-full flex items-center justify-center">
-                      <Check className="w-4 h-4 text-accent-teal" />
+                    <div className="w-6 h-6 bg-accent-coral/10 rounded-full flex items-center justify-center">
+                      <Check className="w-4 h-4 text-accent-coral" />
                     </div>
                     <span className="text-text-primary font-medium">{tech}</span>
                   </motion.li>
@@ -180,7 +180,7 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="bg-gradient-to-br from-primary-50 to-neutral-lightBlue rounded-3xl p-12 text-center">
+              <div className="bg-primary-50 rounded-3xl p-12 text-center">
                 <div className="w-24 h-24 bg-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                   <Rocket className="w-12 h-12 text-white" />
                 </div>
@@ -241,7 +241,7 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-gradient-to-r from-primary-700 to-primary-600">
+      <section className="py-24 bg-primary-600">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial="hidden"
@@ -326,7 +326,7 @@ const About = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl p-12 md:p-16 text-center"
+            className="bg-primary-600 rounded-3xl p-12 md:p-16 text-center"
           >
             <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Learn More?
@@ -336,7 +336,7 @@ const About = () => {
             </motion.p>
             <motion.div variants={fadeInUp}>
               <Link to="/contact">
-                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2">
+                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2 animate-glow">
                   Get in Touch
                   <ArrowRight className="w-5 h-5" />
                 </button>

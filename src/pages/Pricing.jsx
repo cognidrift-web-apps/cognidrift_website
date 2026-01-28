@@ -48,7 +48,7 @@ const Pricing = () => {
         'Custom integrations',
       ],
       popular: true,
-      color: 'accent-purple'
+      color: 'primary'
     },
     {
       name: 'Enterprise',
@@ -69,12 +69,12 @@ const Pricing = () => {
       ],
       notIncluded: [],
       popular: false,
-      color: 'accent-teal'
+      color: 'amber'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-neutral-lightBlue pt-24 pb-20">
+    <div className="min-h-screen bg-primary-50 pt-24 pb-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -87,7 +87,7 @@ const Pricing = () => {
             Pricing Plans
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
-            Choose Your <span className="gradient-text">Perfect Plan</span>
+            Choose Your <span className="text-primary-600">Perfect Plan</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
             Transparent pricing that grows with your business. No hidden fees, no surprises.
@@ -105,11 +105,11 @@ const Pricing = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className={`relative bg-white rounded-2xl shadow-lg border-2 ${
-                  plan.popular ? 'border-accent-purple' : 'border-neutral-border'
+                  plan.popular ? 'border-primary-600' : 'border-neutral-border'
                 } p-8 hover:shadow-xl transition-shadow duration-300`}
               >
                 {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent-purple text-white px-4 py-1 rounded-full text-sm font-semibold">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary-600 text-white px-4 py-1 rounded-full text-sm font-semibold">
                     Most Popular
                   </div>
                 )}
@@ -135,7 +135,7 @@ const Pricing = () => {
 
                 <Link to="/contact">
                   <button className={`w-full ${
-                    plan.popular ? 'btn-primary' : 'btn-secondary'
+                    plan.popular ? 'btn-primary animate-glow' : 'btn-secondary animate-glow'
                   } mb-6`}>
                     Get Started
                     <ArrowRight className="w-5 h-5" />
@@ -146,7 +146,7 @@ const Pricing = () => {
                   <p className="text-sm font-semibold text-text-primary mb-3">What's included:</p>
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-accent-teal flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-accent-coral flex-shrink-0 mt-0.5" />
                       <span className="text-sm text-text-secondary">{feature}</span>
                     </div>
                   ))}

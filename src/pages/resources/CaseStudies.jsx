@@ -30,7 +30,7 @@ const CaseStudies = () => {
         '45% improvement in conversion rate',
         '$450K additional revenue in Q1'
       ],
-      color: 'accent-purple'
+      color: 'accent-coral'
     },
     {
       company: 'Thompson & Associates Law',
@@ -44,12 +44,12 @@ const CaseStudies = () => {
         '50% faster client onboarding',
         '30% increase in billable hours'
       ],
-      color: 'accent-teal'
+      color: 'accent-amber'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-neutral-lightBlue pt-24 pb-20">
+    <div className="min-h-screen bg-primary-50 pt-24 pb-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -62,7 +62,7 @@ const CaseStudies = () => {
             Success Stories
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
-            Real Results from <span className="gradient-text">Real Businesses</span>
+            Real Results from <span className="text-primary-600">Real Businesses</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
             See how businesses across industries are transforming their operations with AI voice agents.
@@ -88,7 +88,7 @@ const CaseStudies = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-text-primary mb-1 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-accent-teal" />
+                        <TrendingUp className="w-4 h-4 text-accent-coral" />
                         Challenge
                       </h4>
                       <p className="text-sm text-text-secondary">{study.challenge}</p>
@@ -109,13 +109,13 @@ const CaseStudies = () => {
                   <div className="grid sm:grid-cols-2 gap-4">
                     {study.results.map((result, i) => (
                       <div key={i} className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
-                        <CheckCircle2 className="w-5 h-5 text-accent-teal flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-5 h-5 text-accent-coral flex-shrink-0 mt-0.5" />
                         <p className="text-text-primary font-medium">{result}</p>
                       </div>
                     ))}
                   </div>
                   <Link to="/contact">
-                    <button className="btn-primary mt-8">
+                    <button className="btn-primary animate-glow mt-8">
                       Get Similar Results
                       <ArrowRight className="w-5 h-5" />
                     </button>
@@ -131,7 +131,7 @@ const CaseStudies = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="bg-gradient-to-br from-primary-600 to-accent-purple rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
+          className="bg-primary-600 rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
         >
           <BookOpen className="w-12 h-12 mx-auto mb-4" />
           <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
@@ -139,7 +139,7 @@ const CaseStudies = () => {
             Join hundreds of businesses already benefiting from AI voice automation.
           </p>
           <Link to="/contact">
-            <button className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-neutral-offWhite transition-colors inline-flex items-center gap-2">
+            <button className="bg-white text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors inline-flex items-center gap-2 animate-glow">
               Schedule a Demo
               <ArrowRight className="w-5 h-5" />
             </button>

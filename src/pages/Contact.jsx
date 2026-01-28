@@ -106,10 +106,10 @@ const Contact = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-primary-600 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-purple/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-coral/20 rounded-full blur-3xl"></div>
         </div>
         
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,7 +188,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                      className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all"
                       placeholder="john@company.com"
                     />
                   </div>
@@ -204,7 +204,7 @@ const Contact = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all"
                     placeholder="Your Company"
                   />
                 </div>
@@ -219,7 +219,7 @@ const Contact = () => {
                     value={formData.industry}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all"
                   >
                     <option value="">Select your industry</option>
                     {industries.map((industry) => (
@@ -240,7 +240,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="4"
-                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all resize-none"
                     placeholder="What challenges are you looking to solve with AI voice automation?"
                   ></textarea>
                 </div>
@@ -251,7 +251,7 @@ const Contact = () => {
                     animate={{ opacity: 1, y: 0 }}
                     className={`p-4 rounded-xl flex items-center gap-3 ${
                       status.type === 'success'
-                        ? 'bg-accent-teal/10 text-accent-teal'
+                        ? 'bg-accent-coral/10 text-accent-coral'
                         : 'bg-red-50 text-red-600'
                     }`}
                   >
@@ -263,7 +263,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed animate-glow"
                 >
                   <Send className="w-5 h-5" />
                   {isSubmitting ? 'Sending...' : 'Request Demo'}
@@ -319,7 +319,7 @@ const Contact = () => {
 
               {/* Response Time */}
               <motion.div variants={fadeInUp} className="flex items-center gap-4 p-6 bg-neutral-offWhite rounded-2xl">
-                <div className="w-12 h-12 bg-accent-teal/10 rounded-xl flex items-center justify-center text-accent-teal">
+                <div className="w-12 h-12 bg-accent-coral/10 rounded-xl flex items-center justify-center text-accent-coral">
                   <Clock className="w-6 h-6" />
                 </div>
                 <div>
@@ -355,7 +355,7 @@ const Contact = () => {
             </motion.p>
             <motion.button 
               variants={fadeInUp}
-              className="btn-primary"
+              className="btn-primary animate-glow"
             >
               <MessageSquare className="w-5 h-5" />
               Talk to Our AI

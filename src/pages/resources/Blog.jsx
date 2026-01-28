@@ -55,7 +55,7 @@ const Blog = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-neutral-lightBlue pt-24 pb-20">
+    <div className="min-h-screen bg-primary-50 pt-24 pb-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -68,7 +68,7 @@ const Blog = () => {
             Blog & Resources
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
-            Latest <span className="gradient-text">Insights</span>
+            Latest <span className="text-primary-600">Insights</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto">
             Stay updated with the latest trends, tips, and best practices in AI voice automation.
@@ -85,7 +85,7 @@ const Blog = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
             >
-              <div className="h-48 bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center text-6xl">
+              <div className="h-48 bg-primary-200 flex items-center justify-center text-6xl">
                 {post.image}
               </div>
               <div className="p-6">
@@ -122,7 +122,7 @@ const Blog = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16 bg-gradient-to-br from-primary-600 to-accent-purple rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
+          className="mt-16 bg-primary-600 rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
         >
           <FileText className="w-12 h-12 mx-auto mb-4" />
           <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
@@ -135,7 +135,7 @@ const Blog = () => {
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 rounded-lg text-text-primary"
             />
-            <button className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-neutral-offWhite transition-colors">
+            <button className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors animate-glow">
               Subscribe
             </button>
           </div>

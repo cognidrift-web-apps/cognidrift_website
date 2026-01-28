@@ -69,7 +69,7 @@ const HelpCenter = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-neutral-lightBlue pt-24 pb-20">
+    <div className="min-h-screen bg-primary-50 pt-24 pb-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -82,7 +82,7 @@ const HelpCenter = () => {
             Help Center
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
-            How Can We <span className="gradient-text">Help You?</span>
+            How Can We <span className="text-primary-600">Help You?</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8">
             Find answers to your questions and learn how to get the most out of CogniDrift.
@@ -161,7 +161,7 @@ const HelpCenter = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="bg-gradient-to-br from-primary-600 to-accent-purple rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
+          className="bg-primary-600 rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
         >
           <h2 className="text-3xl font-bold mb-4">Still Need Help?</h2>
           <p className="text-lg mb-8 opacity-90">
@@ -169,12 +169,12 @@ const HelpCenter = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
-              <button className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-neutral-offWhite transition-colors inline-flex items-center gap-2">
+              <button className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors inline-flex items-center gap-2 animate-glow">
                 <MessageCircle className="w-5 h-5" />
                 Live Chat
               </button>
             </Link>
-            <button className="bg-white/10 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-colors inline-flex items-center gap-2">
+            <button className="bg-white/10 backdrop-blur-sm text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/20 transition-colors inline-flex items-center gap-2 animate-glow">
               <Mail className="w-5 h-5" />
               Email Support
             </button>

@@ -87,9 +87,9 @@ function CustomAIWidget() {
       {!isOpen && (
         <button
           onClick={handleToggle}
-          className="group relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 text-white shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-110 animate-float"
+          className="group relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-primary-600 text-white shadow-glow hover:shadow-glow-lg transition-all duration-300 hover:scale-110 animate-float"
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 opacity-75 group-hover:opacity-100 blur-xl animate-glow"></div>
+          <div className="absolute inset-0 rounded-full bg-primary-600 opacity-75 group-hover:opacity-100 blur-xl animate-glow"></div>
           <div className="relative flex items-center justify-center w-full h-full">
             <svg className="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
@@ -100,9 +100,9 @@ function CustomAIWidget() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed inset-0 md:inset-auto md:bottom-20 md:right-6 bg-slate-900 md:rounded-2xl shadow-2xl w-full h-full md:w-96 md:h-[600px] flex flex-col overflow-hidden border-0 md:border md:border-purple-500/20 animate-scale-in">
+        <div className="fixed inset-0 md:inset-auto md:bottom-20 md:right-6 bg-slate-900 md:rounded-2xl shadow-2xl w-full h-full md:w-96 md:h-[600px] flex flex-col overflow-hidden border-0 md:border md:border-primary-500/20 animate-scale-in">
           {/* Header */}
-          <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 p-4 md:p-4 flex justify-between items-center">
+          <div className="bg-primary-600 p-4 md:p-4 flex justify-between items-center shadow-glow">
             <div className="flex items-center gap-3">
               <div className={`w-3 h-3 rounded-full ${conversation.status === 'connected' ? 'bg-green-400 animate-pulse' : 'bg-red-400'}`}></div>
               <div>
@@ -129,7 +129,7 @@ function CustomAIWidget() {
             <div className="text-center space-y-4 md:space-y-6">
               {/* Animated Orb */}
               <div className="relative w-24 h-24 md:w-32 md:h-32 mx-auto">
-                <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 ${conversation.isSpeaking ? 'animate-pulse' : ''}`}></div>
+                <div className={`absolute inset-0 rounded-full bg-primary-600 shadow-glow ${conversation.isSpeaking ? 'animate-pulse' : ''}`}></div>
                 <div className="absolute inset-2 rounded-full bg-slate-900 flex items-center justify-center">
                   <svg className="w-12 h-12 md:w-16 md:h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     {conversation.isSpeaking ? (

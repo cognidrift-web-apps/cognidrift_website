@@ -167,10 +167,10 @@ const Services = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-primary-600 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-purple/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-coral/20 rounded-full blur-3xl"></div>
         </div>
         
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -201,7 +201,7 @@ const Services = () => {
             </motion.p>
             <motion.div variants={fadeInUp}>
               <Link to="/contact">
-                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2">
+                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2 animate-glow">
                   Get Started
                   <ArrowRight className="w-5 h-5" />
                 </button>
@@ -245,8 +245,8 @@ const Services = () => {
               >
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 ${
                   service.color === 'primary' ? 'bg-primary-50 text-primary-600 group-hover:bg-primary-100' :
-                  service.color === 'teal' ? 'bg-teal-50 text-accent-teal group-hover:bg-teal-100' :
-                  service.color === 'purple' ? 'bg-purple-50 text-accent-purple group-hover:bg-purple-100' :
+                  service.color === 'teal' ? 'bg-amber-50 text-accent-amber group-hover:bg-amber-100' :
+                  service.color === 'purple' ? 'bg-coral-50 text-accent-coral group-hover:bg-coral-100' :
                   'bg-orange-50 text-accent-orange group-hover:bg-orange-100'
                 }`}>
                   <service.icon className="w-7 h-7" />
@@ -256,7 +256,7 @@ const Services = () => {
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-sm text-text-secondary">
-                      <Check className="w-4 h-4 text-accent-teal flex-shrink-0" />
+                      <Check className="w-4 h-4 text-accent-coral flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -333,7 +333,7 @@ const Services = () => {
                   {industries[activeTab].description}
                 </p>
                 <Link to="/contact">
-                  <button className="btn-primary">
+                  <button className="btn-primary animate-glow">
                     Learn More
                     <ChevronRight className="w-5 h-5" />
                   </button>
@@ -420,7 +420,7 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-primary-600 to-primary-700">
+      <section className="py-24 bg-primary-600">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div 
             initial="hidden"
@@ -442,7 +442,7 @@ const Services = () => {
             </motion.p>
             <motion.div variants={fadeInUp}>
               <Link to="/contact">
-                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2">
+                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2 animate-glow">
                   Book Your Demo
                   <ArrowRight className="w-5 h-5" />
                 </button>

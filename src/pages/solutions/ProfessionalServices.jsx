@@ -36,7 +36,7 @@ const ProfessionalServices = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-neutral-lightBlue pt-24 pb-20">
+    <div className="min-h-screen bg-primary-50 pt-24 pb-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <motion.div
@@ -49,13 +49,13 @@ const ProfessionalServices = () => {
             <Building2 className="w-10 h-10 text-primary-600" />
           </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
-            AI Solutions for <span className="gradient-text">Professional Services</span>
+            AI Solutions for <span className="text-primary-600">Professional Services</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-3xl mx-auto mb-8">
             Enhance your law firm, accounting practice, or consulting business with intelligent AI receptionists.
           </p>
           <Link to="/contact">
-            <button className="btn-primary">
+            <button className="btn-primary animate-glow">
               Schedule a Demo
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -97,7 +97,7 @@ const ProfessionalServices = () => {
           <div className="grid md:grid-cols-2 gap-4">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-start gap-3">
-                <CheckCircle2 className="w-6 h-6 text-accent-teal flex-shrink-0 mt-1" />
+                <CheckCircle2 className="w-6 h-6 text-accent-coral flex-shrink-0 mt-1" />
                 <p className="text-text-secondary">{benefit}</p>
               </div>
             ))}

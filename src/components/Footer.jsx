@@ -61,7 +61,7 @@ const Footer = () => {
                   placeholder="Enter your email" 
                   className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
                 />
-                <button className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+                <button className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 hover:shadow-glow transition-all duration-300 animate-glow">
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
@@ -162,7 +162,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-6">
               <span className="text-gray-500 text-sm flex items-center gap-2">
-                <div className="w-2 h-2 bg-accent-teal rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-accent-coral rounded-full animate-pulse"></div>
                 All systems operational
               </span>
             </div>

@@ -7,31 +7,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary Blue Palette
+        // Primary Orange Palette
         primary: {
-          50: '#EFF6FF',
-          100: '#DBEAFE',
-          200: '#BFDBFE',
-          300: '#93C5FD',
-          400: '#60A5FA',
-          500: '#3B82F6',
-          600: '#2563EB',  // Main primary
-          700: '#1E40AF',  // Dark/hover
-          800: '#1E3A8A',
-          900: '#1E3A5F',
+          50: '#FFF7ED',
+          100: '#FFEDD5',
+          200: '#FED7AA',
+          300: '#FDBA74',
+          400: '#FB923C',
+          500: '#F97316',
+          600: '#EA580C',  // Main primary
+          700: '#C2410C',  // Dark/hover
+          800: '#9A3412',
+          900: '#7C2D12',
         },
         // Accent Colors
         accent: {
-          teal: '#0D9488',
-          purple: '#7C3AED',
-          orange: '#F97316',
+          coral: '#FF6B6B',
+          amber: '#FBBF24',
+          warm: '#EF4444',
         },
         // Neutrals
         neutral: {
           white: '#FFFFFF',
-          offWhite: '#F8FAFC',
-          lightBlue: '#EFF6FF',
-          border: '#E2E8F0',
+          offWhite: '#FFFBF5',
+          lightOrange: '#FFF7ED',
+          border: '#FED7AA',
         },
         // Text Colors
         text: {
@@ -66,11 +66,13 @@ export default {
       },
       boxShadow: {
         'card': '0 4px 6px rgba(0, 0, 0, 0.05)',
-        'card-hover': '0 10px 40px rgba(0, 0, 0, 0.1)',
-        'button': '0 4px 14px rgba(37, 99, 235, 0.3)',
-        'button-hover': '0 6px 20px rgba(37, 99, 235, 0.4)',
+        'card-hover': '0 10px 40px rgba(249, 115, 22, 0.15)',
+        'button': '0 4px 14px rgba(249, 115, 22, 0.3)',
+        'button-hover': '0 6px 20px rgba(249, 115, 22, 0.5)',
         'nav': '0 1px 3px rgba(0, 0, 0, 0.1)',
-        'notification': '0 10px 40px rgba(0, 0, 0, 0.12)',
+        'notification': '0 10px 40px rgba(249, 115, 22, 0.12)',
+        'glow': '0 0 20px rgba(249, 115, 22, 0.5), 0 0 40px rgba(249, 115, 22, 0.3)',
+        'glow-lg': '0 0 30px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.4)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
@@ -120,8 +122,8 @@ export default {
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 5px rgba(37, 99, 235, 0.5), 0 0 10px rgba(37, 99, 235, 0.3)' },
-          '100%': { boxShadow: '0 0 20px rgba(37, 99, 235, 0.8), 0 0 30px rgba(37, 99, 235, 0.5)' },
+          '0%': { boxShadow: '0 0 10px rgba(249, 115, 22, 0.5), 0 0 20px rgba(249, 115, 22, 0.3)' },
+          '100%': { boxShadow: '0 0 25px rgba(249, 115, 22, 0.8), 0 0 50px rgba(249, 115, 22, 0.5)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
@@ -133,9 +135,8 @@ export default {
         'bounce': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
       backgroundImage: {
-        'hero-gradient': 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)',
-        'subtle-glow': 'radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%)',
-        'card-gradient': 'linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 100%)',
+        'hero-pattern': 'radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)',
+        'subtle-glow': 'radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%)',
       },
     },
   },

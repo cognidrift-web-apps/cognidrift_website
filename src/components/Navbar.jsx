@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Brain, ChevronDown, Phone, Building2, Stethoscope, Home as HomeIcon, FileText, BookOpen, HelpCircle, Zap } from 'lucide-react'
+import { Menu, X, Brain, ChevronDown, Phone, Building2, Stethoscope, Home as HomeIcon, FileText, BookOpen, HelpCircle, Zap, Sparkles } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -57,13 +57,37 @@ const Navbar = () => {
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-[72px]">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center group-hover:bg-primary-700 transition-colors duration-300">
-              <Brain className="w-6 h-6 text-white" />
+          <Link to="/" className="flex items-center space-x-3 group">
+            <motion.div 
+              whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+              transition={{ duration: 0.3 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-orange-400/50 rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
+              <div className="relative w-11 h-11 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                <Brain className="w-6 h-6 text-white" />
+                <motion.div
+                  className="absolute -top-1 -right-1"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "linear"
+                  }}
+                >
+                  <Sparkles className="w-3 h-3 text-amber-300" />
+                </motion.div>
+              </div>
+            </motion.div>
+            <div>
+              <span className="text-xl font-bold text-text-primary group-hover:text-orange-600 transition-all duration-300">
+                Cogni<span className="text-orange-600">Drift</span>
+              </span>
+              <div className="h-0.5 w-0 group-hover:w-full bg-orange-500 transition-all duration-500" />
             </div>
-            <span className="text-xl font-bold text-text-primary">
-              Cogni<span className="text-primary-600">Drift</span>
-            </span>
           </Link>
 
           {/* Desktop Menu */}
@@ -77,24 +101,40 @@ const Navbar = () => {
               >
                 <Link
                   to={link.path}
-                  className={`relative px-4 py-2 text-base font-medium transition-colors duration-300 rounded-lg flex items-center gap-1 ${
+                  className={`relative px-4 py-2 text-base font-medium transition-all duration-300 rounded-lg flex items-center gap-1 group ${
                     isActive(link.path)
-                      ? 'text-primary-600'
-                      : 'text-text-secondary hover:text-text-primary hover:bg-neutral-offWhite'
+                      ? 'text-orange-600'
+                      : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
-                  {link.name}
+                  <span className="relative z-10">{link.name}</span>
                   {link.submenu && (
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-300 relative z-10 ${
                       openDropdown === link.name ? 'rotate-180' : ''
                     }`} />
                   )}
+                  
+                  {/* Hover Background Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-orange-50/80 rounded-lg opacity-0 group-hover:opacity-100"
+                    transition={{ duration: 0.3 }}
+                  />
+                  
+                  {/* Active Indicator */}
                   {isActive(link.path) && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute bottom-0 left-4 right-4 h-0.5 bg-primary-600 rounded-full"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
+                    <>
+                      <motion.div
+                        layoutId="activeIndicator"
+                        className="absolute bottom-0 left-4 right-4 h-0.5 bg-orange-500 rounded-full"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 bg-orange-50 rounded-lg"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </>
                   )}
                 </Link>
                 
@@ -102,22 +142,35 @@ const Navbar = () => {
                 <AnimatePresence>
                   {link.submenu && openDropdown === link.name && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-lg border border-neutral-border py-2"
+                      className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-neutral-border/50 py-2 overflow-hidden"
                     >
+                      {/* Background */}
+                      <div className="absolute inset-0 bg-orange-50/20 pointer-events-none" />
+                      
                       {link.submenu.map((item, index) => {
                         const Icon = item.icon
                         return (
                           <Link
                             key={item.name}
                             to={item.path}
-                            className="flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50 transition-colors duration-200"
+                            className="relative flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:text-orange-600 transition-colors duration-200 group"
                           >
-                            <Icon className="w-5 h-5" />
-                            {item.name}
+                            <motion.div
+                              className="absolute inset-0 bg-orange-100/50 opacity-0 group-hover:opacity-100"
+                              transition={{ duration: 0.2 }}
+                            />
+                            <motion.div
+                              whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                              transition={{ duration: 0.3 }}
+                              className="relative z-10"
+                            >
+                              <Icon className="w-5 h-5" />
+                            </motion.div>
+                            <span className="relative z-10">{item.name}</span>
                           </Link>
                         )
                       })}
@@ -131,20 +184,61 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/contact">
-              <button className="btn-primary text-sm px-6 py-3">
-                Book a Demo
-              </button>
+              <motion.button 
+                className="relative btn-primary text-sm px-6 py-3 overflow-hidden group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Zap className="w-4 h-4" />
+                  Book a Demo
+                </span>
+                {/* Animated shine effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                />
+                {/* Pulse effect */}
+                <motion.div
+                  className="absolute inset-0 bg-white/20 rounded-xl"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0, 0.3, 0]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-text-secondary hover:text-text-primary hover:bg-neutral-offWhite rounded-lg transition-colors duration-300"
+            className="md:hidden p-2 text-text-secondary hover:text-text-primary hover:bg-orange-50 rounded-lg transition-all duration-300 relative overflow-hidden group"
             aria-label="Toggle menu"
+            whileTap={{ scale: 0.9 }}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <motion.div
+              animate={{ rotate: isOpen ? 90 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.div>
+            {/* Pulse on open */}
+            {isOpen && (
+              <motion.div
+                className="absolute inset-0 bg-orange-100 rounded-lg"
+                animate={{ scale: [1, 1.2], opacity: [0.5, 0] }}
+                transition={{ duration: 0.6 }}
+              />
+            )}
+          </motion.button>
         </div>
       </div>
 
@@ -156,9 +250,12 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white border-t border-neutral-border"
+            className="md:hidden bg-white border-t border-neutral-border relative overflow-hidden"
           >
-            <div className="px-4 py-6 space-y-2">
+            {/* Background */}
+            <div className="absolute inset-0 bg-orange-50/30 pointer-events-none" />
+            
+            <div className="relative px-4 py-6 space-y-2">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}
@@ -170,14 +267,18 @@ const Navbar = () => {
                     <div>
                       <button
                         onClick={() => setOpenDropdown(openDropdown === link.name ? null : link.name)}
-                        className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium transition-colors duration-300 ${
+                        className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 relative overflow-hidden group ${
                           isActive(link.path)
-                            ? 'text-primary-600 bg-primary-50'
-                            : 'text-text-secondary hover:text-text-primary hover:bg-neutral-offWhite'
+                            ? 'text-orange-600 bg-orange-50'
+                            : 'text-text-secondary hover:text-text-primary'
                         }`}
                       >
-                        {link.name}
-                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                        <motion.div
+                          className="absolute inset-0 bg-orange-50 opacity-0 group-hover:opacity-100"
+                          transition={{ duration: 0.3 }}
+                        />
+                        <span className="relative z-10">{link.name}</span>
+                        <ChevronDown className={`w-4 h-4 transition-transform duration-300 relative z-10 ${
                           openDropdown === link.name ? 'rotate-180' : ''
                         }`} />
                       </button>
@@ -189,18 +290,30 @@ const Navbar = () => {
                             exit={{ opacity: 0, height: 0 }}
                             className="mt-2 ml-4 space-y-1"
                           >
-                            {link.submenu.map((item) => {
+                            {link.submenu.map((item, subIndex) => {
                               const Icon = item.icon
                               return (
-                                <Link
+                                <motion.div
                                   key={item.name}
-                                  to={item.path}
-                                  onClick={() => setIsOpen(false)}
-                                  className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50 transition-colors duration-200"
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: subIndex * 0.05 }}
                                 >
-                                  <Icon className="w-4 h-4" />
-                                  {item.name}
-                                </Link>
+                                  <Link
+                                    to={item.path}
+                                    onClick={() => setIsOpen(false)}
+                                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 group relative overflow-hidden"
+                                  >
+                                    <motion.div
+                                      whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                                      transition={{ duration: 0.3 }}
+                                      className="relative z-10"
+                                    >
+                                      <Icon className="w-4 h-4" />
+                                    </motion.div>
+                                    <span className="relative z-10">{item.name}</span>
+                                  </Link>
+                                </motion.div>
                               )
                             })}
                           </motion.div>
@@ -211,13 +324,17 @@ const Navbar = () => {
                     <Link
                       to={link.path}
                       onClick={() => setIsOpen(false)}
-                      className={`block px-4 py-3 rounded-xl text-base font-medium transition-colors duration-300 ${
+                      className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 relative overflow-hidden group ${
                         isActive(link.path)
-                          ? 'text-primary-600 bg-primary-50'
-                          : 'text-text-secondary hover:text-text-primary hover:bg-neutral-offWhite'
+                          ? 'text-orange-600 bg-orange-50'
+                          : 'text-text-secondary hover:text-text-primary'
                       }`}
                     >
-                      {link.name}
+                      <motion.div
+                        className="absolute inset-0 bg-orange-50 opacity-0 group-hover:opacity-100"
+                        transition={{ duration: 0.3 }}
+                      />
+                      <span className="relative z-10">{link.name}</span>
                     </Link>
                   )}
                 </motion.div>
@@ -229,9 +346,26 @@ const Navbar = () => {
                 className="pt-4"
               >
                 <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  <button className="btn-primary w-full">
-                    Book a Demo
-                  </button>
+                  <motion.button 
+                    className="btn-primary w-full relative overflow-hidden group"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-2">
+                      <Zap className="w-4 h-4" />
+                      Book a Demo
+                    </span>
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                      initial={{ x: '-100%' }}
+                      animate={{ x: '100%' }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 1,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </motion.button>
                 </Link>
               </motion.div>
             </div>
