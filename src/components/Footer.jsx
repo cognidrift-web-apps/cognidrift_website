@@ -8,14 +8,14 @@ const Footer = () => {
     product: [
       { name: 'Features', path: '/services' },
       { name: 'Integrations', path: '/services' },
-      { name: 'Pricing', path: '/contact' },
+      { name: 'Pricing', path: '/pricing' },
       { name: 'Demo', path: '/contact' },
     ],
     solutions: [
-      { name: 'Healthcare', path: '/services' },
-      { name: 'Insurance', path: '/services' },
-      { name: 'Real Estate', path: '/services' },
-      { name: 'Custom', path: '/contact' },
+      { name: 'Healthcare', path: '/solutions/healthcare' },
+      { name: 'Real Estate', path: '/solutions/real-estate' },
+      { name: 'Professional Services', path: '/solutions/professional-services' },
+      { name: 'Call Center', path: '/solutions/call-center' },
     ],
     company: [
       { name: 'About', path: '/about' },
@@ -48,17 +48,17 @@ const Footer = () => {
               </span>
             </Link>
             <p className="text-gray-400 mb-6 max-w-sm">
-              AI-powered voice agents that never miss a call. Transform your customer 
+              AI-powered voice agents that never miss a call. Transform your customer
               communications with intelligent automation.
             </p>
-            
+
             {/* Newsletter Signup */}
             <div className="mb-6">
               <p className="text-white font-medium mb-3">Stay updated</p>
               <div className="flex gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
+                <input
+                  type="email"
+                  placeholder="Enter your email"
                   className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
                 />
                 <button className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 hover:shadow-glow transition-all duration-300 animate-glow">
@@ -88,8 +88,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.product.map((link, index) => (
                 <li key={index}>
-                  <Link 
-                    to={link.path} 
+                  <Link
+                    to={link.path}
                     className="text-gray-400 hover:text-white transition-colors duration-300"
                   >
                     {link.name}
@@ -105,8 +105,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.solutions.map((link, index) => (
                 <li key={index}>
-                  <Link 
-                    to={link.path} 
+                  <Link
+                    to={link.path}
                     className="text-gray-400 hover:text-white transition-colors duration-300"
                   >
                     {link.name}
@@ -122,8 +122,8 @@ const Footer = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link, index) => (
                 <li key={index}>
-                  <Link 
-                    to={link.path} 
+                  <Link
+                    to={link.path}
                     className="text-gray-400 hover:text-white transition-colors duration-300"
                   >
                     {link.name}
@@ -131,18 +131,18 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-            
+
             {/* Contact Info */}
             <div className="mt-6 space-y-3">
-              <a 
-                href="mailto:contact@cognidrift.com" 
+              <a
+                href="mailto:contact@cognidrift.com"
                 className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
               >
                 <Mail className="w-4 h-4" />
                 <span className="text-sm">contact@cognidrift.com</span>
               </a>
-              <a 
-                href="tel:+15551234567" 
+              <a
+                href="tel:+15551234567"
                 className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
               >
                 <Phone className="w-4 h-4" />
@@ -162,7 +162,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-6">
               <span className="text-gray-500 text-sm flex items-center gap-2">
-                <div className="w-2 h-2 bg-accent-coral rounded-full animate-pulse"></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 All systems operational
               </span>
             </div>

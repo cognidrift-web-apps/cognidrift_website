@@ -2,14 +2,21 @@ import { Link } from 'react-router-dom'
 import { motion, useInView, useAnimation } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
-import { 
-  Phone, 
-  Clock, 
-  Calendar, 
-  MessageSquare, 
-  BarChart3, 
-  Shield, 
-  Zap, 
+import Testimonials from '../components/Testimonials'
+import ClientLogos from '../components/ClientLogos'
+import TrustBadges from '../components/TrustBadges'
+import PressLogos from '../components/PressLogos'
+import DemoCalls from '../components/DemoCalls'
+import FAQ from '../components/FAQ'
+import TryNowSection from '../components/TryNowSection'
+import {
+  Phone,
+  Clock,
+  Calendar,
+  MessageSquare,
+  BarChart3,
+  Shield,
+  Zap,
   Globe,
   Users,
   Building2,
@@ -44,7 +51,7 @@ const staggerContainer = {
 // Counter animation hook
 const useCounter = (end, duration = 2000, inView) => {
   const [count, setCount] = useState(0)
-  
+
   useEffect(() => {
     if (!inView) return
     let startTime
@@ -56,11 +63,11 @@ const useCounter = (end, duration = 2000, inView) => {
     }
     requestAnimationFrame(animate)
   }, [end, duration, inView])
-  
+
   return count
 }
 
-// Notification Card Component (Virio-style)
+// Notification Card Component
 const NotificationCard = ({ avatar, name, title, action, time, delay, className }) => (
   <motion.div
     initial={{ opacity: 0, x: 50, y: 20 }}
@@ -82,11 +89,11 @@ const NotificationCard = ({ avatar, name, title, action, time, delay, className 
   </motion.div>
 )
 
-// Feature Card Component
+// Feature Card Component - Enhanced with Better Typography & Hover
 const FeatureCard = ({ icon: Icon, title, description, index }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  
+
   return (
     <motion.div
       ref={ref}
@@ -94,13 +101,14 @@ const FeatureCard = ({ icon: Icon, title, description, index }) => {
       animate={isInView ? 'visible' : 'hidden'}
       variants={fadeInUp}
       transition={{ delay: index * 0.1 }}
+      whileHover={{ scale: 1.05, y: -8 }}
       className="card-feature group"
     >
       <div className="icon-wrapper">
         <Icon className="w-6 h-6 text-primary-600" />
       </div>
-      <h3 className="text-xl font-semibold text-text-primary mb-2">{title}</h3>
-      <p className="text-text-secondary">{description}</p>
+      <h3 className="text-xl lg:text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
+      <p className="text-text-secondary leading-relaxed">{description}</p>
     </motion.div>
   )
 }
@@ -119,29 +127,33 @@ const WorkflowStep = ({ number, icon: Icon, title, description, isLast }) => (
   </div>
 )
 
-// Industry Card Component
+// Industry Card Component - Enhanced with Hover Scale
 const IndustryCard = ({ icon: Icon, title, description, features, isActive }) => (
-  <div className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer ${
-    isActive 
-      ? 'border-primary-600 bg-primary-50 shadow-lg' 
-      : 'border-neutral-border bg-white hover:border-primary-300'
-  }`}>
-    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-      isActive ? 'bg-primary-600 text-white' : 'bg-primary-50 text-primary-600'
+  <motion.div
+    whileHover={{ scale: 1.05, y: -8 }}
+    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+    className={`p-6 lg:p-8 rounded-2xl border cursor-pointer ${
+      isActive
+        ? 'border-primary-600 bg-primary-50 shadow-xl'
+        : 'border-neutral-border bg-white hover:border-primary-300 hover:shadow-xl'
+    }`}
+  >
+    <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 ${
+      isActive ? 'bg-primary-600 text-white shadow-lg' : 'bg-primary-50 text-primary-600'
     }`}>
-      <Icon className="w-6 h-6" />
+      <Icon className="w-7 h-7" />
     </div>
-    <h3 className="text-xl font-semibold text-text-primary mb-2">{title}</h3>
-    <p className="text-text-secondary mb-4">{description}</p>
-    <ul className="space-y-2">
+    <h3 className="text-xl lg:text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
+    <p className="text-text-secondary mb-5 leading-relaxed">{description}</p>
+    <ul className="space-y-3">
       {features.map((feature, i) => (
-        <li key={i} className="flex items-center gap-2 text-sm text-text-secondary">
-          <Check className="w-4 h-4 text-accent-amber" />
+        <li key={i} className="flex items-center gap-3 text-sm text-text-secondary font-medium">
+          <Check className="w-5 h-5 text-primary-600 flex-shrink-0" />
           {feature}
         </li>
       ))}
     </ul>
-  </div>
+  </motion.div>
 )
 
 // Stat Item Component
@@ -149,7 +161,7 @@ const StatItem = ({ number, suffix, label }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
   const count = useCounter(number, 2000, isInView)
-  
+
   return (
     <div ref={ref} className="stat-item">
       <div className="stat-number">{count}{suffix}</div>
@@ -232,7 +244,7 @@ const Home = () => {
   ]
 
   const integrations = [
-    'Salesforce', 'HubSpot', 'Zoho', 'Google Calendar', 
+    'Salesforce', 'HubSpot', 'Zoho', 'Google Calendar',
     'Calendly', 'Microsoft 365', 'Slack', 'Twilio'
   ]
 
@@ -244,63 +256,79 @@ const Home = () => {
 
   return (
     <div className="bg-white overflow-hidden">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 bg-primary-50 overflow-hidden">
+      {/* Hero Section - MyAIFrontDesk Inspired */}
+      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-br from-primary-50 via-white to-primary-100 overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-coral/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-accent-cyan/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-200/10 rounded-full blur-3xl"></div>
         </div>
-        
-        <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
             >
-              <motion.span 
+              <motion.div
                 variants={fadeInUp}
-                className="inline-block text-sm uppercase tracking-wider text-primary-600 font-semibold mb-4"
+                className="inline-flex items-center gap-2 bg-primary-600/10 border border-primary-600/20 text-primary-700 px-4 py-2 rounded-full mb-6"
               >
-                AI-Powered Voice Automation
-              </motion.span>
-              
-              <motion.h1 
+                <span className="w-2 h-2 bg-primary-600 rounded-full animate-pulse"></span>
+                <span className="text-sm font-bold uppercase tracking-widest">AI Voice Receptionist</span>
+              </motion.div>
+
+              <motion.h1
                 variants={fadeInUp}
-                className="text-hero lg:text-hero-lg text-text-primary mb-6"
+                className="hero-display text-5xl sm:text-6xl lg:text-7xl xl:text-hero-xl text-text-primary mb-6"
               >
                 Never Miss
                 <br />
-                <span className="text-primary-600">Another Call</span>
+                <span className="text-gradient">Another Call</span>
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 variants={fadeInUp}
-                className="text-lg text-text-secondary mb-8 max-w-lg"
+                className="text-lg md:text-xl lg:text-body-xl text-text-secondary mb-8 max-w-xl leading-relaxed"
               >
-                AI voice agents that answer calls, qualify leads, and book appointments 24/7. 
+                AI voice agents that answer calls, qualify leads, and book appointments <span className="font-bold text-primary-600">24/7</span>.
                 Your customers get instant responses while you focus on what matters.
               </motion.p>
-              
-              <motion.div 
+
+              {/* Phone Number Display */}
+              <motion.div
+                variants={fadeInUp}
+                className="mb-8 p-4 bg-white/80 backdrop-blur-sm rounded-2xl border border-primary-200 inline-block shadow-lg"
+              >
+                <p className="text-sm text-text-muted mb-1 font-medium uppercase tracking-wide">Try Our AI Receptionist</p>
+                <p className="phone-display text-primary-600 flex items-center gap-3">
+                  <Phone className="w-6 h-6" />
+                  +1 (555) 123-DEMO
+                </p>
+              </motion.div>
+
+              <motion.div
                 variants={fadeInUp}
                 className="flex flex-col sm:flex-row gap-4"
               >
                 <Link to="/contact">
-                  <button className="btn-primary animate-glow">
-                    Book a Demo
+                  <button className="btn-pulse">
+                    <PhoneCall className="w-5 h-5" />
+                    Call Our AI Now
+                  </button>
+                </Link>
+                <Link to="/contact">
+                  <button className="btn-primary">
+                    Start Free Trial
                     <ArrowRight className="w-5 h-5" />
                   </button>
                 </Link>
-                <button className="btn-secondary animate-glow">
-                  <Play className="w-5 h-5" />
-                  Watch Video
-                </button>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 variants={fadeInUp}
                 className="mt-12 inline-block"
               >
@@ -309,8 +337,8 @@ const Home = () => {
                   className="relative group"
                 >
                   {/* Glow effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-accent-coral to-primary-600 rounded-2xl opacity-20 group-hover:opacity-40 blur-xl transition-all duration-500"></div>
-                  
+                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-accent-cyan to-primary-600 rounded-2xl opacity-20 group-hover:opacity-40 blur-xl transition-all duration-500"></div>
+
                   {/* Main card */}
                   <div className="relative bg-white/90 backdrop-blur-sm border-2 border-primary-200 rounded-2xl p-5 pr-8 shadow-lg">
                     <div className="flex items-center gap-5">
@@ -322,9 +350,9 @@ const Home = () => {
                             animate={{
                               scale: [1, 1.3, 1],
                               backgroundColor: [
-                                'rgb(234, 88, 12)',
-                                'rgb(251, 146, 60)',
-                                'rgb(234, 88, 12)'
+                                'rgb(37, 99, 235)',
+                                'rgb(96, 165, 250)',
+                                'rgb(37, 99, 235)'
                               ]
                             }}
                             transition={{
@@ -337,10 +365,10 @@ const Home = () => {
                           />
                         ))}
                       </div>
-                      
+
                       {/* Divider */}
                       <div className="w-px h-10 bg-primary-200"></div>
-                      
+
                       {/* Text content */}
                       <div className="flex items-center gap-3">
                         <div className="relative">
@@ -357,7 +385,7 @@ const Home = () => {
                             className="absolute inset-0 rounded-xl bg-primary-400"
                           />
                         </div>
-                        
+
                         <div>
                           <p className="text-base font-bold text-text-primary flex items-center gap-2">
                             Enterprise-Grade AI
@@ -375,7 +403,7 @@ const Home = () => {
                 </motion.div>
               </motion.div>
             </motion.div>
-            
+
             {/* Right Content - Video with Agent Info */}
             <div className="relative hidden lg:block h-[600px]">
               {/* Main Video Component with Enhanced Styling */}
@@ -387,14 +415,14 @@ const Home = () => {
               >
                 {/* Animated Glow Background */}
                 <div className="absolute -inset-3 bg-primary-500/30 rounded-[2.5rem] blur-2xl animate-pulse-slow"></div>
-                
+
                 {/* Rotating Border Effect */}
-                <motion.div 
+                <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                   className="absolute -inset-1 bg-primary-400/75 rounded-[2rem]"
                 ></motion.div>
-                
+
                 {/* Video Container */}
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 h-full">
                   <video
@@ -406,30 +434,30 @@ const Home = () => {
                   >
                     <source src="/hero.mp4" type="video/mp4" />
                   </video>
-                  
+
                   {/* Video Overlay */}
                   <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
-                  
+
                   {/* Corner Accents */}
                   <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary-400 rounded-tl-lg"></div>
-                  <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-accent-amber rounded-tr-lg"></div>
-                  <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-accent-coral rounded-bl-lg"></div>
+                  <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-accent-cyan rounded-tr-lg"></div>
+                  <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-accent-indigo rounded-bl-lg"></div>
                   <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary-400 rounded-br-lg"></div>
-                  
+
                   {/* Animated Dots */}
                   <motion.div
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute top-3 right-3 w-3 h-3 bg-accent-amber rounded-full shadow-lg shadow-accent-amber/50"
+                    className="absolute top-3 right-3 w-3 h-3 bg-accent-cyan rounded-full shadow-lg shadow-accent-cyan/50"
                   ></motion.div>
                   <motion.div
                     animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                    className="absolute bottom-3 left-3 w-3 h-3 bg-accent-coral rounded-full shadow-lg shadow-accent-coral/50"
+                    className="absolute bottom-3 left-3 w-3 h-3 bg-accent-indigo rounded-full shadow-lg shadow-accent-indigo/50"
                   ></motion.div>
                 </div>
               </motion.div>
-              
+
               {/* Agent Info Card - Enhanced */}
               <motion.div
                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -441,17 +469,17 @@ const Home = () => {
                 <div className="relative">
                   {/* Animated Glow Effect */}
                   <div className="absolute -inset-0.5 bg-primary-500/75 rounded-2xl blur-sm animate-pulse-slow"></div>
-                  
+
                   {/* Main Card */}
                   <div className="relative bg-neutral-900 backdrop-blur-xl border border-white/10 text-white p-5 rounded-2xl shadow-2xl max-w-[300px]">
                     {/* Header with Avatar Icon */}
                     <div className="flex items-start gap-3 mb-3">
-                      <motion.div 
-                        animate={{ 
+                      <motion.div
+                        animate={{
                           rotate: [0, 5, -5, 0],
                           scale: [1, 1.05, 1]
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 3,
                           repeat: Infinity,
                           ease: 'easeInOut'
@@ -464,58 +492,58 @@ const Home = () => {
                         {/* Pulse Ring */}
                         <div className="absolute inset-0 rounded-xl bg-primary-500/30 animate-ping"></div>
                       </motion.div>
-                      
+
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
                           <h4 className="text-base font-bold text-white">
                             Agentic Avatar
                           </h4>
                           <motion.div
-                            animate={{ 
+                            animate={{
                               rotate: 360,
                               scale: [1, 1.2, 1]
                             }}
-                            transition={{ 
+                            transition={{
                               rotate: { duration: 4, repeat: Infinity, ease: 'linear' },
                               scale: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
                             }}
                           >
-                            <Sparkles className="w-4 h-4 text-accent-amber" />
+                            <Sparkles className="w-4 h-4 text-accent-cyan" />
                           </motion.div>
                         </div>
                         <div className="flex items-center gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-accent-amber animate-pulse shadow-lg shadow-accent-amber/50"></div>
+                          <div className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse shadow-lg shadow-accent-cyan/50"></div>
                           <p className="text-[10px] font-semibold tracking-widest text-primary-300 uppercase">
                             Virtual Receptionist
                           </p>
                         </div>
                       </div>
                     </div>
-                    
+
                     {/* Description */}
                     <p className="text-xs text-neutral-200 leading-relaxed mb-3">
                       Answer calls, schedule appointments, qualify leads, and handle customer inquiries 24/7 with human-like conversations.
                     </p>
-                    
+
                     {/* Feature Pills */}
                     <div className="flex flex-wrap gap-1.5">
                       <span className="px-2 py-1 bg-primary-500/20 border border-primary-500/30 rounded-full text-[10px] text-primary-300 font-medium">
                         24/7 Available
                       </span>
-                      <span className="px-2 py-1 bg-accent-amber/20 border border-accent-amber/30 rounded-full text-[10px] text-accent-amber font-medium">
+                      <span className="px-2 py-1 bg-accent-cyan/20 border border-accent-cyan/30 rounded-full text-[10px] text-accent-cyan font-medium">
                         AI-Powered
                       </span>
-                      <span className="px-2 py-1 bg-accent-coral/20 border border-accent-coral/30 rounded-full text-[10px] text-accent-coral font-medium">
+                      <span className="px-2 py-1 bg-accent-indigo/20 border border-accent-indigo/30 rounded-full text-[10px] text-accent-indigo font-medium">
                         Multi-lingual
                       </span>
                     </div>
-                    
+
                     {/* Decorative Corner Element */}
                     <div className="absolute top-2 right-2">
                       <motion.div
                         animate={{ opacity: [0.3, 1, 0.3] }}
                         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                        className="w-2 h-2 rounded-full bg-accent-amber shadow-lg shadow-accent-amber/50"
+                        className="w-2 h-2 rounded-full bg-accent-cyan shadow-lg shadow-accent-cyan/50"
                       ></motion.div>
                     </div>
                   </div>
@@ -524,23 +552,33 @@ const Home = () => {
             </div>
           </div>
         </div>
-        
-        {/* Trust Bar */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-sm border-t border-neutral-border py-6">
+
+        {/* Trust Bar with Marquee */}
+        <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-neutral-border py-6">
           <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
-              {integrations.slice(0, 5).map((name, i) => (
-                <span key={i} className="text-text-muted font-medium text-lg opacity-60 hover:opacity-100 transition-opacity">
-                  {name}
-                </span>
-              ))}
+            <p className="text-center text-sm text-text-muted font-semibold uppercase tracking-widest mb-4">Trusted by Leading Companies</p>
+            <div className="marquee-container">
+              <div className="marquee-content">
+                {[...integrations, ...integrations].map((name, i) => (
+                  <span
+                    key={i}
+                    className="text-text-secondary font-bold text-xl whitespace-nowrap opacity-60 hover:opacity-100 hover:text-primary-600 transition-all duration-300 cursor-pointer"
+                    style={{ fontFamily: 'Montserrat, sans-serif' }}
+                  >
+                    {name}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section className="relative py-32 bg-white overflow-hidden">
+      {/* Press Logos Section */}
+      <PressLogos />
+
+      {/* Problem Section - Enhanced Typography */}
+      <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute top-20 left-10 w-96 h-96 bg-primary-600 rounded-full blur-3xl"></div>
@@ -548,32 +586,32 @@ const Home = () => {
         </div>
 
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="text-center max-w-4xl mx-auto mb-20"
+            className="text-center max-w-4xl mx-auto mb-16 lg:mb-20"
           >
             {/* Eyebrow with animated underline */}
-            <motion.div 
+            <motion.div
               variants={fadeInUp}
               className="relative inline-block mb-6"
             >
-              <span className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-red-600 font-bold px-6 py-2 bg-red-50 rounded-full">
+              <span className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-red-600 font-bold px-6 py-2 bg-red-50 rounded-full" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse"></span>
                 The Problem
               </span>
             </motion.div>
-            
+
             {/* Main Heading with split animation */}
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1]"
+              className="hero-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.05]"
             >
               <span className="block text-text-primary mb-2">
                 Your Team{' '}
-                <motion.span 
+                <motion.span
                   className="relative inline-block"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -589,7 +627,7 @@ const Home = () => {
                 </motion.span>
               </span>
               <span className="block">
-                <motion.span 
+                <motion.span
                   className="relative inline-block text-red-600"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -608,9 +646,9 @@ const Home = () => {
                 </motion.span>
               </span>
             </motion.h2>
-            
+
             {/* Subtitle with better typography */}
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
               className="text-xl md:text-2xl text-text-secondary leading-relaxed font-light max-w-3xl mx-auto"
             >
@@ -628,9 +666,9 @@ const Home = () => {
               </span>.
             </motion.p>
           </motion.div>
-          
+
           {/* Cards with enhanced design */}
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
@@ -639,12 +677,12 @@ const Home = () => {
           >
             {[
               { icon: Phone, title: 'Missed Calls = Lost Revenue', desc: 'Up to $1,200 lost per unanswered lead call', color: 'red' },
-              { icon: Users, title: 'Staff Burnout', desc: 'Repetitive call handling drains your team', color: 'orange' },
-              { icon: Clock, title: 'After-Hours Silence', desc: '67% of calls come outside business hours', color: 'amber' },
+              { icon: Users, title: 'Staff Burnout', desc: 'Repetitive call handling drains your team', color: 'blue' },
+              { icon: Clock, title: 'After-Hours Silence', desc: '67% of calls come outside business hours', color: 'cyan' },
               { icon: Calendar, title: 'Manual Scheduling', desc: 'Hours wasted on booking and reminders', color: 'red' }
             ].map((item, i) => (
-              <motion.div 
-                key={i} 
+              <motion.div
+                key={i}
                 variants={fadeInUp}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
@@ -652,15 +690,15 @@ const Home = () => {
               >
                 {/* Hover gradient background */}
                 <div className="absolute inset-0 bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
+
                 {/* Icon with animation */}
-                <motion.div 
+                <motion.div
                   className={`relative w-16 h-16 mx-auto mb-6 bg-${item.color}-50 rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow`}
                   whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                 >
                   <item.icon className={`w-8 h-8 text-${item.color}-600`} />
-                  
+
                   {/* Pulse ring on hover */}
                   <motion.div
                     className={`absolute inset-0 rounded-2xl bg-${item.color}-400 opacity-0 group-hover:opacity-20`}
@@ -674,12 +712,12 @@ const Home = () => {
                     }}
                   />
                 </motion.div>
-                
+
                 {/* Title with better typography */}
                 <h3 className="relative text-xl font-bold text-text-primary mb-3 leading-tight group-hover:text-red-600 transition-colors duration-300">
                   {item.title}
                 </h3>
-                
+
                 {/* Description */}
                 <p className="relative text-base text-text-secondary leading-relaxed font-normal">
                   {item.desc}
@@ -699,10 +737,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section className="py-24 bg-neutral-offWhite">
+      {/* How It Works Section - Enhanced */}
+      <section className="py-20 lg:py-28 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
@@ -710,15 +748,15 @@ const Home = () => {
             className="section-header"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">How It Works</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              Meet Your AI Receptionist
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              Meet Your <span className="text-gradient">AI Receptionist</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               A simple, powerful process that transforms how you handle calls.
             </motion.p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
@@ -727,7 +765,7 @@ const Home = () => {
           >
             {/* Connection Line */}
             <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-0.5 bg-primary-400"></div>
-            
+
             {[
               { icon: PhoneCall, title: 'Call Comes In', desc: 'Customer calls your business number' },
               { icon: Bot, title: 'AI Engages', desc: 'Natural conversation and intent detection' },
@@ -735,18 +773,18 @@ const Home = () => {
               { icon: Bell, title: "You're Notified", desc: 'Real-time summary and recording' }
             ].map((step, i) => (
               <motion.div key={i} variants={fadeInUp}>
-                <WorkflowStep 
-                  number={i + 1} 
-                  icon={step.icon} 
-                  title={step.title} 
+                <WorkflowStep
+                  number={i + 1}
+                  icon={step.icon}
+                  title={step.title}
                   description={step.desc}
                   isLast={i === 3}
                 />
               </motion.div>
             ))}
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -763,10 +801,10 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Industry Solutions */}
-      <section className="py-24 bg-white">
+      {/* Industry Solutions - Enhanced */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
@@ -774,15 +812,15 @@ const Home = () => {
             className="section-header"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">Industry Solutions</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              Built for Your Industry
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              Built for <span className="text-gradient">Your Industry</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               Specialized AI solutions designed for the unique needs of your business sector.
             </motion.p>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
@@ -798,11 +836,22 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Demo Calls Section */}
+      <DemoCalls />
+
+      {/* Trust Elements */}
+      <ClientLogos />
+      <Testimonials />
+      <TrustBadges />
+
+      {/* Try Now Section */}
+      <TryNowSection />
+
       {/* Live Demo Section */}
       <section className="py-24 bg-primary-600">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
@@ -815,7 +864,7 @@ const Home = () => {
                 Don't Take Our Word For It
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-lg text-primary-100 mb-8">
-                Experience our AI voice agent firsthand. Click the chat widget in the bottom right corner 
+                Experience our AI voice agent firsthand. Click the chat widget in the bottom right corner
                 to have a conversation with our AI.
               </motion.p>
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
@@ -830,8 +879,8 @@ const Home = () => {
                 </Link>
               </motion.div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -854,7 +903,7 @@ const Home = () => {
       </section>
 
       {/* Features Grid - Unique Bento Style */}
-      <section className="relative py-32 bg-neutral-offWhite overflow-hidden">
+      <section className="relative py-24 lg:py-32 bg-neutral-offWhite overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none opacity-30">
           <motion.div
@@ -871,10 +920,10 @@ const Home = () => {
               rotate: [90, 0, 90]
             }}
             transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-40 -right-40 w-96 h-96 bg-accent-coral rounded-full blur-3xl"
+            className="absolute -bottom-40 -right-40 w-96 h-96 bg-accent-indigo rounded-full blur-3xl"
           />
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <motion.div
@@ -889,15 +938,15 @@ const Home = () => {
               className="inline-flex items-center gap-2 bg-primary-600 text-white px-5 py-2 rounded-full mb-6"
             >
               <Zap className="w-4 h-4" />
-              <span className="text-sm font-bold uppercase tracking-wider">Powerful Features</span>
+              <span className="text-sm font-bold uppercase tracking-widest" style={{ fontFamily: 'Montserrat, sans-serif' }}>Powerful Features</span>
             </motion.div>
             <motion.h2
               variants={fadeInUp}
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6"
+              className="hero-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-text-primary mb-6"
             >
               Everything You Need,{' '}
               <span className="relative inline-block">
-                <span className="text-primary-600">Nothing You Don't</span>
+                <span className="text-gradient">Nothing You Don't</span>
                 <motion.svg
                   className="absolute -bottom-2 left-0 w-full"
                   height="12"
@@ -909,7 +958,7 @@ const Home = () => {
                 >
                   <motion.path
                     d="M0,6 Q75,0 150,6 T300,6"
-                    stroke="#EA580C"
+                    stroke="#2563EB"
                     strokeWidth="3"
                     fill="none"
                     strokeLinecap="round"
@@ -939,22 +988,22 @@ const Home = () => {
                 'lg:col-span-1', // Regular
                 'lg:col-span-2 lg:row-span-1' // Wide
               ]
-              
+
               const colorSchemes = [
-                { bg: 'bg-orange-500', lightBg: 'bg-orange-50', icon: 'text-orange-600', border: 'border-orange-200', glow: 'shadow-orange-500/20' },
                 { bg: 'bg-blue-500', lightBg: 'bg-blue-50', icon: 'text-blue-600', border: 'border-blue-200', glow: 'shadow-blue-500/20' },
+                { bg: 'bg-cyan-500', lightBg: 'bg-cyan-50', icon: 'text-cyan-600', border: 'border-cyan-200', glow: 'shadow-cyan-500/20' },
                 { bg: 'bg-purple-500', lightBg: 'bg-purple-50', icon: 'text-purple-600', border: 'border-purple-200', glow: 'shadow-purple-500/20' },
                 { bg: 'bg-teal-500', lightBg: 'bg-teal-50', icon: 'text-teal-600', border: 'border-teal-200', glow: 'shadow-teal-500/20' },
-                { bg: 'bg-red-500', lightBg: 'bg-red-50', icon: 'text-red-600', border: 'border-red-200', glow: 'shadow-red-500/20' },
                 { bg: 'bg-indigo-500', lightBg: 'bg-indigo-50', icon: 'text-indigo-600', border: 'border-indigo-200', glow: 'shadow-indigo-500/20' },
+                { bg: 'bg-violet-500', lightBg: 'bg-violet-50', icon: 'text-violet-600', border: 'border-violet-200', glow: 'shadow-violet-500/20' },
                 { bg: 'bg-pink-500', lightBg: 'bg-pink-50', icon: 'text-pink-600', border: 'border-pink-200', glow: 'shadow-pink-500/20' },
-                { bg: 'bg-amber-500', lightBg: 'bg-amber-50', icon: 'text-amber-600', border: 'border-amber-200', glow: 'shadow-amber-500/20' }
+                { bg: 'bg-sky-500', lightBg: 'bg-sky-50', icon: 'text-sky-600', border: 'border-sky-200', glow: 'shadow-sky-500/20' }
               ]
-              
+
               const layout = layouts[index % layouts.length]
               const colors = colorSchemes[index % colorSchemes.length]
               const isLarge = layout.includes('row-span-2')
-              
+
               return (
                 <motion.div
                   key={index}
@@ -971,12 +1020,12 @@ const Home = () => {
                   >
                     {/* Background Pattern */}
                     <div className={`absolute inset-0 ${colors.lightBg} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}></div>
-                    
+
                     {/* Decorative Circle */}
                     <motion.div
                       className={`absolute -top-10 -right-10 w-40 h-40 ${colors.bg} opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700`}
                     />
-                    
+
                     {/* Content */}
                     <div className="relative z-10 flex flex-col h-full">
                       {/* Icon */}
@@ -987,17 +1036,17 @@ const Home = () => {
                       >
                         <Icon className={`w-8 h-8 ${isLarge ? 'lg:w-10 lg:h-10' : ''} ${colors.icon}`} />
                       </motion.div>
-                      
+
                       {/* Title */}
                       <h3 className={`${isLarge ? 'text-2xl lg:text-3xl' : 'text-xl lg:text-2xl'} font-bold text-text-primary mb-3 leading-tight group-hover:text-primary-600 transition-colors`}>
                         {feature.title}
                       </h3>
-                      
+
                       {/* Description */}
                       <p className={`text-text-secondary ${isLarge ? 'text-base lg:text-lg' : 'text-sm lg:text-base'} leading-relaxed flex-grow`}>
                         {feature.description}
                       </p>
-                      
+
                       {/* Hover Arrow */}
                       <motion.div
                         initial={{ x: -10, opacity: 0 }}
@@ -1008,7 +1057,7 @@ const Home = () => {
                         <ArrowRight className="w-4 h-4" />
                       </motion.div>
                     </div>
-                    
+
                     {/* Floating Badge for Large Cards */}
                     {isLarge && (
                       <motion.div
@@ -1019,7 +1068,7 @@ const Home = () => {
                         <span className={`text-xs font-bold ${colors.icon} uppercase tracking-wide`}>Popular</span>
                       </motion.div>
                     )}
-                    
+
                     {/* Corner Accent */}
                     <div className={`absolute bottom-0 right-0 w-24 h-24 ${colors.bg} opacity-5 rounded-tl-full transition-all duration-500 group-hover:w-32 group-hover:h-32`}></div>
                   </motion.div>
@@ -1055,7 +1104,7 @@ const Home = () => {
         {/* Animated background */}
         <div className="absolute inset-0 opacity-[0.03]">
           <motion.div
-            animate={{ 
+            animate={{
               x: [0, 100, 0],
               y: [0, 50, 0]
             }}
@@ -1063,17 +1112,17 @@ const Home = () => {
             className="absolute top-20 left-0 w-96 h-96 bg-primary-600 rounded-full blur-3xl"
           />
           <motion.div
-            animate={{ 
+            animate={{
               x: [0, -100, 0],
               y: [0, -50, 0]
             }}
             transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
-            className="absolute bottom-20 right-0 w-96 h-96 bg-accent-coral rounded-full blur-3xl"
+            className="absolute bottom-20 right-0 w-96 h-96 bg-accent-indigo rounded-full blur-3xl"
           />
         </div>
-        
+
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -1110,50 +1159,87 @@ const Home = () => {
               Seamlessly integrates with your existing tools and workflows
             </motion.p>
           </motion.div>
-          
+
           {/* Animated logo cards */}
           <div className="relative">
             {/* Scrolling container */}
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
               className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6"
             >
-              {integrations.map((name, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeInUp}
-                  whileHover={{ y: -8, scale: 1.05 }}
-                  className="group relative"
-                >
-                  {/* Glow effect on hover */}
-                  <div className="absolute -inset-2 bg-primary-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
-                  
-                  {/* Card */}
-                  <div className="relative bg-white border-2 border-neutral-border group-hover:border-primary-300 rounded-2xl p-6 aspect-square flex items-center justify-center shadow-sm group-hover:shadow-xl transition-all duration-300">
-                    <div className="text-center">
-                      {/* Icon placeholder - using first letter */}
+              {integrations.map((name, i) => {
+                const colors = [
+                  { bg: 'bg-blue-500', light: 'bg-blue-50', hover: 'bg-blue-100', text: 'text-blue-600', glow: 'shadow-blue-500/30' },
+                  { bg: 'bg-purple-500', light: 'bg-purple-50', hover: 'bg-purple-100', text: 'text-purple-600', glow: 'shadow-purple-500/30' },
+                  { bg: 'bg-cyan-500', light: 'bg-cyan-50', hover: 'bg-cyan-100', text: 'text-cyan-600', glow: 'shadow-cyan-500/30' },
+                  { bg: 'bg-teal-500', light: 'bg-teal-50', hover: 'bg-teal-100', text: 'text-teal-600', glow: 'shadow-teal-500/30' },
+                  { bg: 'bg-indigo-500', light: 'bg-indigo-50', hover: 'bg-indigo-100', text: 'text-indigo-600', glow: 'shadow-indigo-500/30' },
+                  { bg: 'bg-violet-500', light: 'bg-violet-50', hover: 'bg-violet-100', text: 'text-violet-600', glow: 'shadow-violet-500/30' },
+                  { bg: 'bg-pink-500', light: 'bg-pink-50', hover: 'bg-pink-100', text: 'text-pink-600', glow: 'shadow-pink-500/30' },
+                  { bg: 'bg-sky-500', light: 'bg-sky-50', hover: 'bg-sky-100', text: 'text-sky-600', glow: 'shadow-sky-500/30' },
+                ]
+                const color = colors[i % colors.length]
+
+                return (
+                  <motion.div
+                    key={i}
+                    variants={fadeInUp}
+                    whileHover={{ y: -12, scale: 1.08 }}
+                    className="group relative"
+                  >
+                    {/* Enhanced glow effect on hover */}
+                    <motion.div
+                      className={`absolute -inset-3 ${color.bg} opacity-0 group-hover:opacity-30 rounded-3xl blur-2xl transition-all duration-500`}
+                    />
+
+                    {/* Card with gradient border */}
+                    <div className={`relative bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 group-hover:border-transparent group-hover:shadow-2xl ${color.glow} rounded-2xl p-6 aspect-square flex items-center justify-center transition-all duration-300 overflow-hidden`}>
+                      {/* Animated background pattern */}
+                      <div className={`absolute inset-0 ${color.light} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+
+                      {/* Shine effect on hover */}
                       <motion.div
-                        whileHover={{ rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                        className="w-12 h-12 mx-auto mb-2 bg-primary-50 group-hover:bg-primary-100 rounded-xl flex items-center justify-center text-primary-600 font-bold text-xl shadow-sm transition-all"
-                      >
-                        {name.charAt(0)}
-                      </motion.div>
-                      <p className="text-xs font-semibold text-text-secondary group-hover:text-primary-600 transition-colors">
-                        {name}
-                      </p>
+                        className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                      />
+
+                      <div className="relative text-center z-10">
+                        {/* Icon with enhanced styling */}
+                        <motion.div
+                          whileHover={{ rotate: [0, -15, 15, -15, 0], scale: 1.2 }}
+                          transition={{ duration: 0.6 }}
+                          className={`w-16 h-16 mx-auto mb-3 ${color.light} group-hover:${color.bg} rounded-2xl flex items-center justify-center font-black text-3xl ${color.text} group-hover:text-white shadow-lg group-hover:shadow-2xl transition-all duration-300`}
+                        >
+                          {name.charAt(0)}
+                        </motion.div>
+                        <p className={`text-base font-black text-gray-900 group-hover:text-white group-hover:drop-shadow-lg transition-all duration-300`}>
+                          {name}
+                        </p>
+                      </div>
+
+                      {/* Hover background overlay */}
+                      <motion.div
+                        className={`absolute inset-0 ${color.bg} opacity-0 group-hover:opacity-90 rounded-2xl transition-all duration-300`}
+                      />
+
+                      {/* Corner accents */}
+                      <div className={`absolute top-0 right-0 w-10 h-10 ${color.bg} opacity-20 rounded-bl-3xl`}></div>
+                      <div className={`absolute bottom-0 left-0 w-10 h-10 ${color.bg} opacity-20 rounded-tr-3xl`}></div>
+
+                      {/* Pulsing dot */}
+                      <motion.div
+                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className={`absolute top-3 right-3 w-3 h-3 rounded-full ${color.bg} shadow-lg`}
+                      />
                     </div>
-                    
-                    {/* Corner accent */}
-                    <div className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                )
+              })}
             </motion.div>
-            
+
             {/* Floating CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -1175,7 +1261,7 @@ const Home = () => {
                   <ChevronRight className="w-5 h-5" />
                 </motion.span>
               </motion.button>
-              
+
               {/* Stats below button */}
               <motion.p
                 initial={{ opacity: 0 }}
@@ -1194,7 +1280,7 @@ const Home = () => {
       {/* Statistics Section */}
       <section className="py-24 bg-primary-600">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -1207,7 +1293,7 @@ const Home = () => {
               </motion.div>
             ))}
           </motion.div>
-          <motion.p 
+          <motion.p
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -1219,31 +1305,40 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-white">
+      {/* FAQ Section */}
+      <FAQ />
+
+      {/* CTA Section - Enhanced */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="bg-primary-50 rounded-3xl p-12 md:p-16 text-center"
+            className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl p-10 md:p-16 lg:p-20 text-center relative overflow-hidden"
           >
-            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
+            {/* Background decoration */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+            </div>
+
+            <motion.h2 variants={fadeInUp} className="hero-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-6 relative z-10">
               Ready to Stop Missing Calls?
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-text-secondary mb-8 max-w-2xl mx-auto">
-              Join businesses that never miss a lead. Book a 15-minute demo to see how 
+            <motion.p variants={fadeInUp} className="text-lg md:text-xl text-primary-100 mb-10 max-w-2xl mx-auto relative z-10 leading-relaxed">
+              Join businesses that never miss a lead. Book a <span className="font-bold text-white">15-minute demo</span> to see how
               CogniDrift can transform your customer communications.
             </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
               <Link to="/contact">
-                <button className="btn-primary animate-glow">
+                <button className="bg-white text-primary-600 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-50 transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <PhoneCall className="w-5 h-5" />
                   Book Your Demo
-                  <ArrowRight className="w-5 h-5" />
                 </button>
               </Link>
-              <button className="btn-secondary animate-glow">
+              <button className="bg-primary-500 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-400 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center justify-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                 <Sparkles className="w-5 h-5" />
                 Try Our AI First
               </button>

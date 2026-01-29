@@ -19,8 +19,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { 
-      name: 'Solutions', 
+    {
+      name: 'Solutions',
       path: '/services',
       submenu: [
         { name: 'Healthcare', path: '/solutions/healthcare', icon: Stethoscope },
@@ -30,8 +30,8 @@ const Navbar = () => {
       ]
     },
     { name: 'Pricing', path: '/pricing' },
-    { 
-      name: 'Resources', 
+    {
+      name: 'Resources',
       path: '/resources',
       submenu: [
         { name: 'Blog', path: '/resources/blog', icon: FileText },
@@ -58,42 +58,42 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-[72px]">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-orange-400/50 rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
-              <div className="relative w-11 h-11 bg-orange-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+              <div className="absolute inset-0 bg-blue-400/50 rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
+              <div className="relative w-11 h-11 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
                 <Brain className="w-6 h-6 text-white" />
                 <motion.div
                   className="absolute -top-1 -right-1"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.2, 1],
                     rotate: [0, 180, 360]
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 3,
                     repeat: Infinity,
                     ease: "linear"
                   }}
                 >
-                  <Sparkles className="w-3 h-3 text-amber-300" />
+                  <Sparkles className="w-3 h-3 text-cyan-300" />
                 </motion.div>
               </div>
             </motion.div>
             <div>
-              <span className="text-xl font-bold text-text-primary group-hover:text-orange-600 transition-all duration-300">
-                Cogni<span className="text-orange-600">Drift</span>
+              <span className="text-xl font-bold text-text-primary group-hover:text-blue-600 transition-all duration-300">
+                Cogni<span className="text-blue-600">Drift</span>
               </span>
-              <div className="h-0.5 w-0 group-hover:w-full bg-orange-500 transition-all duration-500" />
+              <div className="h-0.5 w-0 group-hover:w-full bg-blue-500 transition-all duration-500" />
             </div>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
             {navLinks.map((link) => (
-              <div 
+              <div
                 key={link.name}
                 className="relative"
                 onMouseEnter={() => link.submenu && setOpenDropdown(link.name)}
@@ -103,7 +103,7 @@ const Navbar = () => {
                   to={link.path}
                   className={`relative px-4 py-2 text-base font-medium transition-all duration-300 rounded-lg flex items-center gap-1 group ${
                     isActive(link.path)
-                      ? 'text-orange-600'
+                      ? 'text-blue-600'
                       : 'text-text-secondary hover:text-text-primary'
                   }`}
                 >
@@ -113,23 +113,23 @@ const Navbar = () => {
                       openDropdown === link.name ? 'rotate-180' : ''
                     }`} />
                   )}
-                  
+
                   {/* Hover Background Effect */}
                   <motion.div
-                    className="absolute inset-0 bg-orange-50/80 rounded-lg opacity-0 group-hover:opacity-100"
+                    className="absolute inset-0 bg-blue-50/80 rounded-lg opacity-0 group-hover:opacity-100"
                     transition={{ duration: 0.3 }}
                   />
-                  
+
                   {/* Active Indicator */}
                   {isActive(link.path) && (
                     <>
                       <motion.div
                         layoutId="activeIndicator"
-                        className="absolute bottom-0 left-4 right-4 h-0.5 bg-orange-500 rounded-full"
+                        className="absolute bottom-0 left-4 right-4 h-0.5 bg-blue-500 rounded-full"
                         transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                       />
                       <motion.div
-                        className="absolute inset-0 bg-orange-50 rounded-lg"
+                        className="absolute inset-0 bg-blue-50 rounded-lg"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
@@ -137,7 +137,7 @@ const Navbar = () => {
                     </>
                   )}
                 </Link>
-                
+
                 {/* Dropdown Menu */}
                 <AnimatePresence>
                   {link.submenu && openDropdown === link.name && (
@@ -149,18 +149,18 @@ const Navbar = () => {
                       className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-neutral-border/50 py-2 overflow-hidden"
                     >
                       {/* Background */}
-                      <div className="absolute inset-0 bg-orange-50/20 pointer-events-none" />
-                      
+                      <div className="absolute inset-0 bg-blue-50/20 pointer-events-none" />
+
                       {link.submenu.map((item, index) => {
                         const Icon = item.icon
                         return (
                           <Link
                             key={item.name}
                             to={item.path}
-                            className="relative flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:text-orange-600 transition-colors duration-200 group"
+                            className="relative flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:text-blue-600 transition-colors duration-200 group"
                           >
                             <motion.div
-                              className="absolute inset-0 bg-orange-100/50 opacity-0 group-hover:opacity-100"
+                              className="absolute inset-0 bg-blue-100/50 opacity-0 group-hover:opacity-100"
                               transition={{ duration: 0.2 }}
                             />
                             <motion.div
@@ -184,7 +184,7 @@ const Navbar = () => {
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
             <Link to="/contact">
-              <motion.button 
+              <motion.button
                 className="relative btn-primary text-sm px-6 py-3 overflow-hidden group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -203,11 +203,11 @@ const Navbar = () => {
                 {/* Pulse effect */}
                 <motion.div
                   className="absolute inset-0 bg-white/20 rounded-xl"
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.05, 1],
                     opacity: [0, 0.3, 0]
                   }}
-                  transition={{ 
+                  transition={{
                     duration: 2,
                     repeat: Infinity,
                     ease: "easeInOut"
@@ -220,7 +220,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-text-secondary hover:text-text-primary hover:bg-orange-50 rounded-lg transition-all duration-300 relative overflow-hidden group"
+            className="md:hidden p-2 text-text-secondary hover:text-text-primary hover:bg-blue-50 rounded-lg transition-all duration-300 relative overflow-hidden group"
             aria-label="Toggle menu"
             whileTap={{ scale: 0.9 }}
           >
@@ -233,7 +233,7 @@ const Navbar = () => {
             {/* Pulse on open */}
             {isOpen && (
               <motion.div
-                className="absolute inset-0 bg-orange-100 rounded-lg"
+                className="absolute inset-0 bg-blue-100 rounded-lg"
                 animate={{ scale: [1, 1.2], opacity: [0.5, 0] }}
                 transition={{ duration: 0.6 }}
               />
@@ -253,8 +253,8 @@ const Navbar = () => {
             className="md:hidden bg-white border-t border-neutral-border relative overflow-hidden"
           >
             {/* Background */}
-            <div className="absolute inset-0 bg-orange-50/30 pointer-events-none" />
-            
+            <div className="absolute inset-0 bg-blue-50/30 pointer-events-none" />
+
             <div className="relative px-4 py-6 space-y-2">
               {navLinks.map((link, index) => (
                 <motion.div
@@ -269,12 +269,12 @@ const Navbar = () => {
                         onClick={() => setOpenDropdown(openDropdown === link.name ? null : link.name)}
                         className={`flex items-center justify-between w-full px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 relative overflow-hidden group ${
                           isActive(link.path)
-                            ? 'text-orange-600 bg-orange-50'
+                            ? 'text-blue-600 bg-blue-50'
                             : 'text-text-secondary hover:text-text-primary'
                         }`}
                       >
                         <motion.div
-                          className="absolute inset-0 bg-orange-50 opacity-0 group-hover:opacity-100"
+                          className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100"
                           transition={{ duration: 0.3 }}
                         />
                         <span className="relative z-10">{link.name}</span>
@@ -302,7 +302,7 @@ const Navbar = () => {
                                   <Link
                                     to={item.path}
                                     onClick={() => setIsOpen(false)}
-                                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-orange-600 hover:bg-orange-50 transition-all duration-200 group relative overflow-hidden"
+                                    className="flex items-center gap-3 px-4 py-2 rounded-lg text-sm font-medium text-text-secondary hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 group relative overflow-hidden"
                                   >
                                     <motion.div
                                       whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
@@ -326,12 +326,12 @@ const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                       className={`block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 relative overflow-hidden group ${
                         isActive(link.path)
-                          ? 'text-orange-600 bg-orange-50'
+                          ? 'text-blue-600 bg-blue-50'
                           : 'text-text-secondary hover:text-text-primary'
                       }`}
                     >
                       <motion.div
-                        className="absolute inset-0 bg-orange-50 opacity-0 group-hover:opacity-100"
+                        className="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100"
                         transition={{ duration: 0.3 }}
                       />
                       <span className="relative z-10">{link.name}</span>
@@ -346,7 +346,7 @@ const Navbar = () => {
                 className="pt-4"
               >
                 <Link to="/contact" onClick={() => setIsOpen(false)}>
-                  <motion.button 
+                  <motion.button
                     className="btn-primary w-full relative overflow-hidden group"
                     whileTap={{ scale: 0.95 }}
                   >
@@ -358,7 +358,7 @@ const Navbar = () => {
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
                       initial={{ x: '-100%' }}
                       animate={{ x: '100%' }}
-                      transition={{ 
+                      transition={{
                         duration: 2,
                         repeat: Infinity,
                         repeatDelay: 1,

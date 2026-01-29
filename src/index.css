@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,32 +10,103 @@
   html {
     scroll-behavior: smooth;
   }
-  
+
   body {
     @apply bg-white text-text-primary font-sans antialiased;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold text-text-primary;
+    @apply font-display font-bold text-text-primary;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold;
+    letter-spacing: -0.03em;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  .text-display {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .text-heading {
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer components {
-  /* Primary Button */
+  /* Primary Button - Pulsing CTA Style */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2
-           px-8 py-4 
-           bg-primary-600 text-white 
-           font-medium text-base
-           rounded-lg
+           px-8 py-4
+           bg-primary-600 text-white
+           font-bold text-base
+           rounded-xl
            shadow-button
            transition-all duration-300 ease-smooth
-           hover:bg-primary-700 hover:shadow-glow hover:-translate-y-0.5
-           active:translate-y-0 active:shadow-button
-           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2
-           animate-glow;
+           hover:bg-primary-700 hover:shadow-glow hover:-translate-y-1 hover:scale-105
+           active:translate-y-0 active:shadow-button active:scale-100
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: 0.01em;
   }
-  
+
+  /* Pulsing CTA Button */
+  .btn-pulse {
+    @apply inline-flex items-center justify-center gap-2
+           px-10 py-5
+           bg-primary-600 text-white
+           font-bold text-lg
+           rounded-xl
+           shadow-button;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    animation: pulseCta 2s ease-in-out infinite;
+    transition: all 0.3s ease;
+  }
+
+  .btn-pulse:hover {
+    @apply bg-primary-700 -translate-y-1 scale-105;
+    animation: none;
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.5);
+  }
+
+  @keyframes pulseCta {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 4px 14px rgba(59, 130, 246, 0.3), 0 0 0 0 rgba(59, 130, 246, 0.5);
+    }
+    50% {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4), 0 0 0 12px rgba(59, 130, 246, 0);
+    }
+  }
+
   /* Secondary Button */
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2
@@ -48,7 +121,7 @@
            active:translate-y-0
            focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
-  
+
   /* Ghost Button */
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2
@@ -60,7 +133,7 @@
            hover:bg-primary-50 hover:underline
            focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
-  
+
   /* Standard Card */
   .card {
     @apply bg-white
@@ -71,7 +144,7 @@
            transition-all duration-300 ease-smooth
            hover:shadow-card-hover hover:-translate-y-1;
   }
-  
+
   /* Glass Card */
   .card-glass {
     @apply bg-white/70
@@ -83,7 +156,7 @@
            transition-all duration-300 ease-smooth
            hover:shadow-card-hover hover:-translate-y-1;
   }
-  
+
   /* Feature Card */
   .card-feature {
     @apply bg-white
@@ -94,40 +167,45 @@
            transition-all duration-300 ease-smooth
            hover:shadow-card-hover hover:-translate-y-1;
   }
-  
+
   .card-feature .icon-wrapper {
-    @apply w-12 h-12 
-           bg-primary-50 
-           rounded-xl 
+    @apply w-12 h-12
+           bg-primary-50
+           rounded-xl
            flex items-center justify-center
            mb-4
            transition-all duration-300
            group-hover:bg-primary-100 group-hover:scale-110;
   }
-  
+
   /* Section Header */
   .section-header {
     @apply text-center max-w-3xl mx-auto mb-16;
   }
-  
+
   .section-eyebrow {
-    @apply text-sm uppercase tracking-wider text-primary-600 font-semibold mb-3;
+    @apply text-sm uppercase tracking-widest text-primary-600 font-bold mb-4;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: 0.15em;
   }
-  
+
   .section-title {
-    @apply text-4xl md:text-5xl font-bold text-text-primary mb-4;
+    @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-text-primary mb-6;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
-  
+
   .section-subtitle {
-    @apply text-lg text-text-secondary max-w-2xl mx-auto;
+    @apply text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed;
   }
-  
+
   /* Highlight Text */
   .highlight-text {
     @apply text-primary-600 font-semibold;
   }
-  
-  /* Notification Card (Virio-style) */
+
+  /* Notification Card */
   .notification-card {
     @apply bg-white
            rounded-2xl
@@ -137,62 +215,78 @@
            flex items-center gap-3
            min-w-[280px];
   }
-  
+
   .notification-card .avatar {
     @apply w-10 h-10 rounded-full bg-gray-200 flex-shrink-0 overflow-hidden;
   }
-  
+
   .notification-card .content {
     @apply flex-1;
   }
-  
+
   .notification-card .badge {
     @apply text-xs font-medium text-primary-600 bg-primary-50 px-2 py-0.5 rounded-full;
   }
-  
+
   /* Stats Counter */
   .stat-item {
     @apply text-center;
   }
-  
+
   .stat-number {
-    @apply text-5xl md:text-6xl font-bold text-white mb-2;
+    @apply text-5xl md:text-7xl font-extrabold text-white mb-2;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: -0.02em;
   }
-  
+
   .stat-label {
-    @apply text-lg text-white/80;
+    @apply text-lg md:text-xl text-white/90 font-medium;
   }
-  
+
   /* Integration Logo */
   .integration-logo {
     @apply grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300;
   }
-  
+
   /* Workflow Step */
   .workflow-step {
     @apply relative flex flex-col items-center text-center;
   }
-  
+
   .workflow-step .step-number {
-    @apply w-16 h-16 
-           bg-primary-600 
-           text-white 
-           rounded-2xl 
-           flex items-center justify-center 
+    @apply w-16 h-16
+           bg-primary-600
+           text-white
+           rounded-2xl
+           flex items-center justify-center
            text-xl font-bold
            shadow-button
            mb-4;
   }
-  
+
   .workflow-step .step-icon {
-    @apply w-16 h-16 
-           bg-primary-50 
-           text-primary-600 
-           rounded-2xl 
-           flex items-center justify-center 
+    @apply w-16 h-16
+           bg-primary-50
+           text-primary-600
+           rounded-2xl
+           flex items-center justify-center
            mb-4
            transition-all duration-300
            hover:bg-primary-100 hover:scale-110;
+  }
+
+  /* Responsive Container */
+  .container-mobile {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Responsive Text */
+  .text-responsive {
+    @apply text-base md:text-lg;
+  }
+
+  .heading-responsive {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
   }
 }
 
@@ -205,17 +299,84 @@
   .animation-delay-500 { animation-delay: 500ms; }
   .animation-delay-1000 { animation-delay: 1000ms; }
   .animation-delay-2000 { animation-delay: 2000ms; }
+
+  /* Touch Target Size for Mobile */
+  .touch-target {
+    @apply min-w-[44px] min-h-[44px];
+  }
+
+  /* Text Balance for Headlines */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Marquee Animation for Logos */
+  .marquee-container {
+    @apply overflow-hidden relative;
+  }
+
+  .marquee-content {
+    @apply flex gap-16 animate-marquee;
+  }
+
+  .marquee-content:hover {
+    animation-play-state: paused;
+  }
+
+  /* Card Hover Scale */
+  .card-hover-scale {
+    @apply transition-all duration-300;
+  }
+
+  .card-hover-scale:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+  }
+
+  /* Hero Display Text */
+  .hero-display {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  /* Gradient Text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%);
+  }
+
+  /* Phone Number Display Style */
+  .phone-display {
+    @apply text-2xl md:text-3xl font-bold;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    letter-spacing: 0.02em;
+  }
+
+  /* Scroll snap for carousels */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+
+  .scroll-snap-center {
+    scroll-snap-align: center;
+  }
 }
 
 
-/* Custom Floating Button - Unique Design */
+/* Custom Floating Button - Blue Theme */
 elevenlabs-convai::part(button) {
   width: 70px !important;
   height: 70px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f59e0b 100%) !important;
-  box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4),
-              0 0 0 0 rgba(139, 92, 246, 0.4) !important;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%) !important;
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4),
+              0 0 0 0 rgba(59, 130, 246, 0.4) !important;
   border: 4px solid rgba(255, 255, 255, 0.3) !important;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
   animation: morphing-float 4s ease-in-out infinite !important;
@@ -225,10 +386,10 @@ elevenlabs-convai::part(button) {
 
 elevenlabs-convai::part(button):hover {
   transform: scale(1.2) rotate(90deg) !important;
-  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.6),
-              0 0 0 20px rgba(139, 92, 246, 0.1) !important;
+  box-shadow: 0 20px 60px rgba(59, 130, 246, 0.6),
+              0 0 0 20px rgba(59, 130, 246, 0.1) !important;
   border-color: rgba(255, 255, 255, 0.6) !important;
-  background: linear-gradient(135deg, #ec4899 0%, #f59e0b 50%, #8b5cf6 100%) !important;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #3B82F6 100%) !important;
 }
 
 elevenlabs-convai::part(button):active {
@@ -241,25 +402,25 @@ elevenlabs-convai::part(button-icon) {
   animation: spin-subtle 8s linear infinite !important;
 }
 
-/* Widget Window - Complete Redesign */
+/* Widget Window - Blue Theme */
 elevenlabs-convai::part(window) {
   border-radius: 24px !important;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+  background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%) !important;
   box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5),
-              0 0 0 1px rgba(139, 92, 246, 0.3),
+              0 0 0 1px rgba(59, 130, 246, 0.3),
               inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
   overflow: hidden !important;
   animation: window-pop-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
   backdrop-filter: blur(20px) !important;
-  border: 2px solid rgba(139, 92, 246, 0.2) !important;
+  border: 2px solid rgba(59, 130, 246, 0.2) !important;
 }
 
-/* Header - Custom Brand Style */
+/* Header - Blue Theme */
 elevenlabs-convai::part(header) {
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
   padding: 24px !important;
   border-bottom: 2px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 4px 30px rgba(139, 92, 246, 0.3) !important;
+  box-shadow: 0 4px 30px rgba(59, 130, 246, 0.3) !important;
   position: relative !important;
 }
 
@@ -306,15 +467,15 @@ elevenlabs-convai::part(close-button):hover {
 
 /* Messages Container */
 elevenlabs-convai::part(messages-container) {
-  background: linear-gradient(to bottom, #1a1a2e, #16213e) !important;
+  background: linear-gradient(to bottom, #0F172A, #1E3A8A) !important;
   padding: 20px !important;
 }
 
 /* User Message Bubbles */
 elevenlabs-convai::part(user-message) {
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
   border-radius: 20px 20px 4px 20px !important;
-  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4) !important;
   color: #ffffff !important;
   padding: 14px 18px !important;
   animation: message-bounce-in-right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
@@ -324,28 +485,28 @@ elevenlabs-convai::part(user-message) {
 
 /* Bot Message Bubbles */
 elevenlabs-convai::part(bot-message) {
-  background: linear-gradient(135deg, #2a2a4e 0%, #1f2937 100%) !important;
+  background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%) !important;
   border-radius: 20px 20px 20px 4px !important;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
   color: #e5e7eb !important;
   padding: 14px 18px !important;
   animation: message-bounce-in-left 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
-  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
   max-width: 80% !important;
 }
 
 /* Input Container */
 elevenlabs-convai::part(input-container) {
-  background: linear-gradient(to top, #16213e, #1a1a2e) !important;
-  border-top: 2px solid rgba(139, 92, 246, 0.3) !important;
+  background: linear-gradient(to top, #1E3A8A, #0F172A) !important;
+  border-top: 2px solid rgba(59, 130, 246, 0.3) !important;
   padding: 20px !important;
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Input Field */
 elevenlabs-convai::part(input) {
-  background: rgba(42, 42, 78, 0.6) !important;
-  border: 2px solid rgba(139, 92, 246, 0.4) !important;
+  background: rgba(30, 58, 138, 0.6) !important;
+  border: 2px solid rgba(59, 130, 246, 0.4) !important;
   border-radius: 16px !important;
   color: #ffffff !important;
   padding: 14px 18px !important;
@@ -359,30 +520,30 @@ elevenlabs-convai::part(input)::placeholder {
 }
 
 elevenlabs-convai::part(input):focus {
-  border-color: #8b5cf6 !important;
-  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2),
-              0 8px 20px rgba(139, 92, 246, 0.3) !important;
-  background: rgba(42, 42, 78, 0.8) !important;
+  border-color: #3B82F6 !important;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2),
+              0 8px 20px rgba(59, 130, 246, 0.3) !important;
+  background: rgba(30, 58, 138, 0.8) !important;
   outline: none !important;
 }
 
 /* Send Button */
 elevenlabs-convai::part(send-button) {
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
   border-radius: 14px !important;
   padding: 12px 24px !important;
   border: 2px solid rgba(255, 255, 255, 0.2) !important;
   transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
-  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4) !important;
   color: #ffffff !important;
   font-weight: 600 !important;
 }
 
 elevenlabs-convai::part(send-button):hover {
   transform: translateY(-3px) scale(1.05) !important;
-  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.6) !important;
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.6) !important;
   border-color: rgba(255, 255, 255, 0.4) !important;
-  background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%) !important;
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%) !important;
 }
 
 elevenlabs-convai::part(send-button):active {
@@ -391,24 +552,24 @@ elevenlabs-convai::part(send-button):active {
 
 /* Typing Indicator */
 elevenlabs-convai::part(typing-indicator) {
-  background: linear-gradient(135deg, #2a2a4e 0%, #1f2937 100%) !important;
+  background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%) !important;
   border-radius: 20px !important;
   padding: 12px 18px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(139, 92, 246, 0.3) !important;
+  border: 1px solid rgba(59, 130, 246, 0.3) !important;
 }
 
 elevenlabs-convai::part(typing-dot) {
-  background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+  background: linear-gradient(135deg, #3B82F6, #60A5FA) !important;
   animation: typing-pulse 1.4s ease-in-out infinite !important;
-  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4) !important;
 }
 
 /* Avatar */
 elevenlabs-convai::part(avatar) {
-  background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%) !important;
   border: 3px solid rgba(255, 255, 255, 0.3) !important;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
 }
 
 /* Scrollbar */
@@ -417,18 +578,18 @@ elevenlabs-convai::part(messages-container)::-webkit-scrollbar {
 }
 
 elevenlabs-convai::part(messages-container)::-webkit-scrollbar-track {
-  background: rgba(42, 42, 78, 0.3) !important;
+  background: rgba(30, 58, 138, 0.3) !important;
   border-radius: 10px !important;
 }
 
 elevenlabs-convai::part(messages-container)::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+  background: linear-gradient(135deg, #3B82F6, #60A5FA) !important;
   border-radius: 10px !important;
   border: 2px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 elevenlabs-convai::part(messages-container)::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #ec4899, #f59e0b) !important;
+  background: linear-gradient(135deg, #2563EB, #3B82F6) !important;
 }
 
 /* Advanced Animations */
@@ -436,7 +597,7 @@ elevenlabs-convai::part(messages-container)::-webkit-scrollbar-thumb:hover {
   0%, 100% {
     transform: translateY(0) rotate(0deg);
     border-radius: 50%;
-    box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
   }
   25% {
     transform: translateY(-10px) rotate(5deg);
@@ -445,8 +606,8 @@ elevenlabs-convai::part(messages-container)::-webkit-scrollbar-thumb:hover {
   50% {
     transform: translateY(-5px) rotate(-5deg);
     border-radius: 50% 50% 45% 55%;
-    box-shadow: 0 20px 50px rgba(139, 92, 246, 0.6),
-                0 0 0 20px rgba(139, 92, 246, 0);
+    box-shadow: 0 20px 50px rgba(59, 130, 246, 0.6),
+                0 0 0 20px rgba(59, 130, 246, 0);
   }
   75% {
     transform: translateY(-8px) rotate(3deg);
@@ -530,12 +691,12 @@ elevenlabs-convai {
     bottom: 16px !important;
     right: 16px !important;
   }
-  
+
   elevenlabs-convai::part(button) {
     width: 60px !important;
     height: 60px !important;
   }
-  
+
   elevenlabs-convai::part(window) {
     max-width: calc(100vw - 32px) !important;
     max-height: calc(100vh - 100px) !important;

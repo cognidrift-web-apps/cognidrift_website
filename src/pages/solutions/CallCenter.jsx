@@ -97,7 +97,7 @@ const CallCenter = () => {
           <div className="grid md:grid-cols-2 gap-4">
             {benefits.map((benefit, index) => (
               <div key={index} className="flex items-start gap-3">
-                <CheckCircle2 className="w-6 h-6 text-accent-coral flex-shrink-0 mt-1" />
+                <CheckCircle2 className="w-6 h-6 text-accent-cyan flex-shrink-0 mt-1" />
                 <p className="text-text-secondary">{benefit}</p>
               </div>
             ))}

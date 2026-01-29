@@ -170,7 +170,7 @@ const Services = () => {
       <section className="relative pt-32 pb-20 bg-primary-600 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-coral/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-cyan/20 rounded-full blur-3xl"></div>
         </div>
         
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -245,9 +245,9 @@ const Services = () => {
               >
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 ${
                   service.color === 'primary' ? 'bg-primary-50 text-primary-600 group-hover:bg-primary-100' :
-                  service.color === 'teal' ? 'bg-amber-50 text-accent-amber group-hover:bg-amber-100' :
-                  service.color === 'purple' ? 'bg-coral-50 text-accent-coral group-hover:bg-coral-100' :
-                  'bg-orange-50 text-accent-orange group-hover:bg-orange-100'
+                  service.color === 'teal' ? 'bg-cyan-50 text-accent-cyan group-hover:bg-cyan-100' :
+                  service.color === 'purple' ? 'bg-indigo-50 text-accent-indigo group-hover:bg-indigo-100' :
+                  'bg-violet-50 text-accent-violet group-hover:bg-violet-100'
                 }`}>
                   <service.icon className="w-7 h-7" />
                 </div>
@@ -256,7 +256,7 @@ const Services = () => {
                 <ul className="space-y-2">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-sm text-text-secondary">
-                      <Check className="w-4 h-4 text-accent-coral flex-shrink-0" />
+                      <Check className="w-4 h-4 text-accent-cyan flex-shrink-0" />
                       {feature}
                     </li>
                   ))}

@@ -7,31 +7,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Primary Orange Palette
+        // Primary Blue Palette (Electric Blue)
         primary: {
-          50: '#FFF7ED',
-          100: '#FFEDD5',
-          200: '#FED7AA',
-          300: '#FDBA74',
-          400: '#FB923C',
-          500: '#F97316',
-          600: '#EA580C',  // Main primary
-          700: '#C2410C',  // Dark/hover
-          800: '#9A3412',
-          900: '#7C2D12',
+          50: '#EFF6FF',
+          100: '#DBEAFE',
+          200: '#BFDBFE',
+          300: '#93C5FD',
+          400: '#60A5FA',
+          500: '#3B82F6',  // Main primary
+          600: '#2563EB',  // Primary dark
+          700: '#1D4ED8',  // Dark/hover
+          800: '#1E40AF',
+          900: '#1E3A8A',
         },
         // Accent Colors
         accent: {
-          coral: '#FF6B6B',
-          amber: '#FBBF24',
-          warm: '#EF4444',
+          cyan: '#06B6D4',
+          indigo: '#6366F1',
+          violet: '#8B5CF6',
         },
         // Neutrals
         neutral: {
           white: '#FFFFFF',
-          offWhite: '#FFFBF5',
-          lightOrange: '#FFF7ED',
-          border: '#FED7AA',
+          offWhite: '#F8FAFC',
+          lightBlue: '#EFF6FF',
+          border: '#E2E8F0',
         },
         // Text Colors
         text: {
@@ -42,15 +42,20 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Montserrat', 'system-ui', 'sans-serif'],
+        heading: ['Poppins', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       fontSize: {
-        'hero': ['3.5rem', { lineHeight: '1.1', fontWeight: '700' }],
-        'hero-lg': ['4.5rem', { lineHeight: '1.1', fontWeight: '700' }],
-        'section': ['3rem', { lineHeight: '1.2', fontWeight: '600' }],
-        'card-title': ['1.5rem', { lineHeight: '1.3', fontWeight: '600' }],
-        'body-lg': ['1.125rem', { lineHeight: '1.6', fontWeight: '400' }],
-        'caption': ['0.875rem', { lineHeight: '1.4', fontWeight: '500' }],
+        'hero': ['3.75rem', { lineHeight: '1.05', fontWeight: '800', letterSpacing: '-0.02em' }],
+        'hero-lg': ['5rem', { lineHeight: '1.05', fontWeight: '800', letterSpacing: '-0.02em' }],
+        'hero-xl': ['6rem', { lineHeight: '1', fontWeight: '900', letterSpacing: '-0.03em' }],
+        'section': ['3.5rem', { lineHeight: '1.15', fontWeight: '700', letterSpacing: '-0.01em' }],
+        'section-lg': ['4rem', { lineHeight: '1.1', fontWeight: '700', letterSpacing: '-0.02em' }],
+        'card-title': ['1.5rem', { lineHeight: '1.25', fontWeight: '700' }],
+        'body-lg': ['1.25rem', { lineHeight: '1.7', fontWeight: '400' }],
+        'body-xl': ['1.375rem', { lineHeight: '1.7', fontWeight: '400' }],
+        'caption': ['0.875rem', { lineHeight: '1.4', fontWeight: '600', letterSpacing: '0.05em' }],
       },
       spacing: {
         '18': '4.5rem',
@@ -66,13 +71,13 @@ export default {
       },
       boxShadow: {
         'card': '0 4px 6px rgba(0, 0, 0, 0.05)',
-        'card-hover': '0 10px 40px rgba(249, 115, 22, 0.15)',
-        'button': '0 4px 14px rgba(249, 115, 22, 0.3)',
-        'button-hover': '0 6px 20px rgba(249, 115, 22, 0.5)',
+        'card-hover': '0 10px 40px rgba(59, 130, 246, 0.15)',
+        'button': '0 4px 14px rgba(59, 130, 246, 0.3)',
+        'button-hover': '0 6px 20px rgba(59, 130, 246, 0.5)',
         'nav': '0 1px 3px rgba(0, 0, 0, 0.1)',
-        'notification': '0 10px 40px rgba(249, 115, 22, 0.12)',
-        'glow': '0 0 20px rgba(249, 115, 22, 0.5), 0 0 40px rgba(249, 115, 22, 0.3)',
-        'glow-lg': '0 0 30px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.4)',
+        'notification': '0 10px 40px rgba(59, 130, 246, 0.12)',
+        'glow': '0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.3)',
+        'glow-lg': '0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.4)',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
@@ -80,6 +85,7 @@ export default {
         'float-slow': 'floatSlow 8s ease-in-out infinite',
         'pulse-ring': 'pulseRing 2s ease-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-cta': 'pulseCta 2s ease-in-out infinite',
         'fade-up': 'fadeUp 0.6s ease-out',
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.5s ease-out',
@@ -87,6 +93,9 @@ export default {
         'scale-in': 'scaleIn 0.5s ease-out',
         'glow': 'glow 2s ease-in-out infinite alternate',
         'shimmer': 'shimmer 2s linear infinite',
+        'marquee': 'marquee 30s linear infinite',
+        'marquee-reverse': 'marqueeReverse 30s linear infinite',
+        'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -122,12 +131,28 @@ export default {
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 10px rgba(249, 115, 22, 0.5), 0 0 20px rgba(249, 115, 22, 0.3)' },
-          '100%': { boxShadow: '0 0 25px rgba(249, 115, 22, 0.8), 0 0 50px rgba(249, 115, 22, 0.5)' },
+          '0%': { boxShadow: '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)' },
+          '100%': { boxShadow: '0 0 25px rgba(59, 130, 246, 0.8), 0 0 50px rgba(59, 130, 246, 0.5)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },
           '100%': { backgroundPosition: '200% 0' },
+        },
+        pulseCta: {
+          '0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(59, 130, 246, 0.7)' },
+          '50%': { transform: 'scale(1.02)', boxShadow: '0 0 0 15px rgba(59, 130, 246, 0)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
+        marqueeReverse: {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
+        bounceSubtle: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
         },
       },
       transitionTimingFunction: {
@@ -135,8 +160,8 @@ export default {
         'bounce': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
       backgroundImage: {
-        'hero-pattern': 'radial-gradient(circle at 20% 50%, rgba(249, 115, 22, 0.05) 0%, transparent 50%)',
-        'subtle-glow': 'radial-gradient(circle, rgba(249, 115, 22, 0.08) 0%, transparent 70%)',
+        'hero-pattern': 'radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)',
+        'subtle-glow': 'radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%)',
       },
     },
   },

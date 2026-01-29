@@ -30,7 +30,7 @@ const CaseStudies = () => {
         '45% improvement in conversion rate',
         '$450K additional revenue in Q1'
       ],
-      color: 'accent-coral'
+      color: 'accent-cyan'
     },
     {
       company: 'Thompson & Associates Law',
@@ -44,7 +44,7 @@ const CaseStudies = () => {
         '50% faster client onboarding',
         '30% increase in billable hours'
       ],
-      color: 'accent-amber'
+      color: 'accent-indigo'
     }
   ]
 
@@ -88,7 +88,7 @@ const CaseStudies = () => {
                   <div className="space-y-4">
                     <div>
                       <h4 className="text-sm font-semibold text-text-primary mb-1 flex items-center gap-2">
-                        <TrendingUp className="w-4 h-4 text-accent-coral" />
+                        <TrendingUp className="w-4 h-4 text-accent-cyan" />
                         Challenge
                       </h4>
                       <p className="text-sm text-text-secondary">{study.challenge}</p>
@@ -109,7 +109,7 @@ const CaseStudies = () => {
                   <div className="grid sm:grid-cols-2 gap-4">
                     {study.results.map((result, i) => (
                       <div key={i} className="flex items-start gap-3 p-4 bg-primary-50 rounded-xl">
-                        <CheckCircle2 className="w-5 h-5 text-accent-coral flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-5 h-5 text-accent-cyan flex-shrink-0 mt-0.5" />
                         <p className="text-text-primary font-medium">{result}</p>
                       </div>
                     ))}

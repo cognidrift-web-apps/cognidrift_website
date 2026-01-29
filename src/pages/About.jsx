@@ -103,7 +103,7 @@ const About = () => {
       <section className="relative pt-32 pb-20 bg-primary-600 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-coral/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-cyan/20 rounded-full blur-3xl"></div>
         </div>
         
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -164,8 +164,8 @@ const About = () => {
               <motion.ul variants={staggerContainer} className="space-y-4">
                 {techStack.map((tech, i) => (
                   <motion.li key={i} variants={fadeInUp} className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-accent-coral/10 rounded-full flex items-center justify-center">
-                      <Check className="w-4 h-4 text-accent-coral" />
+                    <div className="w-6 h-6 bg-accent-cyan/10 rounded-full flex items-center justify-center">
+                      <Check className="w-4 h-4 text-accent-cyan" />
                     </div>
                     <span className="text-text-primary font-medium">{tech}</span>
                   </motion.li>
