@@ -257,321 +257,103 @@ const Home = () => {
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section - MyAIFrontDesk Inspired */}
-      <section className="relative min-h-screen flex items-center pt-20 bg-gradient-to-br from-primary-50 via-white to-primary-100 overflow-hidden">
+      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-0 overflow-hidden" style={{ background: 'linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%)' }}>
         {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-primary-300/20 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-accent-cyan/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-200/10 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-purple-100/20 via-blue-50/10 to-transparent"></div>
         </div>
 
-        <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left Content */}
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col items-center justify-center">
+          {/* Center Content */}
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            className="text-center max-w-5xl mx-auto"
+          >
+            <motion.h1
+              variants={fadeInUp}
+              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal text-text-primary mb-6 leading-[1.1]"
+              style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: '400', letterSpacing: '-0.01em' }}
             >
-              <motion.div
-                variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-primary-600/10 border border-primary-600/20 text-primary-700 px-4 py-2 rounded-full mb-6"
-              >
-                <span className="w-2 h-2 bg-primary-600 rounded-full animate-pulse"></span>
-                <span className="text-sm font-bold uppercase tracking-widest">AI Voice Receptionist</span>
-              </motion.div>
-
-              <motion.h1
-                variants={fadeInUp}
-                className="hero-display text-5xl sm:text-6xl lg:text-7xl xl:text-hero-xl text-text-primary mb-6"
-              >
-                Never Miss
-                <br />
-                <span className="text-gradient">Another Call</span>
-              </motion.h1>
-
-              <motion.p
-                variants={fadeInUp}
-                className="text-lg md:text-xl lg:text-body-xl text-text-secondary mb-8 max-w-xl leading-relaxed"
-              >
-                AI voice agents that answer calls, qualify leads, and book appointments <span className="font-bold text-primary-600">24/7</span>.
-                Your customers get instant responses while you focus on what matters.
-              </motion.p>
-
-              {/* Phone Number Display */}
-              <motion.div
-                variants={fadeInUp}
-                className="mb-8 p-4 bg-white/80 backdrop-blur-sm rounded-2xl border border-primary-200 inline-block shadow-lg"
-              >
-                <p className="text-sm text-text-muted mb-1 font-medium uppercase tracking-wide">Try Our AI Receptionist</p>
-                <p className="phone-display text-primary-600 flex items-center gap-3">
-                  <Phone className="w-6 h-6" />
-                  +1 (555) 123-DEMO
-                </p>
-              </motion.div>
-
-              <motion.div
-                variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4"
-              >
-                <Link to="/contact">
-                  <button className="btn-pulse">
-                    <PhoneCall className="w-5 h-5" />
-                    Call Our AI Now
-                  </button>
-                </Link>
-                <Link to="/contact">
-                  <button className="btn-primary">
-                    Start Free Trial
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                </Link>
-              </motion.div>
-
-              <motion.div
-                variants={fadeInUp}
-                className="mt-12 inline-block"
-              >
+              Never miss a call again with your{' '}
+              <span className="relative inline-block font-semibold text-primary-600">
+                AI receptionist
                 <motion.div
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="relative group"
+                  className="absolute -bottom-1 left-0 right-0 h-1 bg-primary-600 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
+                />
+              </span>
+            </motion.h1>
+
+            <motion.p
+              variants={fadeInUp}
+              className="text-base md:text-lg text-text-secondary mb-6 max-w-3xl mx-auto leading-relaxed"
+              style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+            >
+              Pick up the phone, schedule appointments, and answer questions with Frontdesk's 24/7 phone receptionist & CRM.
+            </motion.p>
+
+            <motion.div
+              variants={fadeInUp}
+            >
+              <Link to="/contact">
+                <button 
+                  className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
                 >
-                  {/* Glow effect */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary-600 via-accent-cyan to-primary-600 rounded-2xl opacity-20 group-hover:opacity-40 blur-xl transition-all duration-500"></div>
-
-                  {/* Main card */}
-                  <div className="relative bg-white/90 backdrop-blur-sm border-2 border-primary-200 rounded-2xl p-5 pr-8 shadow-lg">
-                    <div className="flex items-center gap-5">
-                      {/* Animated dots */}
-                      <div className="flex gap-2">
-                        {[0, 1, 2, 3].map((i) => (
-                          <motion.div
-                            key={i}
-                            animate={{
-                              scale: [1, 1.3, 1],
-                              backgroundColor: [
-                                'rgb(37, 99, 235)',
-                                'rgb(96, 165, 250)',
-                                'rgb(37, 99, 235)'
-                              ]
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: i * 0.2,
-                              ease: 'easeInOut'
-                            }}
-                            className="w-2 h-2 rounded-full bg-primary-600"
-                          />
-                        ))}
-                      </div>
-
-                      {/* Divider */}
-                      <div className="w-px h-10 bg-primary-200"></div>
-
-                      {/* Text content */}
-                      <div className="flex items-center gap-3">
-                        <div className="relative">
-                          <motion.div
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                            className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center shadow-lg"
-                          >
-                            <Sparkles className="w-5 h-5 text-white" />
-                          </motion.div>
-                          <motion.div
-                            animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                            className="absolute inset-0 rounded-xl bg-primary-400"
-                          />
-                        </div>
-
-                        <div>
-                          <p className="text-base font-bold text-text-primary flex items-center gap-2">
-                            Enterprise-Grade AI
-                            <motion.span
-                              animate={{ scale: [1, 1.2, 1] }}
-                              transition={{ duration: 2, repeat: Infinity }}
-                              className="inline-block w-2 h-2 rounded-full bg-green-500"
-                            />
-                          </p>
-                          <p className="text-sm text-primary-600 font-medium">Advanced Language Models</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
+                  Start Free
+                </button>
+              </Link>
             </motion.div>
+          </motion.div>
+        </div>
 
-            {/* Right Content - Video with Agent Info */}
-            <div className="relative hidden lg:block h-[600px]">
-              {/* Main Video Component with Enhanced Styling */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3, duration: 0.6 }}
-                className="relative w-full h-full max-w-[520px] mx-auto"
-              >
-                {/* Animated Glow Background */}
-                <div className="absolute -inset-3 bg-primary-500/30 rounded-[2.5rem] blur-2xl animate-pulse-slow"></div>
-
-                {/* Rotating Border Effect */}
+        {/* Voice Wave Animation at Bottom - Full Width */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          className="w-full h-[280px] flex items-center justify-center gap-[3px] px-8 -mt-8"
+        >
+          {Array.from({ length: 80 }).map((_, i) => {
+              // Create varied heights for wave effect - more natural pattern
+              const baseHeights = [45, 55, 75, 95, 115, 135, 160, 140, 120, 95, 70, 85, 105, 135, 155, 145, 125, 100, 80, 70, 85, 115, 145, 165, 150, 130, 105, 85, 70, 80, 105, 135, 160, 145, 115, 90, 75, 95, 125, 150, 165, 140, 110, 85, 75, 90, 115, 140, 125, 95, 70, 80, 105, 135, 155, 140, 115, 90, 75, 85]
+              const height = baseHeights[i % baseHeights.length]
+              const delay = i * 0.015
+              const duration = 1.0 + (i % 5) * 0.15
+              
+              return (
                 <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                  className="absolute -inset-1 bg-primary-400/75 rounded-[2rem]"
-                ></motion.div>
-
-                {/* Video Container */}
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10 h-full">
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    className="w-full h-full object-cover"
-                  >
-                    <source src="/hero.mp4" type="video/mp4" />
-                  </video>
-
-                  {/* Video Overlay */}
-                  <div className="absolute inset-0 bg-black/20 pointer-events-none"></div>
-
-                  {/* Corner Accents */}
-                  <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-primary-400 rounded-tl-lg"></div>
-                  <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-accent-cyan rounded-tr-lg"></div>
-                  <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-accent-indigo rounded-bl-lg"></div>
-                  <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-primary-400 rounded-br-lg"></div>
-
-                  {/* Animated Dots */}
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute top-3 right-3 w-3 h-3 bg-accent-cyan rounded-full shadow-lg shadow-accent-cyan/50"
-                  ></motion.div>
-                  <motion.div
-                    animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                    className="absolute bottom-3 left-3 w-3 h-3 bg-accent-indigo rounded-full shadow-lg shadow-accent-indigo/50"
-                  ></motion.div>
-                </div>
-              </motion.div>
-
-              {/* Agent Info Card - Enhanced */}
-              <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 1.1, duration: 0.6, ease: 'easeOut' }}
-                className="absolute bottom-12 left-6 z-10"
-              >
-                {/* Animated Border Wrapper */}
-                <div className="relative">
-                  {/* Animated Glow Effect */}
-                  <div className="absolute -inset-0.5 bg-primary-500/75 rounded-2xl blur-sm animate-pulse-slow"></div>
-
-                  {/* Main Card */}
-                  <div className="relative bg-neutral-900 backdrop-blur-xl border border-white/10 text-white p-5 rounded-2xl shadow-2xl max-w-[300px]">
-                    {/* Header with Avatar Icon */}
-                    <div className="flex items-start gap-3 mb-3">
-                      <motion.div
-                        animate={{
-                          rotate: [0, 5, -5, 0],
-                          scale: [1, 1.05, 1]
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: 'easeInOut'
-                        }}
-                        className="relative"
-                      >
-                        <div className="w-12 h-12 rounded-xl bg-primary-600 flex items-center justify-center flex-shrink-0 shadow-lg shadow-primary-600/50">
-                          <Bot className="w-6 h-6 text-white" />
-                        </div>
-                        {/* Pulse Ring */}
-                        <div className="absolute inset-0 rounded-xl bg-primary-500/30 animate-ping"></div>
-                      </motion.div>
-
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
-                          <h4 className="text-base font-bold text-white">
-                            Agentic Avatar
-                          </h4>
-                          <motion.div
-                            animate={{
-                              rotate: 360,
-                              scale: [1, 1.2, 1]
-                            }}
-                            transition={{
-                              rotate: { duration: 4, repeat: Infinity, ease: 'linear' },
-                              scale: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
-                            }}
-                          >
-                            <Sparkles className="w-4 h-4 text-accent-cyan" />
-                          </motion.div>
-                        </div>
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse shadow-lg shadow-accent-cyan/50"></div>
-                          <p className="text-[10px] font-semibold tracking-widest text-primary-300 uppercase">
-                            Virtual Receptionist
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-xs text-neutral-200 leading-relaxed mb-3">
-                      Answer calls, schedule appointments, qualify leads, and handle customer inquiries 24/7 with human-like conversations.
-                    </p>
-
-                    {/* Feature Pills */}
-                    <div className="flex flex-wrap gap-1.5">
-                      <span className="px-2 py-1 bg-primary-500/20 border border-primary-500/30 rounded-full text-[10px] text-primary-300 font-medium">
-                        24/7 Available
-                      </span>
-                      <span className="px-2 py-1 bg-accent-cyan/20 border border-accent-cyan/30 rounded-full text-[10px] text-accent-cyan font-medium">
-                        AI-Powered
-                      </span>
-                      <span className="px-2 py-1 bg-accent-indigo/20 border border-accent-indigo/30 rounded-full text-[10px] text-accent-indigo font-medium">
-                        Multi-lingual
-                      </span>
-                    </div>
-
-                    {/* Decorative Corner Element */}
-                    <div className="absolute top-2 right-2">
-                      <motion.div
-                        animate={{ opacity: [0.3, 1, 0.3] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                        className="w-2 h-2 rounded-full bg-accent-cyan shadow-lg shadow-accent-cyan/50"
-                      ></motion.div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust Bar with Marquee */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-neutral-border py-6">
-          <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-sm text-text-muted font-semibold uppercase tracking-widest mb-4">Trusted by Leading Companies</p>
-            <div className="marquee-container">
-              <div className="marquee-content">
-                {[...integrations, ...integrations].map((name, i) => (
-                  <span
-                    key={i}
-                    className="text-text-secondary font-bold text-xl whitespace-nowrap opacity-60 hover:opacity-100 hover:text-primary-600 transition-all duration-300 cursor-pointer"
-                    style={{ fontFamily: 'Montserrat, sans-serif' }}
-                  >
-                    {name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+                  key={i}
+                  className="flex-shrink-0 rounded-full"
+                  style={{
+                    width: '14px',
+                    background: 'linear-gradient(to top, rgb(59, 130, 246), rgb(139, 92, 246))',
+                    transformOrigin: 'bottom'
+                  }}
+                  initial={{ height: `${height * 0.35}px` }}
+                  animate={{
+                    height: [
+                      `${height * 0.35}px`,
+                      `${height}px`,
+                      `${height * 0.55}px`,
+                      `${height * 0.95}px`,
+                      `${height * 0.35}px`
+                    ]
+                  }}
+                  transition={{
+                    duration,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                    delay
+                  }}
+                />
+              )
+            })}
+        </motion.div>
       </section>
 
       {/* Press Logos Section */}

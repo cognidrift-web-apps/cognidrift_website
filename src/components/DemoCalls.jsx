@@ -132,12 +132,12 @@ const DemoCalls = () => {
           </motion.div>
           <motion.h2
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-text-primary mb-6 leading-[1.1]"
+            style={{ fontFamily: 'Montserrat, sans-serif', letterSpacing: '-0.02em' }}
           >
-            How Your AI Receptionist{' '}
+            <span className="block">How Your AI Receptionist</span>
             <span className="relative inline-block">
-              <span className="text-gradient">Converts Callers</span>
+              <span className="text-primary-600">Converts Callers</span>
               <motion.svg
                 className="absolute -bottom-2 left-0 w-full"
                 height="12"
