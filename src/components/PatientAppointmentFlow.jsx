@@ -17,7 +17,7 @@ const PatientAppointmentFlow = () => {
       icon: Calendar, 
       title: 'Checks Availability', 
       desc: 'Real-time calendar sync',
-      color: 'from-purple-500 to-purple-600'
+      color: 'from-cyan-500 to-cyan-600'
     },
     { 
       icon: User, 
@@ -66,9 +66,9 @@ const PatientAppointmentFlow = () => {
         <motion.div
           animate={{
             background: [
-              'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%)',
-              'linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(34, 197, 94, 0.05) 100%)',
-              'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%)'
+              'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%)',
+              'linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(34, 197, 94, 0.05) 100%)',
+              'linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%)'
             ]
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
@@ -191,7 +191,7 @@ const PatientAppointmentFlow = () => {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
                           <User className="w-5 h-5 text-white" />
                         </div>
                         <div>
@@ -229,7 +229,7 @@ const PatientAppointmentFlow = () => {
               <div className="text-xs text-gray-600">No-show Reduction</div>
             </div>
             <div>
-              <div className="text-2xl font-black text-purple-600">24/7</div>
+              <div className="text-2xl font-black text-cyan-600">24/7</div>
               <div className="text-xs text-gray-600">Availability</div>
             </div>
             <div>
@@ -246,7 +246,7 @@ const PatientAppointmentFlow = () => {
             rotate: [0, 5, 0]
           }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full opacity-20 blur-2xl"
+          className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-20 blur-2xl"
         />
       </motion.div>
     </div>

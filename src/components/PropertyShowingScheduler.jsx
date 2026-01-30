@@ -47,7 +47,7 @@ const PropertyShowingScheduler = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 rounded-3xl shadow-2xl p-8 lg:p-10 border-2 border-blue-200 overflow-hidden"
+        className="relative bg-gradient-to-br from-blue-50 via-cyan-50 to-sky-50 rounded-3xl shadow-2xl p-8 lg:p-10 border-2 border-blue-200 overflow-hidden"
       >
         {/* Animated Background Pattern */}
         <motion.div
@@ -57,7 +57,7 @@ const PropertyShowingScheduler = () => {
           transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
           className="absolute top-0 right-0 w-96 h-96 opacity-10"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-3xl" />
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full blur-3xl" />
         </motion.div>
 
         <div className="relative z-10">
@@ -106,17 +106,17 @@ const PropertyShowingScheduler = () => {
 
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="bg-white rounded-2xl p-5 shadow-lg border-2 border-purple-100"
+              className="bg-white rounded-2xl p-5 shadow-lg border-2 border-cyan-100"
             >
               <div className="flex items-center gap-2 mb-2">
-                <Calendar className="w-4 h-4 text-purple-600" />
+                <Calendar className="w-4 h-4 text-cyan-600" />
                 <span className="text-xs font-bold text-gray-600 uppercase">Scheduled</span>
               </div>
               <motion.div
                 key={stats.showingsScheduled}
                 initial={{ scale: 1.2 }}
                 animate={{ scale: 1 }}
-                className="text-3xl font-black text-purple-600"
+                className="text-3xl font-black text-cyan-600"
               >
                 {stats.showingsScheduled}
               </motion.div>
@@ -190,11 +190,11 @@ const PropertyShowingScheduler = () => {
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border-2 border-blue-100 hover:border-blue-300 transition-colors"
+                  className="bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl p-4 border-2 border-blue-100 hover:border-blue-300 transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3 flex-1">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
                         <MapPin className="w-6 h-6 text-white" />
                       </div>
                       <div className="flex-1">
@@ -246,7 +246,7 @@ const PropertyShowingScheduler = () => {
               <div className="text-xs text-gray-600">Lead Capture</div>
             </div>
             <div className="p-3 bg-white rounded-xl shadow-md border-2 border-gray-100">
-              <div className="text-2xl font-black text-purple-600">40%</div>
+              <div className="text-2xl font-black text-cyan-600">40%</div>
               <div className="text-xs text-gray-600">More Showings</div>
             </div>
             <div className="p-3 bg-white rounded-xl shadow-md border-2 border-gray-100">
@@ -263,7 +263,7 @@ const PropertyShowingScheduler = () => {
             opacity: [0.3, 0.6, 0.3]
           }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full blur-3xl"
+          className="absolute top-10 right-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
@@ -271,7 +271,7 @@ const PropertyShowingScheduler = () => {
             opacity: [0.2, 0.5, 0.2]
           }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-10 left-10 w-32 h-32 bg-gradient-to-br from-pink-400 to-purple-500 rounded-full blur-3xl"
+          className="absolute bottom-10 left-10 w-32 h-32 bg-gradient-to-br from-cyan-400 to-sky-500 rounded-full blur-3xl"
         />
       </motion.div>
     </div>

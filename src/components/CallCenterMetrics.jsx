@@ -112,8 +112,8 @@ const CallCenterMetrics = () => {
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 border border-white/20"
             >
               <div className="flex items-center gap-3 mb-2">
-                <Users className="w-5 h-5 text-purple-300" />
-                <span className="text-xs font-bold text-purple-300 uppercase">Active Calls</span>
+                <Users className="w-5 h-5 text-cyan-300" />
+                <span className="text-xs font-bold text-cyan-300 uppercase">Active Calls</span>
               </div>
               <motion.div
                 key={metrics.activeCalls}
@@ -127,9 +127,9 @@ const CallCenterMetrics = () => {
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
-                  className="w-2 h-2 bg-purple-400 rounded-full"
+                  className="w-2 h-2 bg-cyan-400 rounded-full"
                 />
-                <span className="text-xs text-purple-300 font-semibold">Live now</span>
+                <span className="text-xs text-cyan-300 font-semibold">Live now</span>
               </div>
             </motion.div>
 
@@ -273,7 +273,7 @@ const CallCenterMetrics = () => {
             opacity: [0.2, 0.4, 0.2]
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -bottom-20 -left-20 w-64 h-64 bg-purple-500 rounded-full blur-3xl"
+          className="absolute -bottom-20 -left-20 w-64 h-64 bg-cyan-500 rounded-full blur-3xl"
         />
       </motion.div>
     </div>

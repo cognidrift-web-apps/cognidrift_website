@@ -21,7 +21,7 @@ const ClientIntakeFlow = () => {
       icon: Users, 
       title: 'Screening', 
       desc: 'AI qualifies & routes',
-      color: 'from-purple-500 to-purple-600'
+      color: 'from-cyan-500 to-cyan-600'
     },
     { 
       icon: FileCheck, 
@@ -251,7 +251,7 @@ const ClientIntakeFlow = () => {
               <div className="text-xs text-gray-600 mt-1">Cost Reduction</div>
             </div>
             <div className="bg-white rounded-xl p-4 shadow-md border-2 border-slate-100 text-center">
-              <div className="text-2xl font-black text-purple-600">24/7</div>
+              <div className="text-2xl font-black text-cyan-600">24/7</div>
               <div className="text-xs text-gray-600 mt-1">Availability</div>
             </div>
             <div className="bg-white rounded-xl p-4 shadow-md border-2 border-slate-100 text-center">
@@ -276,7 +276,7 @@ const ClientIntakeFlow = () => {
             rotate: [0, -3, 0]
           }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -bottom-6 -left-6 w-28 h-28 bg-gradient-to-br from-purple-400 to-blue-500 rounded-full opacity-20 blur-2xl"
+          className="absolute -bottom-6 -left-6 w-28 h-28 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full opacity-20 blur-2xl"
         />
       </motion.div>
     </div>
