@@ -9,6 +9,10 @@ import PressLogos from '../components/PressLogos'
 import DemoCalls from '../components/DemoCalls'
 import FAQ from '../components/FAQ'
 import TryNowSection from '../components/TryNowSection'
+import AnimatedDashboard from '../components/AnimatedDashboard'
+import AIConversationFlow from '../components/AIConversationFlow'
+import AnimatedCalendar from '../components/AnimatedCalendar'
+import FloatingNotifications from '../components/FloatingNotifications'
 import {
   Phone,
   Clock,
@@ -31,7 +35,8 @@ import {
   Bell,
   ChevronRight,
   Mic,
-  Sparkles
+  Sparkles,
+  TrendingUp
 } from 'lucide-react'
 
 // Animation variants
@@ -256,6 +261,9 @@ const Home = () => {
 
   return (
     <div className="bg-white overflow-hidden">
+      {/* Floating Notifications */}
+      <FloatingNotifications />
+
       {/* Hero Section - MyAIFrontDesk Inspired */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-0 overflow-hidden" style={{ background: 'linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%)' }}>
         {/* Background Elements */}
@@ -538,33 +546,57 @@ const Home = () => {
             </motion.p>
           </motion.div>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-4 gap-8 relative"
-          >
-            {/* Connection Line */}
-            <div className="hidden md:block absolute top-8 left-[12.5%] right-[12.5%] h-0.5 bg-primary-400"></div>
+          {/* Two Column Layout: Text + Visual */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-16">
+            {/* Left: Workflow Steps */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+              variants={staggerContainer}
+              className="space-y-6"
+            >
+              {[
+                { icon: PhoneCall, title: 'Call Comes In', desc: 'Customer calls your business number', color: 'blue' },
+                { icon: Bot, title: 'AI Engages', desc: 'Natural conversation and intent detection', color: 'purple' },
+                { icon: Calendar, title: 'Smart Action', desc: 'Books, routes, or logs automatically', color: 'indigo' },
+                { icon: Bell, title: "You're Notified", desc: 'Real-time summary and recording', color: 'green' }
+              ].map((step, i) => (
+                <motion.div 
+                  key={i} 
+                  variants={fadeInUp}
+                  whileHover={{ x: 10, scale: 1.02 }}
+                  className="flex items-start gap-5 group"
+                >
+                  <div className={`relative flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-${step.color}-500 to-${step.color}-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all`}>
+                    <step.icon className="w-7 h-7 text-white" />
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full border-4 border-neutral-offWhite flex items-center justify-center">
+                      <span className="text-sm font-black text-gray-900">{i + 1}</span>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-primary-600 transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed">
+                      {step.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
 
-            {[
-              { icon: PhoneCall, title: 'Call Comes In', desc: 'Customer calls your business number' },
-              { icon: Bot, title: 'AI Engages', desc: 'Natural conversation and intent detection' },
-              { icon: Calendar, title: 'Smart Action', desc: 'Books, routes, or logs automatically' },
-              { icon: Bell, title: "You're Notified", desc: 'Real-time summary and recording' }
-            ].map((step, i) => (
-              <motion.div key={i} variants={fadeInUp}>
-                <WorkflowStep
-                  number={i + 1}
-                  icon={step.icon}
-                  title={step.title}
-                  description={step.desc}
-                  isLast={i === 3}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+            {/* Right: Animated AI Conversation Flow */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <AIConversationFlow />
+            </motion.div>
+          </div>
 
           <motion.div
             initial="hidden"
@@ -878,6 +910,180 @@ const Home = () => {
               </button>
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Smart Scheduling Showcase */}
+      <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.02]">
+          <motion.div
+            animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+            className="absolute top-20 left-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl"
+          />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: Animated Calendar */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <AnimatedCalendar />
+            </motion.div>
+
+            {/* Right: Text Content */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div
+                variants={fadeInUp}
+                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-5 py-2 rounded-full mb-6"
+              >
+                <Calendar className="w-4 h-4" />
+                <span className="text-sm font-bold uppercase tracking-wider">Smart Scheduling</span>
+              </motion.div>
+
+              <motion.h2
+                variants={fadeInUp}
+                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+              >
+                Appointments Book <span className="text-blue-600">Themselves</span>
+              </motion.h2>
+
+              <motion.p
+                variants={fadeInUp}
+                className="text-xl text-gray-600 mb-8 leading-relaxed"
+              >
+                Watch appointments get scheduled automatically. Your AI receptionist handles the entire booking process - checking availability, confirming times, and sending reminders.
+              </motion.p>
+
+              <motion.div
+                variants={fadeInUp}
+                className="space-y-4"
+              >
+                {[
+                  { icon: Check, text: 'Real-time calendar sync with Google Calendar, Outlook & more' },
+                  { icon: Check, text: 'Automatic conflict detection and resolution' },
+                  { icon: Check, text: 'Smart reminder system reduces no-shows by 35%' },
+                  { icon: Check, text: 'Multi-timezone support for global businesses' }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeInUp}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                      <item.icon className="w-4 h-4 text-green-600" />
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">{item.text}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="mt-8">
+                <Link to="/services">
+                  <button className="btn-primary">
+                    Learn About Scheduling
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Analytics Showcase */}
+      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.02]">
+          <motion.div
+            animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
+            transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+            className="absolute bottom-20 right-0 w-96 h-96 bg-purple-600 rounded-full blur-3xl"
+          />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left: Text Content */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={staggerContainer}
+            >
+              <motion.div
+                variants={fadeInUp}
+                className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-5 py-2 rounded-full mb-6"
+              >
+                <BarChart3 className="w-4 h-4" />
+                <span className="text-sm font-bold uppercase tracking-wider">Real-Time Analytics</span>
+              </motion.div>
+
+              <motion.h2
+                variants={fadeInUp}
+                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+              >
+                See Every <span className="text-indigo-600">Interaction</span> Live
+              </motion.h2>
+
+              <motion.p
+                variants={fadeInUp}
+                className="text-xl text-gray-600 mb-8 leading-relaxed"
+              >
+                Get instant insights into every call, message, and appointment. Our live dashboard shows you exactly what's happening with your AI receptionist in real-time.
+              </motion.p>
+
+              <motion.div
+                variants={fadeInUp}
+                className="space-y-4"
+              >
+                {[
+                  { icon: TrendingUp, text: 'Track call volume, response times, and conversion rates' },
+                  { icon: Users, text: 'Monitor active conversations and customer sentiment' },
+                  { icon: Clock, text: 'Identify peak hours and optimize staffing' },
+                  { icon: Check, text: 'Export detailed reports for your team' }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    variants={fadeInUp}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center mt-0.5">
+                      <item.icon className="w-4 h-4 text-indigo-600" />
+                    </div>
+                    <p className="text-gray-700 leading-relaxed">{item.text}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="mt-8">
+                <Link to="/services">
+                  <button className="btn-primary">
+                    Explore Analytics
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                </Link>
+              </motion.div>
+            </motion.div>
+
+            {/* Right: Animated Dashboard */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <AnimatedDashboard />
+            </motion.div>
+          </div>
         </div>
       </section>
 
