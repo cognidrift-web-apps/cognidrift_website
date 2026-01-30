@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Phone, Users, BarChart3, Zap, Clock, CheckCircle2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import CallCenterMetrics from '../../components/CallCenterMetrics'
 
 const CallCenter = () => {
   const features = [
@@ -83,6 +84,16 @@ const CallCenter = () => {
             )
           })}
         </div>
+
+        {/* Animated Call Center Dashboard */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mb-20"
+        >
+          <CallCenterMetrics />
+        </motion.div>
 
         {/* Benefits Section */}
         <motion.div

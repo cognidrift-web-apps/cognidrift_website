@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Building2, Phone, Calendar, FileText, Clock, CheckCircle2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import ClientIntakeFlow from '../../components/ClientIntakeFlow'
 
 const ProfessionalServices = () => {
   const features = [
@@ -83,6 +84,16 @@ const ProfessionalServices = () => {
             )
           })}
         </div>
+
+        {/* Animated Client Intake Flow */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mb-20"
+        >
+          <ClientIntakeFlow />
+        </motion.div>
 
         {/* Benefits Section */}
         <motion.div

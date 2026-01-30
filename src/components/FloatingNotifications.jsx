@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 
 const FloatingNotifications = () => {
   const [notifications, setNotifications] = useState([])
-  const [notificationId, setNotificationId] = useState(0)
 
   const notificationTypes = [
     {
@@ -42,42 +41,38 @@ const FloatingNotifications = () => {
       lightBg: 'bg-teal-50',
       textColor: 'text-teal-600',
       avatar: 'EW'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Lead Qualified',
-      message: 'Alex Brown - High priority prospect',
-      color: 'from-orange-500 to-orange-600',
-      lightBg: 'bg-orange-50',
-      textColor: 'text-orange-600',
-      avatar: 'AB'
-    },
-    {
-      icon: Star,
-      title: 'Positive Feedback',
-      message: 'Lisa Chen rated service 5 stars',
-      color: 'from-yellow-500 to-yellow-600',
-      lightBg: 'bg-yellow-50',
-      textColor: 'text-yellow-600',
-      avatar: 'LC'
     }
   ]
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const randomNotification = notificationTypes[Math.floor(Math.random() * notificationTypes.length)]
-      const newNotification = {
-        id: notificationId,
-        ...randomNotification,
-        timestamp: 'Just now'
-      }
+    // Show notifications only once on mount
+    const showDelays = [800, 1600, 2400, 3200]
+    const hideDelays = [5000, 5800, 6600, 7400] // Hide after 4.2 seconds of being visible
+    const timers = []
 
-      setNotifications(prev => [newNotification, ...prev].slice(0, 3))
-      setNotificationId(prev => prev + 1)
-    }, 4000)
+    notificationTypes.forEach((notif, index) => {
+      // Show notification
+      const showTimer = setTimeout(() => {
+        const newNotification = {
+          id: index,
+          ...notif,
+          timestamp: 'Just now'
+        }
+        setNotifications(prev => [...prev, newNotification])
+      }, showDelays[index])
+      timers.push(showTimer)
 
-    return () => clearInterval(interval)
-  }, [notificationId])
+      // Hide notification
+      const hideTimer = setTimeout(() => {
+        setNotifications(prev => prev.filter(n => n.id !== index))
+      }, hideDelays[index])
+      timers.push(hideTimer)
+    })
+
+    return () => {
+      timers.forEach(timer => clearTimeout(timer))
+    }
+  }, []) // Empty dependency array - runs only once on mount
 
   return (
     <div className="fixed top-24 right-8 z-50 space-y-4 max-w-sm w-full pointer-events-none">
@@ -159,14 +154,6 @@ const FloatingNotifications = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Progress bar */}
-                <motion.div
-                  initial={{ scaleX: 1 }}
-                  animate={{ scaleX: 0 }}
-                  transition={{ duration: 4, ease: 'linear' }}
-                  className={`h-1 mt-3 rounded-full bg-gradient-to-r ${notification.color} origin-left`}
-                />
               </div>
             </motion.div>
           </motion.div>

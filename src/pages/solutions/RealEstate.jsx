@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Home, Phone, Calendar, Users, Clock, CheckCircle2, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import PropertyShowingScheduler from '../../components/PropertyShowingScheduler'
 
 const RealEstate = () => {
   const features = [
@@ -83,6 +84,16 @@ const RealEstate = () => {
             )
           })}
         </div>
+
+        {/* Animated Property Showing Scheduler */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mb-20"
+        >
+          <PropertyShowingScheduler />
+        </motion.div>
 
         {/* Benefits Section */}
         <motion.div

@@ -284,7 +284,7 @@ const Home = () => {
               className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal text-text-primary mb-6 leading-[1.1]"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: '400', letterSpacing: '-0.01em' }}
             >
-              Never miss a call again with your{' '}
+              Never miss leads, bookings, or support calls again with your{' '}
               <span className="relative inline-block font-semibold text-primary-600">
                 AI receptionist
                 <motion.div

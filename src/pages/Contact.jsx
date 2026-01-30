@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import LiveSupportVisualization from '../components/LiveSupportVisualization'
+import GlobalAvailabilityMap from '../components/GlobalAvailabilityMap'
 import { 
   Mail, 
   Phone, 
@@ -329,6 +331,66 @@ const Contact = () => {
               </motion.div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Live Support Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-12"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Support Team</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              Meet Our <span className="text-primary-600">Support Experts</span>
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Real people ready to help you succeed with AI
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <LiveSupportVisualization />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Global Availability Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-12"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Always Available</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              We Never <span className="text-primary-600">Sleep</span>
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Global infrastructure ensures your AI receptionist is always online
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <GlobalAvailabilityMap />
+          </motion.div>
         </div>
       </section>
 

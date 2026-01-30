@@ -1,6 +1,8 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import CompanyTimeline from '../components/CompanyTimeline'
+import TechStackVisualization from '../components/TechStackVisualization'
 import { 
   Lightbulb, 
   Users, 
@@ -197,6 +199,36 @@ const About = () => {
         </div>
       </section>
 
+      {/* Company Timeline Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="text-center mb-12"
+          >
+            <motion.span variants={fadeInUp} className="section-eyebrow">Our Story</motion.span>
+            <motion.h2 variants={fadeInUp} className="section-title">
+              From Vision to <span className="text-primary-600">Reality</span>
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              See how we've grown from a simple idea to an industry-leading AI platform
+            </motion.p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <CompanyTimeline />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Values Section */}
       <section className="py-24 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -261,7 +293,7 @@ const About = () => {
 
       {/* Technology Section */}
       <section className="py-24 bg-white">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial="hidden"
             whileInView="visible"
@@ -271,49 +303,21 @@ const About = () => {
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">Our Technology</motion.span>
             <motion.h2 variants={fadeInUp} className="section-title">
-              Built With the Best
+              Built With the <span className="text-primary-600">Best</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               Enterprise-grade infrastructure and cutting-edge AI power every conversation.
             </motion.p>
           </motion.div>
           
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-8"
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-12"
           >
-            {[
-              {
-                icon: Zap,
-                title: 'Advanced AI Models',
-                description: 'Powered by state-of-the-art language models for natural, context-aware conversations.'
-              },
-              {
-                icon: Shield,
-                title: 'Enterprise Security',
-                description: 'HIPAA-ready infrastructure with end-to-end encryption and compliance certifications.'
-              },
-              {
-                icon: Award,
-                title: '99.9% Uptime',
-                description: 'Reliable, scalable cloud infrastructure ensures your AI is always available.'
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                variants={fadeInUp}
-                className="card text-center group"
-              >
-                <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-primary-100 transition-colors">
-                  <item.icon className="w-8 h-8 text-primary-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-text-primary mb-3">{item.title}</h3>
-                <p className="text-text-secondary">{item.description}</p>
-              </motion.div>
-            ))}
+            <TechStackVisualization />
           </motion.div>
         </div>
       </section>
