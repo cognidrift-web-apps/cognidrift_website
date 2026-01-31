@@ -9,6 +9,31 @@ function RetellChatWidget() {
   const publicKey = import.meta.env.VITE_RETELL_PUBLIC_KEY
   const agentId = import.meta.env.VITE_RETELL_AGENT_ID
 
+  // Function to clear Retell chat history from localStorage/sessionStorage
+  const clearRetellChatHistory = () => {
+    try {
+      // Clear localStorage items related to Retell
+      const keys = Object.keys(localStorage)
+      keys.forEach(key => {
+        if (key.includes('retell') || key.includes('Retell') || key.includes('chat') || key.includes('conversation')) {
+          localStorage.removeItem(key)
+        }
+      })
+
+      // Clear sessionStorage items related to Retell
+      const sessionKeys = Object.keys(sessionStorage)
+      sessionKeys.forEach(key => {
+        if (key.includes('retell') || key.includes('Retell') || key.includes('chat') || key.includes('conversation')) {
+          sessionStorage.removeItem(key)
+        }
+      })
+
+      console.log('✅ Retell chat history cleared - starting fresh session')
+    } catch (error) {
+      console.error('Error clearing Retell chat history:', error)
+    }
+  }
+
   useEffect(() => {
     // Show welcome popup after 3 seconds (only once)
     const popupTimer = setTimeout(() => {
@@ -30,6 +55,9 @@ function RetellChatWidget() {
       console.warn('Retell credentials missing. Please add VITE_RETELL_PUBLIC_KEY and VITE_RETELL_AGENT_ID to your .env file')
       return
     }
+
+    // Clear Retell chat history on every page load to start fresh
+    clearRetellChatHistory()
 
     // Check if script already exists
     if (document.getElementById('retell-widget')) {
@@ -59,6 +87,8 @@ function RetellChatWidget() {
       setIsWidgetLoaded(true)
       // Inject custom styles for the Retell widget
       injectCustomStyles()
+      // Clear any existing chat state after widget loads
+      setTimeout(() => clearRetellChatHistory(), 500)
     }
 
     script.onerror = () => {
@@ -138,6 +168,29 @@ function RetellChatWidget() {
     document.head.appendChild(style)
   }
 
+  // Function to handle "New Chat" button click
+  const handleNewChat = () => {
+    clearRetellChatHistory()
+    
+    // Force reload the Retell widget to start fresh
+    const retellWidget = document.querySelector('[data-retell-widget]')
+    if (retellWidget) {
+      // Trigger widget close and reset
+      const closeButton = retellWidget.querySelector('[data-close-button]')
+      if (closeButton) closeButton.click()
+      
+      // Wait a moment then clear again
+      setTimeout(() => {
+        clearRetellChatHistory()
+        // Reload the page to ensure complete reset
+        window.location.reload()
+      }, 100)
+    } else {
+      // If widget not found, just reload
+      window.location.reload()
+    }
+  }
+
   // Credentials missing - show configuration message
   if (!publicKey || !agentId) {
     return (
@@ -167,6 +220,24 @@ function RetellChatWidget() {
 
   return (
     <>
+      {/* New Chat Button - Floating */}
+      {isWidgetLoaded && (
+        <button
+          onClick={handleNewChat}
+          className="fixed bottom-28 right-4 md:bottom-32 md:right-6 z-40 
+                     bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700
+                     text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl 
+                     transition-all duration-300 flex items-center gap-2 text-sm font-semibold
+                     hover:scale-105 group"
+          title="Start a new conversation"
+        >
+          <svg className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+          </svg>
+          New Chat
+        </button>
+      )}
+
       {/* Custom Welcome Popup */}
       {showPopup && (
         <div className="fixed bottom-24 right-4 md:bottom-28 md:right-6 z-50 animate-fade-in-up">
