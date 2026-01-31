@@ -79,6 +79,7 @@ function RetellChatWidget() {
     script.setAttribute('data-title', 'CogniDrift AI')
     script.setAttribute('data-bot-name', 'CogniDrift Assistant')
     script.setAttribute('data-color', '#3B82F6') // Primary blue matching brand
+    script.setAttribute('data-logo-url', '/cognidrift-logo.svg') // Custom CogniDrift logo
     script.setAttribute('data-popup-message', '')
     script.setAttribute('data-show-ai-popup', 'false')
     script.setAttribute('data-auto-open', 'false')
@@ -123,37 +124,116 @@ function RetellChatWidget() {
         --retell-primary: #3B82F6;
         --retell-primary-hover: #2563EB;
         --retell-primary-dark: #1D4ED8;
+        --retell-cyan: #06B6D4;
         --retell-bg-dark: #0F172A;
         --retell-bg-light: #1E293B;
         --retell-text: #F1F5F9;
         --retell-text-muted: #94A3B8;
       }
 
-      /* Widget button customization */
+      /* Widget button customization with premium look */
       [data-retell-widget] button,
       .retell-widget-button {
         background: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%) !important;
         box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4), 0 0 40px rgba(59, 130, 246, 0.2) !important;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         animation: retell-float 3s ease-in-out infinite !important;
+        border: 2px solid rgba(255, 255, 255, 0.1) !important;
       }
 
       [data-retell-widget] button:hover,
       .retell-widget-button:hover {
-        transform: scale(1.1) !important;
+        transform: scale(1.1) rotate(5deg) !important;
         box-shadow: 0 6px 30px rgba(59, 130, 246, 0.5), 0 0 60px rgba(59, 130, 246, 0.3) !important;
       }
 
-      /* Chat window customization */
+      /* Chat window customization with glassmorphism */
       [data-retell-widget] .chat-window,
       .retell-chat-window {
-        border-radius: 20px !important;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
-        border: 1px solid rgba(59, 130, 246, 0.2) !important;
-        backdrop-filter: blur(10px) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 80px rgba(59, 130, 246, 0.15) !important;
+        border: 2px solid rgba(59, 130, 246, 0.3) !important;
+        backdrop-filter: blur(20px) !important;
+        background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.95)) !important;
+        overflow: hidden !important;
       }
 
-      /* Floating animation */
+      /* Header styling */
+      [data-retell-widget] .chat-header,
+      .retell-chat-header {
+        background: linear-gradient(135deg, #3B82F6, #2563EB) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        padding: 20px !important;
+      }
+
+      /* Message bubbles enhancement */
+      [data-retell-widget] .message-user,
+      .retell-message-user {
+        background: linear-gradient(135deg, #3B82F6, #2563EB) !important;
+        border-radius: 18px 18px 4px 18px !important;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3) !important;
+        padding: 12px 16px !important;
+      }
+
+      [data-retell-widget] .message-bot,
+      .retell-message-bot {
+        background: rgba(30, 41, 59, 0.8) !important;
+        border: 1px solid rgba(59, 130, 246, 0.2) !important;
+        border-radius: 18px 18px 18px 4px !important;
+        padding: 12px 16px !important;
+      }
+
+      /* Loading indicator - Beautiful animation */
+      [data-retell-widget] .loading,
+      .retell-loading,
+      [data-retell-widget] .typing-indicator,
+      .retell-typing-indicator {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 12px 16px !important;
+        background: rgba(30, 41, 59, 0.8) !important;
+        border: 1px solid rgba(59, 130, 246, 0.2) !important;
+        border-radius: 18px !important;
+        width: fit-content !important;
+      }
+
+      /* Animated dots for loading */
+      [data-retell-widget] .loading::before,
+      .retell-loading::before,
+      [data-retell-widget] .typing-indicator::before,
+      .retell-typing-indicator::before {
+        content: '' !important;
+        display: inline-block !important;
+        width: 8px !important;
+        height: 8px !important;
+        background: linear-gradient(135deg, #3B82F6, #06B6D4) !important;
+        border-radius: 50% !important;
+        animation: retell-loading-dot 1.4s infinite ease-in-out both !important;
+      }
+
+      [data-retell-widget] .loading::after,
+      .retell-loading::after,
+      [data-retell-widget] .typing-indicator::after,
+      .retell-typing-indicator::after {
+        content: '' !important;
+        display: inline-flex !important;
+        gap: 6px !important;
+      }
+
+      /* Loading dots animation */
+      @keyframes retell-loading-dot {
+        0%, 80%, 100% { 
+          transform: scale(0.8);
+          opacity: 0.4;
+        }
+        40% { 
+          transform: scale(1.2);
+          opacity: 1;
+        }
+      }
+
+      /* Floating animation for widget button */
       @keyframes retell-float {
         0%, 100% { transform: translateY(0px); }
         50% { transform: translateY(-8px); }
@@ -163,6 +243,91 @@ function RetellChatWidget() {
       @keyframes retell-glow-pulse {
         0%, 100% { box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4); }
         50% { box-shadow: 0 4px 30px rgba(59, 130, 246, 0.6), 0 0 50px rgba(59, 130, 246, 0.3); }
+      }
+
+      /* Shimmer effect for loading state */
+      @keyframes retell-shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
+      }
+
+      [data-retell-widget] .loading,
+      .retell-loading {
+        background: linear-gradient(
+          90deg,
+          rgba(30, 41, 59, 0.8) 0%,
+          rgba(59, 130, 246, 0.2) 50%,
+          rgba(30, 41, 59, 0.8) 100%
+        ) !important;
+        background-size: 1000px 100% !important;
+        animation: retell-shimmer 2s infinite linear !important;
+      }
+
+      /* Input field styling */
+      [data-retell-widget] input,
+      [data-retell-widget] textarea,
+      .retell-input {
+        background: rgba(30, 41, 59, 0.6) !important;
+        border: 2px solid rgba(59, 130, 246, 0.3) !important;
+        border-radius: 12px !important;
+        color: var(--retell-text) !important;
+        padding: 12px 16px !important;
+        transition: all 0.3s ease !important;
+      }
+
+      [data-retell-widget] input:focus,
+      [data-retell-widget] textarea:focus,
+      .retell-input:focus {
+        border-color: var(--retell-primary) !important;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+        outline: none !important;
+      }
+
+      /* Send button styling */
+      [data-retell-widget] .send-button,
+      .retell-send-button {
+        background: linear-gradient(135deg, #3B82F6, #2563EB) !important;
+        border-radius: 10px !important;
+        padding: 10px 16px !important;
+        transition: all 0.3s ease !important;
+      }
+
+      [data-retell-widget] .send-button:hover,
+      .retell-send-button:hover {
+        transform: scale(1.05) !important;
+        box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4) !important;
+      }
+
+      /* Scrollbar styling */
+      [data-retell-widget] ::-webkit-scrollbar {
+        width: 8px !important;
+      }
+
+      [data-retell-widget] ::-webkit-scrollbar-track {
+        background: rgba(30, 41, 59, 0.4) !important;
+        border-radius: 10px !important;
+      }
+
+      [data-retell-widget] ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #3B82F6, #2563EB) !important;
+        border-radius: 10px !important;
+      }
+
+      [data-retell-widget] ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #2563EB, #1D4ED8) !important;
+      }
+
+      /* Logo styling */
+      [data-retell-widget] img[src*="logo"],
+      .retell-logo {
+        filter: drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3)) !important;
+      }
+
+      /* Powered by text removal */
+      [data-retell-widget] .powered-by,
+      [data-retell-widget] a[href*="retell"],
+      .retell-branding {
+        display: none !important;
       }
     `
     document.head.appendChild(style)
