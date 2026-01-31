@@ -75,10 +75,10 @@ function RetellChatWidget() {
     script.setAttribute('data-public-key', publicKey)
     script.setAttribute('data-agent-id', agentId)
 
-    // Customization attributes - matching CogniDrift brand (Blue theme)
+    // Customization attributes - matching CogniDrift brand (Electrolytic Blue theme)
     script.setAttribute('data-title', 'CogniDrift AI')
     script.setAttribute('data-bot-name', 'CogniDrift Assistant')
-    script.setAttribute('data-color', '#3B82F6') // Primary blue matching brand
+    script.setAttribute('data-color', '#06B6D4') // Electrolytic blue (cyan)
     script.setAttribute('data-logo-url', '/cognidrift-logo.svg') // Custom CogniDrift logo
     script.setAttribute('data-popup-message', '')
     script.setAttribute('data-show-ai-popup', 'false')
