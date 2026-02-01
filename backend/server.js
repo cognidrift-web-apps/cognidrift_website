@@ -4,8 +4,14 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import twilio from 'twilio';
 import axios from 'axios';
+import connectDB from './config/database.js';
+import Customer from './models/Customer.js';
+import Callback from './models/Callback.js';
 
 dotenv.config();
+
+// Connect to MongoDB
+connectDB();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +22,8 @@ const requiredEnvVars = [
   'TWILIO_AUTH_TOKEN',
   'TWILIO_PHONE_NUMBER',
   'RETELL_API_KEY',
-  'RETELL_AGENT_ID'
+  'RETELL_AGENT_ID',
+  'MONGODB_URI'
 ];
 
 const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
@@ -150,7 +157,178 @@ async function initiateRetellCall(toNumber, smsContent, messageId) {
 }
 
 // ============================================
-// 3. CALL STATUS WEBHOOK
+// 3. RETELL CUSTOM FUNCTION WEBHOOK
+// ============================================
+app.post('/webhook/retell-function', async (req, res) => {
+  try {
+    const { call_id, function_name, arguments: functionArgs } = req.body;
+
+    logInfo('Retell function called', { callId: call_id, function: function_name, args: functionArgs });
+
+    let result = {};
+
+    switch (function_name) {
+      case 'send_sms':
+      case 'send_smsmessage':
+        try {
+          const { to, message } = functionArgs;
+          
+          if (!to || !message) {
+            result = {
+              success: false,
+              error: 'Phone number and message are required'
+            };
+            break;
+          }
+
+          const smsResponse = await twilioClient.messages.create({
+            body: message,
+            from: process.env.TWILIO_PHONE_NUMBER,
+            to: to
+          });
+
+          // Update call data
+          const callData = activeCalls.get(call_id);
+          if (callData) {
+            if (!callData.smsSent) callData.smsSent = [];
+            callData.smsSent.push({
+              messageSid: smsResponse.sid,
+              message,
+              timestamp: new Date()
+            });
+          }
+
+          logSuccess('SMS sent via function', { messageSid: smsResponse.sid, to });
+
+          result = {
+            success: true,
+            messageSid: smsResponse.sid,
+            message: 'SMS sent successfully'
+          };
+        } catch (error) {
+          logError('Error in send_sms function', error);
+          result = {
+            success: false,
+            error: error.message
+          };
+        }
+        break;
+
+      case 'schedule_callback':
+        try {
+          const { phoneNumber, datetime, reason, timezone } = functionArgs;
+
+          if (!phoneNumber || !datetime) {
+            result = {
+              success: false,
+              error: 'Phone number and datetime are required'
+            };
+            break;
+          }
+
+          const callbackId = `cb_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          
+          const callbackData = {
+            callbackId,
+            phoneNumber,
+            datetime,
+            reason: reason || '',
+            timezone: timezone || 'America/New_York',
+            callId: call_id,
+            status: 'scheduled',
+            createdAt: new Date().toISOString()
+          };
+
+          // Save to MongoDB
+          const callback = new Callback(callbackData);
+          await callback.save();
+
+          logSuccess('Callback scheduled via function', callbackData);
+
+          result = {
+            success: true,
+            callbackId,
+            scheduledTime: datetime,
+            message: `Callback scheduled for ${new Date(datetime).toLocaleString('en-US', { timeZone: timezone || 'America/New_York' })}`
+          };
+        } catch (error) {
+          logError('Error in schedule_callback function', error);
+          result = {
+            success: false,
+            error: error.message
+          };
+        }
+        break;
+
+      case 'save_customer_info':
+        try {
+          const { phoneNumber, name, email, interest, notes } = functionArgs;
+
+          if (!phoneNumber || !name) {
+            result = {
+              success: false,
+              error: 'Phone number and name are required'
+            };
+            break;
+          }
+
+          const customerId = `cust_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+          
+          const customerData = {
+            customerId,
+            phoneNumber,
+            name,
+            email: email || '',
+            interest: interest || '',
+            notes: notes || '',
+            callId: call_id,
+            createdAt: new Date().toISOString(),
+            source: 'sms_to_call'
+          };
+
+          // Save to MongoDB
+          const customer = new Customer(customerData);
+          await customer.save();
+
+          logSuccess('Customer info saved via function', customerData);
+
+          result = {
+            success: true,
+            customerId,
+            message: 'Customer information saved successfully'
+          };
+        } catch (error) {
+          logError('Error in save_customer_info function', error);
+          result = {
+            success: false,
+            error: error.message
+          };
+        }
+        break;
+
+      default:
+        result = {
+          success: false,
+          error: `Unknown function: ${function_name}`
+        };
+    }
+
+    // Return result to Retell
+    res.json({ result });
+
+  } catch (error) {
+    logError('Retell function webhook error', error);
+    res.status(500).json({
+      result: {
+        success: false,
+        error: 'Internal server error'
+      }
+    });
+  }
+});
+
+// ============================================
+// 4. CALL STATUS WEBHOOK
 // ============================================
 app.post('/webhook/call-status', async (req, res) => {
   try {
@@ -277,20 +455,24 @@ app.post('/api/schedule-callback', async (req, res) => {
       createdAt: new Date().toISOString()
     };
 
-    // TODO: Save to database and implement actual scheduling
-    // For now, just log it
+    // Save to MongoDB
+    const callback = new Callback(callbackData);
+    await callback.save();
+
+    // Also add to in-memory storage for backwards compatibility
     callHistory.push({
       type: 'callback_scheduled',
       ...callbackData
     });
 
-    logSuccess('Callback scheduled', callbackData);
+    logSuccess('Callback scheduled and saved to database', callbackData);
 
     res.json({
       success: true,
       callbackId,
       scheduledTime: datetime,
-      message: `Callback scheduled for ${new Date(datetime).toLocaleString('en-US', { timeZone: timezone })}`
+      message: `Callback scheduled for ${new Date(datetime).toLocaleString('en-US', { timeZone: timezone })}`,
+      saved: true
     });
 
   } catch (error) {
@@ -332,19 +514,23 @@ app.post('/api/save-customer-info', async (req, res) => {
       source: 'sms_to_call'
     };
 
-    // TODO: Save to database (MongoDB, PostgreSQL, etc.)
-    // For now, just log it
+    // Save to MongoDB
+    const customer = new Customer(customerData);
+    await customer.save();
+
+    // Also add to in-memory storage for backwards compatibility
     callHistory.push({
       type: 'customer_info',
       ...customerData
     });
 
-    logSuccess('Customer info saved', { customerId, name });
+    logSuccess('Customer info saved to database', customerData);
 
     res.json({
       success: true,
       customerId,
-      message: 'Your information has been saved successfully.'
+      message: 'Customer information saved successfully',
+      saved: true
     });
 
   } catch (error) {
