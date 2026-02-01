@@ -7,6 +7,8 @@ import axios from 'axios';
 import connectDB from './config/database.js';
 import Customer from './models/Customer.js';
 import Callback from './models/Callback.js';
+import Conversation from './models/Conversation.js';
+import { handleIncomingSMS, getConversationHistory, getAllConversations } from './controllers/smsController.js';
 
 dotenv.config();
 
@@ -23,7 +25,8 @@ const requiredEnvVars = [
   'TWILIO_PHONE_NUMBER',
   'RETELL_API_KEY',
   'RETELL_AGENT_ID',
-  'MONGODB_URI'
+  'MONGODB_URI',
+  'OPENAI_API_KEY'
 ];
 
 const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
@@ -66,41 +69,19 @@ function logSuccess(message, data = {}) {
 }
 
 // ============================================
-// 1. SMS WEBHOOK - When someone sends SMS
+// 1. SMS WEBHOOK - Intelligent LLM Conversation
 // ============================================
-app.post('/webhook/sms', async (req, res) => {
-  try {
-    const { From, Body, MessageSid, To } = req.body;
-    
-    logInfo('SMS received', { from: From, body: Body, sid: MessageSid });
+app.post('/webhook/sms', handleIncomingSMS);
 
-    // Respond to SMS immediately
-    const twiml = new twilio.twiml.MessagingResponse();
-    twiml.message('Thank you for contacting CogniDrift! 🤖 Our AI assistant will call you shortly. 📞');
-    
-    res.type('text/xml');
-    res.send(twiml.toString());
+// ============================================
+// 1.1 GET CONVERSATION HISTORY
+// ============================================
+app.get('/api/conversation/:phoneNumber', getConversationHistory);
 
-    // Store SMS in history
-    callHistory.push({
-      type: 'sms',
-      from: From,
-      to: To,
-      message: Body,
-      timestamp: new Date(),
-      messageSid: MessageSid
-    });
-
-    // Initiate call after 2 seconds
-    setTimeout(async () => {
-      await initiateRetellCall(From, Body, MessageSid);
-    }, 2000);
-
-  } catch (error) {
-    logError('SMS webhook error', error);
-    res.status(500).send('Error processing SMS');
-  }
-});
+// ============================================
+// 1.2 GET ALL CONVERSATIONS
+// ============================================
+app.get('/api/conversations', getAllConversations);
 
 // ============================================
 // 2. INITIATE RETELL AI CALL
