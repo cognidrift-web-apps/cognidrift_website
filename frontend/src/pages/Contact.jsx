@@ -97,9 +97,9 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      details: '+1 (555) 123-4567',
+      details: '+1 (844) 584-1083',
       subtitle: 'Mon-Fri, 9am-6pm EST',
-      link: 'tel:+15551234567'
+      link: 'tel:+18445841083'
     },
     {
       icon: Calendar,
@@ -117,15 +117,17 @@ const Contact = () => {
     'Custom pricing discussion'
   ]
 
-  // Initialize Cal.com embed
+  // Initialize Cal.com inline embed - shows all event types
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi()
-      cal("ui", {
-        theme: "light",
-        styles: { branding: { brandColor: "#4F46E5" } },
-        hideEventTypeDetails: false,
-        layout: "month_view"
+      const cal = await getCalApi({ namespace: "cognidrift-booking" })
+      cal("inline", {
+        elementOrSelector: "#cal-booking-widget",
+        calLink: "cognidrift-llc-alefpr", // Shows all event type options
+        layout: "month_view",
+        config: {
+          theme: "light"
+        }
       })
     })()
   }, [])
@@ -302,8 +304,7 @@ const Contact = () => {
                 style={{ minHeight: '630px' }}
               >
                 <div 
-                  data-cal-link="cognidrift-llc-alefpr"
-                  data-cal-config='{"layout":"month_view","theme":"light"}'
+                  id="cal-booking-widget"
                   style={{ width: '100%', height: '100%', minHeight: '630px' }}
                 />
               </motion.div>
