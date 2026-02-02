@@ -4,11 +4,26 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import twilio from 'twilio';
 import axios from 'axios';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import connectDB from './config/database.js';
 import Customer from './models/Customer.js';
 import Callback from './models/Callback.js';
 import Conversation from './models/Conversation.js';
 import { handleIncomingSMS, getConversationHistory, getAllConversations } from './controllers/smsController.js';
+import {
+  authMiddleware,
+  login,
+  getStats,
+  getConversations,
+  getConversation,
+  getCustomers,
+  getCallbacks,
+  updatePassword
+} from './controllers/dashboardController.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -698,7 +713,23 @@ app.post('/api/save-customer-info', async (req, res) => {
   }
 });
 
-// ============================================// 10. HEALTH CHECK
+// ============================================
+// DASHBOARD API ROUTES
+// ============================================
+
+// Dashboard Login (no auth required)
+app.post('/api/dashboard/login', login);
+
+// Protected Dashboard Routes
+app.get('/api/dashboard/stats', authMiddleware, getStats);
+app.get('/api/dashboard/conversations', authMiddleware, getConversations);
+app.get('/api/dashboard/conversation/:phoneNumber', authMiddleware, getConversation);
+app.get('/api/dashboard/customers', authMiddleware, getCustomers);
+app.get('/api/dashboard/callbacks', authMiddleware, getCallbacks);
+app.put('/api/dashboard/password', authMiddleware, updatePassword);
+
+// ============================================
+// 10. HEALTH CHECK
 // ============================================
 app.get('/health', (req, res) => {
   const isConfigured = !!(
@@ -737,8 +768,16 @@ app.get('/', (req, res) => {
       saveCustomerInfo: '/api/save-customer-info',
       triggerCall: '/api/trigger-call',
       activeCalls: '/api/active-calls',
-      history: '/api/call-history'
+      history: '/api/call-history',
+      dashboard: {
+        login: '/api/dashboard/login',
+        stats: '/api/dashboard/stats',
+        conversations: '/api/dashboard/conversations',
+        customers: '/api/dashboard/customers',
+        callbacks: '/api/dashboard/callbacks'
+      }
     },
+    dashboard: '/dashboard/index.html',
     documentation: 'See README.md for setup instructions'
   });
 });
@@ -770,6 +809,9 @@ app.listen(PORT, () => {
   console.log(`\n🔧 API Endpoints:`);
   console.log(`   Health: http://localhost:${PORT}/health`);
   console.log(`   Trigger: http://localhost:${PORT}/api/trigger-call`);
+  console.log(`\n📊 Dashboard API Ready`);
+  console.log(`   Default Password: cognidrift2024`);
+  console.log(`   Deploy dashboard folder to Vercel`);
   console.log(`\n✨ Ready to receive SMS and make calls!\n`);
 });
 
