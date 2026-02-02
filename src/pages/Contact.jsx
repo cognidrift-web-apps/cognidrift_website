@@ -36,7 +36,6 @@ const Contact = () => {
     name: '',
     email: '',
     company: '',
-    industry: '',
     message: ''
   })
 
@@ -61,7 +60,7 @@ const Contact = () => {
         type: 'success',
         message: 'Thank you! We\'ll be in touch within 24 hours.'
       })
-      setFormData({ name: '', email: '', company: '', industry: '', message: '' })
+      setFormData({ name: '', email: '', company: '', message: '' })
       setIsSubmitting(false)
     }, 1500)
   }
@@ -212,27 +211,6 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="industry" className="block text-sm font-medium text-text-primary mb-2">
-                    Industry *
-                  </label>
-                  <select
-                    id="industry"
-                    name="industry"
-                    value={formData.industry}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all"
-                  >
-                    <option value="">Select your industry</option>
-                    {industries.map((industry) => (
-                      <option key={industry.value} value={industry.value}>
-                        {industry.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
                   <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
                     Tell us about your needs
                   </label>
@@ -300,23 +278,6 @@ const Contact = () => {
                     <ArrowRight className="w-5 h-5 text-text-muted ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                   </a>
                 ))}
-              </motion.div>
-
-              {/* What to Expect */}
-              <motion.div variants={fadeInUp} className="bg-primary-50 rounded-2xl p-8">
-                <h3 className="text-xl font-semibold text-text-primary mb-6">
-                  What to Expect
-                </h3>
-                <ul className="space-y-4">
-                  {benefits.map((benefit, index) => (
-                    <li key={index} className="flex items-center gap-3">
-                      <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <Check className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="text-text-primary">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
 
               {/* Response Time */}
