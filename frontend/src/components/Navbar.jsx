@@ -57,37 +57,18 @@ const Navbar = () => {
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-[72px]">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link to="/" className="flex items-center group">
             <motion.div
-              whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+              whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-blue-400/50 rounded-xl blur-lg opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
-              <div className="relative w-11 h-11 bg-blue-500 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                <Brain className="w-6 h-6 text-white" />
-                <motion.div
-                  className="absolute -top-1 -right-1"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  <Sparkles className="w-3 h-3 text-cyan-300" />
-                </motion.div>
-              </div>
+              <img 
+                src="/CogniDrift F01-V01_for white.png" 
+                alt="CogniDrift Logo" 
+                className="h-12 w-auto object-contain"
+              />
             </motion.div>
-            <div>
-              <span className="text-xl font-bold text-text-primary group-hover:text-blue-600 transition-all duration-300">
-                Cogni<span className="text-blue-600">Drift</span>
-              </span>
-              <div className="h-0.5 w-0 group-hover:w-full bg-blue-500 transition-all duration-500" />
-            </div>
           </Link>
 
           {/* Desktop Menu */}
