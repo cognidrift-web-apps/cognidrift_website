@@ -34,9 +34,8 @@ const widgetChatHistorySchema = new mongoose.Schema({
   }
 });
 
-widgetChatHistorySchema.pre('save', function(next) {
+widgetChatHistorySchema.pre('save', async function() {
   this.updatedAt = new Date();
-  next();
 });
 
 const WidgetChatHistory = mongoose.model('WidgetChatHistory', widgetChatHistorySchema);
