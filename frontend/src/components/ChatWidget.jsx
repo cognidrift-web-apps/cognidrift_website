@@ -14,14 +14,10 @@ function ChatWidget() {
   const inputRef = useRef(null)
   const hasShownPopup = useRef(false)
 
-  // Generate or get session ID
+  // Generate new session ID on every page load (no persistence)
   useEffect(() => {
-    let storedSessionId = localStorage.getItem('cognidrift_chat_session')
-    if (!storedSessionId) {
-      storedSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
-      localStorage.setItem('cognidrift_chat_session', storedSessionId)
-    }
-    setSessionId(storedSessionId)
+    const newSessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+    setSessionId(newSessionId)
   }, [])
 
   // Show welcome popup after 3 seconds
@@ -37,10 +33,13 @@ function ChatWidget() {
     return () => clearTimeout(popupTimer)
   }, [isOpen])
 
-  // Load chat history when opened
+  // Show welcome message when chat is first opened
   useEffect(() => {
     if (isOpen && sessionId && messages.length === 0) {
-      loadChatHistory()
+      setMessages([{
+        role: 'assistant',
+        content: "Hi there! 👋\nI'm CogniDrift's AI assistant.\nHow can I help you today?"
+      }])
     }
   }, [isOpen, sessionId])
 
@@ -55,29 +54,6 @@ function ChatWidget() {
       inputRef.current?.focus()
     }
   }, [isOpen])
-
-  const loadChatHistory = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/widget/chat/${sessionId}`)
-      const data = await response.json()
-
-      if (data.messages && data.messages.length > 0) {
-        setMessages(data.messages)
-      } else {
-        // Show welcome message
-        setMessages([{
-          role: 'assistant',
-          content: "Hi there! 👋 I'm CogniDrift's AI assistant. How can I help you today?"
-        }])
-      }
-    } catch (error) {
-      console.error('Error loading chat history:', error)
-      setMessages([{
-        role: 'assistant',
-        content: "Hi there! 👋 I'm CogniDrift's AI assistant. How can I help you today?"
-      }])
-    }
-  }
 
   const sendMessage = async () => {
     if (!inputValue.trim() || isLoading) return
