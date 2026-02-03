@@ -300,19 +300,6 @@ const Home = () => {
             >
               Pick up the phone, schedule appointments, and answer questions with Frontdesk's 24/7 phone receptionist & CRM.
             </motion.p>
-
-            <motion.div
-              variants={fadeInUp}
-            >
-              <Link to="/contact">
-                <button 
-                  className="bg-primary-600 hover:bg-primary-700 text-white px-10 py-4 rounded-xl font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                  style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
-                >
-                  Start Free
-                </button>
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
 
