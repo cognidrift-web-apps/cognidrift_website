@@ -21,6 +21,7 @@ import {
   getCallbacks,
   updatePassword
 } from './controllers/dashboardController.js';
+import { submitContactForm, getContacts, updateContactStatus } from './controllers/contactController.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -712,6 +713,19 @@ app.post('/api/save-customer-info', async (req, res) => {
     });
   }
 });
+
+// ============================================
+// CONTACT FORM API ROUTES
+// ============================================
+
+// Public - Submit contact form (no auth required)
+app.post('/api/contact', submitContactForm);
+
+// Protected - Get all contacts (dashboard)
+app.get('/api/contacts', authMiddleware, getContacts);
+
+// Protected - Update contact status (dashboard)
+app.patch('/api/contacts/:id', authMiddleware, updateContactStatus);
 
 // ============================================
 // DASHBOARD API ROUTES

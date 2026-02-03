@@ -3,16 +3,17 @@ import { motion } from 'framer-motion'
 import { getCalApi } from '@calcom/embed-react'
 import LiveSupportVisualization from '../components/LiveSupportVisualization'
 import GlobalAvailabilityMap from '../components/GlobalAvailabilityMap'
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  Clock, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Clock,
   MessageSquare,
   Calendar,
   ArrowRight,
   Check,
+  AlertCircle,
   Building2,
   Stethoscope,
   Home as HomeIcon,
@@ -67,15 +68,38 @@ const Contact = () => {
     setIsSubmitting(true)
     setStatus({ type: '', message: '' })
 
-    // Simulate API call
-    setTimeout(() => {
-      setStatus({
-        type: 'success',
-        message: 'Thank you! We\'ll be in touch within 24 hours.'
+    try {
+      const response = await fetch('https://cognidrift-send-and-receive-sms-production.up.railway.app/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
-      setFormData({ name: '', email: '', company: '', message: '' })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setStatus({
+          type: 'success',
+          message: data.message || "Thank you! We'll be in touch within 24 hours."
+        })
+        setFormData({ name: '', email: '', company: '', message: '' })
+      } else {
+        setStatus({
+          type: 'error',
+          message: data.error || 'Something went wrong. Please try again.'
+        })
+      }
+    } catch (error) {
+      console.error('Contact form error:', error)
+      setStatus({
+        type: 'error',
+        message: 'Network error. Please try again or email us directly at contact@cognidrift.com'
+      })
+    } finally {
       setIsSubmitting(false)
-    }, 1500)
+    }
   }
 
   const industries = [
@@ -263,7 +287,11 @@ const Contact = () => {
                         : 'bg-red-50 text-red-600'
                     }`}
                   >
-                    <Check className="w-5 h-5 flex-shrink-0" />
+                    {status.type === 'success' ? (
+                      <Check className="w-5 h-5 flex-shrink-0" />
+                    ) : (
+                      <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                    )}
                     {status.message}
                   </motion.div>
                 )}
