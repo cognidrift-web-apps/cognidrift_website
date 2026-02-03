@@ -112,7 +112,7 @@ const TryNowSection = () => {
                 <div className="flex-1">
                   <p className="text-sm text-primary-200 font-medium mb-1">Call Now</p>
                   <p className="text-2xl font-bold text-white tracking-wide">
-                    +1 (555) 123-DEMO
+                    +1 (844) 584-1083
                   </p>
                 </div>
                 <motion.div
@@ -133,7 +133,7 @@ const TryNowSection = () => {
                 <div className="flex-1">
                   <p className="text-sm text-primary-200 font-medium mb-1">Text Message</p>
                   <p className="text-2xl font-bold text-white tracking-wide">
-                    +1 (555) 123-DEMO
+                    +1 (844) 584-1083
                   </p>
                 </div>
                 <motion.div
