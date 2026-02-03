@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import RetellChatWidget from './components/RetellChatWidget'
+import ChatWidget from './components/ChatWidget'
 import ScrollToTop from './components/ScrollToTop'
 
 // Lazy load all pages for better performance
@@ -70,7 +70,7 @@ function App() {
           </Suspense>
         </main>
         <Footer />
-        <RetellChatWidget />
+        <ChatWidget />
       </div>
     </Router>
   )

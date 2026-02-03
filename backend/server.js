@@ -22,6 +22,8 @@ import {
   updatePassword
 } from './controllers/dashboardController.js';
 import { submitContactForm, getContacts, updateContactStatus } from './controllers/contactController.js';
+import WidgetChatHistory from './models/WidgetChatHistory.js';
+import { generateWidgetResponse } from './services/widgetLLMService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -710,6 +712,124 @@ app.post('/api/save-customer-info', async (req, res) => {
     res.status(500).json({
       success: false,
       error: error.message
+    });
+  }
+});
+
+// ============================================
+// CHAT WIDGET API ROUTES
+// ============================================
+
+/**
+ * POST /api/widget/chat
+ * Send a message and get AI response
+ */
+app.post('/api/widget/chat', async (req, res) => {
+  try {
+    const { sessionId, message } = req.body;
+
+    if (!sessionId || !message) {
+      return res.status(400).json({
+        error: 'Missing required fields: sessionId and message'
+      });
+    }
+
+    // Find or create chat history for this session
+    let chatHistory = await WidgetChatHistory.findOne({ sessionId });
+
+    if (!chatHistory) {
+      chatHistory = new WidgetChatHistory({
+        sessionId,
+        messages: []
+      });
+    }
+
+    // Add user message to history
+    chatHistory.messages.push({
+      role: 'user',
+      content: message
+    });
+
+    // Get AI response using conversation history
+    const aiResponse = await generateWidgetResponse(chatHistory.messages);
+
+    // Add AI response to history
+    chatHistory.messages.push({
+      role: 'assistant',
+      content: aiResponse
+    });
+
+    // Save to database
+    await chatHistory.save();
+
+    logSuccess('Widget chat message processed', { sessionId });
+
+    res.json({
+      success: true,
+      response: aiResponse,
+      sessionId: sessionId
+    });
+
+  } catch (error) {
+    logError('Widget Chat Error:', error);
+    res.status(500).json({
+      error: 'Failed to process message',
+      details: error.message
+    });
+  }
+});
+
+/**
+ * GET /api/widget/chat/:sessionId
+ * Get chat history for a session
+ */
+app.get('/api/widget/chat/:sessionId', async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+
+    const chatHistory = await WidgetChatHistory.findOne({ sessionId });
+
+    if (!chatHistory) {
+      return res.json({
+        sessionId,
+        messages: []
+      });
+    }
+
+    res.json({
+      sessionId: chatHistory.sessionId,
+      messages: chatHistory.messages,
+      createdAt: chatHistory.createdAt,
+      updatedAt: chatHistory.updatedAt
+    });
+
+  } catch (error) {
+    logError('Get Widget History Error:', error);
+    res.status(500).json({
+      error: 'Failed to get chat history'
+    });
+  }
+});
+
+/**
+ * DELETE /api/widget/chat/:sessionId
+ * Clear chat history for a session
+ */
+app.delete('/api/widget/chat/:sessionId', async (req, res) => {
+  try {
+    const { sessionId } = req.params;
+
+    await WidgetChatHistory.deleteOne({ sessionId });
+
+    res.json({
+      success: true,
+      message: 'Chat history cleared'
+    });
+
+  } catch (error) {
+    logError('Delete Widget History Error:', error);
+    res.status(500).json({
+      error: 'Failed to clear chat history'
     });
   }
 });
