@@ -1,10 +1,10 @@
-import nodemailer from 'nodemailer';
+const nodemailer = require('nodemailer');
 
 /**
  * Vercel Serverless Function for Contact Form
  * Handles email sending without exposing SMTP credentials to frontend
  */
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Enable CORS for your frontend domain
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
