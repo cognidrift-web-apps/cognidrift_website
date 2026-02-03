@@ -385,24 +385,6 @@ function RetellChatWidget() {
 
   return (
     <>
-      {/* New Chat Button - Floating */}
-      {isWidgetLoaded && (
-        <button
-          onClick={handleNewChat}
-          className="fixed bottom-28 right-4 md:bottom-32 md:right-6 z-40 
-                     bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700
-                     text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl 
-                     transition-all duration-300 flex items-center gap-2 text-sm font-semibold
-                     hover:scale-105 group"
-          title="Start a new conversation"
-        >
-          <svg className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-          </svg>
-          New Chat
-        </button>
-      )}
-
       {/* Custom Welcome Popup */}
       {showPopup && (
         <div className="fixed bottom-24 right-4 md:bottom-28 md:right-6 z-50 animate-fade-in-up">
