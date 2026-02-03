@@ -138,7 +138,7 @@ function ChatWidget() {
             href={part}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary-300 hover:text-primary-200 underline"
+            className="text-primary-600 hover:text-primary-700 underline"
           >
             {part}
           </a>
@@ -154,10 +154,10 @@ function ChatWidget() {
       {showPopup && (
         <div className="fixed bottom-24 right-4 md:bottom-28 md:right-6 z-50 animate-fade-up">
           <div className="relative max-w-xs">
-            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-2xl p-4 shadow-2xl border border-primary-500/30">
+            <div className="bg-white rounded-2xl p-4 shadow-2xl border border-gray-200">
               <button
                 onClick={() => setShowPopup(false)}
-                className="absolute -top-2 -right-2 w-6 h-6 bg-slate-700 hover:bg-slate-600 rounded-full flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+                className="absolute -top-2 -right-2 w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
@@ -166,17 +166,19 @@ function ChatWidget() {
 
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0 relative">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center shadow-lg shadow-primary-500/30">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
+                  <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+                    <img
+                      src="/cognidrift_icon.png"
+                      alt="CogniDrift"
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-400 rounded-full border-2 border-slate-900 animate-pulse"></div>
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-green-500 rounded-full border-2 border-white animate-pulse"></div>
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-white">CogniDrift AI</p>
-                  <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                  <p className="text-sm font-semibold text-gray-900">CogniDrift AI</p>
+                  <p className="text-xs text-gray-600 mt-1 leading-relaxed">
                     Hi there! Need help with AI voice agents? I'm here to answer your questions!
                   </p>
                 </div>
@@ -184,14 +186,14 @@ function ChatWidget() {
 
               <div className="mt-3 flex items-center gap-2">
                 <div className="flex gap-1">
-                  <span className="w-1.5 h-1.5 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                  <span className="w-1.5 h-1.5 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                  <span className="w-1.5 h-1.5 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                  <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                  <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                  <span className="w-1.5 h-1.5 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
                 </div>
-                <span className="text-xs text-slate-400">Click the chat button to start</span>
+                <span className="text-xs text-gray-500">Click the chat button to start</span>
               </div>
             </div>
-            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-slate-800 rotate-45 border-r border-b border-primary-500/30"></div>
+            <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white rotate-45 border-r border-b border-gray-200"></div>
           </div>
         </div>
       )}
@@ -202,17 +204,19 @@ function ChatWidget() {
           isOpen ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
       >
-        <div className="h-full bg-gradient-to-b from-slate-900 to-slate-950 rounded-2xl shadow-2xl border border-primary-500/20 flex flex-col overflow-hidden">
+        <div className="h-full bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-gradient-to-r from-primary-600 to-primary-700 px-5 py-4 flex items-center gap-3">
-            <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden">
+              <img
+                src="/cognidrift_icon.png"
+                alt="CogniDrift"
+                className="w-8 h-8 object-contain"
+              />
             </div>
             <div className="flex-1">
               <h3 className="text-white font-semibold">CogniDrift AI</h3>
-              <p className="text-primary-200 text-xs flex items-center gap-1.5">
+              <p className="text-primary-100 text-xs flex items-center gap-1.5">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                 Online now
               </p>
@@ -228,7 +232,7 @@ function ChatWidget() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -238,7 +242,7 @@ function ChatWidget() {
                   className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${
                     msg.role === 'user'
                       ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-br-sm'
-                      : 'bg-slate-800 text-slate-200 border border-slate-700 rounded-bl-sm'
+                      : 'bg-white text-gray-800 border border-gray-200 rounded-bl-sm shadow-sm'
                   }`}
                 >
                   {formatMessage(msg.content)}
@@ -249,11 +253,11 @@ function ChatWidget() {
             {/* Typing Indicator */}
             {isLoading && (
               <div className="flex justify-start animate-fade-up">
-                <div className="bg-slate-800 border border-slate-700 rounded-2xl rounded-bl-sm px-4 py-3">
+                <div className="bg-white border border-gray-200 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm">
                   <div className="flex gap-1.5">
-                    <span className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                    <span className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                    <span className="w-2 h-2 bg-primary-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                    <span className="w-2 h-2 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                    <span className="w-2 h-2 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                    <span className="w-2 h-2 bg-primary-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></span>
                   </div>
                 </div>
               </div>
@@ -263,7 +267,7 @@ function ChatWidget() {
           </div>
 
           {/* Input */}
-          <div className="p-4 bg-slate-900/50 border-t border-slate-800">
+          <div className="p-4 bg-white border-t border-gray-100">
             <div className="flex gap-3">
               <input
                 ref={inputRef}
@@ -272,7 +276,7 @@ function ChatWidget() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Type your message..."
-                className="flex-1 bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500/50 transition-all"
+                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-gray-900 text-sm placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500/50 transition-all"
               />
               <button
                 onClick={sendMessage}
@@ -287,8 +291,8 @@ function ChatWidget() {
           </div>
 
           {/* Powered By */}
-          <div className="text-center py-2 text-xs text-slate-600 bg-slate-900/50">
-            Powered by <a href="https://cognidrift.com" target="_blank" rel="noopener noreferrer" className="text-primary-400 hover:text-primary-300">CogniDrift AI</a>
+          <div className="text-center py-2 text-xs text-gray-400 bg-white border-t border-gray-50">
+            Powered by <a href="https://cognidrift.com" target="_blank" rel="noopener noreferrer" className="text-primary-500 hover:text-primary-600">CogniDrift AI</a>
           </div>
         </div>
       </div>
