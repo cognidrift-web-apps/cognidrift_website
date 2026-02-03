@@ -29,7 +29,7 @@ const Navbar = () => {
         { name: 'Call Center', path: '/solutions/call-center', icon: Phone },
       ]
     },
-    { name: 'Pricing', path: '/pricing' },
+    // { name: 'Pricing', path: '/pricing' }, // Hidden but route still accessible
     {
       name: 'Resources',
       path: '/resources',
