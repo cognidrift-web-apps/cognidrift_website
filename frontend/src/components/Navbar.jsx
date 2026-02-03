@@ -64,7 +64,7 @@ const Navbar = () => {
               className="relative"
             >
               <img 
-                src="/CogniDrift F01-V01_for white.png" 
+                src="/cognidrift_logo.png" 
                 alt="CogniDrift Logo" 
                 className="h-12 w-auto object-contain"
               />
