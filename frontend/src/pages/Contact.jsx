@@ -69,7 +69,7 @@ const Contact = () => {
     setStatus({ type: '', message: '' })
 
     try {
-      const response = await fetch('https://cognidrift-send-and-receive-sms-production.up.railway.app/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

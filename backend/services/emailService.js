@@ -2,33 +2,36 @@ import nodemailer from 'nodemailer';
 
 // Create reusable transporter object using SMTP transport
 const createTransporter = () => {
+  const port = parseInt(process.env.SMTP_PORT);
+  const isSecure = port === 465; // true for 465, false for 587 (STARTTLS)
+
   const config = {
     host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT),
-    secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+    port: port,
+    secure: isSecure,
     auth: {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS
     },
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 10000,
+    connectionTimeout: 30000, // 30 seconds
+    greetingTimeout: 30000,
+    socketTimeout: 30000,
     tls: {
-      // Do not fail on invalid certs (useful for some hosting providers)
       rejectUnauthorized: false,
       minVersion: 'TLSv1.2'
     },
-    debug: true // Enable debug logging
+    debug: process.env.NODE_ENV !== 'production',
+    logger: process.env.NODE_ENV !== 'production'
   };
-  
+
   console.log('📧 Creating SMTP transporter with config:', {
     host: config.host,
     port: config.port,
     secure: config.secure,
     user: config.auth.user
   });
-  
-  return nodemailer.createTransporter(config);
+
+  return nodemailer.createTransport(config);
 };
 
 /**
