@@ -261,9 +261,6 @@ const Home = () => {
 
   return (
     <div className="bg-white overflow-hidden">
-      {/* Floating Notifications */}
-      <FloatingNotifications />
-
       {/* Hero Section - MyAIFrontDesk Inspired */}
       <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-0 overflow-hidden" style={{ background: 'linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%)' }}>
         {/* Background Elements */}

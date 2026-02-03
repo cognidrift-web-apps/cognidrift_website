@@ -79,7 +79,7 @@ function RetellChatWidget() {
     script.setAttribute('data-title', 'CogniDrift AI')
     script.setAttribute('data-bot-name', 'CogniDrift Assistant')
     script.setAttribute('data-color', '#06B6D4') // Electrolytic blue (cyan)
-    script.setAttribute('data-logo-url', '/cognidrift-logo.svg') // Custom CogniDrift logo
+    script.setAttribute('data-logo-url', 'https://cognidrift-agent.vercel.app/cognidrift_icon.png') // Custom CogniDrift logo
     script.setAttribute('data-popup-message', '')
     script.setAttribute('data-show-ai-popup', 'false')
     script.setAttribute('data-auto-open', 'false')
