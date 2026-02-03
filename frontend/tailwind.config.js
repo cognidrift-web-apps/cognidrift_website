@@ -80,8 +80,9 @@ export default {
         'glow-lg': '0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.4)',
       },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'float-delayed': 'float 6s ease-in-out infinite 2s',
+        'float': 'float 2.5s ease-in-out infinite',
+        'float-fast': 'float 1.8s ease-in-out infinite',
+        'float-delayed': 'float 2.5s ease-in-out infinite 1s',
         'float-slow': 'floatSlow 8s ease-in-out infinite',
         'pulse-ring': 'pulseRing 2s ease-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',

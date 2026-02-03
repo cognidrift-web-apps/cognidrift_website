@@ -215,7 +215,7 @@ function ChatWidget() {
               />
             </div>
             <div className="flex-1">
-              <h3 className="text-white font-semibold">CogniDrift AI</h3>
+              <h3 className="text-white font-medium text-sm">CogniDrift AI</h3>
               <p className="text-primary-100 text-xs flex items-center gap-1.5">
                 <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
                 Online now
@@ -300,12 +300,14 @@ function ChatWidget() {
       {/* Chat Button */}
       <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
         <div className="relative group">
-          {/* Glow effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full blur-lg opacity-40 group-hover:opacity-60 transition-opacity animate-pulse"></div>
+          {/* Outer glow ring */}
+          <div className="absolute -inset-2 bg-gradient-to-r from-primary-400 via-primary-500 to-primary-600 rounded-full blur-xl opacity-50 group-hover:opacity-80 transition-all duration-300 animate-pulse"></div>
+          {/* Inner glow */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full blur-md opacity-60 group-hover:opacity-90 transition-all duration-300"></div>
 
           <button
             onClick={toggleChat}
-            className={`relative w-14 h-14 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-full flex items-center justify-center shadow-lg shadow-primary-500/30 transition-all duration-300 hover:scale-110 ${
+            className={`relative w-14 h-14 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 rounded-full flex items-center justify-center shadow-glow-lg transition-all duration-300 hover:scale-110 ${
               isOpen ? 'rotate-90' : 'animate-float'
             }`}
           >
