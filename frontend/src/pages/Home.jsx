@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion, useInView, useAnimation } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
+import Typed from 'typed.js'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 // import Testimonials from '../components/Testimonials' // Hidden for future use
 // import ClientLogos from '../components/ClientLogos' // Hidden for future use
@@ -11,6 +12,17 @@ import AnimatedDashboard from '../components/AnimatedDashboard'
 import AIConversationFlow from '../components/AIConversationFlow'
 import AnimatedCalendar from '../components/AnimatedCalendar'
 import FloatingNotifications from '../components/FloatingNotifications'
+import VoiceWaveAnimation from '../components/VoiceWaveAnimation'
+import {
+  SiSalesforce,
+  SiHubspot,
+  SiZoho,
+  SiGooglecalendar,
+  SiMicrosoftoutlook,
+  SiSlack,
+  SiTwilio,
+  SiZapier
+} from 'react-icons/si'
 import {
   Phone,
   Clock,
@@ -201,6 +213,23 @@ const StatItem = ({ number, suffix, label }) => {
 
 const Home = () => {
   const [activeIndustry, setActiveIndustry] = useState(0)
+  const typedRef = useRef(null)
+
+  useEffect(() => {
+    const typed = new Typed(typedRef.current, {
+      strings: ['leads', 'bookings', 'support calls', 'customers'],
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 1500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|'
+    })
+
+    return () => {
+      typed.destroy()
+    }
+  }, [])
 
   const features = [
     {
@@ -273,8 +302,14 @@ const Home = () => {
   ]
 
   const integrations = [
-    'Salesforce', 'HubSpot', 'Zoho', 'Google Calendar',
-    'Calendly', 'Microsoft 365', 'Slack', 'Twilio'
+    { name: 'Salesforce', icon: SiSalesforce },
+    { name: 'HubSpot', icon: SiHubspot },
+    { name: 'Zoho', icon: SiZoho },
+    { name: 'Google Calendar', icon: SiGooglecalendar },
+    { name: 'Zapier', icon: SiZapier },
+    { name: 'Outlook', icon: SiMicrosoftoutlook },
+    { name: 'Slack', icon: SiSlack },
+    { name: 'Twilio', icon: SiTwilio }
   ]
 
   const stats = [
@@ -305,15 +340,19 @@ const Home = () => {
               className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal text-text-primary mb-6 leading-[1.1]"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: '400', letterSpacing: '-0.01em' }}
             >
-              Never miss leads, bookings, or support calls again with your{' '}
               <span className="relative inline-block font-semibold text-primary-600">
-                AI receptionist
+                AI receptionist:
                 <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-1 bg-primary-600 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
                 />
+              </span>
+              <br />
+              <span className="block mt-2">Never miss</span>
+              <span className="block mt-2">
+                <span ref={typedRef} className="text-primary-600 font-semibold"></span>
               </span>
             </motion.h1>
 
@@ -325,6 +364,34 @@ const Home = () => {
               Pick up the phone, schedule appointments, and answer questions with Frontdesk's 24/7 phone receptionist & CRM.
             </motion.p>
           </motion.div>
+
+          {/* Book a Demo Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="mt-8"
+          >
+            <Link to="/contact">
+              <motion.button
+                className="relative bg-transparent border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg overflow-hidden group hover:bg-primary-600 hover:text-white transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <Zap className="w-5 h-5" />
+                  Book a Demo
+                </span>
+                {/* Animated shine effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-600/20 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                />
+              </motion.button>
+            </Link>
+          </motion.div>
         </div>
 
         {/* Voice Wave Animation at Bottom - Full Width */}
@@ -332,43 +399,9 @@ const Home = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
-          className="w-full h-[280px] flex items-center justify-center gap-[3px] px-8 -mt-8"
+          className="w-full h-[280px] relative"
         >
-          {Array.from({ length: 80 }).map((_, i) => {
-              // Create varied heights for wave effect - more natural pattern
-              const baseHeights = [45, 55, 75, 95, 115, 135, 160, 140, 120, 95, 70, 85, 105, 135, 155, 145, 125, 100, 80, 70, 85, 115, 145, 165, 150, 130, 105, 85, 70, 80, 105, 135, 160, 145, 115, 90, 75, 95, 125, 150, 165, 140, 110, 85, 75, 90, 115, 140, 125, 95, 70, 80, 105, 135, 155, 140, 115, 90, 75, 85]
-              const height = baseHeights[i % baseHeights.length]
-              const delay = i * 0.015
-              const duration = 1.0 + (i % 5) * 0.15
-              
-              return (
-                <motion.div
-                  key={i}
-                  className="flex-shrink-0 rounded-full"
-                  style={{
-                    width: '14px',
-                    background: 'linear-gradient(to top, rgb(59, 130, 246), rgb(139, 92, 246))',
-                    transformOrigin: 'bottom'
-                  }}
-                  initial={{ height: `${height * 0.35}px` }}
-                  animate={{
-                    height: [
-                      `${height * 0.35}px`,
-                      `${height}px`,
-                      `${height * 0.55}px`,
-                      `${height * 0.95}px`,
-                      `${height * 0.35}px`
-                    ]
-                  }}
-                  transition={{
-                    duration,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                    delay
-                  }}
-                />
-              )
-            })}
+          <VoiceWaveAnimation />
         </motion.div>
       </section>
 
@@ -1168,69 +1201,50 @@ const Home = () => {
               variants={staggerContainer}
               className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6"
             >
-              {integrations.map((name, i) => {
+              {integrations.map((integration, i) => {
                 const colors = [
-                  { bg: 'bg-blue-500', light: 'bg-blue-50', hover: 'bg-blue-100', text: 'text-blue-600', glow: 'shadow-blue-500/30' },
-                  { bg: 'bg-purple-500', light: 'bg-purple-50', hover: 'bg-purple-100', text: 'text-purple-600', glow: 'shadow-purple-500/30' },
-                  { bg: 'bg-cyan-500', light: 'bg-cyan-50', hover: 'bg-cyan-100', text: 'text-cyan-600', glow: 'shadow-cyan-500/30' },
-                  { bg: 'bg-teal-500', light: 'bg-teal-50', hover: 'bg-teal-100', text: 'text-teal-600', glow: 'shadow-teal-500/30' },
-                  { bg: 'bg-indigo-500', light: 'bg-indigo-50', hover: 'bg-indigo-100', text: 'text-indigo-600', glow: 'shadow-indigo-500/30' },
-                  { bg: 'bg-violet-500', light: 'bg-violet-50', hover: 'bg-violet-100', text: 'text-violet-600', glow: 'shadow-violet-500/30' },
-                  { bg: 'bg-pink-500', light: 'bg-pink-50', hover: 'bg-pink-100', text: 'text-pink-600', glow: 'shadow-pink-500/30' },
-                  { bg: 'bg-sky-500', light: 'bg-sky-50', hover: 'bg-sky-100', text: 'text-sky-600', glow: 'shadow-sky-500/30' },
+                  { bg: 'bg-blue-500', light: 'bg-blue-50', text: 'text-blue-600', glow: 'shadow-blue-500/30', hoverBg: 'group-hover:bg-blue-500' },
+                  { bg: 'bg-orange-500', light: 'bg-orange-50', text: 'text-orange-600', glow: 'shadow-orange-500/30', hoverBg: 'group-hover:bg-orange-500' },
+                  { bg: 'bg-red-500', light: 'bg-red-50', text: 'text-red-600', glow: 'shadow-red-500/30', hoverBg: 'group-hover:bg-red-500' },
+                  { bg: 'bg-emerald-500', light: 'bg-emerald-50', text: 'text-emerald-600', glow: 'shadow-emerald-500/30', hoverBg: 'group-hover:bg-emerald-500' },
+                  { bg: 'bg-orange-600', light: 'bg-orange-50', text: 'text-orange-600', glow: 'shadow-orange-600/30', hoverBg: 'group-hover:bg-orange-600' },
+                  { bg: 'bg-blue-600', light: 'bg-blue-50', text: 'text-blue-600', glow: 'shadow-blue-600/30', hoverBg: 'group-hover:bg-blue-600' },
+                  { bg: 'bg-purple-500', light: 'bg-purple-50', text: 'text-purple-600', glow: 'shadow-purple-500/30', hoverBg: 'group-hover:bg-purple-500' },
+                  { bg: 'bg-red-600', light: 'bg-red-50', text: 'text-red-600', glow: 'shadow-red-600/30', hoverBg: 'group-hover:bg-red-600' },
                 ]
                 const color = colors[i % colors.length]
+                const IconComponent = integration.icon
 
                 return (
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    whileHover={{ y: -12, scale: 1.08 }}
+                    whileHover={{ y: -8, scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                     className="group relative"
                   >
-                    {/* Enhanced glow effect on hover */}
-                    <motion.div
-                      className={`absolute -inset-3 ${color.bg} opacity-0 group-hover:opacity-30 rounded-3xl blur-2xl transition-all duration-500`}
-                    />
-
-                    {/* Card with gradient border */}
-                    <div className={`relative bg-gradient-to-br from-white to-gray-50 border-2 border-gray-200 group-hover:border-transparent group-hover:shadow-2xl ${color.glow} rounded-2xl p-6 aspect-square flex items-center justify-center transition-all duration-300 overflow-hidden`}>
-                      {/* Animated background pattern */}
-                      <div className={`absolute inset-0 ${color.light} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-
-                      {/* Shine effect on hover */}
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
-                      />
+                    {/* Card */}
+                    <div className={`relative bg-white border-2 border-gray-200 group-hover:border-primary-300 rounded-2xl p-6 aspect-square flex items-center justify-center transition-all duration-300 overflow-hidden shadow-sm group-hover:shadow-xl`}>
+                      {/* Hover gradient background */}
+                      <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                       <div className="relative text-center z-10">
-                        {/* Icon with enhanced styling */}
+                        {/* Brand Icon */}
                         <motion.div
-                          whileHover={{ rotate: [0, -15, 15, -15, 0], scale: 1.2 }}
-                          transition={{ duration: 0.6 }}
-                          className={`w-16 h-16 mx-auto mb-3 ${color.light} group-hover:${color.bg} rounded-2xl flex items-center justify-center font-black text-3xl ${color.text} group-hover:text-white shadow-lg group-hover:shadow-2xl transition-all duration-300`}
+                          whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                          transition={{ duration: 0.5 }}
+                          className={`w-14 h-14 mx-auto mb-3 ${color.light} rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}
                         >
-                          {name.charAt(0)}
+                          <IconComponent className={`w-7 h-7 ${color.text}`} />
                         </motion.div>
-                        <p className={`text-base font-black text-gray-900 group-hover:text-white group-hover:drop-shadow-lg transition-all duration-300`}>
-                          {name}
+                        <p className="text-sm font-bold text-text-primary group-hover:text-primary-600 transition-colors duration-300">
+                          {integration.name}
                         </p>
                       </div>
 
-                      {/* Hover background overlay */}
+                      {/* Animated corner accent */}
                       <motion.div
-                        className={`absolute inset-0 ${color.bg} opacity-0 group-hover:opacity-90 rounded-2xl transition-all duration-300`}
-                      />
-
-                      {/* Corner accents */}
-                      <div className={`absolute top-0 right-0 w-10 h-10 ${color.bg} opacity-20 rounded-bl-3xl`}></div>
-                      <div className={`absolute bottom-0 left-0 w-10 h-10 ${color.bg} opacity-20 rounded-tr-3xl`}></div>
-
-                      {/* Pulsing dot */}
-                      <motion.div
-                        animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className={`absolute top-3 right-3 w-3 h-3 rounded-full ${color.bg} shadow-lg`}
+                        className="absolute top-0 right-0 w-16 h-16 bg-primary-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
                       />
                     </div>
                   </motion.div>
