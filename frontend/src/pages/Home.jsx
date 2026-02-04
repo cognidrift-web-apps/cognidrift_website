@@ -2,11 +2,10 @@ import { Link } from 'react-router-dom'
 import { motion, useInView, useAnimation } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
-import Testimonials from '../components/Testimonials'
-import ClientLogos from '../components/ClientLogos'
+// import Testimonials from '../components/Testimonials' // Hidden for future use
+// import ClientLogos from '../components/ClientLogos' // Hidden for future use
 import TrustBadges from '../components/TrustBadges'
-import PressLogos from '../components/PressLogos'
-import DemoCalls from '../components/DemoCalls'
+// import DemoCalls from '../components/DemoCalls' // Hidden for future use
 import TryNowSection from '../components/TryNowSection'
 import AnimatedDashboard from '../components/AnimatedDashboard'
 import AIConversationFlow from '../components/AIConversationFlow'
@@ -347,8 +346,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Press Logos Section */}
-      <PressLogos />
+      {/* Try Now Section */}
+      <TryNowSection />
 
       {/* Problem Section - Enhanced Typography */}
       <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
@@ -634,15 +633,13 @@ const Home = () => {
       </section>
 
       {/* Demo Calls Section */}
-      <DemoCalls />
+      {/* <DemoCalls /> */} {/* Hidden for future use */}
 
       {/* Trust Elements */}
-      <ClientLogos />
-      <Testimonials />
+      {/* <ClientLogos /> */} {/* Hidden for future use */}
+      {/* <Testimonials /> */} {/* Hidden for future use */}
       <TrustBadges />
 
-      {/* Try Now Section */}
-      <TryNowSection />
 
       {/* Live Demo Section */}
       <section className="py-24 bg-primary-600">
