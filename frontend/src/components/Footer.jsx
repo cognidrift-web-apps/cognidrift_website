@@ -39,8 +39,13 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <div className="mb-6">
-            </div>
+            <Link to="/" className="flex items-center mb-6">
+              <img 
+                src="/cognidrift_logo.png" 
+                alt="CogniDrift Logo" 
+                className="h-10 w-auto object-contain"
+              />
+            </Link>
             <p className="text-gray-400 mb-6 max-w-sm">
               AI-powered voice agents that never miss a call. Transform your customer
               communications with intelligent automation.
