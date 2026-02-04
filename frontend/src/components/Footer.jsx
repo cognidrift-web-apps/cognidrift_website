@@ -39,14 +39,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center">
-                <Brain className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">
-                Cogni<span className="text-primary-400">Drift</span>
-              </span>
-            </Link>
+            <div className="mb-6">
+            </div>
             <p className="text-gray-400 mb-6 max-w-sm">
               AI-powered voice agents that never miss a call. Transform your customer
               communications with intelligent automation.
