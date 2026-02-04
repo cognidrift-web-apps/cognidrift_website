@@ -27,6 +27,9 @@ const HelpCenter = lazy(() => import('./pages/resources/HelpCenter'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const TermsOfService = lazy(() => import('./pages/TermsOfService'))
 
+// FAQ Page
+const FAQPage = lazy(() => import('./pages/FAQ'))
+
 // Loading Spinner Component
 const LoadingSpinner = () => (
   <div className="min-h-screen flex items-center justify-center bg-neutral-offWhite">
@@ -66,6 +69,9 @@ function App() {
               {/* Legal Routes */}
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsOfService />} />
+
+              {/* FAQ Route */}
+              <Route path="/faq" element={<FAQPage />} />
             </Routes>
           </Suspense>
         </main>

@@ -7,7 +7,6 @@ import ClientLogos from '../components/ClientLogos'
 import TrustBadges from '../components/TrustBadges'
 import PressLogos from '../components/PressLogos'
 import DemoCalls from '../components/DemoCalls'
-import FAQ from '../components/FAQ'
 import TryNowSection from '../components/TryNowSection'
 import AnimatedDashboard from '../components/AnimatedDashboard'
 import AIConversationFlow from '../components/AIConversationFlow'
@@ -1277,8 +1276,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <FAQ />
 
       {/* CTA Section - Enhanced */}
       <section className="py-20 lg:py-28 bg-white">
