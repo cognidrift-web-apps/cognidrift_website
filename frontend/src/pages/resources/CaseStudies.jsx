@@ -134,7 +134,7 @@ const CaseStudies = () => {
           className="bg-primary-600 rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
         >
           <BookOpen className="w-12 h-12 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold mb-4">Ready to Transform Your Business?</h2>
+          <h2 className="hero-display text-3xl md:text-4xl mb-4">Ready to Transform <span className="text-primary-200">Your Business?</span></h2>
           <p className="text-lg mb-6 opacity-90">
             Join hundreds of businesses already benefiting from AI voice automation.
           </p>

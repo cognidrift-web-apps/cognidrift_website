@@ -140,8 +140,8 @@ const HelpCenter = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-16"
         >
-          <h2 className="text-3xl font-bold text-text-primary mb-8 text-center">
-            Frequently Asked Questions
+          <h2 className="section-title hero-display text-3xl md:text-4xl mb-8 text-center">
+            Frequently Asked <span className="text-gradient">Questions</span>
           </h2>
           <div className="space-y-6">
             {faqs.map((faq, index) => (

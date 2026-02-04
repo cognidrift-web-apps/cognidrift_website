@@ -81,11 +81,10 @@ const TryNowSection = () => {
 
             <motion.h2
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight"
-              style={{ fontFamily: 'Montserrat, sans-serif' }}
+              className="hero-display text-4xl sm:text-5xl md:text-6xl text-white mb-6"
             >
               <span className="block mb-2">Pull Out</span>
-              <span className="block">Your Phone!</span>
+              <span className="block text-primary-200">Your Phone!</span>
             </motion.h2>
 
             <motion.p

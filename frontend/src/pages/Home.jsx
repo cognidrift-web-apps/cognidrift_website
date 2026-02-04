@@ -133,22 +133,43 @@ const WorkflowStep = ({ number, icon: Icon, title, description, isLast }) => (
 // Industry Card Component - Enhanced with Hover Scale
 const IndustryCard = ({ icon: Icon, title, description, features, isActive }) => (
   <motion.div
-    whileHover={{ scale: 1.05, y: -8 }}
-    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-    className={`p-6 lg:p-8 rounded-2xl border cursor-pointer ${
+    whileHover={{ y: -8, scale: 1.02 }}
+    transition={{ type: "spring", stiffness: 300 }}
+    className={`group relative p-6 lg:p-8 rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 ${
       isActive
         ? 'border-primary-600 bg-primary-50 shadow-xl'
         : 'border-neutral-border bg-white hover:border-primary-300 hover:shadow-xl'
     }`}
   >
-    <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-5 ${
-      isActive ? 'bg-primary-600 text-white shadow-lg' : 'bg-primary-50 text-primary-600'
-    }`}>
+    {/* Hover gradient background */}
+    <div className={`absolute inset-0 bg-primary-50 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}></div>
+
+    {/* Icon with animation */}
+    <motion.div
+      className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:shadow-md transition-shadow ${
+        isActive ? 'bg-primary-600 text-white shadow-lg' : 'bg-primary-50 text-primary-600'
+      }`}
+      whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+      transition={{ duration: 0.5 }}
+    >
       <Icon className="w-7 h-7" />
-    </div>
-    <h3 className="text-xl lg:text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
-    <p className="text-text-secondary mb-5 leading-relaxed">{description}</p>
-    <ul className="space-y-3">
+
+      {/* Pulse ring on hover */}
+      <motion.div
+        className={`absolute inset-0 rounded-2xl bg-primary-400 opacity-0 group-hover:opacity-20`}
+        animate={{ scale: [1, 1.3, 1] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      />
+    </motion.div>
+
+    {/* Title */}
+    <h3 className="relative text-xl lg:text-2xl font-bold text-text-primary mb-3 group-hover:text-primary-600 transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
+
+    {/* Description */}
+    <p className="relative text-text-secondary mb-5 leading-relaxed">{description}</p>
+
+    {/* Features list */}
+    <ul className="relative space-y-3">
       {features.map((feature, i) => (
         <li key={i} className="flex items-center gap-3 text-sm text-text-secondary font-medium">
           <Check className="w-5 h-5 text-primary-600 flex-shrink-0" />
@@ -156,6 +177,11 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive }) =>
         </li>
       ))}
     </ul>
+
+    {/* Animated corner accent */}
+    <motion.div
+      className="absolute top-0 right-0 w-20 h-20 bg-primary-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
+    />
   </motion.div>
 )
 
@@ -351,10 +377,24 @@ const Home = () => {
 
       {/* Problem Section - Enhanced Typography */}
       <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-primary-600 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-red-500 rounded-full blur-3xl"></div>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 pointer-events-none opacity-30">
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              rotate: [0, 90, 0]
+            }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+            className="absolute -top-40 -left-40 w-96 h-96 bg-primary-300 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              rotate: [90, 0, 90]
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="absolute -bottom-40 -right-40 w-96 h-96 bg-red-400 rounded-full blur-3xl"
+          />
         </div>
 
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -458,10 +498,10 @@ const Home = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="group relative bg-white border-2 border-neutral-border hover:border-red-300 rounded-2xl p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="group relative bg-white border-2 border-neutral-border hover:border-primary-300 rounded-2xl p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 {/* Hover gradient background */}
-                <div className="absolute inset-0 bg-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                 {/* Icon with animation */}
                 <motion.div
@@ -486,7 +526,7 @@ const Home = () => {
                 </motion.div>
 
                 {/* Title with better typography */}
-                <h3 className="relative text-xl font-bold text-text-primary mb-3 leading-tight group-hover:text-red-600 transition-colors duration-300">
+                <h3 className="relative text-xl font-bold text-text-primary mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
                   {item.title}
                 </h3>
 
@@ -497,7 +537,7 @@ const Home = () => {
 
                 {/* Animated corner accent */}
                 <motion.div
-                  className="absolute top-0 right-0 w-20 h-20 bg-red-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
+                  className="absolute top-0 right-0 w-20 h-20 bg-primary-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
                   initial={{ scale: 0, originX: 1, originY: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{ delay: i * 0.1 + 0.3, duration: 0.6 }}
@@ -932,9 +972,9 @@ const Home = () => {
 
               <motion.h2
                 variants={fadeInUp}
-                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+                className="section-title hero-display text-4xl lg:text-5xl"
               >
-                Appointments Book <span className="text-blue-600">Themselves</span>
+                Appointments Book <span className="text-gradient">Themselves</span>
               </motion.h2>
 
               <motion.p
@@ -1009,9 +1049,9 @@ const Home = () => {
 
               <motion.h2
                 variants={fadeInUp}
-                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight"
+                className="section-title hero-display text-4xl lg:text-5xl"
               >
-                See Every <span className="text-indigo-600">Interaction</span> Live
+                See Every <span className="text-gradient">Interaction</span> Live
               </motion.h2>
 
               <motion.p
@@ -1106,19 +1146,9 @@ const Home = () => {
             </motion.div>
             <motion.h2
               variants={fadeInUp}
-              className="text-5xl md:text-6xl font-bold text-text-primary mb-6"
+              className="section-title hero-display text-5xl md:text-6xl"
             >
-              Connects With{' '}
-              <span className="relative inline-block">
-                <span className="text-primary-600">Everything</span>
-                <motion.div
-                  className="absolute -bottom-2 left-0 right-0 h-3 bg-primary-500/20 -rotate-1"
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ delay: 0.5, duration: 0.6 }}
-                  viewport={{ once: true }}
-                />
-              </span>
+              Connects With <span className="text-gradient">Everything</span>
             </motion.h2>
             <motion.p
               variants={fadeInUp}

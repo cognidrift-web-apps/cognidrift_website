@@ -125,7 +125,7 @@ const Blog = () => {
           className="mt-16 bg-primary-600 rounded-2xl shadow-lg p-8 md:p-12 text-center text-white"
         >
           <FileText className="w-12 h-12 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+          <h2 className="hero-display text-3xl md:text-4xl mb-4">Stay <span className="text-primary-200">Updated</span></h2>
           <p className="text-lg mb-6 opacity-90">
             Get the latest insights on AI voice automation delivered to your inbox.
           </p>

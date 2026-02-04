@@ -149,9 +149,8 @@ const About = () => {
               variants={staggerContainer}
             >
               <motion.span variants={fadeInUp} className="section-eyebrow">Our Mission</motion.span>
-              <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-text-primary mb-6">
-                AI That Works
-                <span className="text-primary-600"> For You</span>
+              <motion.h2 variants={fadeInUp} className="section-title hero-display text-4xl md:text-5xl">
+                AI That Works <span className="text-gradient">For You</span>
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-lg text-text-secondary mb-6">
                 At CogniDrift, we believe every business deserves access to enterprise-grade 
@@ -210,8 +209,8 @@ const About = () => {
             className="text-center mb-12"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">Our Story</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              From Vision to <span className="text-primary-600">Reality</span>
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              From Vision to <span className="text-gradient">Reality</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               See how we've grown from a simple idea to an industry-leading AI platform
@@ -240,8 +239,8 @@ const About = () => {
             className="section-header"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">Our Values</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              What Drives Us
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              What <span className="text-gradient">Drives Us</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               The principles that guide everything we build and every relationship we form.
@@ -302,8 +301,8 @@ const About = () => {
             className="section-header"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">Our Technology</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              Built With the <span className="text-primary-600">Best</span>
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              Built With the <span className="text-gradient">Best</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               Enterprise-grade infrastructure and cutting-edge AI power every conversation.
@@ -332,8 +331,8 @@ const About = () => {
             variants={staggerContainer}
             className="bg-primary-600 rounded-3xl p-12 md:p-16 text-center"
           >
-            <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Learn More?
+            <motion.h2 variants={fadeInUp} className="hero-display text-4xl md:text-5xl text-white mb-6">
+              Ready to <span className="text-primary-200">Learn More?</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
               Schedule a conversation with our team to see how CogniDrift can help your business.

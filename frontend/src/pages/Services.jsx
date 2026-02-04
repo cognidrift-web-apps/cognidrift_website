@@ -222,8 +222,8 @@ const Services = () => {
             className="section-header"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">What We Offer</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              Comprehensive AI Solutions
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              Comprehensive <span className="text-gradient">AI Solutions</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               Everything you need to automate and enhance your customer communications.
@@ -278,8 +278,8 @@ const Services = () => {
             className="section-header"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">Industry Solutions</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              Built for Your Industry
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              Built for <span className="text-gradient">Your Industry</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               Specialized AI agents trained for the unique needs of your sector.
@@ -383,8 +383,8 @@ const Services = () => {
             className="section-header"
           >
             <motion.span variants={fadeInUp} className="section-eyebrow">Our Process</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title">
-              Simple, Transparent, Effective
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              Simple, Transparent, <span className="text-gradient">Effective</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               From discovery to launch in weeks, not months.
@@ -428,11 +428,11 @@ const Services = () => {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <motion.h2 
+            <motion.h2
               variants={fadeInUp}
-              className="text-4xl md:text-5xl font-bold text-white mb-6"
+              className="hero-display text-4xl md:text-5xl text-white mb-6"
             >
-              Ready to Get Started?
+              Ready to <span className="text-primary-200">Get Started?</span>
             </motion.h2>
             <motion.p 
               variants={fadeInUp}

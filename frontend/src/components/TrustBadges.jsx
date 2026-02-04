@@ -52,12 +52,12 @@ const TrustBadges = () => {
           variants={staggerContainer}
           className="text-center mb-12"
         >
-          <motion.h3
+          <motion.h2
             variants={fadeInUp}
-            className="text-2xl font-bold text-text-primary mb-2"
+            className="section-title hero-display text-3xl sm:text-4xl md:text-5xl"
           >
-            Enterprise-Grade Security & Compliance
-          </motion.h3>
+            Enterprise-Grade <span className="text-gradient">Security & Compliance</span>
+          </motion.h2>
           <motion.p
             variants={fadeInUp}
             className="text-text-secondary"
@@ -76,25 +76,50 @@ const TrustBadges = () => {
           {badges.map((badge, index) => {
             const Icon = badge.icon
             const colorClasses = {
-              blue: 'bg-blue-100 text-blue-600 border-blue-200',
-              indigo: 'bg-indigo-100 text-indigo-600 border-indigo-200',
-              cyan: 'bg-cyan-100 text-cyan-600 border-cyan-200',
-              violet: 'bg-violet-100 text-violet-600 border-violet-200',
+              blue: { bg: 'bg-blue-50', text: 'text-blue-600', ring: 'bg-blue-400' },
+              indigo: { bg: 'bg-indigo-50', text: 'text-indigo-600', ring: 'bg-indigo-400' },
+              cyan: { bg: 'bg-cyan-50', text: 'text-cyan-600', ring: 'bg-cyan-400' },
+              violet: { bg: 'bg-violet-50', text: 'text-violet-600', ring: 'bg-violet-400' },
             }
+            const colors = colorClasses[badge.color]
 
             return (
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: 'spring', stiffness: 300 }}
-                className={`flex flex-col items-center text-center p-6 rounded-2xl border-2 bg-white shadow-sm hover:shadow-lg transition-all duration-300`}
+                className="group relative flex flex-col items-center text-center p-6 rounded-2xl border-2 border-neutral-border hover:border-primary-300 bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 ${colorClasses[badge.color]}`}>
-                  <Icon className="w-7 h-7" />
-                </div>
-                <h4 className="font-semibold text-text-primary mb-1">{badge.title}</h4>
-                <p className="text-sm text-text-muted">{badge.description}</p>
+                {/* Hover gradient background */}
+                <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+                {/* Icon with animation */}
+                <motion.div
+                  className={`relative w-14 h-14 ${colors.bg} rounded-2xl flex items-center justify-center mb-4 shadow-sm group-hover:shadow-md transition-shadow`}
+                  whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Icon className={`w-7 h-7 ${colors.text}`} />
+
+                  {/* Pulse ring on hover */}
+                  <motion.div
+                    className={`absolute inset-0 rounded-2xl ${colors.ring} opacity-0 group-hover:opacity-20`}
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </motion.div>
+
+                {/* Title */}
+                <h4 className="relative font-semibold text-text-primary mb-1 group-hover:text-primary-600 transition-colors duration-300">{badge.title}</h4>
+
+                {/* Description */}
+                <p className="relative text-sm text-text-muted">{badge.description}</p>
+
+                {/* Animated corner accent */}
+                <motion.div
+                  className="absolute top-0 right-0 w-16 h-16 bg-primary-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
+                />
               </motion.div>
             )
           })}

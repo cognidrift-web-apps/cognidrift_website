@@ -91,20 +91,9 @@ const FAQ = () => {
           </motion.div>
           <motion.h2
             variants={fadeInUp}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-6"
-            style={{ fontFamily: 'Montserrat, sans-serif' }}
+            className="section-title hero-display text-4xl sm:text-5xl md:text-6xl"
           >
-            AI Receptionist{' '}
-            <span className="relative inline-block">
-              <span className="text-gradient">FAQs</span>
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-3 bg-primary-500/20 -rotate-1"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                viewport={{ once: true }}
-              />
-            </span>
+            AI Receptionist <span className="text-gradient">FAQs</span>
           </motion.h2>
           <motion.p
             variants={fadeInUp}
