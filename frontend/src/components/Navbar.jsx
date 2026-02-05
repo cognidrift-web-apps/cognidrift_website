@@ -452,8 +452,13 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden border-t border-white/40 relative overflow-hidden bg-white/40 backdrop-blur-2xl"
-            style={{ WebkitBackdropFilter: 'blur(40px) saturate(180%)', backdropFilter: 'blur(40px) saturate(180%)' }}
+            className="lg:hidden border-t border-white/40 relative bg-white/40 backdrop-blur-2xl"
+            style={{ 
+              WebkitBackdropFilter: 'blur(40px) saturate(180%)', 
+              backdropFilter: 'blur(40px) saturate(180%)',
+              maxHeight: 'calc(100vh - 72px)', // Subtract navbar height
+              overflowY: 'auto'
+            }}
           >
             {/* Glass refraction highlight */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/50 via-transparent to-white/20 pointer-events-none" />

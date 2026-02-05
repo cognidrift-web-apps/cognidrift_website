@@ -321,24 +321,24 @@ const Home = () => {
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section with Siri Wave Background */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden bg-white">
-        {/* Background Gradients (Soft Glows) */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 overflow-hidden bg-white px-4">
+        {/* Background Gradients (Soft Glows) - Responsive sizes */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[20%] left-[20%] w-[500px] h-[500px] bg-cyan-100 rounded-full blur-[100px] opacity-60"></div>
-          <div className="absolute bottom-[20%] right-[20%] w-[500px] h-[500px] bg-purple-100 rounded-full blur-[100px] opacity-60"></div>
+          <div className="absolute top-[20%] left-[10%] sm:left-[20%] w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-cyan-100 rounded-full blur-[80px] sm:blur-[100px] opacity-60"></div>
+          <div className="absolute bottom-[20%] right-[10%] sm:right-[20%] w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-purple-100 rounded-full blur-[80px] sm:blur-[100px] opacity-60"></div>
         </div>
 
         {/* 3D Wave Animation Background */}
         <SiriWaveBackground />
 
         {/* Content */}
-        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center justify-center">
+        <div className="relative z-20 w-full max-w-7xl mx-auto flex flex-col items-center justify-center">
           {/* Live Badge */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 mb-6 bg-slate-50 border border-slate-200 rounded-full shadow-sm"
+            className="inline-flex items-center gap-2 px-3 py-1 mb-4 sm:mb-6 bg-slate-50 border border-slate-200 rounded-full shadow-sm"
           >
             <span className="flex h-2 w-2 relative">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -352,17 +352,17 @@ const Home = () => {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center max-w-6xl mx-auto"
+            className="text-center w-full max-w-6xl mx-auto px-2"
           >
             <motion.h1
               variants={fadeInUp}
-              className="mb-6"
+              className="mb-4 sm:mb-6"
             >
-              {/* AI Receptionist with Gradient - Larger and Better Typography */}
-              <span className="block text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tight leading-none mb-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif', letterSpacing: '-0.02em' }}>
+              {/* AI Receptionist with Gradient - Fully Responsive Typography */}
+              <span className="block text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-[1.1] mb-3 sm:mb-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent px-2" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif', letterSpacing: '-0.02em' }}>
                 AI Receptionist
               </span>
-              <span className="block text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-slate-600 leading-relaxed" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+              <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-slate-600 leading-relaxed px-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                 Never miss{' '}
                 <span ref={typedRef} className="font-normal bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent"></span>
               </span>
@@ -370,7 +370,7 @@ const Home = () => {
 
             <motion.p
               variants={fadeInUp}
-              className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mt-12 pt-8 mb-10 leading-relaxed font-light"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto mt-6 sm:mt-8 md:mt-12 pt-4 sm:pt-6 md:pt-8 mb-6 sm:mb-8 md:mb-10 leading-relaxed font-light px-2"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif', letterSpacing: '-0.01em' }}
             >
               Pick up the phone, schedule appointments, and answer questions with AI-powered 24/7 phone receptionist & CRM.
@@ -379,10 +379,10 @@ const Home = () => {
             {/* Buttons */}
             <motion.div
               variants={fadeInUp}
-              className="flex justify-center"
+              className="flex justify-center px-2"
             >
               <Link to="/contact">
-                <button className="px-8 py-3 bg-transparent text-slate-900 border-2 border-slate-900 font-medium rounded-lg hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-0.5">
+                <button className="px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base bg-transparent text-slate-900 border-2 border-slate-900 font-medium rounded-lg hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-0.5 w-full sm:w-auto min-w-[140px]">
                   Try Demo
                 </button>
               </Link>
