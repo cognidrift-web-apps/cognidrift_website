@@ -133,7 +133,6 @@ const Navbar = () => {
   }
 
   const navLinks = [
-    { name: 'Home', path: '/' },
     productMega,
     industriesMega,
     {
