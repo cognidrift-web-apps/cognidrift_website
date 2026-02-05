@@ -341,13 +341,7 @@ const Home = () => {
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: '400', letterSpacing: '-0.01em' }}
             >
               <span className="relative inline-block font-semibold text-primary-600">
-                AI receptionist:
-                <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-1 bg-primary-600 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.8, duration: 0.8 }}
-                />
+                AI receptionist
               </span>
               <br />
               <span className="block mt-2">Never miss</span>
