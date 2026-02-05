@@ -142,11 +142,11 @@ const Footer = () => {
                 <span className="text-sm">contact@cognidrift.com</span>
               </a>
               <a
-                href="tel:+15551234567"
+                href="tel:+15551234583"
                 className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
               >
                 <Phone className="w-4 h-4" />
-                <span className="text-sm">+1 (555) 123-4567</span>
+                <span className="text-sm">+1 (555) 123-4583</span>
               </a>
             </div>
           </div>
