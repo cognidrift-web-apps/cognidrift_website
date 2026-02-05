@@ -7,10 +7,22 @@ import ScrollToTop from './components/ScrollToTop'
 
 // Lazy load all pages for better performance
 const Home = lazy(() => import('./pages/Home'))
-const Services = lazy(() => import('./pages/Services'))
 const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Pricing = lazy(() => import('./pages/Pricing'))
+
+// Product Pages
+const PhoneReceptionist = lazy(() => import('./pages/products/PhoneReceptionist'))
+const WebChatbot = lazy(() => import('./pages/products/WebChatbot'))
+const WebVoicebot = lazy(() => import('./pages/products/WebVoicebot'))
+const SmsAgent = lazy(() => import('./pages/products/SmsAgent'))
+const AiCrm = lazy(() => import('./pages/products/AiCrm'))
+const SmartTickets = lazy(() => import('./pages/products/SmartTickets'))
+const AiCalendar = lazy(() => import('./pages/products/AiCalendar'))
+const AutomatedCalls = lazy(() => import('./pages/products/AutomatedCalls'))
+const AutomatedSms = lazy(() => import('./pages/products/AutomatedSms'))
+const AiAutomation = lazy(() => import('./pages/products/AiAutomation'))
+const Dashboards = lazy(() => import('./pages/products/Dashboards'))
 
 // Industries Pages
 const Healthcare = lazy(() => import('./pages/solutions/Healthcare'))
@@ -50,10 +62,22 @@ function App() {
           <Suspense fallback={<LoadingSpinner />}>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
               <Route path="/pricing" element={<Pricing />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
+
+              {/* Product Routes */}
+              <Route path="/products/phone-receptionist" element={<PhoneReceptionist />} />
+              <Route path="/products/web-chatbot" element={<WebChatbot />} />
+              <Route path="/products/web-voicebot" element={<WebVoicebot />} />
+              <Route path="/products/sms-agent" element={<SmsAgent />} />
+              <Route path="/products/ai-crm" element={<AiCrm />} />
+              <Route path="/products/smart-ticketing" element={<SmartTickets />} />
+              <Route path="/products/ai-calendar" element={<AiCalendar />} />
+              <Route path="/products/automated-calls" element={<AutomatedCalls />} />
+              <Route path="/products/automated-sms" element={<AutomatedSms />} />
+              <Route path="/products/ai-automation" element={<AiAutomation />} />
+              <Route path="/products/dashboards" element={<Dashboards />} />
 
               {/* Industries Routes */}
               <Route path="/industries/healthcare" element={<Healthcare />} />

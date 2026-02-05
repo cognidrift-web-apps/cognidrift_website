@@ -12,7 +12,7 @@ import AnimatedDashboard from '../components/AnimatedDashboard'
 import AIConversationFlow from '../components/AIConversationFlow'
 import AnimatedCalendar from '../components/AnimatedCalendar'
 import FloatingNotifications from '../components/FloatingNotifications'
-import VoiceWaveAnimation from '../components/VoiceWaveAnimation'
+import SiriWaveBackground from '../components/SiriWaveBackground'
 import {
   SiSalesforce,
   SiHubspot,
@@ -320,15 +320,34 @@ const Home = () => {
 
   return (
     <div className="bg-white overflow-hidden">
-      {/* Hero Section - MyAIFrontDesk Inspired */}
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-0 overflow-hidden" style={{ background: 'linear-gradient(180deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%)' }}>
-        {/* Background Elements */}
+      {/* Hero Section with Siri Wave Background */}
+      <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden bg-white">
+        {/* Background Gradients (Soft Glows) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute bottom-0 left-0 right-0 h-96 bg-gradient-to-t from-purple-100/20 via-blue-50/10 to-transparent"></div>
+          <div className="absolute top-[20%] left-[20%] w-[500px] h-[500px] bg-cyan-100 rounded-full blur-[100px] opacity-60"></div>
+          <div className="absolute bottom-[20%] right-[20%] w-[500px] h-[500px] bg-purple-100 rounded-full blur-[100px] opacity-60"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex-1 flex flex-col items-center justify-center">
-          {/* Center Content */}
+        {/* 3D Wave Animation Background */}
+        <SiriWaveBackground />
+
+        {/* Content */}
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col items-center justify-center">
+          {/* Live Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-3 py-1 mb-6 bg-slate-50 border border-slate-200 rounded-full shadow-sm"
+          >
+            <span className="flex h-2 w-2 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+            </span>
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Live</span>
+          </motion.div>
+
+          {/* Main Heading */}
           <motion.div
             initial="hidden"
             animate="visible"
@@ -337,66 +356,33 @@ const Home = () => {
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal text-text-primary mb-6 leading-[1.1]"
-              style={{ fontFamily: 'system-ui, -apple-system, sans-serif', fontWeight: '400', letterSpacing: '-0.01em' }}
+              className="text-6xl md:text-8xl font-bold tracking-tight text-slate-900 mb-6"
             >
-              <span className="relative inline-block font-semibold text-primary-600">
-                AI receptionist
-              </span>
-              <br />
-              <span className="block mt-2">Never miss</span>
-              <span className="block mt-2">
-                <span ref={typedRef} className="text-primary-600 font-semibold"></span>
-              </span>
+              AI Receptionist <br />
+              Never miss{' '}
+              <span ref={typedRef} className="bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent"></span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-base md:text-lg text-text-secondary mb-6 max-w-3xl mx-auto leading-relaxed"
-              style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}
+              className="text-lg md:text-xl text-slate-500 max-w-xl mx-auto mb-10 leading-relaxed"
             >
-              Pick up the phone, schedule appointments, and answer questions with Frontdesk's 24/7 phone receptionist & CRM.
+              Pick up the phone, schedule appointments, and answer questions with AI-powered 24/7 phone receptionist & CRM.
             </motion.p>
-          </motion.div>
 
-          {/* Book a Demo Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="mt-8"
-          >
-            <Link to="/contact">
-              <motion.button
-                className="relative bg-transparent border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg overflow-hidden group hover:bg-primary-600 hover:text-white transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <Zap className="w-5 h-5" />
-                  Book a Demo
-                </span>
-                {/* Animated shine effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-primary-600/20 to-transparent"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                />
-              </motion.button>
-            </Link>
+            {/* Buttons */}
+            <motion.div
+              variants={fadeInUp}
+              className="flex justify-center"
+            >
+              <Link to="/contact">
+                <button className="px-8 py-3 bg-transparent text-slate-900 border-2 border-slate-900 font-medium rounded-lg hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-0.5">
+                  Try Demo
+                </button>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
-
-        {/* Voice Wave Animation at Bottom - Full Width */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="w-full h-[280px] relative"
-        >
-          <VoiceWaveAnimation />
-        </motion.div>
       </section>
 
       {/* Try Now Section */}
@@ -634,7 +620,7 @@ const Home = () => {
             variants={fadeInUp}
             className="text-center mt-12"
           >
-            <Link to="/services">
+            <Link to="/products/phone-receptionist">
               <button className="btn-primary animate-glow">
                 See How It Works
                 <ChevronRight className="w-5 h-5" />
@@ -925,7 +911,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mt-16"
           >
-            <Link to="/services">
+            <Link to="/products/phone-receptionist">
               <button className="btn-primary text-lg px-10 py-5 animate-glow group">
                 Explore All Features
                 <motion.span
@@ -1015,7 +1001,7 @@ const Home = () => {
               </motion.div>
 
               <motion.div variants={fadeInUp} className="mt-8">
-                <Link to="/services">
+                <Link to="/products/phone-receptionist">
                   <button className="btn-primary">
                     Learn About Scheduling
                     <ArrowRight className="w-5 h-5" />
@@ -1092,7 +1078,7 @@ const Home = () => {
               </motion.div>
 
               <motion.div variants={fadeInUp} className="mt-8">
-                <Link to="/services">
+                <Link to="/products/dashboards">
                   <button className="btn-primary">
                     Explore Analytics
                     <ArrowRight className="w-5 h-5" />

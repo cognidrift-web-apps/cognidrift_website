@@ -1,0 +1,129 @@
+import { motion } from 'framer-motion'
+import { PhoneCall, Target, CheckCircle2, ArrowRight, TrendingUp, Users, Zap } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+const AutomatedCalls = () => {
+  const features = [
+    {
+      icon: PhoneCall,
+      title: 'Outbound Campaigns',
+      description: 'Launch AI-powered calling campaigns that scale to thousands of calls per day.'
+    },
+    {
+      icon: Target,
+      title: 'Smart Targeting',
+      description: 'AI analyzes customer data to identify the best prospects and optimal call times.'
+    },
+    {
+      icon: Users,
+      title: 'Personalized Messages',
+      description: 'Dynamic script adaptation based on recipient profile and past interactions.'
+    },
+    {
+      icon: TrendingUp,
+      title: 'Performance Analytics',
+      description: 'Track call outcomes, conversion rates, and campaign ROI in real-time.'
+    }
+  ]
+
+  const benefits = [
+    'Scale to 10,000+ calls per day',
+    'Natural-sounding AI voices',
+    'Intelligent call routing',
+    'A/B testing capabilities',
+    'Compliance management built-in',
+    'CRM integration for seamless workflow'
+  ]
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 pt-24 pb-20">
+      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <div className="w-20 h-20 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <PhoneCall className="w-10 h-10 text-indigo-600" />
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6">
+            <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Automated Calls</span>
+          </h1>
+          <p className="text-lg text-text-secondary max-w-3xl mx-auto mb-8">
+            AI-powered outbound calling campaigns that scale effortlessly and convert more leads into customers.
+          </p>
+          <Link to="/contact">
+            <button className="btn-primary animate-glow">
+              Schedule a Demo
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </Link>
+        </motion.div>
+
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-2 gap-8 mb-20">
+          {features.map((feature, index) => {
+            const Icon = feature.icon
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-xl flex items-center justify-center mb-4">
+                  <Icon className="w-6 h-6 text-indigo-600" />
+                </div>
+                <h3 className="text-xl font-bold text-text-primary mb-3">{feature.title}</h3>
+                <p className="text-text-secondary">{feature.description}</p>
+              </motion.div>
+            )
+          })}
+        </div>
+
+        {/* Benefits Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-2xl shadow-lg p-8 md:p-12"
+        >
+          <h2 className="section-title hero-display text-3xl md:text-4xl mb-8 text-center">
+            Why Choose <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Automated Calls</span>
+          </h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            {benefits.map((benefit, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <CheckCircle2 className="w-6 h-6 text-indigo-600 flex-shrink-0 mt-1" />
+                <span className="text-text-secondary">{benefit}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center mt-16"
+        >
+          <h3 className="text-2xl font-bold text-text-primary mb-4">
+            Ready to Scale Your Outreach?
+          </h3>
+          <Link to="/contact">
+            <button className="btn-primary">
+              Get Started Today
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </Link>
+        </motion.div>
+      </div>
+    </div>
+  )
+}
+
+export default AutomatedCalls

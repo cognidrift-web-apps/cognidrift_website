@@ -6,8 +6,8 @@ const Footer = () => {
 
   const footerLinks = {
     product: [
-      { name: 'Features', path: '/services' },
-      { name: 'Integrations', path: '/services' },
+      { name: 'Features', path: '/products/phone-receptionist' },
+      { name: 'Integrations', path: '/products/ai-crm' },
       { name: 'Pricing', path: '/pricing' },
       { name: 'Demo', path: '/contact' },
     ],
