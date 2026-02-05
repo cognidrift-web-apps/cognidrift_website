@@ -352,20 +352,26 @@ const Home = () => {
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="text-center max-w-5xl mx-auto"
+            className="text-center max-w-6xl mx-auto"
           >
             <motion.h1
               variants={fadeInUp}
-              className="text-6xl md:text-8xl font-bold tracking-tight text-slate-900 mb-6"
+              className="mb-6"
             >
-              AI Receptionist <br />
-              Never miss{' '}
-              <span ref={typedRef} className="bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent"></span>
+              {/* AI Receptionist with Gradient - Larger and Better Typography */}
+              <span className="block text-7xl sm:text-8xl md:text-9xl font-extrabold tracking-tight leading-none mb-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif', letterSpacing: '-0.02em' }}>
+                AI Receptionist
+              </span>
+              <span className="block text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-slate-600 leading-relaxed" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+                Never miss{' '}
+                <span ref={typedRef} className="font-normal bg-gradient-to-r from-cyan-600 to-purple-600 bg-clip-text text-transparent"></span>
+              </span>
             </motion.h1>
 
             <motion.p
               variants={fadeInUp}
-              className="text-lg md:text-xl text-slate-500 max-w-xl mx-auto mb-10 leading-relaxed"
+              className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mt-12 pt-8 mb-10 leading-relaxed font-light"
+              style={{ fontFamily: 'system-ui, -apple-system, sans-serif', letterSpacing: '-0.01em' }}
             >
               Pick up the phone, schedule appointments, and answer questions with AI-powered 24/7 phone receptionist & CRM.
             </motion.p>

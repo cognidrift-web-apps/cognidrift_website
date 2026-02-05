@@ -17,10 +17,9 @@ function SignalLine({ color, speed, offset, opacity }) {
     return arr
   })
 
-  // Animate the Y positions every frame
+  // Animate the Y positions every frame - Smooth, professional animation without mouse interaction
   useFrame((state) => {
     const t = state.clock.getElapsedTime()
-    const mouseY = Math.abs(state.pointer.y)
     
     const array = lineRef.current.geometry.attributes.position.array
 
@@ -30,7 +29,8 @@ function SignalLine({ color, speed, offset, opacity }) {
       const taper = Math.sin(Math.PI * (i / segments))
       const wave = Math.sin(x * 0.5 + t * speed + offset) * Math.cos(x * 0.3 + t)
       
-      const amplitude = 0.5 + (mouseY * 1.5)
+      // Fixed amplitude for consistent, professional animation
+      const amplitude = 0.8
       
       array[i * 3 + 1] = wave * taper * amplitude
     }
