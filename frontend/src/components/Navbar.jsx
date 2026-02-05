@@ -20,13 +20,13 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     {
-      name: 'Solutions',
+      name: 'Industries',
       path: '/services',
       submenu: [
-        { name: 'Healthcare', path: '/solutions/healthcare', icon: Stethoscope },
-        { name: 'Real Estate', path: '/solutions/real-estate', icon: HomeIcon },
-        { name: 'Professional Services', path: '/solutions/professional-services', icon: Building2 },
-        { name: 'Call Center', path: '/solutions/call-center', icon: Phone },
+        { name: 'Healthcare', path: '/industries/healthcare', icon: Stethoscope },
+        { name: 'Real Estate', path: '/industries/real-estate', icon: HomeIcon },
+        { name: 'Professional Services', path: '/industries/professional-services', icon: Building2 },
+        { name: 'Call Center', path: '/industries/call-center', icon: Phone },
       ]
     },
     // { name: 'Pricing', path: '/pricing' }, // Hidden but route still accessible

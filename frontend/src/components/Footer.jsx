@@ -11,11 +11,11 @@ const Footer = () => {
       { name: 'Pricing', path: '/pricing' },
       { name: 'Demo', path: '/contact' },
     ],
-    solutions: [
-      { name: 'Healthcare', path: '/solutions/healthcare' },
-      { name: 'Real Estate', path: '/solutions/real-estate' },
-      { name: 'Professional Services', path: '/solutions/professional-services' },
-      { name: 'Call Center', path: '/solutions/call-center' },
+    industries: [
+      { name: 'Healthcare', path: '/industries/healthcare' },
+      { name: 'Real Estate', path: '/industries/real-estate' },
+      { name: 'Professional Services', path: '/industries/professional-services' },
+      { name: 'Call Center', path: '/industries/call-center' },
     ],
     company: [
       { name: 'About', path: '/about' },
@@ -99,11 +99,11 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Solutions Links */}
+          {/* Industries Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Solutions</h3>
+            <h3 className="text-white font-semibold mb-4">Industries</h3>
             <ul className="space-y-3">
-              {footerLinks.solutions.map((link, index) => (
+              {footerLinks.industries.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.path}

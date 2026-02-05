@@ -12,7 +12,7 @@ const About = lazy(() => import('./pages/About'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Pricing = lazy(() => import('./pages/Pricing'))
 
-// Solutions Pages
+// Industries Pages
 const Healthcare = lazy(() => import('./pages/solutions/Healthcare'))
 const RealEstate = lazy(() => import('./pages/solutions/RealEstate'))
 const ProfessionalServices = lazy(() => import('./pages/solutions/ProfessionalServices'))
@@ -55,11 +55,11 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
 
-              {/* Solutions Routes */}
-              <Route path="/solutions/healthcare" element={<Healthcare />} />
-              <Route path="/solutions/real-estate" element={<RealEstate />} />
-              <Route path="/solutions/professional-services" element={<ProfessionalServices />} />
-              <Route path="/solutions/call-center" element={<CallCenter />} />
+              {/* Industries Routes */}
+              <Route path="/industries/healthcare" element={<Healthcare />} />
+              <Route path="/industries/real-estate" element={<RealEstate />} />
+              <Route path="/industries/professional-services" element={<ProfessionalServices />} />
+              <Route path="/industries/call-center" element={<CallCenter />} />
 
               {/* Resources Routes */}
               <Route path="/resources/blog" element={<Blog />} />
