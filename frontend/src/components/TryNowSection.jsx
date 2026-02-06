@@ -292,7 +292,7 @@ const TryNowSection = () => {
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                           className="relative mb-5"
                         >
-                          <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-2xl">
+                          <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-2xl">
                             <Phone className="w-12 h-12 text-white" />
                           </div>
                           {/* Pulse rings */}
@@ -309,7 +309,7 @@ const TryNowSection = () => {
                                 delay: i * 0.6,
                                 ease: "easeOut"
                               }}
-                              className="absolute inset-0 border-3 border-primary-500 rounded-full"
+                              className="absolute inset-0 border-3 border-green-500 rounded-full"
                             />
                           ))}
                         </motion.div>
@@ -321,7 +321,7 @@ const TryNowSection = () => {
                         <p className="text-sm text-text-secondary mb-0.5">
                           AI Receptionist
                         </p>
-                        <p className="text-xs text-primary-600 font-medium mb-6">
+                        <p className="text-xs text-green-600 font-medium mb-6">
                           Incoming call...
                         </p>
 
@@ -384,7 +384,7 @@ const TryNowSection = () => {
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                           className="relative mb-5"
                         >
-                          <div className="w-24 h-24 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center shadow-2xl">
+                          <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-2xl">
                             <Phone className="w-12 h-12 text-white" />
                           </div>
                           {/* Pulse rings */}
@@ -401,7 +401,7 @@ const TryNowSection = () => {
                                 delay: i * 0.6,
                                 ease: "easeOut"
                               }}
-                              className="absolute inset-0 border-3 border-primary-500 rounded-full"
+                              className="absolute inset-0 border-3 border-green-500 rounded-full"
                             />
                           ))}
                         </motion.div>
@@ -413,7 +413,7 @@ const TryNowSection = () => {
                         <p className="text-sm text-text-secondary mb-0.5">
                           AI Receptionist
                         </p>
-                        <p className="text-xs text-primary-600 font-medium mb-6">
+                        <p className="text-xs text-green-600 font-medium mb-6">
                           Ongoing call...
                         </p>
 
@@ -511,13 +511,14 @@ const TryNowSection = () => {
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     exit={{ opacity: 0, scale: 0.8, x: -20 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="absolute -left-44 top-20 w-40 z-20 hidden xl:block"
+                    className="absolute -left-28 top-24 w-40 z-20 hidden xl:block"
                   >
                   {/* Bubble with right tail */}
                   <div className="relative">
-                    <div className="relative bg-gradient-to-br from-white to-gray-50 rounded-[20px] rounded-br-md p-3.5 shadow-lg border-2 border-gray-900 overflow-hidden">
-                      {/* Subtle pattern overlay */}
-                      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, gray 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
+                    <div className="relative backdrop-blur-xl bg-white/30 rounded-[20px] rounded-br-md p-3.5 shadow-2xl border border-white/40 overflow-hidden" style={{ backdropFilter: 'blur(20px) saturate(180%)' }}>
+                      {/* Glass shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
                       
                       {/* Animated Icon Orb */}
                       <div className="relative flex items-center gap-2 mb-2">
@@ -555,13 +556,13 @@ const TryNowSection = () => {
                         </motion.div>
                       </div>
                       {/* Message */}
-                      <p className="relative text-[11px] text-gray-800 font-medium leading-relaxed">
+                      <p className="relative text-[11px] text-gray-900 font-semibold leading-relaxed drop-shadow-sm text-center">
                         "{currentScenario.userText}"
                       </p>
                     </div>
                     {/* Attractive tail with outline */}
                     <svg className="absolute -right-2 bottom-3" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M0 0 Q10 5, 20 20 L0 10 Z" fill="white" stroke="#1f2937" strokeWidth="2" strokeLinejoin="round"/>
+                      <path d="M0 0 Q10 5, 20 20 L0 10 Z" fill="rgba(255, 255, 255, 0.3)" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="2" strokeLinejoin="round"/>
                     </svg>
                   </div>
                 </motion.div>
@@ -573,17 +574,17 @@ const TryNowSection = () => {
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.8, x: 20 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-                  className="absolute -right-48 bottom-32 w-44 z-20 hidden xl:block"
+                  className="absolute -right-32 bottom-36 w-44 z-20 hidden xl:block"
                 >
                   {/* Bubble with left tail */}
                   <div className="relative">
-                    <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-[20px] rounded-bl-md p-3.5 shadow-lg border-2 border-slate-950 overflow-hidden">
-                      {/* Subtle shine effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-                      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
+                    <div className="relative backdrop-blur-xl bg-white/30 rounded-[20px] rounded-bl-md p-3.5 shadow-2xl border border-white/40 overflow-hidden" style={{ backdropFilter: 'blur(20px) saturate(180%)' }}>
+                      {/* Glass shimmer effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
+                      <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
                       
                       {/* Header with Animated Orb */}
-                      <div className="relative flex items-center justify-between mb-2 pb-2 border-b border-slate-700/50">
+                      <div className="relative flex items-center justify-between mb-2 pb-2 border-b border-gray-300/50">
                         <div className="flex items-center gap-2">
                           <motion.div
                             animate={{
@@ -616,7 +617,7 @@ const TryNowSection = () => {
                               className={`absolute inset-0 rounded-full border-2 ${colors.text.replace('text-', 'border-')}`}
                             />
                           </motion.div>
-                          <span className="text-[9px] font-bold uppercase tracking-wide text-white">{currentScenario.aiLabel}</span>
+                          <span className="text-[9px] font-bold uppercase tracking-wide text-gray-900">{currentScenario.aiLabel}</span>
                         </div>
                         <span className={`text-[8px] ${colors.statusBg} ${colors.statusText} px-2 py-0.5 rounded-full font-medium shadow-sm`}>
                           {currentScenario.aiStatus}
@@ -625,12 +626,12 @@ const TryNowSection = () => {
                       {/* Content */}
                       <div className="relative space-y-1.5">
                         <div className="flex justify-between text-[10px]">
-                          <span className="text-slate-400">{currentScenario.aiContent.line1.label}</span>
-                          <span className="text-white font-medium">{currentScenario.aiContent.line1.value}</span>
+                          <span className="text-gray-600">{currentScenario.aiContent.line1.label}</span>
+                          <span className="text-gray-900 font-semibold">{currentScenario.aiContent.line1.value}</span>
                         </div>
                         <div className="flex justify-between text-[10px]">
-                          <span className="text-slate-400">{currentScenario.aiContent.line2.label}</span>
-                          <span className={currentScenario.aiContent.line2.highlight ? colors.text + ' font-semibold' : 'text-white'}>
+                          <span className="text-gray-600">{currentScenario.aiContent.line2.label}</span>
+                          <span className={currentScenario.aiContent.line2.highlight ? colors.text + ' font-semibold' : 'text-gray-900 font-semibold'}>
                             {currentScenario.aiContent.line2.value}
                           </span>
                         </div>
@@ -638,27 +639,12 @@ const TryNowSection = () => {
                     </div>
                     {/* Attractive tail with outline */}
                     <svg className="absolute -left-2 bottom-4" width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20 0 Q10 5, 0 20 L20 10 Z" fill="#0f172a" stroke="#020617" strokeWidth="2" strokeLinejoin="round"/>
+                      <path d="M20 0 Q10 5, 0 20 L20 10 Z" fill="rgba(255, 255, 255, 0.3)" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="2" strokeLinejoin="round"/>
                     </svg>
                   </div>
                 </motion.div>
                 </AnimatePresence>
               )}
-
-              {/* Step Indicators */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                {scenarios.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentStep(index)}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      index === currentStep
-                        ? 'bg-primary-600 w-6'
-                        : 'bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
             </div>
           </motion.div>
         </div>
