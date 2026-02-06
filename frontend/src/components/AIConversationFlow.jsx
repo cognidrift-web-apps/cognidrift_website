@@ -23,7 +23,7 @@ const AIConversationFlow = () => {
   useEffect(() => {
     const stepInterval = setInterval(() => {
       setActiveStep(prev => (prev + 1) % conversationSteps.length)
-    }, 1200)
+    }, 2000)
 
     const messageTimers = sampleConversation.map((msg, i) => 
       setTimeout(() => {

@@ -414,7 +414,7 @@ const TryNowSection = () => {
                           AI Receptionist
                         </p>
                         <p className="text-xs text-primary-600 font-medium mb-6">
-                          Incoming call...
+                          Ongoing call...
                         </p>
 
                         {/* Animated Voice Orb */}
