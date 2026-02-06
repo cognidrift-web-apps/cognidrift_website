@@ -1,8 +1,183 @@
 import { motion } from 'framer-motion'
-import { ArrowRight, TrendingUp, Target, Zap, Quote } from 'lucide-react'
+import { ArrowRight, Target, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { FaUserMd, FaHome, FaBalanceScale } from 'react-icons/fa'
-import { BsGraphUpArrow, BsCheckCircleFill, BsLightningChargeFill } from 'react-icons/bs'
+import { BsGraphUpArrow, BsLightningChargeFill } from 'react-icons/bs'
+import { useEffect, useState, useRef } from 'react'
+
+// Animated circular progress component
+const CircularProgress = ({ value, maxValue = 100, label, suffix = '%', color = 'primary', delay = 0 }) => {
+  const [progress, setProgress] = useState(0)
+  const [displayValue, setDisplayValue] = useState(0)
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  const numericValue = parseFloat(value.toString().replace(/[^0-9.]/g, ''))
+  const percentage = (numericValue / maxValue) * 100
+  const circumference = 2 * Math.PI * 45
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [isVisible])
+
+  useEffect(() => {
+    if (!isVisible) return
+
+    const timer = setTimeout(() => {
+      const duration = 1500
+      const steps = 60
+      const increment = percentage / steps
+      const valueIncrement = numericValue / steps
+      let currentStep = 0
+
+      const interval = setInterval(() => {
+        currentStep++
+        setProgress(Math.min(increment * currentStep, percentage))
+        setDisplayValue(Math.min(Math.round(valueIncrement * currentStep), numericValue))
+
+        if (currentStep >= steps) clearInterval(interval)
+      }, duration / steps)
+
+      return () => clearInterval(interval)
+    }, delay)
+
+    return () => clearTimeout(timer)
+  }, [isVisible, percentage, numericValue, delay])
+
+  const colorClasses = {
+    primary: { stroke: '#2563EB', bg: 'rgba(37, 99, 235, 0.1)', text: 'text-primary-600' },
+    emerald: { stroke: '#10B981', bg: 'rgba(16, 185, 129, 0.1)', text: 'text-emerald-600' },
+    violet: { stroke: '#8B5CF6', bg: 'rgba(139, 92, 246, 0.1)', text: 'text-violet-600' },
+    amber: { stroke: '#F59E0B', bg: 'rgba(245, 158, 11, 0.1)', text: 'text-amber-600' }
+  }
+
+  const colors = colorClasses[color] || colorClasses.primary
+
+  return (
+    <div ref={ref} className="flex flex-col items-center">
+      <div className="relative w-28 h-28">
+        <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+          {/* Background circle */}
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke={colors.bg}
+            strokeWidth="8"
+          />
+          {/* Progress circle */}
+          <motion.circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke={colors.stroke}
+            strokeWidth="8"
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            strokeDashoffset={circumference - (progress / 100) * circumference}
+            style={{
+              filter: `drop-shadow(0 0 6px ${colors.stroke}40)`
+            }}
+          />
+        </svg>
+        {/* Center value */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className={`text-2xl font-bold ${colors.text}`}>
+            {suffix === '$' ? '$' : ''}{displayValue}{suffix !== '$' ? suffix : 'K'}
+          </span>
+        </div>
+      </div>
+      <p className="mt-3 text-sm text-text-secondary font-medium text-center max-w-[120px]">{label}</p>
+    </div>
+  )
+}
+
+// Animated bar chart component
+const AnimatedBar = ({ value, label, color = 'primary', delay = 0, maxValue = 100 }) => {
+  const [width, setWidth] = useState(0)
+  const [displayValue, setDisplayValue] = useState(0)
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  const numericValue = parseFloat(value.toString().replace(/[^0-9.]/g, ''))
+  const percentage = Math.min((numericValue / maxValue) * 100, 100)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          setIsVisible(true)
+        }
+      },
+      { threshold: 0.3 }
+    )
+
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [isVisible])
+
+  useEffect(() => {
+    if (!isVisible) return
+
+    const timer = setTimeout(() => {
+      const duration = 1200
+      const steps = 50
+      const widthIncrement = percentage / steps
+      const valueIncrement = numericValue / steps
+      let currentStep = 0
+
+      const interval = setInterval(() => {
+        currentStep++
+        setWidth(Math.min(widthIncrement * currentStep, percentage))
+        setDisplayValue(Math.min(Math.round(valueIncrement * currentStep), numericValue))
+
+        if (currentStep >= steps) clearInterval(interval)
+      }, duration / steps)
+
+      return () => clearInterval(interval)
+    }, delay)
+
+    return () => clearTimeout(timer)
+  }, [isVisible, percentage, numericValue, delay])
+
+  const colorClasses = {
+    primary: { gradient: 'from-blue-500 to-primary-600', bg: 'bg-primary-100', text: 'text-primary-600' },
+    emerald: { gradient: 'from-emerald-400 to-emerald-600', bg: 'bg-emerald-100', text: 'text-emerald-600' },
+    violet: { gradient: 'from-violet-400 to-violet-600', bg: 'bg-violet-100', text: 'text-violet-600' },
+    amber: { gradient: 'from-amber-400 to-amber-600', bg: 'bg-amber-100', text: 'text-amber-600' }
+  }
+
+  const colors = colorClasses[color] || colorClasses.primary
+
+  return (
+    <div ref={ref} className="w-full">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-sm font-medium text-text-secondary">{label}</span>
+        <span className={`text-lg font-bold ${colors.text}`}>{value}</span>
+      </div>
+      <div className={`h-3 ${colors.bg} rounded-full overflow-hidden`}>
+        <motion.div
+          className={`h-full bg-gradient-to-r ${colors.gradient} rounded-full relative`}
+          style={{ width: `${width}%` }}
+        >
+          <div className="absolute inset-0 bg-white/20 animate-pulse" />
+        </motion.div>
+      </div>
+    </div>
+  )
+}
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -41,13 +216,11 @@ const CaseStudies = () => {
       challenge: 'Struggling with high call volumes and staff burnout',
       solution: 'Implemented AI receptionist for appointment scheduling and patient inquiries',
       results: [
-        { metric: '70%', label: 'Reduction in staff workload' },
-        { metric: '95%', label: 'Patient satisfaction rate' },
-        { metric: '40%', label: 'Decrease in no-shows' },
-        { metric: '$180K', label: 'Annual savings' }
-      ],
-      testimonial: "CogniDrift transformed our front desk operations. Our staff can now focus on patient care instead of answering phones.",
-      author: "Dr. Sarah Chen, Medical Director"
+        { metric: '70', suffix: '%', label: 'Reduction in staff workload', type: 'circle', color: 'primary' },
+        { metric: '95', suffix: '%', label: 'Patient satisfaction rate', type: 'circle', color: 'emerald' },
+        { metric: '40', suffix: '%', label: 'Decrease in no-shows', type: 'circle', color: 'violet' },
+        { metric: '180', suffix: '$', label: 'Annual savings (K)', type: 'circle', color: 'amber', maxValue: 200 }
+      ]
     },
     {
       company: 'Prestige Realty Group',
@@ -57,13 +230,11 @@ const CaseStudies = () => {
       challenge: 'Missing 60% of inbound leads due to limited availability',
       solution: 'Deployed 24/7 AI agent for lead qualification and showing scheduling',
       results: [
-        { metric: '100%', label: 'Lead capture rate' },
-        { metric: '85%', label: 'Increase in showings' },
-        { metric: '45%', label: 'Conversion improvement' },
-        { metric: '$450K', label: 'Additional Q1 revenue' }
-      ],
-      testimonial: "We went from missing leads to capturing every single one. The ROI was immediate and substantial.",
-      author: "Michael Torres, Broker"
+        { metric: '100', suffix: '%', label: 'Lead capture rate', type: 'bar', color: 'primary' },
+        { metric: '85', suffix: '%', label: 'Increase in showings', type: 'bar', color: 'emerald' },
+        { metric: '45', suffix: '%', label: 'Conversion improvement', type: 'bar', color: 'violet' },
+        { metric: '450', suffix: '$', label: 'Additional Q1 revenue (K)', type: 'bar', color: 'amber', maxValue: 500 }
+      ]
     },
     {
       company: 'Thompson & Associates Law',
@@ -73,13 +244,11 @@ const CaseStudies = () => {
       challenge: 'High administrative costs and missed client calls',
       solution: 'Integrated AI receptionist for client intake and consultation scheduling',
       results: [
-        { metric: '60%', label: 'Reduction in admin costs' },
-        { metric: '0', label: 'Missed client calls' },
-        { metric: '50%', label: 'Faster onboarding' },
-        { metric: '30%', label: 'More billable hours' }
-      ],
-      testimonial: "The AI handles client intake better than we ever imagined. It's like having a tireless, perfect receptionist.",
-      author: "James Thompson, Managing Partner"
+        { metric: '60', suffix: '%', label: 'Reduction in admin costs', type: 'circle', color: 'primary' },
+        { metric: '0', suffix: '', label: 'Missed client calls', type: 'circle', color: 'emerald', maxValue: 1, displayAs: '0' },
+        { metric: '50', suffix: '%', label: 'Faster onboarding', type: 'circle', color: 'violet' },
+        { metric: '30', suffix: '%', label: 'More billable hours', type: 'circle', color: 'amber' }
+      ]
     }
   ]
 
@@ -185,61 +354,63 @@ const CaseStudies = () => {
 
                       {/* Results */}
                       <div className="lg:col-span-8">
-                        <motion.div variants={fadeInUp} className="mb-8">
-                          <h4 className="text-xl font-bold text-text-primary mb-6 flex items-center gap-3">
+                        <motion.div variants={fadeInUp}>
+                          <h4 className="text-xl font-bold text-text-primary mb-8 flex items-center gap-3">
                             <div className={`w-10 h-10 ${study.iconBg} rounded-xl flex items-center justify-center`}>
                               <BsGraphUpArrow className={`w-5 h-5 ${study.iconColor}`} />
                             </div>
                             Key Results
                           </h4>
 
-                          <div className="grid sm:grid-cols-2 gap-4">
-                            {study.results.map((result, i) => (
-                              <motion.div
-                                key={i}
-                                variants={scaleIn}
-                                whileHover={{ scale: 1.03, y: -3 }}
-                                transition={{ type: "spring", stiffness: 400 }}
-                                className="group relative p-5 bg-gradient-to-br from-neutral-offWhite to-white rounded-2xl border-2 border-neutral-border hover:border-primary-200 transition-all duration-300"
-                              >
-                                <div className="flex items-start gap-4">
+                          {/* Determine display type based on first result */}
+                          {study.results[0].type === 'circle' ? (
+                            /* Circular Progress Display */
+                            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border-2 border-neutral-border p-8">
+                              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                {study.results.map((result, i) => (
                                   <motion.div
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    transition={{ delay: i * 0.1, type: "spring" }}
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true }}
-                                    className={`w-8 h-8 ${study.iconBg} rounded-lg flex items-center justify-center flex-shrink-0`}
+                                    transition={{ delay: i * 0.1 }}
                                   >
-                                    <BsCheckCircleFill className={`w-4 h-4 ${study.iconColor}`} />
+                                    <CircularProgress
+                                      value={result.displayAs || result.metric}
+                                      maxValue={result.maxValue || 100}
+                                      label={result.label}
+                                      suffix={result.suffix}
+                                      color={result.color}
+                                      delay={i * 150}
+                                    />
                                   </motion.div>
-                                  <div>
-                                    <motion.p
-                                      initial={{ opacity: 0, x: -10 }}
-                                      whileInView={{ opacity: 1, x: 0 }}
-                                      transition={{ delay: i * 0.15 }}
-                                      viewport={{ once: true }}
-                                      className={`text-3xl font-bold ${study.iconColor} mb-1`}
-                                    >
-                                      {result.metric}
-                                    </motion.p>
-                                    <p className="text-sm text-text-secondary font-medium">{result.label}</p>
-                                  </div>
-                                </div>
-                              </motion.div>
-                            ))}
-                          </div>
-                        </motion.div>
-
-                        {/* Testimonial */}
-                        <motion.div
-                          variants={fadeInUp}
-                          className="relative p-6 bg-gradient-to-br from-primary-50 to-white rounded-2xl border-2 border-primary-100"
-                        >
-                          <Quote className={`w-10 h-10 ${study.iconColor} opacity-20 absolute top-4 right-4`} />
-                          <p className="text-text-primary italic mb-4 text-lg leading-relaxed pr-12">
-                            "{study.testimonial}"
-                          </p>
-                          <p className={`text-sm font-bold ${study.iconColor}`}>— {study.author}</p>
+                                ))}
+                              </div>
+                            </div>
+                          ) : (
+                            /* Bar Chart Display */
+                            <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border-2 border-neutral-border p-8">
+                              <div className="space-y-6">
+                                {study.results.map((result, i) => (
+                                  <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                  >
+                                    <AnimatedBar
+                                      value={`${result.suffix === '$' ? '$' : ''}${result.metric}${result.suffix !== '$' ? result.suffix : 'K'}`}
+                                      label={result.label}
+                                      color={result.color}
+                                      delay={i * 150}
+                                      maxValue={result.maxValue || 100}
+                                    />
+                                  </motion.div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </motion.div>
                       </div>
                     </div>

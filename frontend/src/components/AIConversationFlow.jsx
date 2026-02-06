@@ -1,10 +1,16 @@
 import { motion } from 'framer-motion'
 import { Mic, Brain, MessageSquare, CheckCircle, Zap, User, Bot } from 'lucide-react'
+import { BsRobot } from 'react-icons/bs'
+import { FaUserCircle } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
 
 const AIConversationFlow = () => {
   const [activeStep, setActiveStep] = useState(0)
   const [messages, setMessages] = useState([])
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0)
+  const [typingText, setTypingText] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
+  const [hasStarted, setHasStarted] = useState(false)
 
   const conversationSteps = [
     { icon: Mic, title: 'Listening', description: 'AI captures voice input', color: 'blue' },
@@ -15,27 +21,65 @@ const AIConversationFlow = () => {
 
   const sampleConversation = [
     { type: 'user', text: "Hi, I'd like to book an appointment", delay: 0 },
-    { type: 'ai', text: "Of course! I'd be happy to help. What service are you interested in?", delay: 800 },
-    { type: 'user', text: "Dental cleaning", delay: 1600 },
-    { type: 'ai', text: "Great! What date and time works best for you?", delay: 2400 }
+    { type: 'ai', text: "Of course! I'd be happy to help. What service are you interested in?", delay: 2000 },
+    { type: 'user', text: "Dental cleaning", delay: 4000 },
+    { type: 'ai', text: "Great! What date and time works best for you?", delay: 6000 }
   ]
 
   useEffect(() => {
+    // Only start if animation has been triggered
+    if (!hasStarted) return
+    
+    // Reset on mount
+    setMessages([])
+    setCurrentMessageIndex(0)
+    setTypingText('')
+    
     const stepInterval = setInterval(() => {
       setActiveStep(prev => (prev + 1) % conversationSteps.length)
     }, 2000)
 
-    const messageTimers = sampleConversation.map((msg, i) => 
-      setTimeout(() => {
-        setMessages(prev => [...prev, msg])
-      }, msg.delay)
-    )
-
     return () => {
       clearInterval(stepInterval)
-      messageTimers.forEach(timer => clearTimeout(timer))
     }
-  }, [])
+  }, [hasStarted])
+
+  // Handle sequential message typing
+  useEffect(() => {
+    if (!hasStarted || currentMessageIndex >= sampleConversation.length) return
+
+    const currentMsg = sampleConversation[currentMessageIndex]
+    const fullText = currentMsg.text
+    let charIndex = 0
+
+    setIsTyping(true)
+    setTypingText('')
+
+    // Delay before starting to type
+    const startDelay = setTimeout(() => {
+      const typingInterval = setInterval(() => {
+        if (charIndex < fullText.length) {
+          setTypingText(fullText.substring(0, charIndex + 1))
+          charIndex++
+        } else {
+          clearInterval(typingInterval)
+          setIsTyping(false)
+          
+          // Add complete message to messages array
+          setMessages(prev => [...prev, { ...currentMsg, text: fullText }])
+          
+          // Move to next message after a brief pause
+          setTimeout(() => {
+            setCurrentMessageIndex(prev => prev + 1)
+          }, 800)
+        }
+      }, 50) // Speed of typing - increased from 30 to 50 for slower typing
+
+      return () => clearInterval(typingInterval)
+    }, currentMessageIndex === 0 ? 500 : 1000)
+
+    return () => clearTimeout(startDelay)
+  }, [currentMessageIndex, hasStarted])
 
   return (
     <div className="relative w-full h-full">
@@ -44,6 +88,13 @@ const AIConversationFlow = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
+        whileInView={() => {
+          if (!hasStarted) {
+            setHasStarted(true)
+          }
+          return {}
+        }}
+        viewport={{ once: true, amount: 0.3 }}
         className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-3xl shadow-2xl p-8 border-2 border-indigo-100 overflow-hidden"
       >
         {/* Animated Background Pattern */}
@@ -154,8 +205,8 @@ const AIConversationFlow = () => {
           <div className="bg-white rounded-2xl p-6 shadow-inner border-2 border-gray-100 min-h-[300px]">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-white" />
+                <div className="w-10 h-10 flex items-center justify-center">
+                  <BsRobot className="w-10 h-10 text-indigo-600" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-gray-900">AI Receptionist</p>
@@ -190,8 +241,8 @@ const AIConversationFlow = () => {
                 >
                   <div className="flex items-end gap-2 max-w-[80%]">
                     {msg.type === 'ai' && (
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                        <Bot className="w-5 h-5 text-white" />
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                        <BsRobot className="w-8 h-8 text-purple-600" />
                       </div>
                     )}
                     <motion.div
@@ -205,23 +256,64 @@ const AIConversationFlow = () => {
                       <p className="text-sm leading-relaxed">{msg.text}</p>
                     </motion.div>
                     {msg.type === 'user' && (
-                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center flex-shrink-0">
-                        <User className="w-5 h-5 text-white" />
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                        <FaUserCircle className="w-8 h-8 text-blue-500" />
                       </div>
                     )}
                   </div>
                 </motion.div>
               ))}
 
-              {/* Typing Indicator */}
-              {messages.length > 0 && messages.length < sampleConversation.length && (
+              {/* Currently Typing Message */}
+              {isTyping && typingText && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  className={`flex ${sampleConversation[currentMessageIndex].type === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div className="flex items-end gap-2 max-w-[80%]">
+                    {sampleConversation[currentMessageIndex].type === 'ai' && (
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                        <BsRobot className="w-8 h-8 text-purple-600" />
+                      </div>
+                    )}
+                    <div
+                      className={`px-4 py-3 rounded-2xl ${
+                        sampleConversation[currentMessageIndex].type === 'user'
+                          ? 'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-sm'
+                          : 'bg-gray-100 text-gray-900 rounded-bl-sm'
+                      } shadow-md`}
+                    >
+                      <p className="text-sm leading-relaxed">
+                        {typingText}
+                        <motion.span
+                          animate={{ opacity: [1, 0, 1] }}
+                          transition={{ duration: 0.8, repeat: Infinity }}
+                          className="inline-block ml-0.5"
+                        >
+                          |
+                        </motion.span>
+                      </p>
+                    </div>
+                    {sampleConversation[currentMessageIndex].type === 'user' && (
+                      <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                        <FaUserCircle className="w-8 h-8 text-blue-500" />
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Typing Indicator - show when waiting for next AI message */}
+              {!isTyping && messages.length > 0 && messages.length < sampleConversation.length && currentMessageIndex < sampleConversation.length && sampleConversation[currentMessageIndex]?.type === 'ai' && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="flex items-end gap-2"
                 >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
-                    <Bot className="w-5 h-5 text-white" />
+                  <div className="w-8 h-8 flex items-center justify-center">
+                    <BsRobot className="w-8 h-8 text-purple-600" />
                   </div>
                   <div className="bg-gray-100 px-4 py-3 rounded-2xl rounded-bl-sm shadow-md">
                     <div className="flex gap-1">

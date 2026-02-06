@@ -139,9 +139,9 @@ const Navbar = () => {
       name: 'Resources',
       path: '/resources',
       submenu: [
-        { name: 'Blog', path: '/resources/blog', icon: FileText },
-        { name: 'Case Studies', path: '/resources/case-studies', icon: BookOpen },
-        { name: 'Help Center', path: '/resources/help-center', icon: HelpCircle },
+        { name: 'Blog', description: 'Latest insights, tips & industry news', path: '/resources/blog', icon: FileText, iconColor: 'bg-gradient-to-br from-violet-100 to-purple-100 text-violet-600' },
+        { name: 'Case Studies', description: 'Real results from real businesses', path: '/resources/case-studies', icon: BookOpen, iconColor: 'bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-600' },
+        { name: 'Help Center', description: 'FAQs, guides & support resources', path: '/resources/help-center', icon: HelpCircle, iconColor: 'bg-gradient-to-br from-amber-100 to-orange-100 text-amber-600' },
       ]
     },
     { name: 'About', path: '/about' },
@@ -340,15 +340,15 @@ const Navbar = () => {
                   )}
                 </AnimatePresence>
 
-                {/* Simple Dropdown Menu */}
+                {/* Simple Dropdown Menu - Enhanced with colorful icons */}
                 <AnimatePresence>
                   {link.submenu && !link.mega && openDropdown === link.name && (
                     <motion.div
                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 mt-0 w-64 rounded-t-none rounded-b-2xl py-2 overflow-hidden border border-t-0 border-gray-200 bg-white shadow-[0_8px_32px_rgba(59,130,246,0.1),0_2px_8px_rgba(0,0,0,0.06)]"
+                      transition={{ duration: 0.25, ease: [0.68, -0.05, 0.265, 1.2] }}
+                      className="absolute top-full left-0 mt-0 w-80 rounded-t-none rounded-b-2xl p-3 overflow-hidden border border-t-0 border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12),0_4px_16px_rgba(59,130,246,0.08)]"
                     >
                       {/* Glass refraction highlight */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-white/20 pointer-events-none rounded-b-2xl" />
@@ -356,24 +356,41 @@ const Navbar = () => {
                       {link.submenu.map((item, index) => {
                         const Icon = item.icon
                         return (
-                          <Link
+                          <motion.div
                             key={item.name}
-                            to={item.path}
-                            className="relative flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:text-blue-600 transition-colors duration-200 group"
+                            custom={index}
+                            variants={megaItemVariants}
+                            initial="hidden"
+                            animate="visible"
                           >
-                            <motion.div
-                              className="absolute inset-0 bg-white/50 opacity-0 group-hover:opacity-100"
-                              transition={{ duration: 0.2 }}
-                            />
-                            <motion.div
-                              whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                              transition={{ duration: 0.3 }}
-                              className="relative z-10"
+                            <Link
+                              to={item.path}
+                              onClick={() => { setPinnedDropdown(null); setOpenDropdown(null) }}
+                              className="flex items-start gap-3 px-3 py-3 rounded-xl text-text-secondary hover:text-blue-600 transition-all duration-200 group relative overflow-hidden"
                             >
-                              <Icon className="w-5 h-5" />
-                            </motion.div>
-                            <span className="relative z-10">{item.name}</span>
-                          </Link>
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-blue-50/60 to-purple-50/40 opacity-0 group-hover:opacity-100 rounded-xl"
+                                transition={{ duration: 0.2 }}
+                              />
+                              <motion.div
+                                whileHover={{ rotate: [0, -8, 8, 0], scale: 1.1 }}
+                                transition={{ duration: 0.3 }}
+                                className={`relative z-10 w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${item.iconColor || 'bg-gray-100 text-gray-600'}`}
+                              >
+                                <Icon className="w-5 h-5" />
+                              </motion.div>
+                              <div className="relative z-10 min-w-0">
+                                <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                                  {item.name}
+                                </p>
+                                {item.description && (
+                                  <p className="text-xs text-gray-500 leading-relaxed mt-0.5">
+                                    {item.description}
+                                  </p>
+                                )}
+                              </div>
+                            </Link>
+                          </motion.div>
                         )
                       })}
                     </motion.div>
