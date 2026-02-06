@@ -206,7 +206,7 @@ const Contact = () => {
               variants={staggerContainer}
             >
               <motion.div variants={fadeInUp}>
-                <h2 className="section-title hero-display text-3xl md:text-4xl mb-2">Book Your <span className="text-gradient">Demo</span></h2>
+                <h2 className="section-title hero-display mb-2">Book Your <span className="text-gradient">Demo</span></h2>
                 <p className="text-text-secondary mb-8">
                   Fill out the form and we'll get back to you within 24 hours.
                 </p>

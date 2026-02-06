@@ -102,10 +102,10 @@ const About = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-primary-600 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-offWhite overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-cyan/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-neutral-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-neutral-200/20 rounded-full blur-3xl"></div>
         </div>
         
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,19 +117,19 @@ const About = () => {
           >
             <motion.span 
               variants={fadeInUp}
-              className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4"
+              className="inline-block text-sm uppercase tracking-wider text-text-secondary font-semibold mb-4"
             >
               About Us
             </motion.span>
             <motion.h1 
               variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              className="text-4xl md:text-6xl font-bold text-text-primary mb-6"
             >
               Building the Future of<br />Business Communication
             </motion.h1>
             <motion.p 
               variants={fadeInUp}
-              className="text-lg text-primary-100"
+              className="text-lg text-text-secondary"
             >
               We're on a mission to help businesses never miss an opportunity by automating 
               customer communications with intelligent AI.
@@ -149,7 +149,7 @@ const About = () => {
               variants={staggerContainer}
             >
               <motion.span variants={fadeInUp} className="section-eyebrow">Our Mission</motion.span>
-              <motion.h2 variants={fadeInUp} className="section-title hero-display text-4xl md:text-5xl">
+              <motion.h2 variants={fadeInUp} className="section-title hero-display">
                 AI That Works <span className="text-gradient">For You</span>
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-lg text-text-secondary mb-6">
@@ -331,7 +331,7 @@ const About = () => {
             variants={staggerContainer}
             className="bg-primary-600 rounded-3xl p-12 md:p-16 text-center"
           >
-            <motion.h2 variants={fadeInUp} className="hero-display text-4xl md:text-5xl text-white mb-6">
+            <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-6">
               Ready to <span className="text-primary-200">Learn More?</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">

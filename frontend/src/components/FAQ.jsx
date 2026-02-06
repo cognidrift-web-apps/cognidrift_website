@@ -91,7 +91,7 @@ const FAQ = () => {
           </motion.div>
           <motion.h2
             variants={fadeInUp}
-            className="section-title hero-display text-4xl sm:text-5xl md:text-6xl"
+            className="section-title hero-display"
           >
             AI Receptionist <span className="text-gradient">FAQs</span>
           </motion.h2>

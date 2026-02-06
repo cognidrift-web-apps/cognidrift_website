@@ -54,7 +54,7 @@ const TrustBadges = () => {
         >
           <motion.h2
             variants={fadeInUp}
-            className="section-title hero-display text-3xl sm:text-4xl md:text-5xl"
+            className="section-title hero-display"
           >
             Enterprise-Grade <span className="text-gradient">Security & Compliance</span>
           </motion.h2>

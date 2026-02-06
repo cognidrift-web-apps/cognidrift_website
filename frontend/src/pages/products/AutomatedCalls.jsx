@@ -91,7 +91,7 @@ const AutomatedCalls = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="bg-white rounded-2xl shadow-lg p-8 md:p-12"
         >
-          <h2 className="section-title hero-display text-3xl md:text-4xl mb-8 text-center">
+          <h2 className="section-title hero-display mb-8 text-center">
             Why Choose <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Automated Calls</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-4">

@@ -147,20 +147,18 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive }) =>
   <motion.div
     whileHover={{ y: -8, scale: 1.02 }}
     transition={{ type: "spring", stiffness: 300 }}
-    className={`group relative p-6 lg:p-8 rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 ${
-      isActive
+    className={`group relative p-6 lg:p-8 rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 ${isActive
         ? 'border-primary-600 bg-primary-50 shadow-xl'
         : 'border-neutral-border bg-white hover:border-primary-300 hover:shadow-xl'
-    }`}
+      }`}
   >
     {/* Hover gradient background */}
     <div className={`absolute inset-0 bg-primary-50 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}></div>
 
     {/* Icon with animation */}
     <motion.div
-      className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:shadow-md transition-shadow ${
-        isActive ? 'bg-primary-600 text-white shadow-lg' : 'bg-primary-50 text-primary-600'
-      }`}
+      className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:shadow-md transition-shadow ${isActive ? 'bg-primary-600 text-white shadow-lg' : 'bg-primary-50 text-primary-600'
+        }`}
       whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
       transition={{ duration: 0.5 }}
     >
@@ -370,10 +368,10 @@ const Home = () => {
 
             <motion.p
               variants={fadeInUp}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-600 max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto mt-6 sm:mt-8 md:mt-12 pt-4 sm:pt-6 md:pt-8 mb-6 sm:mb-8 md:mb-10 leading-relaxed font-light px-2"
+              className="text-sm sm:text-base md:text-lg lg:text-2xl text-slate-600 max-w-full mx-auto mt-6 sm:mt-8 md:mt-12 pt-4 sm:pt-6 md:pt-8 mb-6 sm:mb-8 md:mb-10 leading-relaxed font-light px-2"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif', letterSpacing: '-0.01em' }}
             >
-              Pick up the phone, schedule appointments, and answer questions with AI-powered 24/7 phone receptionist & CRM.
+              24×7 AI voice agents for inbound and outbound calls, SMS, email, web chat, and avatars.
             </motion.p>
 
             {/* Buttons */}
@@ -418,7 +416,7 @@ const Home = () => {
             {/* Main Heading with split animation */}
             <motion.h2
               variants={fadeInUp}
-              className="hero-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-8 leading-[1.05]"
+              className="section-title hero-display mb-8 leading-[1.05]"
             >
               <span className="block text-text-primary mb-2">
                 Your Team{' '}
@@ -583,8 +581,8 @@ const Home = () => {
                 { icon: Calendar, title: 'Smart Action', desc: 'Books, routes, or logs automatically', color: 'indigo' },
                 { icon: Bell, title: "You're Notified", desc: 'Real-time summary and recording', color: 'green' }
               ].map((step, i) => (
-                <motion.div 
-                  key={i} 
+                <motion.div
+                  key={i}
                   variants={fadeInUp}
                   whileHover={{ x: 10, scale: 1.02 }}
                   className="flex items-start gap-5 group"
@@ -693,7 +691,7 @@ const Home = () => {
               <motion.span variants={fadeInUp} className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4">
                 Try It Yourself
               </motion.span>
-              <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold text-white mb-6">
+              <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-6">
                 Don't Take Our Word For It
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-lg text-primary-100 mb-8">
@@ -775,7 +773,7 @@ const Home = () => {
             </motion.div>
             <motion.h2
               variants={fadeInUp}
-              className="hero-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-text-primary mb-6"
+              className="section-title hero-display mb-6"
             >
               Everything You Need,{' '}
               <span className="relative inline-block">
@@ -971,7 +969,7 @@ const Home = () => {
 
               <motion.h2
                 variants={fadeInUp}
-                className="section-title hero-display text-4xl lg:text-5xl"
+                className="section-title hero-display"
               >
                 Appointments Book <span className="text-gradient">Themselves</span>
               </motion.h2>
@@ -1048,7 +1046,7 @@ const Home = () => {
 
               <motion.h2
                 variants={fadeInUp}
-                className="section-title hero-display text-4xl lg:text-5xl"
+                className="section-title hero-display"
               >
                 See Every <span className="text-gradient">Interaction</span> Live
               </motion.h2>
@@ -1145,7 +1143,7 @@ const Home = () => {
             </motion.div>
             <motion.h2
               variants={fadeInUp}
-              className="section-title hero-display text-5xl md:text-6xl"
+              className="section-title hero-display"
             >
               Connects With <span className="text-gradient">Everything</span>
             </motion.h2>
@@ -1300,7 +1298,7 @@ const Home = () => {
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
             </div>
 
-            <motion.h2 variants={fadeInUp} className="hero-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-6 relative z-10">
+            <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-6 relative z-10">
               Ready to Stop Missing Calls?
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-lg md:text-xl text-primary-100 mb-10 max-w-2xl mx-auto relative z-10 leading-relaxed">

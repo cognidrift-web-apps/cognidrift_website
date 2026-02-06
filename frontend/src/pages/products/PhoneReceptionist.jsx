@@ -91,7 +91,7 @@ const PhoneReceptionist = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="bg-white rounded-2xl shadow-lg p-8 md:p-12"
         >
-          <h2 className="section-title hero-display text-3xl md:text-4xl mb-8 text-center">
+          <h2 className="section-title hero-display mb-8 text-center">
             Why Businesses Love Our <span className="text-gradient">AI Receptionist</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-4">
