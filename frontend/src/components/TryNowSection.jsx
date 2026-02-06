@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Phone, MessageSquare } from 'lucide-react'
+import { Phone, MessageSquare, ArrowRight } from 'lucide-react'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { RiMessage2Fill } from 'react-icons/ri'
 
@@ -16,6 +16,22 @@ const TryNowSection = () => {
       transition: { staggerChildren: 0.12 }
     }
   }
+
+  // Glow animation styles
+  const glowStyles = `
+    @keyframes pulse-glow-green {
+      0%, 100% { box-shadow: 0 0 15px rgba(34, 197, 94, 0.2); border-color: rgba(34, 197, 94, 0.3); }
+      50% { box-shadow: 0 0 25px rgba(34, 197, 94, 0.6); border-color: rgba(34, 197, 94, 0.8); }
+    }
+    @keyframes pulse-glow-blue {
+      0%, 100% { box-shadow: 0 0 15px rgba(37, 99, 235, 0.2); border-color: rgba(37, 99, 235, 0.3); }
+      50% { box-shadow: 0 0 25px rgba(37, 99, 235, 0.6); border-color: rgba(37, 99, 235, 0.8); }
+    }
+    @keyframes shine-sweep {
+      0% { transform: translateX(-100%) skewX(-15deg); }
+      100% { transform: translateX(200%) skewX(-15deg); }
+    }
+  `
 
   return (
     <section className="py-14 lg:py-20 bg-neutral-offWhite">
@@ -38,51 +54,82 @@ const TryNowSection = () => {
             </motion.p>
 
             {/* Contact Methods */}
+            <style>{glowStyles}</style>
             <motion.div
               variants={fadeInUp}
               className="space-y-4 mt-6"
             >
               {/* Phone Number */}
-              <div className="flex items-center gap-4 bg-white border-2 border-neutral-border rounded-xl p-4 shadow-sm overflow-hidden relative">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center">
-                  <BsFillTelephoneFill className="w-6 h-6 text-green-500" />
+              <a
+                href="tel:+18445841083"
+                className="group relative flex items-center gap-4 bg-white border-2 border-green-100 rounded-2xl p-5 overflow-hidden transition-transform hover:-translate-y-1 cursor-pointer"
+                style={{ animation: 'pulse-glow-green 3s infinite' }}
+              >
+                {/* Shine overlay */}
+                <div
+                  className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)',
+                    transform: 'translateX(-100%) skewX(-15deg)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.animation = 'shine-sweep 0.75s ease-in-out';
+                  }}
+                />
+                <div className="group-hover:animate-[shine-sweep_0.75s_ease-in-out] absolute top-0 left-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)', transform: 'translateX(-100%) skewX(-15deg)' }} />
+
+                {/* Icon Box */}
+                <div className="relative z-10 flex-shrink-0 w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30 group-hover:scale-110 transition-transform duration-300">
+                  <BsFillTelephoneFill className="w-6 h-6 text-white" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-text-secondary font-medium">Call Now</p>
-                  <p className="text-lg font-bold text-text-primary tracking-wide">
+
+                {/* Text */}
+                <div className="relative z-10 flex-1 min-w-0">
+                  <p className="font-bold text-text-primary text-lg group-hover:text-green-600 transition-colors">Call Now</p>
+                  <p className="text-xl md:text-2xl font-bold text-text-primary tracking-wide font-mono">
                     +1 (844) 584-1083
                   </p>
                   <p className="text-sm text-text-secondary mt-1">
                     Speak directly with our AI receptionist and experience real-time voice assistance.
                   </p>
                 </div>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="w-2.5 h-2.5 bg-green-400 rounded-full shadow-lg shadow-green-400/50"
-                />
-              </div>
+
+                {/* Arrow */}
+                <div className="relative z-10 text-gray-300 group-hover:text-green-500 group-hover:translate-x-1 transition-all">
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </a>
 
               {/* Text Message */}
-              <div className="flex items-center gap-4 bg-white border-2 border-neutral-border rounded-xl p-4 shadow-sm overflow-hidden relative">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
-                  <RiMessage2Fill className="w-6 h-6 text-blue-500" />
+              <a
+                href="sms:+18445841083"
+                className="group relative flex items-center gap-4 bg-white border-2 border-blue-100 rounded-2xl p-5 overflow-hidden transition-transform hover:-translate-y-1 cursor-pointer"
+                style={{ animation: 'pulse-glow-blue 3s infinite' }}
+              >
+                {/* Shine overlay */}
+                <div className="group-hover:animate-[shine-sweep_0.75s_ease-in-out] absolute top-0 left-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)', transform: 'translateX(-100%) skewX(-15deg)' }} />
+
+                {/* Icon Box */}
+                <div className="relative z-10 flex-shrink-0 w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform duration-300">
+                  <RiMessage2Fill className="w-6 h-6 text-white" />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-text-secondary font-medium">Text Message</p>
-                  <p className="text-lg font-bold text-text-primary tracking-wide">
+
+                {/* Text */}
+                <div className="relative z-10 flex-1 min-w-0">
+                  <p className="font-bold text-text-primary text-lg group-hover:text-blue-600 transition-colors">Text Now</p>
+                  <p className="text-xl md:text-2xl font-bold text-text-primary tracking-wide font-mono">
                     +1 (844) 584-1083
                   </p>
                   <p className="text-sm text-text-secondary mt-1">
                     Prefer texting? Send a message and get instant AI-powered responses anytime.
                   </p>
                 </div>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                  className="w-2.5 h-2.5 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50"
-                />
-              </div>
+
+                {/* Arrow */}
+                <div className="relative z-10 text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all">
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+              </a>
             </motion.div>
           </motion.div>
 
