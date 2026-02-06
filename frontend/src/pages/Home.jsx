@@ -23,6 +23,8 @@ import {
   SiTwilio,
   SiZapier
 } from 'react-icons/si'
+import { BsFillTelephoneFill, BsRobot, BsCalendarCheck, BsBellFill, BsShieldFillCheck, BsHouseDoorFill, BsBuildingFill } from 'react-icons/bs'
+import { FaUserMd } from 'react-icons/fa'
 import {
   Phone,
   Clock,
@@ -143,11 +145,11 @@ const WorkflowStep = ({ number, icon: Icon, title, description, isLast }) => (
 )
 
 // Industry Card Component - Enhanced with Hover Scale
-const IndustryCard = ({ icon: Icon, title, description, features, isActive }) => (
+const IndustryCard = ({ icon: Icon, title, description, features, isActive, iconBgColor, iconTextColor }) => (
   <motion.div
     whileHover={{ y: -8, scale: 1.02 }}
     transition={{ type: "spring", stiffness: 300 }}
-    className={`group relative p-6 lg:p-8 rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 ${isActive
+    className={`group relative p-6 lg:p-8 rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 h-full flex flex-col ${isActive
         ? 'border-primary-600 bg-primary-50 shadow-xl'
         : 'border-neutral-border bg-white hover:border-primary-300 hover:shadow-xl'
       }`}
@@ -157,12 +159,17 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive }) =>
 
     {/* Icon with animation */}
     <motion.div
-      className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-sm group-hover:shadow-md transition-shadow ${isActive ? 'bg-primary-600 text-white shadow-lg' : 'bg-primary-50 text-primary-600'
-        }`}
+      className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-shadow ${
+        iconBgColor
+          ? `${iconBgColor}`
+          : isActive
+            ? 'bg-primary-600 text-white shadow-lg'
+            : 'bg-primary-50 text-primary-600 shadow-sm group-hover:shadow-md'
+      }`}
       whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
       transition={{ duration: 0.5 }}
     >
-      <Icon className="w-7 h-7" />
+      <Icon className={`w-7 h-7 ${iconTextColor || ''}`} />
 
       {/* Pulse ring on hover */}
       <motion.div
@@ -179,7 +186,7 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive }) =>
     <p className="relative text-text-secondary mb-5 leading-relaxed">{description}</p>
 
     {/* Features list */}
-    <ul className="relative space-y-3">
+    <ul className="relative space-y-3 flex-grow">
       {features.map((feature, i) => (
         <li key={i} className="flex items-center gap-3 text-sm text-text-secondary font-medium">
           <Check className="w-5 h-5 text-primary-600 flex-shrink-0" />
@@ -274,28 +281,36 @@ const Home = () => {
 
   const industries = [
     {
-      icon: Stethoscope,
+      icon: FaUserMd,
       title: 'Healthcare',
       description: 'HIPAA-compliant AI for medical practices and clinics.',
-      features: ['Patient scheduling', 'Insurance verification', 'Prescription refills', 'Appointment reminders']
+      features: ['Patient scheduling', 'Insurance verification', 'Prescription refills', 'Appointment reminders'],
+      iconBgColor: 'bg-teal-500/10',
+      iconTextColor: 'text-teal-500'
     },
     {
-      icon: Briefcase,
+      icon: BsShieldFillCheck,
       title: 'Insurance',
       description: 'Handle claims inquiries and policy questions 24/7.',
-      features: ['Claims status updates', 'Policy information', 'Quote requests', 'Agent routing']
+      features: ['Claims status updates', 'Policy information', 'Quote requests', 'Agent routing'],
+      iconBgColor: 'bg-orange-500/10',
+      iconTextColor: 'text-orange-500'
     },
     {
-      icon: HomeIcon,
+      icon: BsHouseDoorFill,
       title: 'Real Estate',
       description: 'Qualify leads and schedule property viewings automatically.',
-      features: ['Lead qualification', 'Showing scheduling', 'Property inquiries', 'Agent matching']
+      features: ['Lead qualification', 'Showing scheduling', 'Property inquiries', 'Agent matching'],
+      iconBgColor: 'bg-emerald-500/10',
+      iconTextColor: 'text-emerald-500'
     },
     {
-      icon: Building2,
+      icon: BsBuildingFill,
       title: 'Professional Services',
       description: 'Custom solutions for law firms, accounting, and consulting.',
-      features: ['Consultation booking', 'Client intake', 'Document requests', 'Follow-up calls']
+      features: ['Consultation booking', 'Client intake', 'Document requests', 'Follow-up calls'],
+      iconBgColor: 'bg-violet-500/10',
+      iconTextColor: 'text-violet-500'
     }
   ]
 
@@ -576,10 +591,10 @@ const Home = () => {
               className="space-y-6"
             >
               {[
-                { icon: PhoneCall, title: 'Call Comes In', desc: 'Customer calls your business number', color: 'blue' },
-                { icon: Bot, title: 'AI Engages', desc: 'Natural conversation and intent detection', color: 'purple' },
-                { icon: Calendar, title: 'Smart Action', desc: 'Books, routes, or logs automatically', color: 'indigo' },
-                { icon: Bell, title: "You're Notified", desc: 'Real-time summary and recording', color: 'green' }
+                { icon: BsFillTelephoneFill, title: 'Call Comes In', desc: 'Customer calls your business number', color: 'blue', bgColor: 'bg-blue-500/10', textColor: 'text-blue-500' },
+                { icon: BsRobot, title: 'AI Engages', desc: 'Natural conversation and intent detection', color: 'purple', bgColor: 'bg-purple-500/10', textColor: 'text-purple-500' },
+                { icon: BsCalendarCheck, title: 'Smart Action', desc: 'Books, routes, or logs automatically', color: 'indigo', bgColor: 'bg-indigo-500/10', textColor: 'text-indigo-500' },
+                { icon: BsBellFill, title: "You're Notified", desc: 'Real-time summary and recording', color: 'green', bgColor: 'bg-green-500/10', textColor: 'text-green-500' }
               ].map((step, i) => (
                 <motion.div
                   key={i}
@@ -587,9 +602,9 @@ const Home = () => {
                   whileHover={{ x: 10, scale: 1.02 }}
                   className="flex items-start gap-5 group"
                 >
-                  <div className={`relative flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-${step.color}-500 to-${step.color}-600 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all`}>
-                    <step.icon className="w-7 h-7 text-white" />
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full border-4 border-neutral-offWhite flex items-center justify-center">
+                  <div className={`relative flex-shrink-0 w-14 h-14 rounded-2xl ${step.bgColor} flex items-center justify-center transition-all`}>
+                    <step.icon className={`w-7 h-7 ${step.textColor}`} />
+                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full border-4 border-neutral-offWhite flex items-center justify-center shadow-md">
                       <span className="text-sm font-black text-gray-900">{i + 1}</span>
                     </div>
                   </div>
@@ -658,10 +673,10 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
           >
             {industries.map((industry, i) => (
-              <motion.div key={i} variants={fadeInUp} onClick={() => setActiveIndustry(i)}>
+              <motion.div key={i} variants={fadeInUp} onClick={() => setActiveIndustry(i)} className="h-full">
                 <IndustryCard {...industry} isActive={activeIndustry === i} />
               </motion.div>
             ))}

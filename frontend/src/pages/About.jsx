@@ -104,34 +104,34 @@ const About = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-neutral-offWhite overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-neutral-200/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-neutral-200/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-cyan/10 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
             className="text-center max-w-3xl mx-auto"
           >
-            <motion.span 
+            <motion.span
               variants={fadeInUp}
-              className="inline-block text-sm uppercase tracking-wider text-text-secondary font-semibold mb-4"
+              className="section-eyebrow"
             >
               About Us
             </motion.span>
-            <motion.h1 
+            <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold text-text-primary mb-6"
+              className="section-title hero-display !mb-4"
             >
-              Building the Future of<br />Business Communication
+              Building the Future of<br /><span className="text-gradient">Business Communication</span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
-              className="text-lg text-text-secondary"
+              className="section-subtitle !mb-0"
             >
-              We're on a mission to help businesses never miss an opportunity by automating 
+              We're on a mission to help businesses <span className="font-bold text-text-primary">never miss an opportunity</span> by automating
               customer communications with intelligent AI.
             </motion.p>
           </motion.div>

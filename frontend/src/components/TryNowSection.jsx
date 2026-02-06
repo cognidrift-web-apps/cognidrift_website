@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import { Phone, Smartphone, MessageSquare, Mic, PhoneCall, ArrowRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Phone, MessageSquare } from 'lucide-react'
+import { BsFillTelephoneFill } from 'react-icons/bs'
+import { RiMessage2Fill } from 'react-icons/ri'
 
 const TryNowSection = () => {
   const fadeInUp = {
@@ -39,76 +40,49 @@ const TryNowSection = () => {
             {/* Contact Methods */}
             <motion.div
               variants={fadeInUp}
-              className="space-y-3 mb-6 mt-6"
+              className="space-y-4 mt-6"
             >
               {/* Phone Number */}
-              <motion.div
-                whileHover={{ scale: 1.02, x: 5 }}
-                className="group flex items-center gap-3 bg-white border-2 border-neutral-border hover:border-primary-300 rounded-xl p-3.5 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-xl overflow-hidden relative"
-              >
-                <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative flex-shrink-0 w-11 h-11 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                  <Phone className="w-5 h-5 text-white" />
+              <div className="flex items-center gap-4 bg-white border-2 border-neutral-border rounded-xl p-4 shadow-sm overflow-hidden relative">
+                <div className="flex-shrink-0 w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center">
+                  <BsFillTelephoneFill className="w-6 h-6 text-green-500" />
                 </div>
-                <div className="relative flex-1 min-w-0">
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-text-secondary font-medium">Call Now</p>
-                  <p className="text-lg font-bold text-text-primary tracking-wide group-hover:text-primary-600 transition-colors">
+                  <p className="text-lg font-bold text-text-primary tracking-wide">
                     +1 (844) 584-1083
+                  </p>
+                  <p className="text-sm text-text-secondary mt-1">
+                    Speak directly with our AI receptionist and experience real-time voice assistance.
                   </p>
                 </div>
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="relative w-2.5 h-2.5 bg-green-400 rounded-full shadow-lg shadow-green-400/50"
+                  className="w-2.5 h-2.5 bg-green-400 rounded-full shadow-lg shadow-green-400/50"
                 />
-              </motion.div>
+              </div>
 
               {/* Text Message */}
-              <motion.div
-                whileHover={{ scale: 1.02, x: 5 }}
-                className="group flex items-center gap-3 bg-white border-2 border-neutral-border hover:border-primary-300 rounded-xl p-3.5 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-xl overflow-hidden relative"
-              >
-                <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <div className="relative flex-shrink-0 w-11 h-11 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                  <MessageSquare className="w-5 h-5 text-white" />
+              <div className="flex items-center gap-4 bg-white border-2 border-neutral-border rounded-xl p-4 shadow-sm overflow-hidden relative">
+                <div className="flex-shrink-0 w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center">
+                  <RiMessage2Fill className="w-6 h-6 text-blue-500" />
                 </div>
-                <div className="relative flex-1 min-w-0">
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-text-secondary font-medium">Text Message</p>
-                  <p className="text-lg font-bold text-text-primary tracking-wide group-hover:text-primary-600 transition-colors">
+                  <p className="text-lg font-bold text-text-primary tracking-wide">
                     +1 (844) 584-1083
+                  </p>
+                  <p className="text-sm text-text-secondary mt-1">
+                    Prefer texting? Send a message and get instant AI-powered responses anytime.
                   </p>
                 </div>
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                  className="relative w-2.5 h-2.5 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50"
+                  className="w-2.5 h-2.5 bg-blue-400 rounded-full shadow-lg shadow-blue-400/50"
                 />
-              </motion.div>
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-3"
-            >
-              <Link to="/contact" className="flex-1">
-                <motion.button
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full btn-primary px-6 py-3.5 text-base shadow-xl flex items-center justify-center gap-2"
-                >
-                  <PhoneCall className="w-4 h-4" />
-                  Get This For Your Business
-                </motion.button>
-              </Link>
-              <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 border-2 border-primary-600 text-primary-600 px-6 py-3.5 rounded-xl font-bold text-base hover:bg-primary-50 transition-all duration-300 flex items-center justify-center gap-2"
-              >
-                <Mic className="w-4 h-4" />
-                Chat Widget Demo
-              </motion.button>
+              </div>
             </motion.div>
           </motion.div>
 

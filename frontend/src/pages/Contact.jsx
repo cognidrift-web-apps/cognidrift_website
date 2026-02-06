@@ -159,36 +159,36 @@ const Contact = () => {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-primary-600 overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-neutral-offWhite overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-cyan/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-cyan/10 rounded-full blur-3xl"></div>
         </div>
-        
+
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
             className="text-center max-w-3xl mx-auto"
           >
-            <motion.span 
+            <motion.span
               variants={fadeInUp}
-              className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4"
+              className="section-eyebrow"
             >
               Get Started
             </motion.span>
-            <motion.h1 
+            <motion.h1
               variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold text-white mb-6"
+              className="section-title hero-display !mb-4"
             >
-              Let's Transform Your<br />Customer Communications
+              Let's Transform Your<br /><span className="text-gradient">Customer Communications</span>
             </motion.h1>
-            <motion.p 
+            <motion.p
               variants={fadeInUp}
-              className="text-lg text-primary-100"
+              className="section-subtitle !mb-0"
             >
-              Book a demo to see how CogniDrift can help your business never miss another call.
+              Book a demo to see how CogniDrift can help your business <span className="font-bold text-text-primary">never miss another call</span>.
             </motion.p>
           </motion.div>
         </div>

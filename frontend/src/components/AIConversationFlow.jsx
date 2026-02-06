@@ -15,15 +15,15 @@ const AIConversationFlow = () => {
 
   const sampleConversation = [
     { type: 'user', text: "Hi, I'd like to book an appointment", delay: 0 },
-    { type: 'ai', text: "Of course! I'd be happy to help. What service are you interested in?", delay: 1500 },
-    { type: 'user', text: "Dental cleaning", delay: 3000 },
-    { type: 'ai', text: "Great! What date and time works best for you?", delay: 4500 }
+    { type: 'ai', text: "Of course! I'd be happy to help. What service are you interested in?", delay: 800 },
+    { type: 'user', text: "Dental cleaning", delay: 1600 },
+    { type: 'ai', text: "Great! What date and time works best for you?", delay: 2400 }
   ]
 
   useEffect(() => {
     const stepInterval = setInterval(() => {
       setActiveStep(prev => (prev + 1) % conversationSteps.length)
-    }, 2500)
+    }, 1200)
 
     const messageTimers = sampleConversation.map((msg, i) => 
       setTimeout(() => {
@@ -83,7 +83,7 @@ const AIConversationFlow = () => {
                   <div key={i} className="flex-1">
                     <motion.div
                       animate={isActive ? { scale: [1, 1.1, 1] } : {}}
-                      transition={{ duration: 0.6, repeat: isActive ? Infinity : 0 }}
+                      transition={{ duration: 0.3, repeat: isActive ? Infinity : 0 }}
                       className="relative"
                     >
                       {/* Step Circle */}
@@ -92,7 +92,7 @@ const AIConversationFlow = () => {
                           backgroundColor: isActive || isPassed ? 'white' : '#e5e7eb',
                           borderColor: isActive || isPassed ? '#4f46e5' : '#d1d5db'
                         }}
-                        className={`w-16 h-16 mx-auto rounded-2xl border-4 flex items-center justify-center shadow-lg transition-all duration-500 ${
+                        className={`w-16 h-16 mx-auto rounded-2xl border-4 flex items-center justify-center shadow-lg transition-all duration-300 ${
                           isActive ? 'shadow-indigo-500/50' : ''
                         }`}
                       >
@@ -102,8 +102,8 @@ const AIConversationFlow = () => {
                             rotate: isActive ? [0, 360] : 0
                           }}
                           transition={{
-                            scale: { duration: 1, repeat: isActive ? Infinity : 0 },
-                            rotate: { duration: 2, repeat: isActive ? Infinity : 0, ease: 'linear' }
+                            scale: { duration: 0.5, repeat: isActive ? Infinity : 0 },
+                            rotate: { duration: 1, repeat: isActive ? Infinity : 0, ease: 'linear' }
                           }}
                         >
                           <step.icon className={`w-7 h-7 ${isActive || isPassed ? 'text-indigo-600' : 'text-gray-400'}`} />
@@ -127,7 +127,7 @@ const AIConversationFlow = () => {
                         >
                           <motion.div
                             animate={{ scale: [1, 1.5, 1], opacity: [1, 0] }}
-                            transition={{ duration: 1.5, repeat: Infinity }}
+                            transition={{ duration: 0.8, repeat: Infinity }}
                             className="absolute inset-0 bg-green-400 rounded-full"
                           />
                           <div className="relative w-3 h-3 bg-white rounded-full" />
@@ -139,7 +139,7 @@ const AIConversationFlow = () => {
                         <motion.div
                           initial={{ scaleX: 0 }}
                           animate={{ scaleX: isPassed ? 1 : 0 }}
-                          transition={{ duration: 0.5 }}
+                          transition={{ duration: 0.3 }}
                           className={`absolute top-8 left-[calc(50%+32px)] w-[calc(100%-64px)] h-1 bg-gradient-to-r ${colorClasses[step.color]} origin-left`}
                         />
                       )}
@@ -229,7 +229,7 @@ const AIConversationFlow = () => {
                         <motion.div
                           key={i}
                           animate={{ y: [0, -8, 0] }}
-                          transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.2 }}
+                          transition={{ duration: 0.4, repeat: Infinity, delay: i * 0.1 }}
                           className="w-2 h-2 bg-gray-400 rounded-full"
                         />
                       ))}
@@ -251,9 +251,9 @@ const AIConversationFlow = () => {
               opacity: [0, 1, 0]
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 1.5 + Math.random() * 1,
               repeat: Infinity,
-              delay: i * 0.5
+              delay: i * 0.2
             }}
             className="absolute w-2 h-2 bg-indigo-400 rounded-full blur-sm"
             style={{
