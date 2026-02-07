@@ -64,24 +64,10 @@ const VideoShowcaseSection = () => {
       ref={sectionRef}
       className="relative py-20 lg:py-28 overflow-hidden bg-neutral-offWhite"
     >
-      {/* Background Elements */}
+      {/* Background Elements - Using CSS animations for better performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -20, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[20%] left-[5%] w-[300px] h-[300px] bg-cyan-100/50 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -20, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-purple-100/50 rounded-full blur-3xl"
-        />
+        <div className="absolute top-[20%] left-[5%] w-[300px] h-[300px] bg-cyan-100/50 rounded-full blur-3xl animate-float-slow" />
+        <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-purple-100/50 rounded-full blur-3xl animate-float-slower" />
       </div>
 
       <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,38 +128,24 @@ const VideoShowcaseSection = () => {
 
             {/* Video Container with Glow Effect */}
             <div className="relative">
-              {/* Outer Glow Effect */}
-              <motion.div
-                animate={{
-                  opacity: [0.5, 0.8, 0.5],
-                  scale: [1, 1.02, 1]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -inset-3 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-[2rem] blur-xl"
-              />
+              {/* Outer Glow Effect - Using CSS animation */}
+              <div className="absolute -inset-3 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-[2rem] blur-xl animate-pulse-glow" />
 
               {/* Secondary Glow */}
               <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-3xl opacity-20 blur-md" />
 
               {/* Liquid Glass Frame */}
-              <div className="relative backdrop-blur-2xl bg-white/40 border-2 border-white/60 rounded-3xl p-2 shadow-2xl">
+              <div className="relative backdrop-blur-xl bg-white/40 border-2 border-white/60 rounded-3xl p-2 shadow-2xl">
                 {/* Inner glass shine */}
                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/50 via-transparent to-white/20 pointer-events-none" />
 
                 {/* Video wrapper */}
-                <div className="relative rounded-2xl overflow-hidden bg-gray-900 aspect-video shadow-inner">
-                  <video
+                <div className="relative rounded-2xl overflow-hidden bg-gray-900 aspect-video shadow-inner will-change-transform">
+                  <img
+                    src="/hero.gif"
+                    alt="Hero Animation"
                     className="w-full h-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  >
-                    <source src="/hero.mp4" type="video/mp4" />
-                  </video>
-
-                  {/* Subtle video overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
+                  />
                 </div>
 
                 {/* Corner accents */}
@@ -181,21 +153,13 @@ const VideoShowcaseSection = () => {
                 <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-purple-400/50 rounded-br-3xl pointer-events-none" />
               </div>
 
-              {/* Decorative dots */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -bottom-6 -left-6 w-12 h-12 hidden lg:block"
-              >
+              {/* Decorative dots - Using CSS animation */}
+              <div className="absolute -bottom-6 -left-6 w-12 h-12 hidden lg:block animate-spin-slow">
                 <div className="w-full h-full border-2 border-dashed border-cyan-300 rounded-full" />
-              </motion.div>
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute -top-6 -right-6 w-10 h-10 hidden lg:block"
-              >
+              </div>
+              <div className="absolute -top-6 -right-6 w-10 h-10 hidden lg:block animate-spin-slower">
                 <div className="w-full h-full border-2 border-dashed border-purple-300 rounded-full" />
-              </motion.div>
+              </div>
             </div>
           </motion.div>
 
