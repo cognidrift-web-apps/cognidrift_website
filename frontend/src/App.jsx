@@ -32,6 +32,7 @@ const CallCenters = lazy(() => import('./pages/solutions/CallCenters'))
 
 // Resources Pages
 const Blog = lazy(() => import('./pages/resources/Blog'))
+const BlogPost = lazy(() => import('./pages/resources/BlogPost'))
 const CaseStudies = lazy(() => import('./pages/resources/CaseStudies'))
 const HelpCenter = lazy(() => import('./pages/resources/HelpCenter'))
 
@@ -87,6 +88,7 @@ function App() {
 
               {/* Resources Routes */}
               <Route path="/resources/blog" element={<Blog />} />
+              <Route path="/resources/blog/:slug" element={<BlogPost />} />
               <Route path="/resources/case-studies" element={<CaseStudies />} />
               <Route path="/resources/help-center" element={<HelpCenter />} />
 

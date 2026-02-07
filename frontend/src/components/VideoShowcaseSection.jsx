@@ -7,6 +7,8 @@ import {
 } from 'lucide-react'
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { HiSparkles } from 'react-icons/hi'
+import { BsFillCalendarCheckFill, BsChatDotsFill } from 'react-icons/bs'
+import { IoTrendingUpSharp } from 'react-icons/io5'
 
 const VideoShowcaseSection = () => {
   const sectionRef = useRef(null)
@@ -18,31 +20,31 @@ const VideoShowcaseSection = () => {
       icon: BsFillTelephoneFill,
       title: "New call answered",
       subtitle: "Sarah from ABC Corp",
-      color: "from-green-400 to-emerald-500",
+      iconColor: "text-green-500",
       position: "top-[10%] -left-4 lg:-left-8",
       delay: 0
     },
     {
-      icon: Calendar,
+      icon: BsFillCalendarCheckFill,
       title: "Appointment booked",
       subtitle: "Tomorrow at 2:00 PM",
-      color: "from-blue-400 to-cyan-500",
+      iconColor: "text-blue-500",
       position: "top-[35%] -right-4 lg:-right-10",
       delay: 0.3
     },
     {
-      icon: MessageSquare,
+      icon: BsChatDotsFill,
       title: "Lead captured",
       subtitle: "John D. requested demo",
-      color: "from-purple-400 to-pink-500",
+      iconColor: "text-purple-500",
       position: "bottom-[30%] -left-4 lg:-left-12",
       delay: 0.6
     },
     {
-      icon: TrendingUp,
+      icon: IoTrendingUpSharp,
       title: "Conversion +24%",
       subtitle: "This week's performance",
-      color: "from-orange-400 to-red-500",
+      iconColor: "text-orange-500",
       position: "bottom-[10%] -right-4 lg:-right-6",
       delay: 0.9
     }
@@ -129,20 +131,24 @@ const VideoShowcaseSection = () => {
                   }}
                 >
                   {/* Liquid Glass Notification Card */}
-                  <div className="relative backdrop-blur-xl bg-white/70 border border-white/80 rounded-2xl p-3 pr-5 shadow-xl shadow-black/5 min-w-[180px]">
-                    {/* Glass shine */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/80 via-white/20 to-transparent pointer-events-none" />
+                  <div className="relative backdrop-blur-2xl bg-white/20 border border-white/40 rounded-2xl p-3 pr-5 shadow-2xl shadow-black/10 min-w-[180px]" style={{ backdropFilter: 'blur(20px) saturate(180%)' }}>
+                    {/* Glass shimmer effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-white/10 to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 opacity-10 rounded-2xl" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
+                    
+                    {/* Glow edge effect */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/20 to-transparent opacity-50" />
 
                     <div className="relative flex items-center gap-3">
-                      {/* Icon */}
-                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${notification.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
-                        <notification.icon className="w-5 h-5 text-white" />
+                      {/* Transparent Colorful Icon */}
+                      <div className="w-10 h-10 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center shadow-lg flex-shrink-0 border border-white/20">
+                        <notification.icon className={`w-5 h-5 ${notification.iconColor}`} />
                       </div>
 
                       {/* Content */}
                       <div className="min-w-0">
                         <p className="text-sm font-semibold text-gray-900 truncate">{notification.title}</p>
-                        <p className="text-xs text-gray-500 truncate">{notification.subtitle}</p>
+                        <p className="text-xs text-gray-600 truncate">{notification.subtitle}</p>
                       </div>
                     </div>
 
