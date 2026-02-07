@@ -1,344 +1,317 @@
 import { motion, useInView } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
+import { Link } from 'react-router-dom'
 import {
-  Phone, MessageSquare, Calendar, BarChart3, Users, Zap,
-  Bot, Mic, Shield, Clock, Globe, Sparkles, Play, Pause,
-  PhoneCall, Bell, CheckCircle, TrendingUp, Headphones
+  Phone, Calendar, Users, Zap, Clock, Globe, Sparkles,
+  CheckCircle, ArrowRight, Bell, MessageSquare, TrendingUp
 } from 'lucide-react'
-import { BsFillTelephoneFill, BsRobot, BsChatDotsFill, BsGraphUpArrow } from 'react-icons/bs'
-import { HiSparkles, HiLightningBolt } from 'react-icons/hi'
-import { RiCustomerService2Fill, RiVoiceprintFill } from 'react-icons/ri'
-import { IoAnalytics, IoShieldCheckmark } from 'react-icons/io5'
+import { BsFillTelephoneFill } from 'react-icons/bs'
+import { HiSparkles } from 'react-icons/hi'
 
 const VideoShowcaseSection = () => {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
-  const [isPlaying, setIsPlaying] = useState(true)
-  const videoRef = useRef(null)
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
+  // Floating notifications around the video
+  const notifications = [
+    {
+      icon: BsFillTelephoneFill,
+      title: "New call answered",
+      subtitle: "Sarah from ABC Corp",
+      time: "Just now",
+      color: "from-green-400 to-emerald-500",
+      position: "top-[10%] -left-4 lg:-left-8",
+      delay: 0
+    },
+    {
+      icon: Calendar,
+      title: "Appointment booked",
+      subtitle: "Tomorrow at 2:00 PM",
+      time: "2m ago",
+      color: "from-blue-400 to-cyan-500",
+      position: "top-[35%] -right-4 lg:-right-10",
+      delay: 0.3
+    },
+    {
+      icon: MessageSquare,
+      title: "Lead captured",
+      subtitle: "John D. requested demo",
+      time: "5m ago",
+      color: "from-purple-400 to-pink-500",
+      position: "bottom-[30%] -left-4 lg:-left-12",
+      delay: 0.6
+    },
+    {
+      icon: TrendingUp,
+      title: "Conversion +24%",
+      subtitle: "This week's performance",
+      time: "1h ago",
+      color: "from-orange-400 to-red-500",
+      position: "bottom-[10%] -right-4 lg:-right-6",
+      delay: 0.9
     }
-  }
-
-  // Floating feature items with colorful transparent icons
-  const floatingFeatures = [
-    { icon: BsFillTelephoneFill, label: "24/7 Calls", color: "from-cyan-400 to-blue-500", position: "top-[15%] left-[5%]", delay: 0 },
-    { icon: BsRobot, label: "AI Powered", color: "from-purple-400 to-pink-500", position: "top-[10%] right-[8%]", delay: 0.2 },
-    { icon: BsChatDotsFill, label: "Smart Chat", color: "from-green-400 to-emerald-500", position: "bottom-[25%] left-[3%]", delay: 0.4 },
-    { icon: BsGraphUpArrow, label: "Analytics", color: "from-orange-400 to-red-500", position: "bottom-[20%] right-[5%]", delay: 0.6 },
-    { icon: RiCustomerService2Fill, label: "Support", color: "from-indigo-400 to-violet-500", position: "top-[40%] left-[2%]", delay: 0.8 },
-    { icon: IoShieldCheckmark, label: "Secure", color: "from-teal-400 to-cyan-500", position: "top-[35%] right-[3%]", delay: 1 },
   ]
 
-  // Stats with liquid glass effect
-  const stats = [
-    { value: "99.9%", label: "Uptime", icon: Zap },
-    { value: "500+", label: "Businesses", icon: Users },
-    { value: "<3s", label: "Response", icon: Clock },
-    { value: "50+", label: "Languages", icon: Globe }
+  const features = [
+    { icon: Clock, text: "24/7 availability, never miss a call" },
+    { icon: Globe, text: "50+ languages supported" },
+    { icon: Users, text: "Handle unlimited concurrent calls" },
+    { icon: Zap, text: "Instant response, zero wait time" }
   ]
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-white"
+      className="relative py-20 lg:py-28 overflow-hidden bg-neutral-offWhite"
     >
-      {/* Animated Background Gradients */}
+      {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-            scale: [1, 1.1, 1]
+            x: [0, 30, 0],
+            y: [0, -20, 0],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] left-[10%] w-[400px] h-[400px] bg-gradient-to-br from-cyan-200/40 to-blue-200/40 rounded-full blur-3xl"
+          className="absolute top-[20%] left-[5%] w-[300px] h-[300px] bg-cyan-100/50 rounded-full blur-3xl"
         />
         <motion.div
           animate={{
-            x: [0, -40, 0],
-            y: [0, -20, 0],
-            scale: [1.1, 1, 1.1]
+            x: [0, -20, 0],
+            y: [0, 30, 0],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[10%] right-[10%] w-[500px] h-[500px] bg-gradient-to-br from-purple-200/40 to-pink-200/40 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, 30, 0],
-            y: [0, -40, 0]
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-indigo-100/30 to-violet-100/30 rounded-full blur-3xl"
+          className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] bg-purple-100/50 rounded-full blur-3xl"
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
+      <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* Left Side - Video with Floating Notifications */}
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/40 shadow-lg shadow-purple-500/10"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8 }}
+            className="relative order-2 lg:order-1"
           >
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            >
-              <HiSparkles className="w-5 h-5 text-purple-500" />
-            </motion.div>
-            <span className="text-sm font-bold uppercase tracking-wider bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              See It In Action
-            </span>
-          </motion.div>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            Experience the{' '}
-            <span className="relative inline-block">
-              <span className="bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Future
-              </span>
-              <motion.svg
-                className="absolute -bottom-2 left-0 w-full"
-                height="8"
-                viewBox="0 0 200 8"
-                initial={{ pathLength: 0 }}
-                animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-                transition={{ duration: 1.5, delay: 0.5 }}
+            {/* Floating Notifications */}
+            {notifications.map((notification, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={isInView ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.8, y: 20 }}
+                transition={{ delay: notification.delay + 0.5, duration: 0.5, type: "spring" }}
+                className={`absolute ${notification.position} z-20 hidden md:block`}
               >
-                <motion.path
-                  d="M0,4 Q50,0 100,4 T200,4"
-                  stroke="url(#gradient)"
-                  strokeWidth="3"
-                  fill="none"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#06b6d4" />
-                    <stop offset="50%" stopColor="#3b82f6" />
-                    <stop offset="100%" stopColor="#8b5cf6" />
-                  </linearGradient>
-                </defs>
-              </motion.svg>
-            </span>
-            {' '}of Business
-          </h2>
+                <motion.div
+                  animate={{
+                    y: [0, -8, 0],
+                  }}
+                  transition={{
+                    duration: 3 + index * 0.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  {/* Liquid Glass Notification Card */}
+                  <div className="relative backdrop-blur-xl bg-white/70 border border-white/80 rounded-2xl p-3 pr-5 shadow-xl shadow-black/5 min-w-[180px]">
+                    {/* Glass shine */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/80 via-white/20 to-transparent pointer-events-none" />
 
-          <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Watch how our AI receptionist handles real conversations, schedules appointments,
-            and never misses a beat — 24 hours a day, 7 days a week.
-          </p>
-        </motion.div>
+                    <div className="relative flex items-center gap-3">
+                      {/* Icon */}
+                      <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${notification.color} flex items-center justify-center shadow-lg flex-shrink-0`}>
+                        <notification.icon className="w-5 h-5 text-white" />
+                      </div>
 
-        {/* Main Video Container with Floating Elements */}
-        <div className="relative max-w-5xl mx-auto">
-          {/* Floating Feature Cards - Colorful Transparent Icons */}
-          {floatingFeatures.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
-              transition={{ delay: feature.delay + 0.5, duration: 0.5, type: "spring" }}
-              className={`absolute ${feature.position} z-20 hidden lg:block`}
-            >
+                      {/* Content */}
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold text-gray-900 truncate">{notification.title}</p>
+                        <p className="text-xs text-gray-500 truncate">{notification.subtitle}</p>
+                      </div>
+                    </div>
+
+                    {/* Time badge */}
+                    <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-white rounded-full shadow-md border border-gray-100">
+                      <span className="text-[10px] font-medium text-gray-500">{notification.time}</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+
+            {/* Video Container with Glow Effect */}
+            <div className="relative">
+              {/* Outer Glow Effect */}
               <motion.div
                 animate={{
-                  y: [0, -10, 0],
-                  rotate: [0, 3, -3, 0]
+                  opacity: [0.5, 0.8, 0.5],
+                  scale: [1, 1.02, 1]
                 }}
-                transition={{
-                  duration: 4 + index * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="group cursor-pointer"
-              >
-                {/* Liquid Glass Card */}
-                <div className="relative backdrop-blur-xl bg-white/40 border border-white/50 rounded-2xl p-4 shadow-xl shadow-black/5 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 hover:scale-110">
-                  {/* Glass shine effect */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/60 via-transparent to-transparent pointer-events-none" />
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -inset-3 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-[2rem] blur-xl"
+              />
 
-                  {/* Icon with gradient background */}
-                  <div className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${feature.color} p-0.5 mb-2 shadow-lg`}>
-                    <div className="w-full h-full rounded-[10px] bg-white/90 backdrop-blur-sm flex items-center justify-center">
-                      <feature.icon className={`w-6 h-6 bg-gradient-to-br ${feature.color} bg-clip-text`} style={{ color: 'transparent', background: `linear-gradient(135deg, var(--tw-gradient-stops))`, WebkitBackgroundClip: 'text', backgroundClip: 'text' }} />
-                      {/* Fallback colored icon */}
-                      <feature.icon className={`w-6 h-6 absolute`} style={{
-                        background: `linear-gradient(135deg, ${feature.color.includes('cyan') ? '#22d3ee, #3b82f6' :
-                          feature.color.includes('purple') ? '#a855f7, #ec4899' :
-                          feature.color.includes('green') ? '#4ade80, #10b981' :
-                          feature.color.includes('orange') ? '#fb923c, #ef4444' :
-                          feature.color.includes('indigo') ? '#818cf8, #8b5cf6' :
-                          '#2dd4bf, #22d3ee'})`,
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text'
-                      }} />
-                    </div>
-                    {/* Pulse ring */}
-                    <motion.div
-                      animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                      className={`absolute inset-0 rounded-xl bg-gradient-to-br ${feature.color} opacity-30`}
-                    />
-                  </div>
+              {/* Secondary Glow */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-3xl opacity-20 blur-md" />
 
-                  <span className="relative text-xs font-bold text-gray-700">{feature.label}</span>
+              {/* Liquid Glass Frame */}
+              <div className="relative backdrop-blur-2xl bg-white/40 border-2 border-white/60 rounded-3xl p-2 shadow-2xl">
+                {/* Inner glass shine */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/50 via-transparent to-white/20 pointer-events-none" />
+
+                {/* Video wrapper */}
+                <div className="relative rounded-2xl overflow-hidden bg-gray-900 aspect-video shadow-inner">
+                  <video
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  >
+                    <source src="/hero.mp4" type="video/mp4" />
+                  </video>
+
+                  {/* Subtle video overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent pointer-events-none" />
                 </div>
-              </motion.div>
-            </motion.div>
-          ))}
 
-          {/* Video Container with Liquid Glass Frame */}
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
-            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.95 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
-          >
-            {/* Outer glow */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 rounded-[2rem] blur-2xl" />
-
-            {/* Liquid Glass Frame */}
-            <div className="relative backdrop-blur-2xl bg-white/30 border-2 border-white/50 rounded-3xl p-3 shadow-2xl shadow-purple-500/10">
-              {/* Inner glass shine */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/40 via-transparent to-white/10 pointer-events-none" />
-
-              {/* Video wrapper */}
-              <div className="relative rounded-2xl overflow-hidden bg-gray-900 aspect-video shadow-inner">
-                <video
-                  ref={videoRef}
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                >
-                  <source src="/hero.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-
-                {/* Video overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-
-                {/* Play/Pause Button */}
-                <motion.button
-                  onClick={togglePlay}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="absolute bottom-6 right-6 z-10"
-                >
-                  <div className="relative backdrop-blur-xl bg-white/20 border border-white/30 rounded-full p-4 shadow-lg hover:bg-white/30 transition-all duration-300">
-                    {isPlaying ? (
-                      <Pause className="w-6 h-6 text-white" />
-                    ) : (
-                      <Play className="w-6 h-6 text-white ml-0.5" />
-                    )}
-                  </div>
-                </motion.button>
-
-                {/* Live indicator */}
-                <div className="absolute top-6 left-6 z-10">
-                  <div className="backdrop-blur-xl bg-white/20 border border-white/30 rounded-full px-4 py-2 flex items-center gap-2">
-                    <motion.div
-                      animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="w-2 h-2 bg-red-500 rounded-full"
-                    />
-                    <span className="text-white text-sm font-semibold">Live Demo</span>
-                  </div>
-                </div>
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-20 h-20 border-l-2 border-t-2 border-cyan-400/50 rounded-tl-3xl pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-purple-400/50 rounded-br-3xl pointer-events-none" />
               </div>
+
+              {/* Decorative dots */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute -bottom-6 -left-6 w-12 h-12 hidden lg:block"
+              >
+                <div className="w-full h-full border-2 border-dashed border-cyan-300 rounded-full" />
+              </motion.div>
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                className="absolute -top-6 -right-6 w-10 h-10 hidden lg:block"
+              >
+                <div className="w-full h-full border-2 border-dashed border-purple-300 rounded-full" />
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* Decorative elements */}
+          {/* Right Side - Content */}
           <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="absolute -top-10 -right-10 w-20 h-20 border-2 border-dashed border-purple-200 rounded-full hidden lg:block"
-          />
-          <motion.div
-            animate={{ rotate: -360 }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-10 -left-10 w-16 h-16 border-2 border-dashed border-cyan-200 rounded-full hidden lg:block"
-          />
-        </div>
-
-        {/* Stats Row with Liquid Glass Effect */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 max-w-4xl mx-auto"
-        >
-          {stats.map((stat, index) => (
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="order-1 lg:order-2"
+          >
+            {/* Badge */}
             <motion.div
-              key={index}
-              whileHover={{ y: -5, scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="group relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg"
             >
-              {/* Liquid Glass Card */}
-              <div className="relative backdrop-blur-xl bg-white/50 border border-white/60 rounded-2xl p-6 text-center shadow-lg shadow-purple-500/5 hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-500 overflow-hidden">
-                {/* Glass shine */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent pointer-events-none rounded-2xl" />
-
-                {/* Hover gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
-
-                {/* Icon */}
-                <motion.div
-                  whileHover={{ rotate: [0, -10, 10, 0] }}
-                  transition={{ duration: 0.5 }}
-                  className="relative inline-flex mb-3"
-                >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500/10 to-purple-500/10 flex items-center justify-center">
-                    <stat.icon className="w-6 h-6 text-purple-600" />
-                  </div>
-                </motion.div>
-
-                {/* Value */}
-                <div className="relative text-3xl lg:text-4xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-1">
-                  {stat.value}
-                </div>
-
-                {/* Label */}
-                <div className="relative text-sm text-gray-600 font-medium">
-                  {stat.label}
-                </div>
-              </div>
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+              >
+                <HiSparkles className="w-4 h-4 text-purple-500" />
+              </motion.div>
+              <span className="text-sm font-bold uppercase tracking-wider text-purple-600">
+                See It In Action
+              </span>
             </motion.div>
-          ))}
-        </motion.div>
-      </div>
 
-      {/* Custom CSS for glass effects */}
-      <style>{`
-        @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
-        }
-        .animate-shimmer {
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-          background-size: 200% 100%;
-          animation: shimmer 3s infinite;
-        }
-      `}</style>
+            {/* Title */}
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              Your AI Receptionist,{' '}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  Working 24/7
+                </span>
+                <motion.svg
+                  className="absolute -bottom-1 left-0 w-full"
+                  height="6"
+                  viewBox="0 0 200 6"
+                  initial={{ pathLength: 0 }}
+                  animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
+                  transition={{ duration: 1.5, delay: 0.8 }}
+                >
+                  <motion.path
+                    d="M0,3 Q50,0 100,3 T200,3"
+                    stroke="url(#underlineGradient)"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeLinecap="round"
+                  />
+                  <defs>
+                    <linearGradient id="underlineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#06b6d4" />
+                      <stop offset="50%" stopColor="#3b82f6" />
+                      <stop offset="100%" stopColor="#8b5cf6" />
+                    </linearGradient>
+                  </defs>
+                </motion.svg>
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+              Watch our AI handle real conversations, schedule appointments, capture leads,
+              and never miss a call — even at 3 AM. It's like having your best employee
+              work around the clock, without the overtime.
+            </p>
+
+            {/* Features List */}
+            <div className="space-y-4 mb-8">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
+                  transition={{ delay: 0.5 + index * 0.1 }}
+                  className="flex items-center gap-3 group"
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-50 to-purple-50 border border-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <feature.icon className="w-5 h-5 text-blue-600" />
+                  </div>
+                  <span className="text-gray-700 font-medium">{feature.text}</span>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ delay: 0.9 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <Link to="/contact">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-primary w-full sm:w-auto"
+                >
+                  Get Started Today
+                  <ArrowRight className="w-5 h-5" />
+                </motion.button>
+              </Link>
+              <Link to="/products/phone-receptionist">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-gray-700 bg-white border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  Learn More
+                </motion.button>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   )
 }
