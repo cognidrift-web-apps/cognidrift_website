@@ -259,9 +259,9 @@ const TryNowSection = () => {
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative hidden lg:flex justify-center"
+            className="relative flex justify-center mt-8 lg:mt-0"
           >
-            <div className="relative w-[280px]">
+            <div className="relative w-[240px] sm:w-[260px] lg:w-[280px]">
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-primary-200/40 rounded-[2.5rem] blur-3xl scale-110"></div>
 
@@ -511,7 +511,7 @@ const TryNowSection = () => {
                     animate={{ opacity: 1, scale: 1, x: 0 }}
                     exit={{ opacity: 0, scale: 0.8, x: -20 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
-                    className="absolute -left-28 top-24 w-40 z-20 hidden xl:block"
+                    className="absolute -left-20 sm:-left-24 lg:-left-28 top-16 sm:top-20 lg:top-24 w-32 sm:w-36 lg:w-40 z-20"
                   >
                   {/* Bubble with right tail */}
                   <div className="relative">
@@ -574,7 +574,7 @@ const TryNowSection = () => {
                   animate={{ opacity: 1, scale: 1, x: 0 }}
                   exit={{ opacity: 0, scale: 0.8, x: 20 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
-                  className="absolute -right-32 bottom-36 w-44 z-20 hidden xl:block"
+                  className="absolute -right-20 sm:-right-28 lg:-right-32 bottom-24 sm:bottom-32 lg:bottom-36 w-36 sm:w-40 lg:w-44 z-20"
                 >
                   {/* Bubble with left tail */}
                   <div className="relative">

@@ -67,6 +67,39 @@ const VideoShowcaseSection = () => {
       </div>
 
       <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Mobile: Title and Description First */}
+        <div className="lg:hidden mb-8">
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg"
+          >
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            >
+              <HiSparkles className="w-4 h-4 text-purple-500" />
+            </motion.div>
+            <span className="text-sm font-bold uppercase tracking-wider text-purple-600">
+              See It In Action
+            </span>
+          </motion.div>
+
+          {/* Title */}
+          <h2 className="section-title hero-display !mb-6">
+            Your AI Receptionist, <span className="text-gradient">Working 24/7</span>
+          </h2>
+
+          {/* Description */}
+          <p className="text-lg text-gray-600 mb-0 leading-relaxed">
+            Watch our AI handle real conversations, schedule appointments, capture leads,
+            and never miss a call — even at 3 AM. It's like having your best employee
+            work around the clock, without the overtime.
+          </p>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* Left Side - Video with Floating Notifications */}
@@ -74,7 +107,7 @@ const VideoShowcaseSection = () => {
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
-            className="relative order-2 lg:order-1"
+            className="relative order-1 lg:order-1"
           >
             {/* Floating Notifications */}
             {notifications.map((notification, index) => (
@@ -160,14 +193,14 @@ const VideoShowcaseSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="order-1 lg:order-2"
+            className="order-2 lg:order-2"
           >
-            {/* Badge */}
+            {/* Badge - Desktop Only */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg"
+              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg"
             >
               <motion.div
                 animate={{ rotate: [0, 360] }}
@@ -180,13 +213,13 @@ const VideoShowcaseSection = () => {
               </span>
             </motion.div>
 
-            {/* Title */}
-            <h2 className="section-title hero-display !mb-6">
+            {/* Title - Desktop Only */}
+            <h2 className="hidden lg:block section-title hero-display !mb-6">
               Your AI Receptionist, <span className="text-gradient">Working 24/7</span>
             </h2>
 
-            {/* Description */}
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            {/* Description - Desktop Only */}
+            <p className="hidden lg:block text-lg text-gray-600 mb-8 leading-relaxed">
               Watch our AI handle real conversations, schedule appointments, capture leads,
               and never miss a call — even at 3 AM. It's like having your best employee
               work around the clock, without the overtime.

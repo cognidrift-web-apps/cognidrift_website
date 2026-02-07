@@ -125,8 +125,8 @@ const FeatureCard = ({ icon: Icon, title, description, index }) => {
       <div className="icon-wrapper">
         <Icon className="w-6 h-6 text-primary-600" />
       </div>
-      <h3 className="text-xl lg:text-2xl font-bold text-text-primary mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
-      <p className="text-text-secondary leading-relaxed">{description}</p>
+      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-text-primary mb-2 sm:mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
+      <p className="text-sm sm:text-base text-text-secondary leading-relaxed">{description}</p>
     </motion.div>
   )
 }
@@ -150,7 +150,7 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive, icon
   <motion.div
     whileHover={{ y: -8, scale: 1.02 }}
     transition={{ type: "spring", stiffness: 300 }}
-    className={`group relative p-6 lg:p-8 rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 h-full flex flex-col ${isActive
+    className={`group relative p-5 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 h-full flex flex-col ${isActive
         ? 'border-primary-600 bg-primary-50 shadow-xl'
         : 'border-neutral-border bg-white hover:border-primary-300 hover:shadow-xl'
       }`}
@@ -160,7 +160,7 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive, icon
 
     {/* Icon with animation */}
     <motion.div
-      className={`relative w-14 h-14 rounded-2xl flex items-center justify-center mb-5 transition-shadow ${
+      className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-5 transition-shadow ${
         iconBgColor
           ? `${iconBgColor}`
           : isActive
@@ -170,27 +170,27 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive, icon
       whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
       transition={{ duration: 0.5 }}
     >
-      <Icon className={`w-7 h-7 ${iconTextColor || ''}`} />
+      <Icon className={`w-6 h-6 sm:w-7 sm:h-7 ${iconTextColor || ''}`} />
 
       {/* Pulse ring on hover */}
       <motion.div
-        className={`absolute inset-0 rounded-2xl bg-primary-400 opacity-0 group-hover:opacity-20`}
+        className={`absolute inset-0 rounded-xl sm:rounded-2xl bg-primary-400 opacity-0 group-hover:opacity-20`}
         animate={{ scale: [1, 1.3, 1] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
       />
     </motion.div>
 
     {/* Title */}
-    <h3 className="relative text-xl lg:text-2xl font-bold text-text-primary mb-3 group-hover:text-primary-600 transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
+    <h3 className="relative text-lg sm:text-xl lg:text-2xl font-bold text-text-primary mb-2 sm:mb-3 group-hover:text-primary-600 transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
 
     {/* Description */}
-    <p className="relative text-text-secondary mb-5 leading-relaxed">{description}</p>
+    <p className="relative text-sm sm:text-base text-text-secondary mb-4 sm:mb-5 leading-relaxed">{description}</p>
 
     {/* Features list */}
-    <ul className="relative space-y-3 flex-grow">
+    <ul className="relative space-y-2 sm:space-y-3 flex-grow">
       {features.map((feature, i) => (
-        <li key={i} className="flex items-center gap-3 text-sm text-text-secondary font-medium">
-          <Check className="w-5 h-5 text-primary-600 flex-shrink-0" />
+        <li key={i} className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-text-secondary font-medium">
+          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 flex-shrink-0" />
           {feature}
         </li>
       ))}
@@ -412,7 +412,7 @@ const Home = () => {
       <VideoShowcaseSection />
 
       {/* Problem Section - Enhanced Typography */}
-      <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-32 bg-white overflow-hidden">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -478,7 +478,7 @@ const Home = () => {
             {/* Subtitle with better typography */}
             <motion.p
               variants={fadeInUp}
-              className="text-xl md:text-2xl text-text-secondary leading-relaxed font-light max-w-3xl mx-auto"
+              className="text-base sm:text-lg md:text-2xl text-text-secondary leading-relaxed font-light max-w-3xl mx-auto px-2"
             >
               Every <span className="text-red-600 font-semibold">missed call</span> is a missed opportunity.{' '}
               Every <span className="text-red-600 font-semibold">hour on the phone</span> is an hour{' '}
@@ -501,7 +501,7 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
           >
             {[
               { icon: Phone, title: 'Missed Calls = Lost Revenue', desc: 'Up to $1,200 lost per unanswered lead call', color: 'red' },
@@ -514,18 +514,18 @@ const Home = () => {
                 variants={fadeInUp}
                 whileHover={{ y: -8, scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                className="group relative bg-white border-2 border-neutral-border hover:border-primary-300 rounded-2xl p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                className="group relative bg-white border-2 border-neutral-border hover:border-primary-300 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
                 {/* Hover gradient background */}
                 <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
                 {/* Icon with animation */}
                 <motion.div
-                  className={`relative w-16 h-16 mx-auto mb-6 bg-${item.color}-50 rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow`}
+                  className={`relative w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-4 sm:mb-6 bg-${item.color}-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow`}
                   whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  <item.icon className={`w-8 h-8 text-${item.color}-600`} />
+                  <item.icon className={`w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-${item.color}-600`} />
 
                   {/* Pulse ring on hover */}
                   <motion.div
@@ -542,12 +542,12 @@ const Home = () => {
                 </motion.div>
 
                 {/* Title with better typography */}
-                <h3 className="relative text-xl font-bold text-text-primary mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
+                <h3 className="relative text-base sm:text-lg lg:text-xl font-bold text-text-primary mb-2 sm:mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
                   {item.title}
                 </h3>
 
                 {/* Description */}
-                <p className="relative text-base text-text-secondary leading-relaxed font-normal">
+                <p className="relative text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
                   {item.desc}
                 </p>
 
@@ -566,7 +566,7 @@ const Home = () => {
       </section>
 
       {/* How It Works Section - Enhanced */}
-      <section className="py-20 lg:py-28 bg-neutral-offWhite">
+      <section className="py-16 sm:py-20 lg:py-28 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -585,7 +585,7 @@ const Home = () => {
           </motion.div>
 
           {/* Two Column Layout: Text + Visual */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mt-10 sm:mt-16">
             {/* Left: Workflow Steps */}
             <motion.div
               initial="hidden"
@@ -606,17 +606,17 @@ const Home = () => {
                   whileHover={{ x: 10, scale: 1.02 }}
                   className="flex items-start gap-5 group"
                 >
-                  <div className={`relative flex-shrink-0 w-14 h-14 rounded-2xl ${step.bgColor} flex items-center justify-center transition-all`}>
-                    <step.icon className={`w-7 h-7 ${step.textColor}`} />
-                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-white rounded-full border-4 border-neutral-offWhite flex items-center justify-center shadow-md">
-                      <span className="text-sm font-black text-gray-900">{i + 1}</span>
+                  <div className={`relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${step.bgColor} flex items-center justify-center transition-all`}>
+                    <step.icon className={`w-6 h-6 sm:w-7 sm:h-7 ${step.textColor}`} />
+                    <div className="absolute -top-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full border-2 sm:border-4 border-neutral-offWhite flex items-center justify-center shadow-md">
+                      <span className="text-xs sm:text-sm font-black text-gray-900">{i + 1}</span>
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-primary-600 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-1 sm:mb-2 group-hover:text-primary-600 transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-text-secondary leading-relaxed">
+                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
                       {step.desc}
                     </p>
                   </div>
@@ -654,7 +654,7 @@ const Home = () => {
       </section>
 
       {/* Industry Solutions - Enhanced */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -677,7 +677,7 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
             variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-stretch"
           >
             {industries.map((industry, i) => (
               <motion.div key={i} variants={fadeInUp} onClick={() => setActiveIndustry(i)} className="h-full">
@@ -698,9 +698,9 @@ const Home = () => {
 
 
       {/* Live Demo Section */}
-      <section className="py-24 bg-primary-600">
+      <section className="py-16 sm:py-20 lg:py-24 bg-primary-600">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -710,20 +710,20 @@ const Home = () => {
               <motion.span variants={fadeInUp} className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4">
                 Try It Yourself
               </motion.span>
-              <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-6">
+              <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-4 sm:mb-6">
                 Don't Take Our Word For It
               </motion.h2>
-              <motion.p variants={fadeInUp} className="text-lg text-primary-100 mb-8">
+              <motion.p variants={fadeInUp} className="text-base sm:text-lg text-primary-100 mb-6 sm:mb-8">
                 Experience our AI voice agent firsthand. Click the chat widget in the bottom right corner
                 to have a conversation with our AI.
               </motion.p>
-              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors flex items-center justify-center gap-2 animate-glow">
-                  <Mic className="w-5 h-5" />
+              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <button className="bg-white text-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors flex items-center justify-center gap-2 animate-glow text-sm sm:text-base">
+                  <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
                   Talk to Our AI
                 </button>
-                <Link to="/contact">
-                  <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white/10 transition-colors animate-glow">
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <button className="w-full border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-white/10 transition-colors animate-glow text-sm sm:text-base">
                     Want This For Your Business?
                   </button>
                 </Link>
@@ -735,16 +735,16 @@ const Home = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="relative"
+              className="relative hidden lg:block"
             >
-              <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 border border-white/20">
+              <div className="bg-white/10 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/20">
                 <div className="text-center">
-                  <div className="w-32 h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative">
                     <div className="absolute inset-0 bg-white/10 rounded-full animate-pulse-ring"></div>
-                    <Mic className="w-16 h-16 text-white" />
+                    <Mic className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
                   </div>
-                  <p className="text-white font-semibold text-lg mb-2">Click to Start</p>
-                  <p className="text-primary-200 text-sm">Experience AI-powered conversations</p>
+                  <p className="text-white font-semibold text-base sm:text-lg mb-2">Click to Start</p>
+                  <p className="text-primary-200 text-xs sm:text-sm">Experience AI-powered conversations</p>
                 </div>
               </div>
             </motion.div>
@@ -753,7 +753,7 @@ const Home = () => {
       </section>
 
       {/* Features Grid - Unique Bento Style */}
-      <section className="relative py-24 lg:py-32 bg-neutral-offWhite overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-32 bg-neutral-offWhite overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none opacity-30">
           <motion.div
@@ -798,14 +798,14 @@ const Home = () => {
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-2"
             >
               A complete suite of AI-powered features designed to transform how your business handles communication
             </motion.p>
           </motion.div>
 
           {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {features.map((feature, index) => {
               const Icon = feature.icon
               const layouts = [
@@ -846,7 +846,7 @@ const Home = () => {
                   <motion.div
                     whileHover={{ y: -8, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className={`relative h-full bg-white rounded-3xl p-6 lg:p-8 border-2 ${colors.border} overflow-hidden shadow-lg hover:shadow-2xl ${colors.glow} transition-all duration-500`}
+                    className={`relative h-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border-2 ${colors.border} overflow-hidden shadow-lg hover:shadow-2xl ${colors.glow} transition-all duration-500`}
                   >
                     {/* Background Pattern */}
                     <div className={`absolute inset-0 ${colors.lightBg} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}></div>
@@ -862,18 +862,18 @@ const Home = () => {
                       <motion.div
                         whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                         transition={{ duration: 0.5 }}
-                        className={`inline-flex w-16 h-16 ${isLarge ? 'lg:w-20 lg:h-20' : ''} ${colors.lightBg} rounded-2xl items-center justify-center mb-6 shadow-md group-hover:shadow-xl transition-shadow`}
+                        className={`inline-flex w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${isLarge ? 'lg:w-20 lg:h-20' : ''} ${colors.lightBg} rounded-xl sm:rounded-2xl items-center justify-center mb-4 sm:mb-6 shadow-md group-hover:shadow-xl transition-shadow`}
                       >
-                        <Icon className={`w-8 h-8 ${isLarge ? 'lg:w-10 lg:h-10' : ''} ${colors.icon}`} />
+                        <Icon className={`w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 ${isLarge ? 'lg:w-10 lg:h-10' : ''} ${colors.icon}`} />
                       </motion.div>
 
                       {/* Title */}
-                      <h3 className={`${isLarge ? 'text-2xl lg:text-3xl' : 'text-xl lg:text-2xl'} font-bold text-text-primary mb-3 leading-tight group-hover:text-primary-600 transition-colors`}>
+                      <h3 className={`${isLarge ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-lg sm:text-xl lg:text-2xl'} font-bold text-text-primary mb-2 sm:mb-3 leading-tight group-hover:text-primary-600 transition-colors`}>
                         {feature.title}
                       </h3>
 
                       {/* Description */}
-                      <p className={`text-text-secondary ${isLarge ? 'text-base lg:text-lg' : 'text-sm lg:text-base'} leading-relaxed flex-grow`}>
+                      <p className={`text-text-secondary ${isLarge ? 'text-sm sm:text-base lg:text-lg' : 'text-xs sm:text-sm lg:text-base'} leading-relaxed flex-grow`}>
                         {feature.description}
                       </p>
 
@@ -912,10 +912,10 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-16"
+            className="text-center mt-10 sm:mt-16"
           >
             <Link to="/products/phone-receptionist">
-              <button className="btn-primary text-lg px-10 py-5 animate-glow group">
+              <button className="btn-primary text-base sm:text-lg px-6 sm:px-10 py-3 sm:py-5 animate-glow group">
                 Explore All Features
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
@@ -930,7 +930,7 @@ const Home = () => {
       </section>
 
       {/* Smart Scheduling Showcase */}
-      <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-32 bg-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02]">
           <motion.div
             animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
@@ -940,13 +940,14 @@ const Home = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left: Animated Calendar */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="order-2 lg:order-1"
             >
               <AnimatedCalendar />
             </motion.div>
@@ -957,13 +958,14 @@ const Home = () => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
+              className="order-1 lg:order-2"
             >
               <motion.div
                 variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-5 py-2 rounded-full mb-6"
+                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
               >
                 <Calendar className="w-4 h-4" />
-                <span className="text-sm font-bold uppercase tracking-wider">Smart Scheduling</span>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Smart Scheduling</span>
               </motion.div>
 
               <motion.h2
@@ -975,14 +977,14 @@ const Home = () => {
 
               <motion.p
                 variants={fadeInUp}
-                className="text-xl text-gray-600 mb-8 leading-relaxed"
+                className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed"
               >
                 Watch appointments get scheduled automatically. Your AI receptionist handles the entire booking process - checking availability, confirming times, and sending reminders.
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
-                className="space-y-4"
+                className="space-y-3 sm:space-y-4"
               >
                 {[
                   { icon: Check, text: 'Real-time calendar sync with Google Calendar, Outlook & more' },
@@ -993,19 +995,19 @@ const Home = () => {
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="flex items-start gap-3"
+                    className="flex items-start gap-2 sm:gap-3"
                   >
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                      <item.icon className="w-4 h-4 text-green-600" />
+                    <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                      <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
                     </div>
-                    <p className="text-gray-700 leading-relaxed">{item.text}</p>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{item.text}</p>
                   </motion.div>
                 ))}
               </motion.div>
 
-              <motion.div variants={fadeInUp} className="mt-8">
+              <motion.div variants={fadeInUp} className="mt-6 sm:mt-8">
                 <Link to="/products/phone-receptionist">
-                  <button className="btn-primary">
+                  <button className="btn-primary text-sm sm:text-base">
                     Learn About Scheduling
                     <ArrowRight className="w-5 h-5" />
                   </button>
@@ -1017,7 +1019,7 @@ const Home = () => {
       </section>
 
       {/* Analytics Showcase */}
-      <section className="relative py-24 lg:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02]">
           <motion.div
             animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
@@ -1027,7 +1029,7 @@ const Home = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left: Text Content */}
             <motion.div
               initial="hidden"
@@ -1037,10 +1039,10 @@ const Home = () => {
             >
               <motion.div
                 variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-5 py-2 rounded-full mb-6"
+                className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
               >
                 <BarChart3 className="w-4 h-4" />
-                <span className="text-sm font-bold uppercase tracking-wider">Real-Time Analytics</span>
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Real-Time Analytics</span>
               </motion.div>
 
               <motion.h2
@@ -1052,14 +1054,14 @@ const Home = () => {
 
               <motion.p
                 variants={fadeInUp}
-                className="text-xl text-gray-600 mb-8 leading-relaxed"
+                className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed"
               >
                 Get instant insights into every call, message, and appointment. Our live dashboard shows you exactly what's happening with your AI receptionist in real-time.
               </motion.p>
 
               <motion.div
                 variants={fadeInUp}
-                className="space-y-4"
+                className="space-y-3 sm:space-y-4"
               >
                 {[
                   { icon: TrendingUp, text: 'Track call volume, response times, and conversion rates' },
@@ -1070,19 +1072,19 @@ const Home = () => {
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="flex items-start gap-3"
+                    className="flex items-start gap-2 sm:gap-3"
                   >
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-100 flex items-center justify-center mt-0.5">
-                      <item.icon className="w-4 h-4 text-indigo-600" />
+                    <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-indigo-100 flex items-center justify-center mt-0.5">
+                      <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-indigo-600" />
                     </div>
-                    <p className="text-gray-700 leading-relaxed">{item.text}</p>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{item.text}</p>
                   </motion.div>
                 ))}
               </motion.div>
 
-              <motion.div variants={fadeInUp} className="mt-8">
+              <motion.div variants={fadeInUp} className="mt-6 sm:mt-8">
                 <Link to="/products/dashboards">
-                  <button className="btn-primary">
+                  <button className="btn-primary text-sm sm:text-base">
                     Explore Analytics
                     <ArrowRight className="w-5 h-5" />
                   </button>
@@ -1104,7 +1106,7 @@ const Home = () => {
       </section>
 
       {/* Integrations */}
-      <section className="relative py-32 bg-white overflow-hidden">
+      <section className="relative py-16 sm:py-24 lg:py-32 bg-white overflow-hidden">
         {/* Animated background */}
         <div className="absolute inset-0 opacity-[0.03]">
           <motion.div
@@ -1148,7 +1150,7 @@ const Home = () => {
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-xl text-text-secondary max-w-2xl mx-auto"
+              className="text-base sm:text-lg md:text-xl text-text-secondary max-w-2xl mx-auto px-2"
             >
               Seamlessly integrates with your existing tools and workflows
             </motion.p>
@@ -1162,7 +1164,7 @@ const Home = () => {
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
-              className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6"
+              className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 lg:gap-6"
             >
               {integrations.map((integration, i) => {
                 const colors = [
@@ -1187,7 +1189,7 @@ const Home = () => {
                     className="group relative"
                   >
                     {/* Card */}
-                    <div className={`relative bg-white border-2 border-gray-200 group-hover:border-primary-300 rounded-2xl p-6 aspect-square flex items-center justify-center transition-all duration-300 overflow-hidden shadow-sm group-hover:shadow-xl`}>
+                    <div className={`relative bg-white border-2 border-gray-200 group-hover:border-primary-300 rounded-xl sm:rounded-2xl p-4 sm:p-6 aspect-square flex items-center justify-center transition-all duration-300 overflow-hidden shadow-sm group-hover:shadow-xl`}>
                       {/* Hover gradient background */}
                       <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
@@ -1196,11 +1198,11 @@ const Home = () => {
                         <motion.div
                           whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
                           transition={{ duration: 0.5 }}
-                          className={`w-14 h-14 mx-auto mb-3 ${color.light} rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}
+                          className={`w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 ${color.light} rounded-lg sm:rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}
                         >
-                          <IconComponent className={`w-7 h-7 ${color.text}`} />
+                          <IconComponent className={`w-5 h-5 sm:w-7 sm:h-7 ${color.text}`} />
                         </motion.div>
-                        <p className="text-sm font-bold text-text-primary group-hover:text-primary-600 transition-colors duration-300">
+                        <p className="text-xs sm:text-sm font-bold text-text-primary group-hover:text-primary-600 transition-colors duration-300">
                           {integration.name}
                         </p>
                       </div>
@@ -1226,7 +1228,7 @@ const Home = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 bg-primary-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-glow transition-all duration-300 group"
+                className="inline-flex items-center gap-2 sm:gap-3 bg-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-glow transition-all duration-300 group text-sm sm:text-base"
               >
                 <span>Explore All Integrations</span>
                 <motion.span
@@ -1253,14 +1255,14 @@ const Home = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-24 bg-primary-600">
+      <section className="py-16 sm:py-20 lg:py-24 bg-primary-600">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid md:grid-cols-3 gap-12"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12"
           >
             {stats.map((stat, i) => (
               <motion.div key={i} variants={fadeInUp}>
@@ -1282,14 +1284,14 @@ const Home = () => {
 
 
       {/* CTA Section - Enhanced */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 sm:py-16 lg:py-28 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-3xl p-10 md:p-16 lg:p-20 text-center relative overflow-hidden"
+            className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden"
           >
             {/* Background decoration */}
             <div className="absolute inset-0 opacity-10">
@@ -1297,17 +1299,17 @@ const Home = () => {
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
             </div>
 
-            <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-6 relative z-10">
+            <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-4 sm:mb-6 relative z-10">
               Ready to Stop Missing Calls?
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg md:text-xl text-primary-100 mb-10 max-w-2xl mx-auto relative z-10 leading-relaxed">
+            <motion.p variants={fadeInUp} className="text-base sm:text-lg md:text-xl text-primary-100 mb-6 sm:mb-10 max-w-2xl mx-auto relative z-10 leading-relaxed px-2">
               Join businesses that never miss a lead. Book a <span className="font-bold text-white">15-minute demo</span> to see how
               CogniDrift can transform your customer communications.
             </motion.p>
             <motion.div variants={fadeInUp} className="flex justify-center relative z-10">
               <Link to="/contact">
-                <button className="bg-white text-primary-600 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-50 transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  <PhoneCall className="w-5 h-5" />
+                <button className="bg-white text-primary-600 px-6 sm:px-10 py-3 sm:py-5 rounded-xl font-bold text-base sm:text-lg hover:bg-primary-50 transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                  <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5" />
                   Book Your Demo
                 </button>
               </Link>
