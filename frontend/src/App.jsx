@@ -26,9 +26,9 @@ const Dashboards = lazy(() => import('./pages/products/Dashboards'))
 
 // Industries Pages
 const Healthcare = lazy(() => import('./pages/solutions/Healthcare'))
-const RealEstate = lazy(() => import('./pages/solutions/RealEstate'))
+const LocalServices = lazy(() => import('./pages/solutions/LocalServices'))
 const ProfessionalServices = lazy(() => import('./pages/solutions/ProfessionalServices'))
-const CallCenter = lazy(() => import('./pages/solutions/CallCenter'))
+const CallCenters = lazy(() => import('./pages/solutions/CallCenters'))
 
 // Resources Pages
 const Blog = lazy(() => import('./pages/resources/Blog'))
@@ -81,9 +81,9 @@ function App() {
 
               {/* Industries Routes */}
               <Route path="/industries/healthcare" element={<Healthcare />} />
-              <Route path="/industries/real-estate" element={<RealEstate />} />
+              <Route path="/industries/local-services" element={<LocalServices />} />
               <Route path="/industries/professional-services" element={<ProfessionalServices />} />
-              <Route path="/industries/call-center" element={<CallCenter />} />
+              <Route path="/industries/call-centers" element={<CallCenters />} />
 
               {/* Resources Routes */}
               <Route path="/resources/blog" element={<Blog />} />

@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu, X, ChevronDown, Phone, Building2, Stethoscope,
   Home as HomeIcon, FileText, BookOpen, HelpCircle, Zap,
-  Mic, Bot, Smartphone, Database, Ticket, BarChart3, MessageSquare,
-  PhoneCall, Calendar, TrendingUp, Settings
+  Mic, Bot, Smartphone, Database, Ticket, MessageSquare,
+  PhoneCall, Calendar, TrendingUp, Wrench, Headphones
 } from 'lucide-react'
 
 const Navbar = () => {
@@ -111,7 +111,7 @@ const Navbar = () => {
     ]
   }
 
-  // Mega dropdown for Industries
+  // Mega dropdown for Industries - 4 main categories
   const industriesMega = {
     name: 'Industries',
     path: '/industries/healthcare',
@@ -119,14 +119,14 @@ const Navbar = () => {
     sections: [
       {
         items: [
-          { name: 'Healthcare', description: 'AI-powered patient scheduling, reminders & call triage', path: '/industries/healthcare', icon: Stethoscope, iconColor: 'bg-gradient-to-br from-rose-100 to-red-100 text-rose-600' },
-          { name: 'Real Estate', description: 'Capture leads, book showings & follow up automatically', path: '/industries/real-estate', icon: HomeIcon, iconColor: 'bg-gradient-to-br from-amber-100 to-orange-100 text-amber-600' },
+          { name: 'Healthcare', description: 'Medical practices, dental, therapy, senior care & veterinary clinics', path: '/industries/healthcare', icon: Stethoscope, iconColor: 'bg-gradient-to-br from-rose-100 to-red-100 text-rose-600' },
+          { name: 'Local Services', description: 'Restaurants, home services, salons, auto repair, fitness & pet care', path: '/industries/local-services', icon: Wrench, iconColor: 'bg-gradient-to-br from-amber-100 to-orange-100 text-amber-600' },
         ]
       },
       {
         items: [
-          { name: 'Professional Services', description: 'Qualify prospects, manage intake & route calls smartly', path: '/industries/professional-services', icon: Building2, iconColor: 'bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-600' },
-          { name: 'Call Center', description: 'Scale support with AI agents that handle calls 24/7', path: '/industries/call-center', icon: Phone, iconColor: 'bg-gradient-to-br from-sky-100 to-blue-100 text-sky-600' },
+          { name: 'Professional Services', description: 'Legal, financial, insurance, real estate & consulting firms', path: '/industries/professional-services', icon: Building2, iconColor: 'bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-600' },
+          { name: 'Call Centers', description: 'BPO, tech support, customer service & scheduling operations', path: '/industries/call-centers', icon: Headphones, iconColor: 'bg-gradient-to-br from-purple-100 to-indigo-100 text-purple-600' },
         ]
       }
     ]
@@ -271,7 +271,7 @@ const Navbar = () => {
                   </Link>
                 )}
 
-                {/* Mega Dropdown for Product */}
+                {/* Mega Dropdown for Product & Industries */}
                 <AnimatePresence>
                   {link.mega && openDropdown === link.name && (
                     <motion.div
@@ -280,7 +280,7 @@ const Navbar = () => {
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.25, ease: [0.68, -0.05, 0.265, 1.2] }}
                       className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 rounded-t-none rounded-b-2xl p-5 overflow-hidden border border-t-0 border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12),0_4px_16px_rgba(59,130,246,0.08)] ${
-                        link.name === 'Product' ? 'w-[820px]' : link.sections[0].title ? 'w-[620px]' : 'w-[520px]'
+                        link.name === 'Product' ? 'w-[820px]' : 'w-[580px]'
                       }`}
                     >
                       {/* Glass refraction highlight */}
@@ -514,7 +514,7 @@ const Navbar = () => {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="mt-2 ml-2 space-y-3"
+                            className="mt-2 ml-2 space-y-1"
                           >
                             {link.sections.map((section, sIdx) => (
                               <div key={section.title || `mobile-section-${sIdx}`}>
