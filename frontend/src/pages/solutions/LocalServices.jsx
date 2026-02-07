@@ -364,31 +364,6 @@ const LocalServices = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          {/* Icon Grid Animation */}
-          <div className="relative inline-block mb-8">
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { icon: UtensilsCrossed, color: "bg-orange-500", delay: 0 },
-                { icon: Wrench, color: "bg-slate-500", delay: 0.1 },
-                { icon: Scissors, color: "bg-fuchsia-500", delay: 0.2 },
-                { icon: Car, color: "bg-blue-500", delay: 0.3 },
-                { icon: Dumbbell, color: "bg-green-500", delay: 0.4 },
-                { icon: PawPrint, color: "bg-yellow-500", delay: 0.5 }
-              ].map(({ icon: Icon, color, delay }, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ delay, duration: 0.5, type: "spring" }}
-                  whileHover={{ scale: 1.1, rotate: 10 }}
-                  className={`w-16 h-16 ${color} rounded-2xl flex items-center justify-center shadow-lg`}
-                >
-                  <Icon className="w-8 h-8 text-white" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

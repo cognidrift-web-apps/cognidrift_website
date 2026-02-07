@@ -18,7 +18,6 @@ const VideoShowcaseSection = () => {
       icon: BsFillTelephoneFill,
       title: "New call answered",
       subtitle: "Sarah from ABC Corp",
-      time: "Just now",
       color: "from-green-400 to-emerald-500",
       position: "top-[10%] -left-4 lg:-left-8",
       delay: 0
@@ -27,7 +26,6 @@ const VideoShowcaseSection = () => {
       icon: Calendar,
       title: "Appointment booked",
       subtitle: "Tomorrow at 2:00 PM",
-      time: "2m ago",
       color: "from-blue-400 to-cyan-500",
       position: "top-[35%] -right-4 lg:-right-10",
       delay: 0.3
@@ -36,7 +34,6 @@ const VideoShowcaseSection = () => {
       icon: MessageSquare,
       title: "Lead captured",
       subtitle: "John D. requested demo",
-      time: "5m ago",
       color: "from-purple-400 to-pink-500",
       position: "bottom-[30%] -left-4 lg:-left-12",
       delay: 0.6
@@ -45,7 +42,6 @@ const VideoShowcaseSection = () => {
       icon: TrendingUp,
       title: "Conversion +24%",
       subtitle: "This week's performance",
-      time: "1h ago",
       color: "from-orange-400 to-red-500",
       position: "bottom-[10%] -right-4 lg:-right-6",
       delay: 0.9
@@ -117,10 +113,6 @@ const VideoShowcaseSection = () => {
                       </div>
                     </div>
 
-                    {/* Time badge */}
-                    <div className="absolute -top-2 -right-2 px-2 py-0.5 bg-white rounded-full shadow-md border border-gray-100">
-                      <span className="text-[10px] font-medium text-gray-500">{notification.time}</span>
-                    </div>
                   </div>
                 </motion.div>
               </motion.div>
@@ -189,36 +181,8 @@ const VideoShowcaseSection = () => {
             </motion.div>
 
             {/* Title */}
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-              Your AI Receptionist,{' '}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent">
-                  Working 24/7
-                </span>
-                <motion.svg
-                  className="absolute -bottom-1 left-0 w-full"
-                  height="6"
-                  viewBox="0 0 200 6"
-                  initial={{ pathLength: 0 }}
-                  animate={isInView ? { pathLength: 1 } : { pathLength: 0 }}
-                  transition={{ duration: 1.5, delay: 0.8 }}
-                >
-                  <motion.path
-                    d="M0,3 Q50,0 100,3 T200,3"
-                    stroke="url(#underlineGradient)"
-                    strokeWidth="2"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                  <defs>
-                    <linearGradient id="underlineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#06b6d4" />
-                      <stop offset="50%" stopColor="#3b82f6" />
-                      <stop offset="100%" stopColor="#8b5cf6" />
-                    </linearGradient>
-                  </defs>
-                </motion.svg>
-              </span>
+            <h2 className="section-title hero-display !mb-6">
+              Your AI Receptionist, <span className="text-gradient">Working 24/7</span>
             </h2>
 
             {/* Description */}
@@ -264,13 +228,6 @@ const VideoShowcaseSection = () => {
                 </motion.button>
               </Link>
               <Link to="/products/phone-receptionist">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-gray-700 bg-white border-2 border-gray-200 hover:border-blue-300 hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  Learn More
-                </motion.button>
               </Link>
             </motion.div>
           </motion.div>

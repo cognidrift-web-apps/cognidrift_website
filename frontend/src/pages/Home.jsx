@@ -794,27 +794,7 @@ const Home = () => {
               variants={fadeInUp}
               className="section-title hero-display mb-6"
             >
-              Everything You Need,{' '}
-              <span className="relative inline-block">
-                <span className="text-gradient">Nothing You Don't</span>
-                <motion.svg
-                  className="absolute -bottom-2 left-0 w-full"
-                  height="12"
-                  viewBox="0 0 300 12"
-                  initial={{ pathLength: 0 }}
-                  whileInView={{ pathLength: 1 }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                  viewport={{ once: true }}
-                >
-                  <motion.path
-                    d="M0,6 Q75,0 150,6 T300,6"
-                    stroke="#2563EB"
-                    strokeWidth="3"
-                    fill="none"
-                    strokeLinecap="round"
-                  />
-                </motion.svg>
-              </span>
+              Everything You Need, <span className="text-gradient">Nothing You Don't</span>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
@@ -1324,17 +1304,13 @@ const Home = () => {
               Join businesses that never miss a lead. Book a <span className="font-bold text-white">15-minute demo</span> to see how
               CogniDrift can transform your customer communications.
             </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+            <motion.div variants={fadeInUp} className="flex justify-center relative z-10">
               <Link to="/contact">
                 <button className="bg-white text-primary-600 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-50 transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                   <PhoneCall className="w-5 h-5" />
                   Book Your Demo
                 </button>
               </Link>
-              <button className="bg-primary-500 text-white border-2 border-white/30 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-400 transition-all duration-300 hover:scale-105 hover:-translate-y-1 flex items-center justify-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                <Sparkles className="w-5 h-5" />
-                Try Our AI First
-              </button>
             </motion.div>
           </motion.div>
         </div>
