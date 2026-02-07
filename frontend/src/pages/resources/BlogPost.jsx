@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Calendar, User, ArrowLeft, ArrowRight, Clock } from 'lucide-react'
+import { Calendar, User, ArrowLeft, ArrowRight, Clock, Briefcase } from 'lucide-react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { blogPosts } from './Blog'
 
@@ -30,7 +30,7 @@ const BlogPost = () => {
     .slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-white pt-24 pb-20">
+    <div className="min-h-screen bg-white pt-20">
       {/* Hero Section */}
       <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden">
         <img
@@ -38,7 +38,7 @@ const BlogPost = () => {
           alt={currentPost.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
 
         {/* Back Button */}
         <motion.div
@@ -69,10 +69,15 @@ const BlogPost = () => {
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight">
                 {currentPost.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-white/80 text-sm">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-6 text-white/90 text-sm">
                 <div className="flex items-center gap-2">
-                  <User className="w-4 h-4" />
-                  <span>{currentPost.author}</span>
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/20 rounded-full flex items-center justify-center">
+                    <User className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </div>
+                  <div>
+                    <span className="block font-medium">{currentPost.author}</span>
+                    <span className="block text-xs text-white/70">{currentPost.authorRole}</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="w-4 h-4" />
@@ -94,40 +99,54 @@ const BlogPost = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="prose prose-lg max-w-none
-            prose-headings:font-bold prose-headings:text-text-primary
-            prose-h2:text-xl prose-h2:sm:text-2xl prose-h2:mt-8 prose-h2:mb-4
-            prose-p:text-text-secondary prose-p:leading-relaxed prose-p:mb-4
-            prose-ul:my-4 prose-ul:space-y-2
-            prose-li:text-text-secondary
-            prose-strong:text-text-primary prose-strong:font-semibold"
+          className="blog-content"
           dangerouslySetInnerHTML={{ __html: currentPost.content }}
         />
 
-        {/* Share Section */}
+        {/* Author Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-200"
+          className="mt-12 sm:mt-16 p-6 sm:p-8 bg-gray-50 rounded-2xl"
         >
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <p className="text-text-muted text-sm mb-2">Written by</p>
-              <p className="font-semibold text-text-primary">{currentPost.author}</p>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+              <User className="w-8 h-8 sm:w-10 sm:h-10 text-primary-600" />
             </div>
-            <Link
-              to="/contact"
-              className="bg-primary-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors text-sm sm:text-base"
-            >
-              Get Started with AI
-            </Link>
+            <div className="flex-1">
+              <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-1">{currentPost.author}</h3>
+              <p className="text-primary-600 font-medium text-sm mb-2">{currentPost.authorRole}</p>
+              <p className="text-text-secondary text-sm">
+                Expert contributor to CogniDrift's blog, sharing insights on AI technology and business automation.
+              </p>
+            </div>
           </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-8 sm:mt-12 p-6 sm:p-8 bg-primary-600 rounded-2xl text-center text-white"
+        >
+          <h3 className="text-xl sm:text-2xl font-bold mb-3">Ready to Transform Your Business?</h3>
+          <p className="text-primary-100 mb-6 max-w-xl mx-auto">
+            See how CogniDrift's AI voice agents can help you capture every lead and delight every customer.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-white text-primary-600 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors text-sm sm:text-base"
+          >
+            Get Started Today
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </motion.div>
       </div>
 
       {/* Suggested Posts */}
-      <div className="bg-primary-50 py-12 sm:py-16 lg:py-20">
+      <div className="bg-gray-50 py-12 sm:py-16 lg:py-20">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -137,9 +156,9 @@ const BlogPost = () => {
             className="text-center mb-8 sm:mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-2 sm:mb-3">
-              More <span className="text-primary-600">Articles</span>
+              Continue <span className="text-primary-600">Reading</span>
             </h2>
-            <p className="text-text-secondary text-sm sm:text-base">Continue reading our latest insights</p>
+            <p className="text-text-secondary text-sm sm:text-base">Explore more insights and guides</p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -203,6 +222,139 @@ const BlogPost = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Add custom styles for blog content */}
+      <style>{`
+        .blog-content {
+          font-size: 1.125rem;
+          line-height: 1.8;
+          color: #374151;
+        }
+
+        .blog-content p {
+          margin-bottom: 1.5rem;
+        }
+
+        .blog-content p.lead {
+          font-size: 1.25rem;
+          color: #1f2937;
+          font-weight: 500;
+          line-height: 1.7;
+          margin-bottom: 2rem;
+          padding-bottom: 1.5rem;
+          border-bottom: 2px solid #e5e7eb;
+        }
+
+        .blog-content h2 {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #111827;
+          margin-top: 3rem;
+          margin-bottom: 1rem;
+          line-height: 1.3;
+        }
+
+        .blog-content h3 {
+          font-size: 1.375rem;
+          font-weight: 600;
+          color: #1f2937;
+          margin-top: 2rem;
+          margin-bottom: 0.75rem;
+          line-height: 1.4;
+        }
+
+        .blog-content h4 {
+          font-size: 1.125rem;
+          font-weight: 600;
+          color: #374151;
+          margin-top: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .blog-content ul, .blog-content ol {
+          margin-bottom: 1.5rem;
+          padding-left: 1.5rem;
+        }
+
+        .blog-content ul {
+          list-style-type: disc;
+        }
+
+        .blog-content ol {
+          list-style-type: decimal;
+        }
+
+        .blog-content li {
+          margin-bottom: 0.5rem;
+          padding-left: 0.5rem;
+        }
+
+        .blog-content li strong {
+          color: #111827;
+        }
+
+        .blog-content strong {
+          font-weight: 600;
+          color: #1f2937;
+        }
+
+        .blog-content blockquote {
+          border-left: 4px solid #2563eb;
+          padding: 1.5rem;
+          margin: 2rem 0;
+          background: #f8fafc;
+          border-radius: 0 0.75rem 0.75rem 0;
+          font-style: italic;
+          color: #4b5563;
+        }
+
+        .blog-content blockquote br {
+          display: block;
+          content: "";
+          margin-top: 1rem;
+        }
+
+        .blog-content .calculation-box {
+          background: #f0fdf4;
+          border: 1px solid #bbf7d0;
+          border-radius: 0.75rem;
+          padding: 1.5rem;
+          margin: 1.5rem 0;
+        }
+
+        .blog-content .calculation-box ul {
+          margin-bottom: 0;
+        }
+
+        @media (max-width: 640px) {
+          .blog-content {
+            font-size: 1rem;
+            line-height: 1.7;
+          }
+
+          .blog-content p.lead {
+            font-size: 1.125rem;
+          }
+
+          .blog-content h2 {
+            font-size: 1.5rem;
+            margin-top: 2rem;
+          }
+
+          .blog-content h3 {
+            font-size: 1.25rem;
+          }
+
+          .blog-content h4 {
+            font-size: 1.0625rem;
+          }
+
+          .blog-content blockquote {
+            padding: 1rem;
+            margin: 1.5rem 0;
+          }
+        }
+      `}</style>
     </div>
   )
 }

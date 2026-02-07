@@ -81,31 +81,31 @@ const Navbar = () => {
       {
         title: 'Inbound Automation',
         items: [
-          { name: 'AI Phone Receptionist', description: 'Answers calls 24/7, qualifies leads, books appointments', path: '/products/phone-receptionist', icon: Phone, iconColor: 'bg-gradient-to-br from-purple-100 to-violet-100 text-purple-600' },
-          { name: 'AI Web Chatbot', description: 'Capture, qualify, and convert website visitors in real time', path: '/products/web-chatbot', icon: Bot, iconColor: 'bg-gradient-to-br from-pink-100 to-fuchsia-100 text-pink-600' },
-          { name: 'AI Web Voicebot', description: 'Voice-enabled interactions on your website', path: '/products/web-voicebot', icon: Mic, iconColor: 'bg-gradient-to-br from-cyan-100 to-blue-100 text-cyan-600' },
-          { name: 'SMS Texting Agent', description: 'Handles two-way SMS conversations with leads', path: '/products/sms-agent', icon: MessageSquare, iconColor: 'bg-gradient-to-br from-sky-100 to-blue-100 text-sky-600' },
+          { name: 'AI Phone Receptionist', description: 'Answers calls 24/7, qualifies leads, books appointments', path: '/products/phone-receptionist', icon: Phone, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'AI Web Chatbot', description: 'Capture, qualify, and convert website visitors in real time', path: '/products/web-chatbot', icon: Bot, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'AI Web Voicebot', description: 'Voice-enabled interactions on your website', path: '/products/web-voicebot', icon: Mic, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'SMS Texting Agent', description: 'Handles two-way SMS conversations with leads', path: '/products/sms-agent', icon: MessageSquare, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       },
       {
         title: 'Lead Management',
         items: [
-          { name: 'AI CRM', description: 'Centralizes all interactions and tracks every lead', path: '/products/ai-crm', icon: Database, iconColor: 'bg-gradient-to-br from-purple-100 to-violet-100 text-purple-600' },
-          { name: 'Smart Ticketing', description: 'Automatically creates and routes tickets from every channel', path: '/products/smart-ticketing', icon: Ticket, iconColor: 'bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-600' },
-          { name: 'AI Calendar', description: 'Smart scheduling and appointment management', path: '/products/ai-calendar', icon: Calendar, iconColor: 'bg-gradient-to-br from-orange-100 to-amber-100 text-orange-600' },
+          { name: 'AI CRM', description: 'Centralizes all interactions and tracks every lead', path: '/products/ai-crm', icon: Database, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'Smart Ticketing', description: 'Automatically creates and routes tickets from every channel', path: '/products/smart-ticketing', icon: Ticket, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'AI Calendar', description: 'Smart scheduling and appointment management', path: '/products/ai-calendar', icon: Calendar, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       },
       {
         title: 'Outbound Engagement',
         items: [
-          { name: 'Automated Calls', description: 'AI-powered outbound calling campaigns', path: '/products/automated-calls', icon: PhoneCall, iconColor: 'bg-gradient-to-br from-indigo-100 to-purple-100 text-indigo-600' },
-          { name: 'Automated SMS', description: 'Scheduled and triggered SMS campaigns', path: '/products/automated-sms', icon: Smartphone, iconColor: 'bg-gradient-to-br from-teal-100 to-cyan-100 text-teal-600' },
+          { name: 'Automated Calls', description: 'AI-powered outbound calling campaigns', path: '/products/automated-calls', icon: PhoneCall, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'Automated SMS', description: 'Scheduled and triggered SMS campaigns', path: '/products/automated-sms', icon: Smartphone, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       },
       {
         title: 'Analytics & Reporting',
         items: [
-          { name: 'AI Automation', description: 'Intelligent insights and performance metrics', path: '/products/ai-automation', icon: TrendingUp, iconColor: 'bg-gradient-to-br from-rose-100 to-pink-100 text-rose-600' },
+          { name: 'AI Automation', description: 'Intelligent insights and performance metrics', path: '/products/ai-automation', icon: TrendingUp, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       }
     ]
