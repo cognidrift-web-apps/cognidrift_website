@@ -317,39 +317,6 @@ const Healthcare = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          {/* Floating Icons Animation */}
-          <div className="relative inline-block mb-8">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, type: "spring" }}
-              className="w-24 h-24 bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl flex items-center justify-center shadow-2xl mx-auto"
-            >
-              <Stethoscope className="w-12 h-12 text-white" />
-            </motion.div>
-
-            {/* Orbiting Icons */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 w-full h-full"
-              style={{ width: '200px', height: '200px', left: '-50%', top: '-50%' }}
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2">
-                <FloatingIcon icon={Heart} color="bg-pink-500" size="w-10 h-10" />
-              </div>
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2">
-                <FloatingIcon icon={Brain} color="bg-purple-500" size="w-10 h-10" delay={0.5} />
-              </div>
-              <div className="absolute left-0 top-1/2 -translate-y-1/2">
-                <FloatingIcon icon={Activity} color="bg-cyan-500" size="w-10 h-10" delay={1} />
-              </div>
-              <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                <FloatingIcon icon={PawPrint} color="bg-amber-500" size="w-10 h-10" delay={1.5} />
-              </div>
-            </motion.div>
-          </div>
-
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

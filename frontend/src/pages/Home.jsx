@@ -8,6 +8,7 @@ import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 import TrustBadges from '../components/TrustBadges'
 // import DemoCalls from '../components/DemoCalls' // Hidden for future use
 import TryNowSection from '../components/TryNowSection'
+import VideoShowcaseSection from '../components/VideoShowcaseSection'
 import AnimatedDashboard from '../components/AnimatedDashboard'
 import AIConversationFlow from '../components/AIConversationFlow'
 import AnimatedCalendar from '../components/AnimatedCalendar'
@@ -406,6 +407,9 @@ const Home = () => {
 
       {/* Try Now Section */}
       <TryNowSection />
+
+      {/* Video Showcase Section */}
+      <VideoShowcaseSection />
 
       {/* Problem Section - Enhanced Typography */}
       <section className="relative py-24 lg:py-32 bg-white overflow-hidden">
