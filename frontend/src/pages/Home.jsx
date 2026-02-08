@@ -940,6 +940,37 @@ const Home = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header - Centered */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+            >
+              <Calendar className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Smart Scheduling</span>
+            </motion.div>
+
+            <motion.h2
+              variants={fadeInUp}
+              className="section-title hero-display"
+            >
+              Appointments Book <span className="text-gradient">Themselves</span>
+            </motion.h2>
+
+            <motion.p
+              variants={fadeInUp}
+              className="section-subtitle"
+            >
+              Watch appointments get scheduled automatically. Your AI receptionist handles the entire booking process - checking availability, confirming times, and sending reminders.
+            </motion.p>
+          </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left: Animated Calendar */}
             <motion.div
@@ -960,28 +991,6 @@ const Home = () => {
               variants={staggerContainer}
               className="order-1 lg:order-2"
             >
-              <motion.div
-                variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
-              >
-                <Calendar className="w-4 h-4" />
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Smart Scheduling</span>
-              </motion.div>
-
-              <motion.h2
-                variants={fadeInUp}
-                className="section-title hero-display"
-              >
-                Appointments Book <span className="text-gradient">Themselves</span>
-              </motion.h2>
-
-              <motion.p
-                variants={fadeInUp}
-                className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed"
-              >
-                Watch appointments get scheduled automatically. Your AI receptionist handles the entire booking process - checking availability, confirming times, and sending reminders.
-              </motion.p>
-
               <motion.div
                 variants={fadeInUp}
                 className="space-y-3 sm:space-y-4"
@@ -1029,6 +1038,37 @@ const Home = () => {
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header - Centered */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+            >
+              <BarChart3 className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Real-Time Analytics</span>
+            </motion.div>
+
+            <motion.h2
+              variants={fadeInUp}
+              className="section-title hero-display"
+            >
+              See Every <span className="text-gradient">Interaction</span> Live
+            </motion.h2>
+
+            <motion.p
+              variants={fadeInUp}
+              className="section-subtitle"
+            >
+              Get instant insights into every call, message, and appointment. Our live dashboard shows you exactly what's happening with your AI receptionist in real-time.
+            </motion.p>
+          </motion.div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
             {/* Left: Text Content */}
             <motion.div
@@ -1037,28 +1077,6 @@ const Home = () => {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.div
-                variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
-              >
-                <BarChart3 className="w-4 h-4" />
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Real-Time Analytics</span>
-              </motion.div>
-
-              <motion.h2
-                variants={fadeInUp}
-                className="section-title hero-display"
-              >
-                See Every <span className="text-gradient">Interaction</span> Live
-              </motion.h2>
-
-              <motion.p
-                variants={fadeInUp}
-                className="text-base sm:text-lg md:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed"
-              >
-                Get instant insights into every call, message, and appointment. Our live dashboard shows you exactly what's happening with your AI receptionist in real-time.
-              </motion.p>
-
               <motion.div
                 variants={fadeInUp}
                 className="space-y-3 sm:space-y-4"
