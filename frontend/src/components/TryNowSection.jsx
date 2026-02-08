@@ -3,6 +3,7 @@ import { Phone, MessageSquare, ArrowRight, Calendar, Search, Send, Headphones, M
 import { BsFillTelephoneFill } from 'react-icons/bs'
 import { RiMessage2Fill } from 'react-icons/ri'
 import { useState, useEffect } from 'react'
+import GlowCard from './ui/GlowCard'
 
 const TryNowSection = () => {
   const [currentStep, setCurrentStep] = useState(0)
@@ -271,11 +272,10 @@ const TryNowSection = () => {
             className="relative flex justify-center mt-8 lg:mt-0"
           >
             <div className="relative w-[240px] sm:w-[260px] lg:w-[280px]">
-              {/* Glow Effect */}
-              <div className="absolute inset-0 bg-primary-200/40 rounded-[2.5rem] blur-3xl scale-110"></div>
-
-              {/* Phone Frame */}
-              <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 rounded-[2.5rem] p-3 shadow-2xl z-10">
+              {/* Phone with Glow Effect */}
+              <GlowCard glowColor="cyan-purple" glowSize="md" borderRadius="3xl" showCornerAccents={false} padding="sm">
+                {/* Phone Frame */}
+                <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 rounded-[2rem] p-3 shadow-2xl">
                 {/* Notch */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-b-2xl z-10"></div>
 
@@ -509,6 +509,7 @@ const TryNowSection = () => {
                   </AnimatePresence>
                 </div>
               </div>
+              </GlowCard>
 
               {/* Rotating Bubble Notifications - Only show with Frame 2 (Voice Orb) */}
               {phoneFrame === 1 && (
@@ -529,8 +530,8 @@ const TryNowSection = () => {
                       <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
                       <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
                       
-                      {/* Animated Icon Orb */}
-                      <div className="relative flex items-center gap-2 mb-2">
+                      {/* Animated Icon Orb - Centered */}
+                      <div className="relative flex items-center justify-center mb-2 pb-2 border-b border-gray-300/50">
                         <motion.div
                           animate={{
                             scale: [1, 1.1, 1],
@@ -543,11 +544,8 @@ const TryNowSection = () => {
                           }}
                           className="relative"
                         >
-                          <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{
-                            background: 'radial-gradient(circle at 30% 30%, #22c55e, #16a34a, #15803d)',
-                            boxShadow: '0 4px 12px rgba(34, 197, 94, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3)'
-                          }}>
-                            <Mic className="w-4 h-4 text-white" />
+                          <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center shadow-md">
+                            <Mic className="w-4 h-4 text-green-600" />
                           </div>
                           {/* Pulse ring */}
                           <motion.div
@@ -565,8 +563,8 @@ const TryNowSection = () => {
                         </motion.div>
                       </div>
                       {/* Message */}
-                      <p className="relative text-[11px] text-gray-900 font-semibold leading-relaxed drop-shadow-sm text-center">
-                        "{currentScenario.userText}"
+                      <p className="relative text-[10px] font-semibold text-gray-900 leading-relaxed text-center">
+                        {currentScenario.userText}
                       </p>
                     </div>
                     {/* Attractive tail with outline */}
@@ -607,10 +605,8 @@ const TryNowSection = () => {
                             }}
                             className="relative"
                           >
-                            <div className={`${colors.bg} w-7 h-7 rounded-full flex items-center justify-center`} style={{
-                              boxShadow: `0 4px 12px ${colors.bg.replace('bg-', 'rgba(').replace('-500', ', 0.4)')}, inset 0 2px 4px rgba(255, 255, 255, 0.3)`
-                            }}>
-                              <IconComponent className="w-3.5 h-3.5 text-white" />
+                            <div className={`${colors.bgLight} w-7 h-7 rounded-full flex items-center justify-center shadow-md`}>
+                              <IconComponent className={`w-3.5 h-3.5 ${colors.text}`} />
                             </div>
                             {/* Pulse ring */}
                             <motion.div
@@ -628,9 +624,7 @@ const TryNowSection = () => {
                           </motion.div>
                           <span className="text-[9px] font-bold uppercase tracking-wide text-gray-900">{currentScenario.aiLabel}</span>
                         </div>
-                        <span className={`text-[8px] ${colors.statusBg} ${colors.statusText} px-2 py-0.5 rounded-full font-medium shadow-sm`}>
-                          {currentScenario.aiStatus}
-                        </span>
+
                       </div>
                       {/* Content */}
                       <div className="relative space-y-1.5">

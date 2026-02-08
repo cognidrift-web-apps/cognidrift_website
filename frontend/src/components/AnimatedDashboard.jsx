@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { TrendingUp, Phone, Clock, Users, CheckCircle, Activity } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import GlowCard from './ui/GlowCard'
 
 const AnimatedDashboard = () => {
   const [callCount, setCallCount] = useState(847)
@@ -16,13 +17,14 @@ const AnimatedDashboard = () => {
 
   return (
     <div className="relative w-full h-full">
-      {/* Main Dashboard Container */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative bg-white rounded-3xl shadow-2xl p-6 lg:p-8 border-2 border-gray-100 overflow-hidden"
-      >
+      {/* Main Dashboard Container with Glow */}
+      <GlowCard glowColor="purple" glowSize="md">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative bg-white p-6 lg:p-8 overflow-hidden"
+        >
         {/* Animated Background Gradient */}
         <motion.div
           animate={{
@@ -167,24 +169,8 @@ const AnimatedDashboard = () => {
           </div>
         </div>
 
-        {/* Floating Elements */}
-        <motion.div
-          animate={{
-            y: [0, -10, 0],
-            rotate: [0, 5, 0]
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full opacity-20 blur-2xl"
-        />
-        <motion.div
-          animate={{
-            y: [0, 10, 0],
-            rotate: [0, -5, 0]
-          }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-20 blur-2xl"
-        />
       </motion.div>
+      </GlowCard>
     </div>
   )
 }

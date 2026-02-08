@@ -84,9 +84,11 @@ export default {
         'float-fast': 'float 1.8s ease-in-out infinite',
         'float-delayed': 'float 2.5s ease-in-out infinite 1s',
         'float-slow': 'floatSlow 8s ease-in-out infinite',
+        'float-slower': 'floatSlow 12s ease-in-out infinite',
         'pulse-ring': 'pulseRing 2s ease-out infinite',
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'pulse-cta': 'pulseCta 2s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
         'fade-up': 'fadeUp 0.6s ease-out',
         'fade-in': 'fadeIn 0.6s ease-out',
         'slide-up': 'slideUp 0.5s ease-out',
@@ -97,6 +99,8 @@ export default {
         'marquee': 'marquee 30s linear infinite',
         'marquee-reverse': 'marqueeReverse 30s linear infinite',
         'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
+        'spin-slow': 'spin 8s linear infinite',
+        'spin-slower': 'spin 12s linear infinite',
       },
       keyframes: {
         float: {
@@ -154,6 +158,10 @@ export default {
         bounceSubtle: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-5px)' },
+        },
+        pulseGlow: {
+          '0%, 100%': { opacity: '0.5', transform: 'scale(1)' },
+          '50%': { opacity: '0.8', transform: 'scale(1.02)' },
         },
       },
       transitionTimingFunction: {

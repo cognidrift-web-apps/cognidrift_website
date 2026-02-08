@@ -3,6 +3,7 @@ import { Mic, Brain, MessageSquare, CheckCircle, Zap, User, Bot } from 'lucide-r
 import { BsRobot } from 'react-icons/bs'
 import { FaUserCircle } from 'react-icons/fa'
 import { useState, useEffect } from 'react'
+import GlowCard from './ui/GlowCard'
 
 const AIConversationFlow = () => {
   const [activeStep, setActiveStep] = useState(0)
@@ -83,20 +84,21 @@ const AIConversationFlow = () => {
 
   return (
     <div className="relative w-full h-full">
-      {/* Main Container */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        whileInView={() => {
-          if (!hasStarted) {
-            setHasStarted(true)
-          }
-          return {}
-        }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 rounded-3xl shadow-2xl p-8 border-2 border-indigo-100 overflow-hidden"
-      >
+      {/* Main Container with Glow */}
+      <GlowCard glowColor="purple" glowSize="md">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          whileInView={() => {
+            if (!hasStarted) {
+              setHasStarted(true)
+            }
+            return {}
+          }}
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8 overflow-hidden"
+        >
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 opacity-30">
           <motion.div
@@ -355,6 +357,7 @@ const AIConversationFlow = () => {
           />
         ))}
       </motion.div>
+      </GlowCard>
     </div>
   )
 }

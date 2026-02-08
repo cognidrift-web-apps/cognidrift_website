@@ -9,6 +9,7 @@ import { BsFillTelephoneFill } from 'react-icons/bs'
 import { HiSparkles } from 'react-icons/hi'
 import { BsFillCalendarCheckFill, BsChatDotsFill } from 'react-icons/bs'
 import { IoTrendingUpSharp } from 'react-icons/io5'
+import GlowCard from './ui/GlowCard'
 
 const VideoShowcaseSection = () => {
   const sectionRef = useRef(null)
@@ -159,30 +160,16 @@ const VideoShowcaseSection = () => {
 
             {/* Video Container with Glow Effect */}
             <div className="relative">
-              {/* Outer Glow Effect - Using CSS animation */}
-              <div className="absolute -inset-3 bg-gradient-to-r from-cyan-500/30 via-blue-500/30 to-purple-500/30 rounded-[2rem] blur-xl animate-pulse-glow" />
-
-              {/* Secondary Glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 rounded-3xl opacity-20 blur-md" />
-
-              {/* Liquid Glass Frame */}
-              <div className="relative backdrop-blur-xl bg-white/40 border-2 border-white/60 rounded-3xl p-2 shadow-2xl">
-                {/* Inner glass shine */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/50 via-transparent to-white/20 pointer-events-none" />
-
+              <GlowCard glowColor="cyan-purple" glowSize="md">
                 {/* Video wrapper */}
-                <div className="relative rounded-2xl overflow-hidden bg-gray-900 aspect-video shadow-inner will-change-transform">
+                <div className="bg-gray-900 aspect-video shadow-inner will-change-transform">
                   <img
                     src="/hero.gif"
                     alt="Hero Animation"
                     className="w-full h-full object-cover"
                   />
                 </div>
-
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-20 h-20 border-l-2 border-t-2 border-cyan-400/50 rounded-tl-3xl pointer-events-none" />
-                <div className="absolute bottom-0 right-0 w-20 h-20 border-r-2 border-b-2 border-purple-400/50 rounded-br-3xl pointer-events-none" />
-              </div>
+              </GlowCard>
 
               {/* Decorative dots - Using CSS animation */}
               <div className="absolute -bottom-6 -left-6 w-12 h-12 hidden lg:block animate-spin-slow">

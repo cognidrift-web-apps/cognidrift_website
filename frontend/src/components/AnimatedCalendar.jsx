@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Calendar as CalendarIcon, Clock, User, Check, ChevronLeft, ChevronRight, Plus } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import GlowCard from './ui/GlowCard'
 
 const AnimatedCalendar = () => {
   const [currentDate] = useState(new Date())
@@ -49,13 +50,14 @@ const AnimatedCalendar = () => {
 
   return (
     <div className="relative w-full h-full">
-      {/* Main Calendar Container */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative bg-white rounded-3xl shadow-2xl p-6 lg:p-8 border-2 border-gray-100 overflow-hidden"
-      >
+      {/* Main Calendar Container with Glow */}
+      <GlowCard glowColor="blue" glowSize="md">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="relative bg-white p-6 lg:p-8 overflow-hidden"
+        >
         {/* Animated Background */}
         <motion.div
           animate={{
@@ -270,24 +272,8 @@ const AnimatedCalendar = () => {
           </div>
         </div>
 
-        {/* Floating Animation Elements */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 180, 360]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
-          className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full opacity-10 blur-2xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [360, 180, 0]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-          className="absolute -bottom-8 -left-8 w-40 h-40 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-10 blur-2xl"
-        />
       </motion.div>
+      </GlowCard>
     </div>
   )
 }
