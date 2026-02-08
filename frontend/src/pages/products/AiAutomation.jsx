@@ -268,7 +268,7 @@ const AiAutomation = () => {
                     <p className="text-text-primary font-medium">{benefit.text}</p>
                   </motion.div>
                 )
-              }}}
+              })}
             </div>
           </motion.div>
         </div>
