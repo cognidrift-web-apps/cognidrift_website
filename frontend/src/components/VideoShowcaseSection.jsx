@@ -82,9 +82,9 @@ const VideoShowcaseSection = () => {
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
             >
-              <HiSparkles className="w-4 h-4 text-purple-500" />
+              <HiSparkles className="w-4 h-4 text-blue-600" />
             </motion.div>
-            <span className="text-sm font-bold uppercase tracking-wider text-purple-600">
+            <span className="text-sm font-bold uppercase tracking-wider text-blue-600">
               See It In Action
             </span>
           </div>

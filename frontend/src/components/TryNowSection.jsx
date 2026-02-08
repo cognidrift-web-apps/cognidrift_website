@@ -172,7 +172,7 @@ const TryNowSection = () => {
   `
 
   return (
-    <section className="py-14 lg:py-20 bg-neutral-offWhite">
+    <section id="try-it-live" className="py-14 lg:py-20 bg-neutral-offWhite scroll-mt-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Centered */}
         <motion.div

@@ -411,7 +411,7 @@ const Home = () => {
       {/* Video Showcase Section */}
       <VideoShowcaseSection />
 
-      {/* Problem Section - Enhanced Typography */}
+      {/* Problem Section - COMMENTED OUT
       <section className="relative py-16 sm:py-20 lg:py-32 bg-white overflow-hidden">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -421,7 +421,6 @@ const Home = () => {
             variants={staggerContainer}
             className="text-center max-w-4xl mx-auto mb-16 lg:mb-20"
           >
-            {/* Eyebrow with animated underline */}
             <motion.div
               variants={fadeInUp}
               className="relative inline-block mb-6"
@@ -432,7 +431,6 @@ const Home = () => {
               </span>
             </motion.div>
 
-            {/* Main Heading with split animation */}
             <motion.h2
               variants={fadeInUp}
               className="section-title hero-display mb-8 leading-[1.05]"
@@ -463,7 +461,6 @@ const Home = () => {
                   viewport={{ once: true }}
                 >
                   Stuck on the Phone
-                  {/* Animated underline */}
                   <motion.span
                     className="absolute -bottom-3 left-0 right-0 h-1 bg-red-600 rounded-full"
                     initial={{ scaleX: 0, originX: 0 }}
@@ -475,7 +472,6 @@ const Home = () => {
               </span>
             </motion.h2>
 
-            {/* Subtitle with better typography */}
             <motion.p
               variants={fadeInUp}
               className="text-base sm:text-lg md:text-2xl text-text-secondary leading-relaxed font-light max-w-3xl mx-auto px-2"
@@ -495,7 +491,6 @@ const Home = () => {
             </motion.p>
           </motion.div>
 
-          {/* Cards with enhanced design */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -516,10 +511,8 @@ const Home = () => {
                 transition={{ type: "spring", stiffness: 300 }}
                 className="group relative bg-white border-2 border-neutral-border hover:border-primary-300 rounded-xl sm:rounded-2xl p-5 sm:p-6 lg:p-8 text-center shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                {/* Hover gradient background */}
                 <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                {/* Icon with animation */}
                 <motion.div
                   className={`relative w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 mx-auto mb-4 sm:mb-6 bg-${item.color}-50 rounded-xl sm:rounded-2xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow`}
                   whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
@@ -527,7 +520,6 @@ const Home = () => {
                 >
                   <item.icon className={`w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-${item.color}-600`} />
 
-                  {/* Pulse ring on hover */}
                   <motion.div
                     className={`absolute inset-0 rounded-2xl bg-${item.color}-400 opacity-0 group-hover:opacity-20`}
                     animate={{
@@ -541,17 +533,14 @@ const Home = () => {
                   />
                 </motion.div>
 
-                {/* Title with better typography */}
                 <h3 className="relative text-base sm:text-lg lg:text-xl font-bold text-text-primary mb-2 sm:mb-3 leading-tight group-hover:text-primary-600 transition-colors duration-300">
                   {item.title}
                 </h3>
 
-                {/* Description */}
                 <p className="relative text-sm sm:text-base text-text-secondary leading-relaxed font-normal">
                   {item.desc}
                 </p>
 
-                {/* Animated corner accent */}
                 <motion.div
                   className="absolute top-0 right-0 w-20 h-20 bg-primary-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
                   initial={{ scale: 0, originX: 1, originY: 0 }}
@@ -564,6 +553,7 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+      */}
 
       {/* How It Works Section - Enhanced */}
       <section className="py-16 sm:py-20 lg:py-28 bg-neutral-offWhite">
@@ -575,7 +565,13 @@ const Home = () => {
             variants={staggerContainer}
             className="section-header"
           >
-            <motion.span variants={fadeInUp} className="section-eyebrow">How It Works</motion.span>
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+            >
+              <Zap className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">How It Works</span>
+            </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
               Meet Your <span className="text-gradient">AI Receptionist</span>
             </motion.h2>
@@ -663,7 +659,13 @@ const Home = () => {
             variants={staggerContainer}
             className="section-header"
           >
-            <motion.span variants={fadeInUp} className="section-eyebrow">Industry Solutions</motion.span>
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+            >
+              <Building2 className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Industry Solutions</span>
+            </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
               Built for <span className="text-gradient">Your Industry</span>
             </motion.h2>
@@ -785,10 +787,10 @@ const Home = () => {
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 bg-primary-600 text-white px-5 py-2 rounded-full mb-6"
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
             >
-              <Zap className="w-4 h-4" />
-              <span className="text-sm font-bold uppercase tracking-widest" style={{ fontFamily: 'Montserrat, sans-serif' }}>Powerful Features</span>
+              <Sparkles className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Powerful Features</span>
             </motion.div>
             <motion.h2
               variants={fadeInUp}
@@ -1048,7 +1050,7 @@ const Home = () => {
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 bg-indigo-50 text-indigo-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
             >
               <BarChart3 className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Real-Time Analytics</span>
@@ -1155,10 +1157,10 @@ const Home = () => {
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 bg-primary-600 text-white px-5 py-2 rounded-full mb-6 shadow-lg"
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
             >
               <Zap className="w-4 h-4" />
-              <span className="text-sm font-bold uppercase tracking-wider">Integrations</span>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Integrations</span>
             </motion.div>
             <motion.h2
               variants={fadeInUp}
