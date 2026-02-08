@@ -174,6 +174,24 @@ const TryNowSection = () => {
   return (
     <section className="py-14 lg:py-20 bg-neutral-offWhite">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header - Centered */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+          className="section-header"
+        >
+          <motion.span variants={fadeInUp} className="section-eyebrow">Try It Live</motion.span>
+          <motion.h2 variants={fadeInUp} className="section-title hero-display">
+            Pull Out <span className="text-gradient">Your Phone!</span>
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="section-subtitle">
+            Experience our AI receptionist <span className="font-bold text-text-primary">right now</span>.
+            Call or text the number below.
+          </motion.p>
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -182,15 +200,6 @@ const TryNowSection = () => {
             viewport={{ once: true }}
             variants={staggerContainer}
           >
-            <motion.span variants={fadeInUp} className="section-eyebrow">Try It Live</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title hero-display !mb-3">
-              Pull Out <span className="text-gradient">Your Phone!</span>
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="section-subtitle !mb-0">
-              Experience our AI receptionist <span className="font-bold text-text-primary">right now</span>.
-              Call or text the number below.
-            </motion.p>
-
             {/* Contact Methods */}
             <style>{glowStyles}</style>
             <motion.div

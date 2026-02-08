@@ -69,15 +69,15 @@ const VideoShowcaseSection = () => {
       </div>
 
       <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Mobile: Title and Description First */}
-        <div className="lg:hidden mb-8">
+        {/* Section Header - Centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: 0.3 }}
+          className="section-header"
+        >
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg"
-          >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg">
             <motion.div
               animate={{ rotate: [0, 360] }}
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
@@ -87,20 +87,20 @@ const VideoShowcaseSection = () => {
             <span className="text-sm font-bold uppercase tracking-wider text-purple-600">
               See It In Action
             </span>
-          </motion.div>
+          </div>
 
           {/* Title */}
-          <h2 className="section-title hero-display !mb-6">
+          <h2 className="section-title hero-display">
             Your AI Receptionist, <span className="text-gradient">Working 24/7</span>
           </h2>
 
           {/* Description */}
-          <p className="text-lg text-gray-600 mb-0 leading-relaxed">
+          <p className="section-subtitle">
             Watch our AI handle real conversations, schedule appointments, capture leads,
             and never miss a call — even at 3 AM. It's like having your best employee
             work around the clock, without the overtime.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
@@ -201,36 +201,6 @@ const VideoShowcaseSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="order-2 lg:order-2"
           >
-            {/* Badge - Desktop Only */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ delay: 0.3 }}
-              className="hidden lg:inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg"
-            >
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-              >
-                <HiSparkles className="w-4 h-4 text-purple-500" />
-              </motion.div>
-              <span className="text-sm font-bold uppercase tracking-wider text-purple-600">
-                See It In Action
-              </span>
-            </motion.div>
-
-            {/* Title - Desktop Only */}
-            <h2 className="hidden lg:block section-title hero-display !mb-6">
-              Your AI Receptionist, <span className="text-gradient">Working 24/7</span>
-            </h2>
-
-            {/* Description - Desktop Only */}
-            <p className="hidden lg:block text-lg text-gray-600 mb-8 leading-relaxed">
-              Watch our AI handle real conversations, schedule appointments, capture leads,
-              and never miss a call — even at 3 AM. It's like having your best employee
-              work around the clock, without the overtime.
-            </p>
-
             {/* Features List */}
             <div className="space-y-4 mb-8">
               {features.map((feature, index) => (
