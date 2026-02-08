@@ -556,7 +556,7 @@ const Home = () => {
       */}
 
       {/* How It Works Section - Enhanced */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-neutral-offWhite">
+      <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -573,7 +573,7 @@ const Home = () => {
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">How It Works</span>
             </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
-              Meet Your <span className="text-gradient">AI Receptionist</span>
+              Meet Your <span className="text-gradient">AI Web Widget</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               A simple, powerful process that transforms how you handle calls.
@@ -650,7 +650,7 @@ const Home = () => {
       </section>
 
       {/* Industry Solutions - Enhanced */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      <section className="py-16 sm:py-20 lg:py-28 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -700,7 +700,7 @@ const Home = () => {
 
 
       {/* Live Demo Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-primary-600">
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <motion.div
@@ -709,23 +709,27 @@ const Home = () => {
               viewport={{ once: true }}
               variants={staggerContainer}
             >
-              <motion.span variants={fadeInUp} className="inline-block text-sm uppercase tracking-wider text-primary-200 font-semibold mb-4">
-                Try It Yourself
-              </motion.span>
-              <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-4 sm:mb-6">
-                Don't Take Our Word For It
+              <motion.div
+                variants={fadeInUp}
+                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+              >
+                <Mic className="w-4 h-4" />
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Try It Yourself</span>
+              </motion.div>
+              <motion.h2 variants={fadeInUp} className="section-title hero-display mb-4 sm:mb-6">
+                Don't Take Our <span className="text-gradient">Word For It</span>
               </motion.h2>
-              <motion.p variants={fadeInUp} className="text-base sm:text-lg text-primary-100 mb-6 sm:mb-8">
+              <motion.p variants={fadeInUp} className="text-base sm:text-lg text-text-secondary mb-6 sm:mb-8">
                 Experience our AI voice agent firsthand. Click the chat widget in the bottom right corner
                 to have a conversation with our AI.
               </motion.p>
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <button className="bg-white text-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors flex items-center justify-center gap-2 animate-glow text-sm sm:text-base">
+                <button className="btn-primary text-sm sm:text-base">
                   <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
                   Talk to Our AI
                 </button>
                 <Link to="/contact" className="w-full sm:w-auto">
-                  <button className="w-full border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-white/10 transition-colors animate-glow text-sm sm:text-base">
+                  <button className="w-full border-2 border-primary-600 text-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors text-sm sm:text-base">
                     Want This For Your Business?
                   </button>
                 </Link>
@@ -739,14 +743,14 @@ const Home = () => {
               transition={{ duration: 0.6 }}
               className="relative hidden lg:block"
             >
-              <div className="bg-white/10 backdrop-blur-lg rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-white/20">
+              <div className="bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 border-primary-100">
                 <div className="text-center">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative">
-                    <div className="absolute inset-0 bg-white/10 rounded-full animate-pulse-ring"></div>
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative shadow-lg">
+                    <div className="absolute inset-0 bg-primary-400 rounded-full animate-pulse-ring"></div>
                     <Mic className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
                   </div>
-                  <p className="text-white font-semibold text-base sm:text-lg mb-2">Click to Start</p>
-                  <p className="text-primary-200 text-xs sm:text-sm">Experience AI-powered conversations</p>
+                  <p className="text-text-primary font-semibold text-base sm:text-lg mb-2">Click to Start</p>
+                  <p className="text-text-secondary text-xs sm:text-sm">Experience AI-powered conversations</p>
                 </div>
               </div>
             </motion.div>
@@ -1030,7 +1034,7 @@ const Home = () => {
       </section>
 
       {/* Analytics Showcase */}
-      <section className="relative py-16 sm:py-20 lg:py-32 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+      <section className="relative py-16 sm:py-20 lg:py-32 bg-neutral-offWhite overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02]">
           <motion.div
             animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
@@ -1275,7 +1279,7 @@ const Home = () => {
       </section>
 
       {/* Statistics Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-primary-600">
+      <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -1285,8 +1289,9 @@ const Home = () => {
             className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-12"
           >
             {stats.map((stat, i) => (
-              <motion.div key={i} variants={fadeInUp}>
-                <StatItem {...stat} />
+              <motion.div key={i} variants={fadeInUp} className="text-center">
+                <div className="text-4xl sm:text-5xl lg:text-6xl font-black text-primary-600 mb-2">{stat.number}{stat.suffix}</div>
+                <div className="text-sm sm:text-base text-text-secondary font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -1295,7 +1300,7 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="text-center text-primary-200 text-sm mt-12"
+            className="text-center text-text-muted text-sm mt-12"
           >
             Sources: Forbes, BIA/Kelsey, Harvard Business Review
           </motion.p>
@@ -1311,24 +1316,32 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="bg-gradient-to-br from-primary-600 to-primary-700 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden"
+            className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden border-2 border-primary-100"
           >
             {/* Background decoration */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
             </div>
 
-            <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-4 sm:mb-6 relative z-10">
-              Ready to Stop Missing Calls?
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100"
+            >
+              <PhoneCall className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
+            </motion.div>
+
+            <motion.h2 variants={fadeInUp} className="section-title hero-display mb-4 sm:mb-6 relative z-10">
+              Ready to Stop <span className="text-gradient">Missing Calls?</span>
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-base sm:text-lg md:text-xl text-primary-100 mb-6 sm:mb-10 max-w-2xl mx-auto relative z-10 leading-relaxed px-2">
-              Join businesses that never miss a lead. Book a <span className="font-bold text-white">15-minute demo</span> to see how
+            <motion.p variants={fadeInUp} className="text-base sm:text-lg md:text-xl text-text-secondary mb-6 sm:mb-10 max-w-2xl mx-auto relative z-10 leading-relaxed px-2">
+              Join businesses that never miss a lead. Book a <span className="font-bold text-primary-600">15-minute demo</span> to see how
               CogniDrift can transform your customer communications.
             </motion.p>
             <motion.div variants={fadeInUp} className="flex justify-center relative z-10">
               <Link to="/contact">
-                <button className="bg-white text-primary-600 px-6 sm:px-10 py-3 sm:py-5 rounded-xl font-bold text-base sm:text-lg hover:bg-primary-50 transition-all duration-300 hover:scale-105 hover:-translate-y-1 shadow-xl flex items-center justify-center gap-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                <button className="btn-primary px-6 sm:px-10 py-3 sm:py-5 text-base sm:text-lg" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                   <PhoneCall className="w-4 h-4 sm:w-5 sm:h-5" />
                   Book Your Demo
                 </button>

@@ -78,14 +78,9 @@ const VideoShowcaseSection = () => {
           className="section-header"
         >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 backdrop-blur-xl bg-white/60 border border-white/80 shadow-lg">
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-            >
-              <HiSparkles className="w-4 h-4 text-blue-600" />
-            </motion.div>
-            <span className="text-sm font-bold uppercase tracking-wider text-blue-600">
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6">
+            <Sparkles className="w-4 h-4" />
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">
               See It In Action
             </span>
           </div>

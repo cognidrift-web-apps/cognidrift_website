@@ -173,7 +173,7 @@ const TryNowSection = () => {
   `
 
   return (
-    <section id="try-it-live" className="py-14 lg:py-20 bg-neutral-offWhite scroll-mt-20">
+    <section id="try-it-live" className="py-14 lg:py-20 bg-white scroll-mt-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header - Centered */}
         <motion.div
@@ -183,7 +183,13 @@ const TryNowSection = () => {
           variants={staggerContainer}
           className="section-header"
         >
-          <motion.span variants={fadeInUp} className="section-eyebrow">Try It Live</motion.span>
+          <motion.div
+            variants={fadeInUp}
+            className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+          >
+            <Phone className="w-4 h-4" />
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Try It Live</span>
+          </motion.div>
           <motion.h2 variants={fadeInUp} className="section-title hero-display">
             Pull Out <span className="text-gradient">Your Phone!</span>
           </motion.h2>

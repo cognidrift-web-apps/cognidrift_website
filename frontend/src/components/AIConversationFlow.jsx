@@ -47,7 +47,18 @@ const AIConversationFlow = () => {
 
   // Handle sequential message typing
   useEffect(() => {
-    if (!hasStarted || currentMessageIndex >= sampleConversation.length) return
+    if (!hasStarted) return
+
+    // If we've reached the end, reset after a pause
+    if (currentMessageIndex >= sampleConversation.length) {
+      const resetTimeout = setTimeout(() => {
+        setMessages([])
+        setCurrentMessageIndex(0)
+        setTypingText('')
+      }, 3000) // Wait 3 seconds before restarting
+      
+      return () => clearTimeout(resetTimeout)
+    }
 
     const currentMsg = sampleConversation[currentMessageIndex]
     const fullText = currentMsg.text
@@ -115,94 +126,6 @@ const AIConversationFlow = () => {
         </div>
 
         <div className="relative z-10">
-          {/* Processing Steps */}
-          <div className="mb-8">
-            <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-indigo-600" />
-              AI Processing Pipeline
-            </h3>
-            <div className="flex items-center justify-between gap-3">
-              {conversationSteps.map((step, i) => {
-                const isActive = i === activeStep
-                const isPassed = i < activeStep
-                const colorClasses = {
-                  blue: 'from-blue-500 to-blue-600',
-                  purple: 'from-purple-500 to-purple-600',
-                  indigo: 'from-indigo-500 to-indigo-600',
-                  green: 'from-green-500 to-green-600'
-                }
-
-                return (
-                  <div key={i} className="flex-1">
-                    <motion.div
-                      animate={isActive ? { scale: [1, 1.1, 1] } : {}}
-                      transition={{ duration: 0.3, repeat: isActive ? Infinity : 0 }}
-                      className="relative"
-                    >
-                      {/* Step Circle */}
-                      <motion.div
-                        animate={{
-                          backgroundColor: isActive || isPassed ? 'white' : '#e5e7eb',
-                          borderColor: isActive || isPassed ? '#4f46e5' : '#d1d5db'
-                        }}
-                        className={`w-16 h-16 mx-auto rounded-2xl border-4 flex items-center justify-center shadow-lg transition-all duration-300 ${
-                          isActive ? 'shadow-indigo-500/50' : ''
-                        }`}
-                      >
-                        <motion.div
-                          animate={{
-                            scale: isActive ? [1, 1.2, 1] : 1,
-                            rotate: isActive ? [0, 360] : 0
-                          }}
-                          transition={{
-                            scale: { duration: 0.5, repeat: isActive ? Infinity : 0 },
-                            rotate: { duration: 1, repeat: isActive ? Infinity : 0, ease: 'linear' }
-                          }}
-                        >
-                          <step.icon className={`w-7 h-7 ${isActive || isPassed ? 'text-indigo-600' : 'text-gray-400'}`} />
-                        </motion.div>
-                      </motion.div>
-
-                      {/* Label */}
-                      <div className="mt-3 text-center">
-                        <p className={`text-sm font-bold ${isActive ? 'text-indigo-600' : 'text-gray-600'}`}>
-                          {step.title}
-                        </p>
-                        <p className="text-xs text-gray-500 mt-1">{step.description}</p>
-                      </div>
-
-                      {/* Active Indicator */}
-                      {isActive && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
-                        >
-                          <motion.div
-                            animate={{ scale: [1, 1.5, 1], opacity: [1, 0] }}
-                            transition={{ duration: 0.8, repeat: Infinity }}
-                            className="absolute inset-0 bg-green-400 rounded-full"
-                          />
-                          <div className="relative w-3 h-3 bg-white rounded-full" />
-                        </motion.div>
-                      )}
-
-                      {/* Connection Line */}
-                      {i < conversationSteps.length - 1 && (
-                        <motion.div
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: isPassed ? 1 : 0 }}
-                          transition={{ duration: 0.3 }}
-                          className={`absolute top-8 left-[calc(50%+32px)] w-[calc(100%-64px)] h-1 bg-gradient-to-r ${colorClasses[step.color]} origin-left`}
-                        />
-                      )}
-                    </motion.div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
           {/* Conversation Display */}
           <div className="bg-white rounded-2xl p-6 shadow-inner border-2 border-gray-100 min-h-[300px]">
             <div className="flex items-center justify-between mb-4">
@@ -211,7 +134,7 @@ const AIConversationFlow = () => {
                   <BsRobot className="w-10 h-10 text-indigo-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-gray-900">AI Receptionist</p>
+                  <p className="text-sm font-bold text-gray-900">AI Web Widget</p>
                   <div className="flex items-center gap-2">
                     <motion.div
                       animate={{ scale: [1, 1.3, 1] }}
