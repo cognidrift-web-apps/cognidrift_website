@@ -127,35 +127,39 @@ const AIConversationFlow = () => {
 
         <div className="relative z-10">
           {/* Conversation Display */}
-          <div className="bg-white rounded-2xl p-6 shadow-inner border-2 border-gray-100 min-h-[300px]">
-            <div className="flex items-center justify-between mb-4">
+          <div className="relative backdrop-blur-xl bg-white/20 rounded-2xl p-6 shadow-2xl border border-white/40 min-h-[300px]" style={{ backdropFilter: 'blur(20px) saturate(180%)' }}>
+            {/* Glass shimmer effect */}
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 via-white/10 to-transparent pointer-events-none" />
+            <div className="absolute inset-0 rounded-2xl opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
+
+            <div className="relative flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 flex items-center justify-center">
                   <BsRobot className="w-10 h-10 text-indigo-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-gray-900">AI Web Widget</p>
+                  <p className="text-sm font-bold text-gray-800">AI Web Widget</p>
                   <div className="flex items-center gap-2">
                     <motion.div
                       animate={{ scale: [1, 1.3, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                       className="w-2 h-2 bg-green-500 rounded-full"
                     />
-                    <span className="text-xs text-gray-500">Online</span>
+                    <span className="text-xs text-gray-600">Online</span>
                   </div>
                 </div>
               </div>
               <motion.div
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="text-xs text-indigo-600 font-semibold bg-indigo-50 px-3 py-1 rounded-full"
+                className="text-xs text-indigo-700 font-semibold bg-white/40 backdrop-blur-sm px-3 py-1 rounded-full border border-white/30"
               >
                 Live Demo
               </motion.div>
             </div>
 
             {/* Messages */}
-            <div className="space-y-4">
+            <div className="relative space-y-4">
               {messages.map((msg, i) => (
                 <motion.div
                   key={i}
@@ -174,9 +178,9 @@ const AIConversationFlow = () => {
                       whileHover={{ scale: 1.02 }}
                       className={`px-4 py-3 rounded-2xl ${
                         msg.type === 'user'
-                          ? 'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-sm'
-                          : 'bg-gray-100 text-gray-900 rounded-bl-sm'
-                      } shadow-md`}
+                          ? 'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-sm shadow-lg'
+                          : 'bg-white/50 backdrop-blur-sm text-gray-800 rounded-bl-sm border border-white/40 shadow-lg'
+                      }`}
                     >
                       <p className="text-sm leading-relaxed">{msg.text}</p>
                     </motion.div>
@@ -206,9 +210,9 @@ const AIConversationFlow = () => {
                     <div
                       className={`px-4 py-3 rounded-2xl ${
                         sampleConversation[currentMessageIndex].type === 'user'
-                          ? 'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-sm'
-                          : 'bg-gray-100 text-gray-900 rounded-bl-sm'
-                      } shadow-md`}
+                          ? 'bg-gradient-to-br from-indigo-500 to-indigo-600 text-white rounded-br-sm shadow-lg'
+                          : 'bg-white/50 backdrop-blur-sm text-gray-800 rounded-bl-sm border border-white/40 shadow-lg'
+                      }`}
                     >
                       <p className="text-sm leading-relaxed">
                         {typingText}
@@ -240,14 +244,14 @@ const AIConversationFlow = () => {
                   <div className="w-8 h-8 flex items-center justify-center">
                     <BsRobot className="w-8 h-8 text-purple-600" />
                   </div>
-                  <div className="bg-gray-100 px-4 py-3 rounded-2xl rounded-bl-sm shadow-md">
+                  <div className="bg-white/50 backdrop-blur-sm px-4 py-3 rounded-2xl rounded-bl-sm border border-white/40 shadow-lg">
                     <div className="flex gap-1">
                       {[0, 1, 2].map((i) => (
                         <motion.div
                           key={i}
                           animate={{ y: [0, -8, 0] }}
                           transition={{ duration: 0.4, repeat: Infinity, delay: i * 0.1 }}
-                          className="w-2 h-2 bg-gray-400 rounded-full"
+                          className="w-2 h-2 bg-purple-400 rounded-full"
                         />
                       ))}
                     </div>
