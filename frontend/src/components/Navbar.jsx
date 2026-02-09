@@ -119,14 +119,14 @@ const Navbar = () => {
     sections: [
       {
         items: [
-          { name: 'Healthcare', description: 'Medical practices, dental, therapy, senior care & veterinary clinics', path: '/industries/healthcare', icon: Stethoscope, iconColor: 'bg-gradient-to-br from-rose-100 to-red-100 text-rose-600' },
-          { name: 'Local Services', description: 'Restaurants, home services, salons, auto repair, fitness & pet care', path: '/industries/local-services', icon: Wrench, iconColor: 'bg-gradient-to-br from-amber-100 to-orange-100 text-amber-600' },
+          { name: 'Healthcare', description: 'Medical practices, dental, therapy, senior care & veterinary clinics', path: '/industries/healthcare', icon: Stethoscope, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'Local Services', description: 'Restaurants, home services, salons, auto repair, fitness & pet care', path: '/industries/local-services', icon: Wrench, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       },
       {
         items: [
-          { name: 'Professional Services', description: 'Legal, financial, insurance, real estate & consulting firms', path: '/industries/professional-services', icon: Building2, iconColor: 'bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-600' },
-          { name: 'Call Centers', description: 'BPO, tech support, customer service & scheduling operations', path: '/industries/call-centers', icon: Headphones, iconColor: 'bg-gradient-to-br from-purple-100 to-indigo-100 text-purple-600' },
+          { name: 'Professional Services', description: 'Legal, financial, insurance, real estate & consulting firms', path: '/industries/professional-services', icon: Building2, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'Call Centers', description: 'BPO, tech support, customer service & scheduling operations', path: '/industries/call-centers', icon: Headphones, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       }
     ]

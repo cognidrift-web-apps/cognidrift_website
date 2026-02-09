@@ -78,15 +78,15 @@ const LiveMetricsDashboard = () => {
 
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-purple-400">{activeAgents}</div>
+          <div className="text-3xl font-bold text-blue-400">{activeAgents}</div>
           <div className="text-xs text-gray-400 mt-1">AI Agents Active</div>
         </div>
         <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-cyan-400">{callsInQueue}</div>
+          <div className="text-3xl font-bold text-blue-300">{callsInQueue}</div>
           <div className="text-xs text-gray-400 mt-1">Calls in Queue</div>
         </div>
         <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-green-400">{avgWaitTime.toFixed(1)}s</div>
+          <div className="text-3xl font-bold text-blue-200">{avgWaitTime.toFixed(1)}s</div>
           <div className="text-xs text-gray-400 mt-1">Avg Wait Time</div>
         </div>
       </div>
@@ -113,7 +113,7 @@ const LiveMetricsDashboard = () => {
                 repeat: Infinity,
                 delay: i * 0.1
               }}
-              className="flex-1 bg-gradient-to-t from-purple-600 to-purple-400 rounded-t"
+              className="flex-1 bg-gradient-to-t from-blue-600 to-blue-400 rounded-t"
             />
           ))}
         </div>
@@ -261,10 +261,10 @@ const CallCenters = () => {
       icon: Headphones,
       title: "BPO & Contact Centers",
       description: "Scale your operations infinitely with AI agents that never sleep.",
-      color: "text-purple-600",
-      iconBg: "bg-purple-100",
-      bgGradient: "bg-gradient-to-br from-purple-50 via-white to-indigo-50",
-      accentColor: "bg-gradient-to-r from-purple-500 to-indigo-500",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
+      accentColor: "bg-gradient-to-r from-blue-500 to-primary-500",
       stats: [
         { value: 80, suffix: "%", label: "Cost Reduction" },
         { value: 10, suffix: "x", label: "Scalability" },
@@ -283,10 +283,10 @@ const CallCenters = () => {
       icon: Monitor,
       title: "Technical Support Centers",
       description: "Tier-1 automation with intelligent escalation to human agents.",
-      color: "text-cyan-600",
-      iconBg: "bg-cyan-100",
-      bgGradient: "bg-gradient-to-br from-cyan-50 via-white to-blue-50",
-      accentColor: "bg-gradient-to-r from-cyan-500 to-blue-500",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
+      accentColor: "bg-gradient-to-r from-blue-500 to-primary-500",
       stats: [
         { value: 65, suffix: "%", label: "First Call Resolution" },
         { value: 45, suffix: "%", label: "Reduced Escalations" },
@@ -304,20 +304,20 @@ const CallCenters = () => {
           {/* Support Flow Visualization */}
           <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-cyan-500 rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
                 <Monitor className="w-5 h-5 text-white" />
               </div>
               <div>
                 <div className="text-white font-semibold text-sm">Tech Support AI</div>
-                <div className="text-cyan-400 text-xs">Processing...</div>
+                <div className="text-blue-400 text-xs">Processing...</div>
               </div>
             </div>
-            <WaveVisualization color="bg-cyan-500" />
+            <WaveVisualization color="bg-blue-500" />
             <div className="mt-4 space-y-2">
               {[
                 { label: "Issue Identified", status: "complete", color: "bg-green-500" },
                 { label: "Solution Found", status: "complete", color: "bg-green-500" },
-                { label: "Applying Fix", status: "active", color: "bg-cyan-500" }
+                { label: "Applying Fix", status: "active", color: "bg-blue-500" }
               ].map((step, idx) => (
                 <motion.div
                   key={idx}
@@ -344,10 +344,10 @@ const CallCenters = () => {
       icon: Users,
       title: "Customer Service Operations",
       description: "24/7 support with human-like conversations and instant resolution.",
-      color: "text-teal-600",
-      iconBg: "bg-teal-100",
-      bgGradient: "bg-gradient-to-br from-teal-50 via-white to-emerald-50",
-      accentColor: "bg-gradient-to-r from-teal-500 to-emerald-500",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
+      accentColor: "bg-gradient-to-r from-blue-500 to-primary-500",
       stats: [
         { value: 95, suffix: "%", label: "CSAT Score" },
         { value: 70, suffix: "%", label: "Self-Service" },
@@ -382,9 +382,9 @@ const CallCenters = () => {
             </div>
             <div className="space-y-3">
               {[
-                { label: "Response Time", value: 98, color: "bg-teal-500" },
-                { label: "Resolution Rate", value: 94, color: "bg-emerald-500" },
-                { label: "Agent Helpfulness", value: 96, color: "bg-green-500" }
+                { label: "Response Time", value: 98, color: "bg-blue-600" },
+                { label: "Resolution Rate", value: 94, color: "bg-blue-500" },
+                { label: "Agent Helpfulness", value: 96, color: "bg-blue-400" }
               ].map((metric, idx) => (
                 <div key={idx}>
                   <div className="flex justify-between text-sm mb-1">
@@ -411,10 +411,10 @@ const CallCenters = () => {
       icon: ClipboardList,
       title: "Appointment Scheduling Services",
       description: "High-volume booking automation with zero double-bookings.",
-      color: "text-orange-600",
-      iconBg: "bg-orange-100",
-      bgGradient: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
-      accentColor: "bg-gradient-to-r from-orange-500 to-amber-500",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
+      accentColor: "bg-gradient-to-r from-blue-500 to-primary-500",
       stats: [
         { value: 50, suffix: "K+", label: "Daily Bookings" },
         { value: 40, suffix: "%", label: "More Efficiency" },
@@ -433,7 +433,7 @@ const CallCenters = () => {
           <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
             <div className="flex items-center justify-between mb-4">
               <span className="text-sm font-semibold text-gray-700">Today's Schedule</span>
-              <Calendar className="w-5 h-5 text-orange-500" />
+              <Calendar className="w-5 h-5 text-blue-500" />
             </div>
             <div className="space-y-3">
               {[
@@ -457,7 +457,7 @@ const CallCenters = () => {
                   <div className={`px-2 py-1 rounded-full text-xs font-medium ${
                     item.status === 'confirmed' ? 'bg-green-100 text-green-700' :
                     item.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
-                    'bg-orange-100 text-orange-700'
+                    'bg-blue-100/70 text-blue-700'
                   }`}>
                     {item.status === 'auto-scheduled' ? 'AI Booked' : item.status}
                   </div>
@@ -471,7 +471,7 @@ const CallCenters = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50/50 via-white to-white pt-24 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 pt-24 pb-20">
       {/* Hero Section */}
       <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -486,17 +486,17 @@ const CallCenters = () => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, type: "spring" }}
-              className="w-24 h-24 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-3xl flex items-center justify-center shadow-2xl mx-auto"
+              className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl mx-auto"
             >
               <Headphones className="w-12 h-12 text-white" />
             </motion.div>
 
             {/* Floating Elements */}
             {[
-              { icon: Phone, color: "bg-cyan-500", position: "-top-2 -left-8" },
-              { icon: Activity, color: "bg-green-500", position: "-top-2 -right-8" },
-              { icon: Settings, color: "bg-amber-500", position: "-bottom-2 -left-6" },
-              { icon: Globe, color: "bg-pink-500", position: "-bottom-2 -right-6" }
+              { icon: Phone, color: "bg-blue-500", position: "-top-2 -left-8" },
+              { icon: Activity, color: "bg-blue-400", position: "-top-2 -right-8" },
+              { icon: Settings, color: "bg-primary-500", position: "-bottom-2 -left-6" },
+              { icon: Globe, color: "bg-blue-600", position: "-bottom-2 -right-6" }
             ].map(({ icon: Icon, color, position }, idx) => (
               <motion.div
                 key={idx}
@@ -520,13 +520,13 @@ const CallCenters = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold mb-6"
+            className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6 border border-blue-200"
           >
             Enterprise Call Center AI
           </motion.span>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            AI for <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600">Call Centers</span>
+            AI for <span className="text-blue-600">Call Centers</span>
           </h1>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
@@ -539,19 +539,21 @@ const CallCenters = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary px-8 py-4 text-lg bg-gradient-to-r from-purple-600 to-indigo-600"
+                className="btn-primary px-8 py-4 text-lg"
               >
                 Request Enterprise Demo
                 <ArrowRight className="w-5 h-5 ml-2" />
               </motion.button>
             </Link>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 text-lg font-semibold text-purple-600 bg-purple-100 rounded-xl hover:bg-purple-200 transition-colors"
-            >
-              View ROI Calculator
-            </motion.button>
+            <Link to="/resources/case-studies">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 text-lg font-semibold text-blue-600 bg-white border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all"
+              >
+                View ROI Calculator
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
 
@@ -563,10 +565,10 @@ const CallCenters = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
         >
           {[
-            { icon: PhoneCall, value: 100, suffix: "M+", label: "Calls/Month", color: "text-purple-600" },
-            { icon: Globe, value: 50, suffix: "+", label: "Languages", color: "text-cyan-600" },
-            { icon: TrendingUp, value: 80, suffix: "%", label: "Cost Savings", color: "text-green-600" },
-            { icon: Shield, value: 99.99, suffix: "%", label: "Uptime SLA", color: "text-amber-600" }
+            { icon: PhoneCall, value: 100, suffix: "M+", label: "Calls/Month", color: "text-blue-600" },
+            { icon: Globe, value: 50, suffix: "+", label: "Languages", color: "text-blue-600" },
+            { icon: TrendingUp, value: 80, suffix: "%", label: "Cost Savings", color: "text-blue-600" },
+            { icon: Shield, value: 99.99, suffix: "%", label: "Uptime SLA", color: "text-blue-600" }
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -595,48 +597,43 @@ const CallCenters = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 p-10 lg:p-16 text-center"
+          className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden border-2 border-primary-100"
         >
           {/* Animated Background */}
           <div className="absolute inset-0 opacity-20">
-            {[...Array(10)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  x: [0, 100, 0],
-                  y: [0, -50, 0],
-                  scale: [1, 1.5, 1],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{
-                  duration: 15 + i * 2,
-                  repeat: Infinity,
-                  delay: i * 0.5
-                }}
-                className="absolute w-32 h-32 border border-white/20 rounded-full"
-                style={{
-                  left: `${i * 10}%`,
-                  top: `${(i % 3) * 30}%`
-                }}
-              />
-            ))}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
           </div>
 
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Call Center?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join enterprise leaders handling 100M+ calls monthly with AI. Get a custom demo tailored to your operations.
-            </p>
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
+            <Headphones className="w-4 h-4" />
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
+            Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Transform Your Call Center?</span>
+          </h2>
+          <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
+            Join enterprise leaders handling 100M+ calls monthly with AI. Get a custom demo tailored to your operations.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-white text-purple-600 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto btn-primary px-8 py-4 text-lg"
               >
                 Get Enterprise Demo
-                <ArrowRight className="w-5 h-5 ml-2 inline" />
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </Link>
+            <Link to="/resources/case-studies">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-50 transition-all duration-300"
+              >
+                View Case Studies
               </motion.button>
             </Link>
           </div>

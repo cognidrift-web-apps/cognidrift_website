@@ -206,9 +206,9 @@ const LocalServices = () => {
       icon: UtensilsCrossed,
       title: "Restaurants & Hospitality",
       description: "Reservations, orders, and guest inquiries handled 24/7.",
-      color: "text-orange-600",
-      iconBg: "bg-orange-100",
-      bgGradient: "bg-gradient-to-br from-orange-50 via-white to-amber-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 45, suffix: "%", label: "More Reservations" },
         { value: 60, suffix: "%", label: "Faster Response" },
@@ -222,18 +222,18 @@ const LocalServices = () => {
         "Guest feedback collection"
       ],
       chartData: [
-        { icon: Phone, color: "bg-orange-500" },
-        { icon: Calendar, color: "bg-amber-500" },
-        { icon: Star, color: "bg-yellow-500" }
+        { icon: Phone, color: "bg-blue-500" },
+        { icon: Calendar, color: "bg-blue-400" },
+        { icon: Star, color: "bg-primary-500" }
       ]
     },
     {
       icon: Wrench,
       title: "Home Services",
       description: "HVAC, plumbing, electrical, and more - never miss a service call.",
-      color: "text-slate-600",
-      iconBg: "bg-slate-100",
-      bgGradient: "bg-gradient-to-br from-slate-50 via-white to-gray-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 70, suffix: "%", label: "Calls Captured" },
         { value: 50, suffix: "%", label: "More Bookings" },
@@ -247,18 +247,18 @@ const LocalServices = () => {
         "Follow-up & review requests"
       ],
       chartData: [
-        { icon: Home, color: "bg-slate-500" },
-        { icon: Clock, color: "bg-gray-500" },
-        { icon: Zap, color: "bg-yellow-500" }
+        { icon: Home, color: "bg-blue-500" },
+        { icon: Clock, color: "bg-blue-400" },
+        { icon: Zap, color: "bg-primary-500" }
       ]
     },
     {
       icon: Scissors,
       title: "Salons & Spas",
       description: "Booking, confirmations, and client care automation.",
-      color: "text-fuchsia-600",
-      iconBg: "bg-fuchsia-100",
-      bgGradient: "bg-gradient-to-br from-fuchsia-50 via-white to-pink-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 40, suffix: "%", label: "Less No-Shows" },
         { value: 55, suffix: "%", label: "More Bookings" },
@@ -272,9 +272,9 @@ const LocalServices = () => {
         "Loyalty program management"
       ],
       chartData: [
-        { icon: Sparkles, color: "bg-fuchsia-500" },
-        { icon: Calendar, color: "bg-pink-500" },
-        { icon: Star, color: "bg-purple-500" }
+        { icon: Sparkles, color: "bg-blue-500" },
+        { icon: Calendar, color: "bg-blue-400" },
+        { icon: Star, color: "bg-primary-500" }
       ]
     },
     {
@@ -282,8 +282,8 @@ const LocalServices = () => {
       title: "Auto Repair & Dealerships",
       description: "Service scheduling, lead capture, and customer updates.",
       color: "text-blue-600",
-      iconBg: "bg-blue-100",
-      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-sky-50",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 65, suffix: "%", label: "Lead Capture" },
         { value: 45, suffix: "%", label: "Service Bookings" },
@@ -298,17 +298,17 @@ const LocalServices = () => {
       ],
       chartData: [
         { icon: Car, color: "bg-blue-500" },
-        { icon: Wrench, color: "bg-sky-500" },
-        { icon: CreditCard, color: "bg-indigo-500" }
+        { icon: Wrench, color: "bg-blue-400" },
+        { icon: CreditCard, color: "bg-primary-500" }
       ]
     },
     {
       icon: Dumbbell,
       title: "Fitness Centers & Gyms",
       description: "Membership inquiries, class booking, and member support.",
-      color: "text-green-600",
-      iconBg: "bg-green-100",
-      bgGradient: "bg-gradient-to-br from-green-50 via-white to-emerald-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 50, suffix: "%", label: "More Sign-ups" },
         { value: 35, suffix: "%", label: "Better Retention" },
@@ -322,18 +322,18 @@ const LocalServices = () => {
         "Billing & account support"
       ],
       chartData: [
-        { icon: Dumbbell, color: "bg-green-500" },
-        { icon: Users, color: "bg-emerald-500" },
-        { icon: Calendar, color: "bg-teal-500" }
+        { icon: Dumbbell, color: "bg-blue-500" },
+        { icon: Users, color: "bg-blue-400" },
+        { icon: Calendar, color: "bg-primary-500" }
       ]
     },
     {
       icon: PawPrint,
       title: "Pet Services & Grooming",
       description: "Grooming appointments, daycare, and pet parent communication.",
-      color: "text-yellow-600",
-      iconBg: "bg-yellow-100",
-      bgGradient: "bg-gradient-to-br from-yellow-50 via-white to-amber-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 60, suffix: "%", label: "More Appointments" },
         { value: 45, suffix: "%", label: "Client Loyalty" },
@@ -347,15 +347,15 @@ const LocalServices = () => {
         "Special care instructions"
       ],
       chartData: [
-        { icon: PawPrint, color: "bg-yellow-500" },
-        { icon: Star, color: "bg-amber-500" },
-        { icon: Heart, color: "bg-orange-500" }
+        { icon: PawPrint, color: "bg-blue-500" },
+        { icon: Star, color: "bg-blue-400" },
+        { icon: Heart, color: "bg-primary-500" }
       ]
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50/50 via-white to-white pt-24 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 pt-24 pb-20">
       {/* Hero Section */}
       <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -368,13 +368,13 @@ const LocalServices = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold mb-6"
+            className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6 border border-blue-200"
           >
             Never Miss a Customer Call
           </motion.span>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            AI for <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-orange-600">Local Services</span>
+            AI for <span className="text-blue-600">Local Services</span>
           </h1>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
@@ -387,19 +387,21 @@ const LocalServices = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-primary px-8 py-4 text-lg bg-gradient-to-r from-amber-600 to-orange-600"
+                className="btn-primary px-8 py-4 text-lg"
               >
                 Get Started
                 <ArrowRight className="w-5 h-5 ml-2" />
               </motion.button>
             </Link>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 text-lg font-semibold text-amber-600 bg-amber-100 rounded-xl hover:bg-amber-200 transition-colors"
-            >
-              See How It Works
-            </motion.button>
+            <Link to="/resources/case-studies">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 text-lg font-semibold text-blue-600 bg-white border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all"
+              >
+                See How It Works
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
 
@@ -411,9 +413,9 @@ const LocalServices = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
         >
           {[
-            { icon: MapPin, value: 10, suffix: "K+", label: "Local Businesses", color: "text-orange-600" },
-            { icon: Phone, value: 5, suffix: "M+", label: "Calls Handled", color: "text-amber-600" },
-            { icon: TrendingUp, value: 45, suffix: "%", label: "More Bookings", color: "text-green-600" },
+            { icon: MapPin, value: 10, suffix: "K+", label: "Local Businesses", color: "text-blue-600" },
+            { icon: Phone, value: 5, suffix: "M+", label: "Calls Handled", color: "text-blue-600" },
+            { icon: TrendingUp, value: 45, suffix: "%", label: "More Bookings", color: "text-blue-600" },
             { icon: ThumbsUp, value: 97, suffix: "%", label: "Satisfaction", color: "text-blue-600" }
           ].map((stat, idx) => (
             <motion.div
@@ -443,46 +445,43 @@ const LocalServices = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-500 via-orange-500 to-red-500 p-10 lg:p-16 text-center"
+          className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden border-2 border-primary-100"
         >
           {/* Animated Background */}
           <div className="absolute inset-0 opacity-20">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 180, 360]
-                }}
-                transition={{
-                  duration: 8 + i,
-                  repeat: Infinity,
-                  delay: i * 0.5
-                }}
-                className="absolute w-32 h-32 rounded-2xl bg-white/10"
-                style={{
-                  left: `${i * 18}%`,
-                  top: `${(i % 3) * 30}%`
-                }}
-              />
-            ))}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
           </div>
 
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Grow Your Local Business?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands of local businesses using AI to capture more leads and bookings. Start your free trial today.
-            </p>
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
+            <Wrench className="w-4 h-4" />
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
+            Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Grow Your Local Business?</span>
+          </h2>
+          <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
+            Join thousands of local businesses using AI to capture more leads and bookings. Start your free trial today.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-white text-orange-600 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto btn-primary px-8 py-4 text-lg"
               >
                 Start Free Trial
-                <ArrowRight className="w-5 h-5 ml-2 inline" />
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </Link>
+            <Link to="/resources/case-studies">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-50 transition-all duration-300"
+              >
+                View Case Studies
               </motion.button>
             </Link>
           </div>

@@ -189,9 +189,9 @@ const Healthcare = () => {
       icon: Stethoscope,
       title: "Medical & Dental Practices",
       description: "Streamline patient scheduling, reminders, and triage for medical and dental offices.",
-      color: "text-rose-600",
-      iconBg: "bg-rose-100",
-      bgGradient: "bg-gradient-to-br from-rose-50 via-white to-pink-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 85, suffix: "%", label: "Call Answered" },
         { value: 40, suffix: "%", label: "Less No-Shows" },
@@ -209,9 +209,9 @@ const Healthcare = () => {
       icon: Heart,
       title: "Senior Living & Memory Care",
       description: "Compassionate communication solutions for families and caregivers.",
-      color: "text-pink-600",
-      iconBg: "bg-pink-100",
-      bgGradient: "bg-gradient-to-br from-pink-50 via-white to-rose-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 98, suffix: "%", label: "Family Satisfaction" },
         { value: 60, suffix: "%", label: "Faster Response" },
@@ -229,9 +229,9 @@ const Healthcare = () => {
       icon: Brain,
       title: "Mental Health & Therapy",
       description: "Sensitive and confidential intake and appointment management.",
-      color: "text-purple-600",
-      iconBg: "bg-purple-100",
-      bgGradient: "bg-gradient-to-br from-purple-50 via-white to-violet-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 92, suffix: "%", label: "Patient Privacy" },
         { value: 35, suffix: "%", label: "More Bookings" },
@@ -249,9 +249,9 @@ const Healthcare = () => {
       icon: Activity,
       title: "Physical Therapy & Rehab",
       description: "Treatment scheduling, progress tracking, and patient follow-ups.",
-      color: "text-cyan-600",
-      iconBg: "bg-cyan-100",
-      bgGradient: "bg-gradient-to-br from-cyan-50 via-white to-teal-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 45, suffix: "%", label: "More Sessions" },
         { value: 30, suffix: "%", label: "Better Retention" },
@@ -269,9 +269,9 @@ const Healthcare = () => {
       icon: Pill,
       title: "Urgent Care & Medical Spas",
       description: "Walk-in management, wait times, and consultation scheduling.",
-      color: "text-emerald-600",
-      iconBg: "bg-emerald-100",
-      bgGradient: "bg-gradient-to-br from-emerald-50 via-white to-green-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 65, suffix: "%", label: "Shorter Wait" },
         { value: 80, suffix: "%", label: "Pre-registered" },
@@ -289,9 +289,9 @@ const Healthcare = () => {
       icon: PawPrint,
       title: "Veterinary Clinics",
       description: "Pet care appointments, reminders, and owner communication.",
-      color: "text-amber-600",
-      iconBg: "bg-amber-100",
-      bgGradient: "bg-gradient-to-br from-amber-50 via-white to-orange-50",
+      color: "text-blue-600",
+      iconBg: "bg-blue-100/70",
+      bgGradient: "bg-gradient-to-br from-blue-50 via-white to-primary-50",
       stats: [
         { value: 90, suffix: "%", label: "Owner Satisfaction" },
         { value: 40, suffix: "%", label: "More Appointments" },
@@ -308,7 +308,7 @@ const Healthcare = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-rose-50/50 via-white to-white pt-24 pb-20">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 pt-24 pb-20">
       {/* Hero Section */}
       <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -321,13 +321,13 @@ const Healthcare = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="inline-block px-4 py-2 bg-rose-100 text-rose-700 rounded-full text-sm font-semibold mb-6"
+            className="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold mb-6 border border-blue-200"
           >
             HIPAA Compliant AI Solutions
           </motion.span>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-            AI for <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-pink-600">Healthcare</span>
+            AI for <span className="text-blue-600">Healthcare</span>
           </h1>
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
@@ -346,13 +346,15 @@ const Healthcare = () => {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </motion.button>
             </Link>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 text-lg font-semibold text-rose-600 bg-rose-100 rounded-xl hover:bg-rose-200 transition-colors"
-            >
-              View Case Studies
-            </motion.button>
+            <Link to="/resources/case-studies">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 text-lg font-semibold text-blue-600 bg-white border-2 border-blue-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all"
+              >
+                View Case Studies
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
 
@@ -364,10 +366,10 @@ const Healthcare = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
         >
           {[
-            { icon: Users, value: 500, suffix: "+", label: "Healthcare Clients", color: "text-rose-600" },
-            { icon: Phone, value: 2, suffix: "M+", label: "Calls Handled", color: "text-pink-600" },
-            { icon: Star, value: 98, suffix: "%", label: "HIPAA Compliance", color: "text-purple-600" },
-            { icon: Clock, value: 24, suffix: "/7", label: "Availability", color: "text-cyan-600" }
+            { icon: Users, value: 500, suffix: "+", label: "Healthcare Clients", color: "text-blue-600" },
+            { icon: Phone, value: 2, suffix: "M+", label: "Calls Handled", color: "text-blue-600" },
+            { icon: Star, value: 98, suffix: "%", label: "HIPAA Compliance", color: "text-blue-600" },
+            { icon: Clock, value: 24, suffix: "/7", label: "Availability", color: "text-blue-600" }
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -396,47 +398,43 @@ const Healthcare = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-rose-600 via-pink-600 to-purple-600 p-10 lg:p-16 text-center"
+          className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden border-2 border-primary-100"
         >
           {/* Animated Background */}
           <div className="absolute inset-0 opacity-20">
-            {[...Array(5)].map((_, i) => (
-              <motion.div
-                key={i}
-                animate={{
-                  x: [0, 100, 0],
-                  y: [0, -50, 0],
-                  scale: [1, 1.2, 1]
-                }}
-                transition={{
-                  duration: 10 + i * 2,
-                  repeat: Infinity,
-                  delay: i * 0.5
-                }}
-                className="absolute w-64 h-64 rounded-full bg-white/10"
-                style={{
-                  left: `${i * 20}%`,
-                  top: `${i * 10}%`
-                }}
-              />
-            ))}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
           </div>
 
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Healthcare Practice?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join 500+ healthcare providers using CogniDrift to automate patient communication while maintaining HIPAA compliance.
-            </p>
+          <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
+            <Stethoscope className="w-4 h-4" />
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
+          </div>
+
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
+            Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Transform Your Healthcare Practice?</span>
+          </h2>
+          <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
+            Join 500+ healthcare providers using CogniDrift to automate patient communication while maintaining HIPAA compliance.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
             <Link to="/contact">
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-white text-rose-600 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto btn-primary px-8 py-4 text-lg"
               >
                 Get Started Today
-                <ArrowRight className="w-5 h-5 ml-2 inline" />
+                <ArrowRight className="w-5 h-5" />
+              </motion.button>
+            </Link>
+            <Link to="/resources/case-studies">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full sm:w-auto border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-50 transition-all duration-300"
+              >
+                View Case Studies
               </motion.button>
             </Link>
           </div>
