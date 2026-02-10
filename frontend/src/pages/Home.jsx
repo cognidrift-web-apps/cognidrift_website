@@ -788,31 +788,37 @@ const Home = () => {
               transition={{ duration: 0.6 }}
               className="relative hidden lg:block"
             >
-              <div className={`bg-gradient-to-br ${isConnected ? 'from-green-50 to-emerald-50 border-green-200' : 'from-primary-50 to-blue-50 border-primary-100'} rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 transition-colors duration-300`}>
-                <div className="text-center">
-                  <div className={`w-24 h-24 sm:w-32 sm:h-32 ${isConnected ? 'bg-gradient-to-br from-green-500 to-emerald-600' : 'bg-gradient-to-br from-primary-500 to-primary-600'} rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative shadow-lg transition-colors duration-300`}>
-                    {isConnected && (
-                      <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-50"></div>
-                    )}
-                    {!isConnected && (
-                      <div className="absolute inset-0 bg-primary-400 rounded-full animate-pulse-ring"></div>
-                    )}
-                    {isConnecting ? (
-                      <Loader2 className="w-12 h-12 sm:w-16 sm:h-16 text-white animate-spin" />
-                    ) : isConnected ? (
-                      <Phone className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
-                    ) : (
-                      <Mic className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
-                    )}
+              <button
+                onClick={isConnected ? endCall : startCall}
+                disabled={isConnecting}
+                className="w-full disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer hover:scale-105 transition-transform duration-300"
+              >
+                <div className={`bg-gradient-to-br ${isConnected ? 'from-green-50 to-emerald-50 border-green-200' : 'from-primary-50 to-blue-50 border-primary-100'} rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 transition-colors duration-300`}>
+                  <div className="text-center">
+                    <div className={`w-24 h-24 sm:w-32 sm:h-32 ${isConnected ? 'bg-gradient-to-br from-green-500 to-emerald-600' : 'bg-gradient-to-br from-primary-500 to-primary-600'} rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative shadow-lg transition-colors duration-300`}>
+                      {isConnected && (
+                        <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-50"></div>
+                      )}
+                      {!isConnected && (
+                        <div className="absolute inset-0 bg-primary-400 rounded-full animate-pulse-ring"></div>
+                      )}
+                      {isConnecting ? (
+                        <Loader2 className="w-12 h-12 sm:w-16 sm:h-16 text-white animate-spin" />
+                      ) : isConnected ? (
+                        <Phone className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+                      ) : (
+                        <Mic className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+                      )}
+                    </div>
+                    <p className="text-text-primary font-semibold text-base sm:text-lg mb-2">
+                      {isConnecting ? 'Connecting...' : isConnected ? 'Call in Progress' : 'Click to Start'}
+                    </p>
+                    <p className="text-text-secondary text-xs sm:text-sm">
+                      {isConnected ? 'Speak now - our AI is listening' : 'Experience AI-powered conversations'}
+                    </p>
                   </div>
-                  <p className="text-text-primary font-semibold text-base sm:text-lg mb-2">
-                    {isConnecting ? 'Connecting...' : isConnected ? 'Call in Progress' : 'Click to Start'}
-                  </p>
-                  <p className="text-text-secondary text-xs sm:text-sm">
-                    {isConnected ? 'Speak now - our AI is listening' : 'Experience AI-powered conversations'}
-                  </p>
                 </div>
-              </div>
+              </button>
             </motion.div>
           </div>
         </div>
