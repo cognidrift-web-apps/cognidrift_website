@@ -28,6 +28,7 @@
     "react-ga4": "^2.1.0",
     "react-icons": "^4.12.0",
     "react-router-dom": "^6.20.1",
+    "retell-client-js-sdk": "^2.0.7",
     "tailwind-merge": "^2.2.0",
     "three": "^0.159.0",
     "typed.js": "^3.0.0"

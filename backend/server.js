@@ -863,6 +863,51 @@ app.get('/api/dashboard/callbacks', authMiddleware, getCallbacks);
 app.put('/api/dashboard/password', authMiddleware, updatePassword);
 
 // ============================================
+// WEB CALL API - Create web call for website voice chat
+// ============================================
+app.post('/api/create-web-call', async (req, res) => {
+  try {
+    logInfo('Creating web call for website voice chat');
+
+    const response = await axios.post(
+      'https://api.retellai.com/v2/create-web-call',
+      {
+        agent_id: process.env.RETELL_AGENT_ID,
+        metadata: {
+          source: 'website',
+          initiated_from: 'web_widget',
+          timestamp: new Date().toISOString()
+        },
+        retell_llm_dynamic_variables: {
+          customer_name: 'Website Visitor'
+        }
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${process.env.RETELL_API_KEY}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    logSuccess('Web call created', { callId: response.data.call_id });
+
+    res.json({
+      success: true,
+      access_token: response.data.access_token,
+      call_id: response.data.call_id
+    });
+
+  } catch (error) {
+    logError('Error creating web call', error.response?.data || error.message);
+    res.status(500).json({
+      success: false,
+      error: error.response?.data?.message || error.message
+    });
+  }
+});
+
+// ============================================
 // 10. HEALTH CHECK
 // ============================================
 app.get('/health', (req, res) => {

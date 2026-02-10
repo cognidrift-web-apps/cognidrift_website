@@ -14,6 +14,7 @@ import AIConversationFlow from '../components/AIConversationFlow'
 import AnimatedCalendar from '../components/AnimatedCalendar'
 import FloatingNotifications from '../components/FloatingNotifications'
 import SiriWaveBackground from '../components/SiriWaveBackground'
+import useRetellWebCall from '../hooks/useRetellWebCall'
 import {
   SiSalesforce,
   SiHubspot,
@@ -49,7 +50,9 @@ import {
   ChevronRight,
   Mic,
   Sparkles,
-  TrendingUp
+  TrendingUp,
+  PhoneOff,
+  Loader2
 } from 'lucide-react'
 
 // Animation variants
@@ -220,6 +223,16 @@ const StatItem = ({ number, suffix, label }) => {
 const Home = () => {
   const [activeIndustry, setActiveIndustry] = useState(0)
   const typedRef = useRef(null)
+
+  // Retell AI Web Call hook
+  const {
+    callStatus,
+    error: callError,
+    startCall,
+    endCall,
+    isConnecting,
+    isConnected
+  } = useRetellWebCall()
 
   useEffect(() => {
     const typed = new Typed(typedRef.current, {
@@ -720,14 +733,46 @@ const Home = () => {
                 Don't Take Our <span className="text-gradient">Word For It</span>
               </motion.h2>
               <motion.p variants={fadeInUp} className="text-base sm:text-lg text-text-secondary mb-6 sm:mb-8">
-                Experience our AI voice agent firsthand. Click the chat widget in the bottom right corner
-                to have a conversation with our AI.
+                Experience our AI voice agent firsthand. Click the button below
+                to have a live conversation with our AI assistant.
               </motion.p>
+              {callError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm"
+                >
+                  {callError}
+                </motion.div>
+              )}
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <button className="btn-primary text-sm sm:text-base">
-                  <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
-                  Talk to Our AI
-                </button>
+                {isConnected ? (
+                  <button
+                    onClick={endCall}
+                    className="btn-primary text-sm sm:text-base !bg-red-500 hover:!bg-red-600"
+                  >
+                    <PhoneOff className="w-4 h-4 sm:w-5 sm:h-5" />
+                    End Call
+                  </button>
+                ) : (
+                  <button
+                    onClick={startCall}
+                    disabled={isConnecting}
+                    className="btn-primary text-sm sm:text-base disabled:opacity-70 disabled:cursor-not-allowed"
+                  >
+                    {isConnecting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
+                        Connecting...
+                      </>
+                    ) : (
+                      <>
+                        <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
+                        Talk to Our AI
+                      </>
+                    )}
+                  </button>
+                )}
                 <Link to="/contact" className="w-full sm:w-auto">
                   <button className="w-full border-2 border-primary-600 text-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors text-sm sm:text-base">
                     Want This For Your Business?
@@ -743,14 +788,29 @@ const Home = () => {
               transition={{ duration: 0.6 }}
               className="relative hidden lg:block"
             >
-              <div className="bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 border-primary-100">
+              <div className={`bg-gradient-to-br ${isConnected ? 'from-green-50 to-emerald-50 border-green-200' : 'from-primary-50 to-blue-50 border-primary-100'} rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 transition-colors duration-300`}>
                 <div className="text-center">
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative shadow-lg">
-                    <div className="absolute inset-0 bg-primary-400 rounded-full animate-pulse-ring"></div>
-                    <Mic className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+                  <div className={`w-24 h-24 sm:w-32 sm:h-32 ${isConnected ? 'bg-gradient-to-br from-green-500 to-emerald-600' : 'bg-gradient-to-br from-primary-500 to-primary-600'} rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative shadow-lg transition-colors duration-300`}>
+                    {isConnected && (
+                      <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-50"></div>
+                    )}
+                    {!isConnected && (
+                      <div className="absolute inset-0 bg-primary-400 rounded-full animate-pulse-ring"></div>
+                    )}
+                    {isConnecting ? (
+                      <Loader2 className="w-12 h-12 sm:w-16 sm:h-16 text-white animate-spin" />
+                    ) : isConnected ? (
+                      <Phone className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+                    ) : (
+                      <Mic className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
+                    )}
                   </div>
-                  <p className="text-text-primary font-semibold text-base sm:text-lg mb-2">Click to Start</p>
-                  <p className="text-text-secondary text-xs sm:text-sm">Experience AI-powered conversations</p>
+                  <p className="text-text-primary font-semibold text-base sm:text-lg mb-2">
+                    {isConnecting ? 'Connecting...' : isConnected ? 'Call in Progress' : 'Click to Start'}
+                  </p>
+                  <p className="text-text-secondary text-xs sm:text-sm">
+                    {isConnected ? 'Speak now - our AI is listening' : 'Experience AI-powered conversations'}
+                  </p>
                 </div>
               </div>
             </motion.div>
