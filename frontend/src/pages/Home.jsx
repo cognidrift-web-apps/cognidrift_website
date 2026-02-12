@@ -1131,7 +1131,7 @@ const Home = () => {
               variants={fadeInUp}
               className="section-subtitle"
             >
-              Get instant insights into every call, message, and appointment. Our live dashboard shows you exactly what's happening with your AI receptionist in real-time.
+              Live dashboard showing every call, message, and appointment in real-time.
             </motion.p>
           </motion.div>
 
