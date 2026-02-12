@@ -403,16 +403,131 @@ const Home = () => {
               24×7 AI voice agents for inbound and outbound calls, SMS, email, web chat, and avatars.
             </motion.p>
 
-            {/* Buttons */}
+            {/* Voice Orb - Try Demo */}
             <motion.div
               variants={fadeInUp}
-              className="flex justify-center px-2"
+              className="flex flex-col items-center justify-center px-2 mt-4 sm:mt-6"
             >
-              <Link to="/contact">
-                <button className="px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base bg-transparent text-slate-900 border-2 border-slate-900 font-medium rounded-lg hover:bg-blue-600 hover:border-blue-600 hover:text-white transition-all duration-300 shadow-lg hover:-translate-y-0.5 w-full sm:w-auto min-w-[140px]">
-                  Try Demo
-                </button>
-              </Link>
+              {/* Error Message */}
+              {callError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm max-w-md"
+                >
+                  {callError}
+                </motion.div>
+              )}
+
+              {/* Animated Voice Orb */}
+              <button
+                onClick={isConnected ? endCall : startCall}
+                disabled={isConnecting}
+                className="group relative cursor-pointer disabled:cursor-not-allowed focus:outline-none"
+              >
+                {/* Orbiting Particles */}
+                <div className="absolute inset-0 w-20 h-20 sm:w-24 sm:h-24">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0"
+                  >
+                    <div className={`absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-400' : 'bg-cyan-400'} shadow-lg`} style={{ boxShadow: isConnected ? '0 0 10px #34d399' : '0 0 10px #22d3ee' }}></div>
+                  </motion.div>
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0"
+                  >
+                    <div className={`absolute top-1/2 -right-1 -translate-y-1/2 w-1.5 h-1.5 rounded-full ${isConnected ? 'bg-green-400' : 'bg-purple-400'} shadow-lg`} style={{ boxShadow: isConnected ? '0 0 8px #4ade80' : '0 0 8px #c084fc' }}></div>
+                  </motion.div>
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0"
+                  >
+                    <div className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${isConnected ? 'bg-teal-400' : 'bg-pink-400'} shadow-lg`} style={{ boxShadow: isConnected ? '0 0 8px #2dd4bf' : '0 0 8px #f472b6' }}></div>
+                  </motion.div>
+                </div>
+
+                {/* Pulsing Rings - Always visible */}
+                <motion.div
+                  animate={{ scale: [1, 1.5, 1.5], opacity: [0.5, 0, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 ${isConnected ? 'border-emerald-400' : 'border-cyan-400'}`}
+                ></motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.4, 1.4], opacity: [0.4, 0, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
+                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 ${isConnected ? 'border-green-400' : 'border-purple-400'}`}
+                ></motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.3, 1.3], opacity: [0.3, 0, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
+                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 ${isConnected ? 'border-teal-400' : 'border-pink-400'}`}
+                ></motion.div>
+
+                {/* Soft Glow Background */}
+                <motion.div
+                  animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full blur-xl ${isConnected ? 'bg-gradient-to-r from-emerald-400 to-teal-400' : 'bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400'}`}
+                ></motion.div>
+
+                {/* Rotating Gradient Border */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  className="absolute -inset-0.5 rounded-full p-0.5"
+                  style={{ background: isConnected ? 'conic-gradient(from 0deg, #10b981, #34d399, #14b8a6, #22d3d3, #10b981)' : 'conic-gradient(from 0deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4)' }}
+                >
+                  <div className="w-full h-full rounded-full bg-slate-900/90"></div>
+                </motion.div>
+
+                {/* Main Orb with Floating Animation */}
+                <motion.div
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                  className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition-all duration-300 ${!isConnecting && 'group-hover:scale-110'}`}
+                >
+                  {/* Inner Gradient Background */}
+                  <div className={`absolute inset-0.5 rounded-full transition-all duration-500 ${isConnected ? 'bg-gradient-to-br from-emerald-400 via-green-500 to-teal-600' : 'bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600'}`}></div>
+
+                  {/* Animated Inner Glow */}
+                  <motion.div
+                    animate={{ opacity: [0.5, 0.8, 0.5] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0.5 rounded-full bg-gradient-to-t from-transparent via-white/20 to-white/40"
+                  ></motion.div>
+
+                  {/* Icon */}
+                  <div className="relative z-10">
+                    {isConnecting ? (
+                      <Loader2 className="w-8 h-8 sm:w-10 sm:h-10 text-white animate-spin drop-shadow-lg" />
+                    ) : isConnected ? (
+                      <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 1, repeat: Infinity }}>
+                        <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow-lg" />
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        animate={{ scale: [1, 1.05, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <Mic className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-110" />
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              </button>
+
+              {/* Status Text */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className={`mt-4 text-sm font-medium transition-colors duration-300 ${isConnected ? 'text-emerald-600' : 'text-slate-600'}`}
+              >
+                {isConnecting ? 'Connecting...' : isConnected ? 'Tap to end call' : 'Tap to talk with our AI'}
+              </motion.p>
             </motion.div>
           </motion.div>
         </div>
@@ -712,117 +827,6 @@ const Home = () => {
       <TrustBadges />
 
 
-      {/* Live Demo Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-white">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-            >
-              <motion.div
-                variants={fadeInUp}
-                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
-              >
-                <Mic className="w-4 h-4" />
-                <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Try It Yourself</span>
-              </motion.div>
-              <motion.h2 variants={fadeInUp} className="section-title hero-display mb-4 sm:mb-6">
-                Don't Take Our <span className="text-gradient">Word For It</span>
-              </motion.h2>
-              <motion.p variants={fadeInUp} className="text-base sm:text-lg text-text-secondary mb-6 sm:mb-8">
-                Experience our AI voice agent firsthand. Click the button below
-                to have a live conversation with our AI assistant.
-              </motion.p>
-              {callError && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm"
-                >
-                  {callError}
-                </motion.div>
-              )}
-              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                {isConnected ? (
-                  <button
-                    onClick={endCall}
-                    className="btn-primary text-sm sm:text-base !bg-red-500 hover:!bg-red-600"
-                  >
-                    <PhoneOff className="w-4 h-4 sm:w-5 sm:h-5" />
-                    End Call
-                  </button>
-                ) : (
-                  <button
-                    onClick={startCall}
-                    disabled={isConnecting}
-                    className="btn-primary text-sm sm:text-base disabled:opacity-70 disabled:cursor-not-allowed"
-                  >
-                    {isConnecting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 sm:w-5 sm:h-5 animate-spin" />
-                        Connecting...
-                      </>
-                    ) : (
-                      <>
-                        <Mic className="w-4 h-4 sm:w-5 sm:h-5" />
-                        Talk to Our AI
-                      </>
-                    )}
-                  </button>
-                )}
-                <Link to="/contact" className="w-full sm:w-auto">
-                  <button className="w-full border-2 border-primary-600 text-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors text-sm sm:text-base">
-                    Want This For Your Business?
-                  </button>
-                </Link>
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative hidden lg:block"
-            >
-              <button
-                onClick={isConnected ? endCall : startCall}
-                disabled={isConnecting}
-                className="w-full disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer hover:scale-105 transition-transform duration-300"
-              >
-                <div className={`bg-gradient-to-br ${isConnected ? 'from-green-50 to-emerald-50 border-green-200' : 'from-primary-50 to-blue-50 border-primary-100'} rounded-2xl sm:rounded-3xl p-6 sm:p-8 border-2 transition-colors duration-300`}>
-                  <div className="text-center">
-                    <div className={`w-24 h-24 sm:w-32 sm:h-32 ${isConnected ? 'bg-gradient-to-br from-green-500 to-emerald-600' : 'bg-gradient-to-br from-primary-500 to-primary-600'} rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 relative shadow-lg transition-colors duration-300`}>
-                      {isConnected && (
-                        <div className="absolute inset-0 bg-green-400 rounded-full animate-ping opacity-50"></div>
-                      )}
-                      {!isConnected && (
-                        <div className="absolute inset-0 bg-primary-400 rounded-full animate-pulse-ring"></div>
-                      )}
-                      {isConnecting ? (
-                        <Loader2 className="w-12 h-12 sm:w-16 sm:h-16 text-white animate-spin" />
-                      ) : isConnected ? (
-                        <Phone className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
-                      ) : (
-                        <Mic className="w-12 h-12 sm:w-16 sm:h-16 text-white" />
-                      )}
-                    </div>
-                    <p className="text-text-primary font-semibold text-base sm:text-lg mb-2">
-                      {isConnecting ? 'Connecting...' : isConnected ? 'Call in Progress' : 'Click to Start'}
-                    </p>
-                    <p className="text-text-secondary text-xs sm:text-sm">
-                      {isConnected ? 'Speak now - our AI is listening' : 'Experience AI-powered conversations'}
-                    </p>
-                  </div>
-                </div>
-              </button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* Features Grid - Unique Bento Style */}
       <section className="relative py-16 sm:py-20 lg:py-32 bg-neutral-offWhite overflow-hidden">

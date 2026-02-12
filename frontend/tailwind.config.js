@@ -101,6 +101,7 @@ export default {
         'bounce-subtle': 'bounceSubtle 2s ease-in-out infinite',
         'spin-slow': 'spin 8s linear infinite',
         'spin-slower': 'spin 12s linear infinite',
+        'spin-orb': 'spin 3s linear infinite',
       },
       keyframes: {
         float: {
