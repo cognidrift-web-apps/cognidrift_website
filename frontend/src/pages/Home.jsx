@@ -704,7 +704,7 @@ const Home = () => {
               Your AI<span className="text-gradient"> Web Widget</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
-              A simple, powerful process that transforms how you handle calls.
+              A simple, powerful process that transforms how you answer queries.
             </motion.p>
           </motion.div>
 
@@ -719,10 +719,10 @@ const Home = () => {
               className="space-y-6"
             >
               {[
-                { icon: BsFillTelephoneFill, title: 'Call Comes In', desc: 'Customer calls your business number', color: 'blue', bgColor: 'bg-blue-500/10', textColor: 'text-blue-500' },
-                { icon: BsRobot, title: 'AI Engages', desc: 'Natural conversation and intent detection', color: 'purple', bgColor: 'bg-purple-500/10', textColor: 'text-purple-500' },
-                { icon: BsCalendarCheck, title: 'Smart Action', desc: 'Books, routes, or logs automatically', color: 'indigo', bgColor: 'bg-indigo-500/10', textColor: 'text-indigo-500' },
-                { icon: BsBellFill, title: "You're Notified", desc: 'Real-time summary and recording', color: 'green', bgColor: 'bg-green-500/10', textColor: 'text-green-500' }
+                { icon: BsFillTelephoneFill, title: 'Visitor Arrives', desc: 'Customer visits your website', color: 'blue', bgColor: 'bg-blue-500/10', textColor: 'text-blue-500' },
+                { icon: BsRobot, title: 'Widget Appears', desc: 'AI chat widget greets instantly', color: 'purple', bgColor: 'bg-purple-500/10', textColor: 'text-purple-500' },
+                { icon: BsCalendarCheck, title: 'Smart Assistance', desc: 'Answers questions, books appointments', color: 'indigo', bgColor: 'bg-indigo-500/10', textColor: 'text-indigo-500' },
+                { icon: BsBellFill, title: 'Lead Captured', desc: 'Information saved, ready to convert', color: 'green', bgColor: 'bg-green-500/10', textColor: 'text-green-500' }
               ].map((step, i) => (
                 <motion.div
                   key={i}
@@ -1006,15 +1006,7 @@ const Home = () => {
       </section>
 
       {/* Smart Scheduling Showcase */}
-      <section className="relative py-16 sm:py-20 lg:py-32 bg-white overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02]">
-          <motion.div
-            animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="absolute top-20 left-0 w-96 h-96 bg-blue-600 rounded-full blur-3xl"
-          />
-        </div>
-
+      <section className="relative py-10 sm:py-12 lg:py-16 bg-white overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header - Centered */}
           <motion.div
@@ -1022,11 +1014,11 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="section-header"
+            className="section-header mb-6 sm:mb-8"
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+              className="inline-flex items-center gap-2 bg-transparent text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-3 sm:mb-4 border border-blue-200"
             >
               <Calendar className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Smart Scheduling</span>
@@ -1041,20 +1033,20 @@ const Home = () => {
 
             <motion.p
               variants={fadeInUp}
-              className="section-subtitle"
+              className="section-subtitle max-w-2xl mx-auto"
             >
-              Watch appointments get scheduled automatically. Your AI receptionist handles the entire booking process - checking availability, confirming times, and sending reminders.
+              AI handles booking automatically - checking availability, confirming times, and sending reminders.
             </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 items-center">
             {/* Left: Animated Calendar */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="order-2 lg:order-1"
+              className="order-2 lg:order-1 pointer-events-none"
             >
               <AnimatedCalendar />
             </motion.div>
@@ -1069,28 +1061,26 @@ const Home = () => {
             >
               <motion.div
                 variants={fadeInUp}
-                className="space-y-3 sm:space-y-4"
+                className="space-y-2 sm:space-y-3"
               >
                 {[
-                  { icon: Check, text: 'Real-time calendar sync with Google Calendar, Outlook & more' },
+                  { icon: Check, text: 'Real-time sync with Google Calendar & Outlook' },
                   { icon: Check, text: 'Automatic conflict detection and resolution' },
-                  { icon: Check, text: 'Smart reminder system reduces no-shows by 35%' },
-                  { icon: Check, text: 'Multi-timezone support for global businesses' }
+                  { icon: Check, text: 'Smart reminders reduce no-shows by 35%' },
+                  { icon: Check, text: 'Multi-timezone support for global teams' }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="flex items-start gap-2 sm:gap-3"
+                    className="flex items-center gap-2 sm:gap-3"
                   >
-                    <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                      <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-green-600" />
-                    </div>
-                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{item.text}</p>
+                    <item.icon className="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
+                    <p className="text-sm sm:text-base text-gray-700">{item.text}</p>
                   </motion.div>
                 ))}
               </motion.div>
 
-              <motion.div variants={fadeInUp} className="mt-6 sm:mt-8">
+              <motion.div variants={fadeInUp} className="mt-5 sm:mt-6">
                 <Link to="/products/phone-receptionist">
                   <button className="btn-primary text-sm sm:text-base">
                     Learn About Scheduling
@@ -1134,7 +1124,7 @@ const Home = () => {
               variants={fadeInUp}
               className="section-title hero-display"
             >
-              See Every <span className="text-gradient">Interaction</span> Live
+              See Every <span className="text-gradient">Interaction Live</span>
             </motion.h2>
 
             <motion.p

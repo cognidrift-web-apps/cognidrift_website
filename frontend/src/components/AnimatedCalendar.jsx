@@ -49,14 +49,14 @@ const AnimatedCalendar = () => {
   }
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative w-full h-full pointer-events-none select-none">
       {/* Main Calendar Container with Glow */}
       <GlowCard glowColor="blue" glowSize="md">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative bg-white p-6 lg:p-8 overflow-hidden"
+          className="relative bg-white p-4 lg:p-6 overflow-hidden"
         >
         {/* Animated Background */}
         <motion.div
@@ -73,65 +73,49 @@ const AnimatedCalendar = () => {
 
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
-                  <CalendarIcon className="w-6 h-6 text-white" />
-                </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 flex items-center gap-2">
+                <CalendarIcon className="w-5 h-5 text-blue-600" />
                 Smart Scheduling
               </h3>
-              <p className="text-sm text-gray-500 mt-1 ml-15">Appointments auto-booked by AI</p>
             </div>
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 opacity-20 blur-xl"
-            />
           </div>
 
           {/* Calendar Header */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-5 mb-6 border-2 border-blue-100">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 mb-4 border border-blue-100">
             <div className="flex items-center justify-between">
-              <motion.button
-                whileHover={{ scale: 1.1, x: -3 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 rounded-lg bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-blue-50 transition-colors"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </motion.button>
-              
-              <div className="text-center">
-                <p className="text-2xl font-black text-gray-900">{monthName} {year}</p>
-                <p className="text-sm text-gray-600 mt-1">{appointments.length} appointments scheduled</p>
+              <div className="w-8 h-8 rounded-lg bg-white/80 flex items-center justify-center text-gray-400">
+                <ChevronLeft className="w-4 h-4" />
               </div>
 
-              <motion.button
-                whileHover={{ scale: 1.1, x: 3 }}
-                whileTap={{ scale: 0.9 }}
-                className="w-10 h-10 rounded-lg bg-white shadow-md flex items-center justify-center text-gray-700 hover:bg-blue-50 transition-colors"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </motion.button>
+              <div className="text-center">
+                <p className="text-lg font-bold text-gray-900">{monthName} {year}</p>
+                <p className="text-xs text-gray-500">{appointments.length} appointments</p>
+              </div>
+
+              <div className="w-8 h-8 rounded-lg bg-white/80 flex items-center justify-center text-gray-400">
+                <ChevronRight className="w-4 h-4" />
+              </div>
             </div>
           </div>
 
           {/* Weekday Headers */}
-          <div className="grid grid-cols-7 gap-2 mb-3">
-            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day) => (
-              <div key={day} className="text-center">
-                <p className="text-xs font-bold text-gray-500 uppercase">{day}</p>
+          <div className="grid grid-cols-7 gap-1 mb-2">
+            {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, idx) => (
+              <div key={idx} className="text-center">
+                <p className="text-[10px] font-bold text-gray-400">{day}</p>
               </div>
             ))}
           </div>
 
           {/* Calendar Grid */}
-          <div className="grid grid-cols-7 gap-2 mb-6">
+          <div className="grid grid-cols-7 gap-1 mb-4">
             {/* Empty cells for days before month starts */}
             {[...Array(firstDay)].map((_, i) => (
               <div key={`empty-${i}`} className="aspect-square" />
             ))}
-            
+
             {/* Actual days */}
             {[...Array(daysInMonth)].map((_, i) => {
               const day = i + 1
@@ -140,96 +124,59 @@ const AnimatedCalendar = () => {
               const isToday = day === 15
 
               return (
-                <motion.div
-                  key={day}
-                  whileHover={{ scale: 1.1, zIndex: 10 }}
-                  className="relative aspect-square"
-                >
-                  <div className={`w-full h-full rounded-xl border-2 flex flex-col items-center justify-center cursor-pointer transition-all duration-300 ${
-                    isToday 
-                      ? 'bg-gradient-to-br from-blue-500 to-indigo-600 border-blue-600 text-white shadow-lg' 
+                <div key={day} className="relative aspect-square">
+                  <div className={`w-full h-full rounded-lg flex flex-col items-center justify-center transition-all duration-300 ${
+                    isToday
+                      ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md'
                       : hasAppointments
-                      ? 'bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 hover:border-blue-400'
-                      : 'bg-white border-gray-200 hover:border-blue-300'
+                      ? 'bg-blue-50 border border-blue-200'
+                      : 'bg-gray-50'
                   }`}>
-                    <p className={`text-sm font-bold ${isToday ? 'text-white' : hasAppointments ? 'text-gray-900' : 'text-gray-600'}`}>
+                    <p className={`text-xs font-semibold ${isToday ? 'text-white' : hasAppointments ? 'text-gray-900' : 'text-gray-500'}`}>
                       {day}
                     </p>
-                    
+
                     {/* Appointment indicators */}
-                    {hasAppointments && (
-                      <div className="flex gap-1 mt-1">
-                        {dayAppointments.slice(0, 3).map((apt, idx) => (
-                          <motion.div
+                    {hasAppointments && !isToday && (
+                      <div className="flex gap-0.5 mt-0.5">
+                        {dayAppointments.slice(0, 2).map((apt, idx) => (
+                          <div
                             key={apt.id}
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            className={`w-1.5 h-1.5 rounded-full ${appointmentColors[apt.status].dot}`}
+                            className={`w-1 h-1 rounded-full ${appointmentColors[apt.status].dot}`}
                           />
                         ))}
                       </div>
                     )}
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
 
           {/* Upcoming Appointments List */}
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-5 border-2 border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm font-bold text-gray-700 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-blue-600" />
-                Today's Appointments
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 text-blue-600 text-sm font-semibold hover:text-blue-700"
-              >
-                <Plus className="w-4 h-4" />
-                Add
-              </motion.button>
-            </div>
+          <div className="bg-gray-50 rounded-xl p-3 border border-gray-100">
+            <p className="text-xs font-bold text-gray-600 flex items-center gap-1.5 mb-2">
+              <Clock className="w-3 h-3 text-blue-600" />
+              Today's Appointments
+            </p>
 
-            <div className="space-y-3 max-h-48 overflow-y-auto">
+            <div className="space-y-2 max-h-32 overflow-y-auto">
               <AnimatePresence>
                 {/* New appointment animation */}
                 {newAppointment && (
                   <motion.div
-                    initial={{ opacity: 0, x: -50, scale: 0.8 }}
+                    initial={{ opacity: 0, x: -30, scale: 0.9 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    className="relative overflow-hidden"
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="flex items-center gap-2 bg-green-50 rounded-lg p-2 border border-green-200"
                   >
-                    <motion.div
-                      animate={{
-                        background: [
-                          'linear-gradient(90deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.3) 50%, rgba(34, 197, 94, 0.1) 100%)'
-                        ]
-                      }}
-                      className="absolute inset-0"
-                    />
-                    <div className="relative flex items-center gap-4 bg-white rounded-xl p-4 border-2 border-green-300 shadow-lg">
-                      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center shadow-md">
-                        <Plus className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-gray-900 flex items-center gap-2">
-                          {newAppointment.name}
-                          <motion.span
-                            animate={{ scale: [1, 1.2, 1] }}
-                            transition={{ duration: 0.5, repeat: Infinity }}
-                            className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full"
-                          >
-                            New!
-                          </motion.span>
-                        </p>
-                        <p className="text-xs text-gray-600 flex items-center gap-1 mt-1">
-                          <Clock className="w-3 h-3" />
-                          {newAppointment.time}
-                        </p>
-                      </div>
+                    <Plus className="w-4 h-4 text-green-600" />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-semibold text-gray-900 flex items-center gap-1">
+                        {newAppointment.name}
+                        <span className="text-[10px] bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">New!</span>
+                      </p>
+                      <p className="text-[10px] text-gray-500">{newAppointment.time}</p>
                     </div>
                   </motion.div>
                 )}
@@ -239,30 +186,18 @@ const AnimatedCalendar = () => {
                   return (
                     <motion.div
                       key={apt.id}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.1 }}
-                      whileHover={{ scale: 1.02, x: 5 }}
-                      className="flex items-center gap-4 bg-white rounded-xl p-4 border-2 border-gray-200 hover:border-blue-300 transition-all shadow-sm hover:shadow-md"
+                      className="flex items-center gap-2 bg-white rounded-lg p-2 border border-gray-200"
                     >
-                      <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${colors.bg} flex items-center justify-center shadow-md`}>
-                        <User className="w-6 h-6 text-white" />
-                      </div>
+                      <User className="w-4 h-4 text-gray-400" />
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm font-bold text-gray-900">{apt.name}</p>
-                        <p className="text-xs text-gray-600 flex items-center gap-1 mt-1">
-                          <Clock className="w-3 h-3" />
-                          {apt.time}
-                        </p>
+                        <p className="text-xs font-semibold text-gray-900">{apt.name}</p>
+                        <p className="text-[10px] text-gray-500">{apt.time}</p>
                       </div>
                       {apt.status === 'confirmed' && (
-                        <motion.div
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          className="w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center"
-                        >
-                          <Check className="w-5 h-5 text-green-600" />
-                        </motion.div>
+                        <Check className="w-4 h-4 text-green-500" />
                       )}
                     </motion.div>
                   )

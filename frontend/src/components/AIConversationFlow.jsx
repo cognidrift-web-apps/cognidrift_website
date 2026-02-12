@@ -110,27 +110,11 @@ const AIConversationFlow = () => {
           viewport={{ once: true, amount: 0.3 }}
           className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8 overflow-hidden"
         >
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-30">
-          <motion.div
-            animate={{
-              backgroundPosition: ['0% 0%', '100% 100%'],
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-            className="absolute inset-0"
-            style={{
-              backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(168, 85, 247, 0.3) 0%, transparent 50%)',
-              backgroundSize: '200% 200%'
-            }}
-          />
-        </div>
-
         <div className="relative z-10">
           {/* Conversation Display */}
           <div className="relative backdrop-blur-xl bg-white/20 rounded-2xl p-6 shadow-2xl border border-white/40 min-h-[300px]" style={{ backdropFilter: 'blur(20px) saturate(180%)' }}>
             {/* Glass shimmer effect */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 via-white/10 to-transparent pointer-events-none" />
-            <div className="absolute inset-0 rounded-2xl opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '16px 16px' }}></div>
 
             <div className="relative flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
@@ -262,27 +246,6 @@ const AIConversationFlow = () => {
           </div>
         </div>
 
-        {/* Floating Particles */}
-        {[...Array(6)].map((_, i) => (
-          <motion.div
-            key={i}
-            animate={{
-              y: [0, -20, 0],
-              x: [0, Math.random() * 20 - 10, 0],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 1.5 + Math.random() * 1,
-              repeat: Infinity,
-              delay: i * 0.2
-            }}
-            className="absolute w-2 h-2 bg-indigo-400 rounded-full blur-sm"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`
-            }}
-          />
-        ))}
       </motion.div>
       </GlowCard>
     </div>
