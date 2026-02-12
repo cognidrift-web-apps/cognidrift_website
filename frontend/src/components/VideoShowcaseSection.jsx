@@ -81,13 +81,13 @@ const VideoShowcaseSection = () => {
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6">
             <Sparkles className="w-4 h-4" />
             <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">
-              See It In Action
+              AI Avatar
             </span>
           </div>
 
           {/* Title */}
           <h2 className="section-title hero-display">
-            Your AI Receptionist, <span className="text-gradient">Working 24/7</span>
+            AI Receptionist, <span className="text-gradient">24/7</span>
           </h2>
 
           {/* Description */}

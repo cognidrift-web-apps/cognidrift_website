@@ -698,10 +698,10 @@ const Home = () => {
               className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
             >
               <Zap className="w-4 h-4" />
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">How It Works</span>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">AI Chatting</span>
             </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
-              Meet Your <span className="text-gradient">AI Web Widget</span>
+              Your AI<span className="text-gradient"> Web Widget</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               A simple, powerful process that transforms how you handle calls.
@@ -824,7 +824,7 @@ const Home = () => {
       {/* Trust Elements */}
       {/* <ClientLogos /> */} {/* Hidden for future use */}
       {/* <Testimonials /> */} {/* Hidden for future use */}
-      <TrustBadges />
+      {/* <TrustBadges /> */} {/* Hidden - Enterprise Security section */}
 
 
 
