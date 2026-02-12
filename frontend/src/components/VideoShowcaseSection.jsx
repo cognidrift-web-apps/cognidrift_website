@@ -91,10 +91,8 @@ const VideoShowcaseSection = () => {
           </h2>
 
           {/* Description */}
-          <p className="section-subtitle">
-            Watch our AI handle real conversations, schedule appointments, capture leads,
-            and never miss a call — even at 3 AM. It's like having your best employee
-            work around the clock, without the overtime.
+          <p className="section-subtitle max-w-2xl mx-auto">
+            Watch our AI handle conversations, schedule appointments, and capture leads 24/7 — like your best employee.
           </p>
         </motion.div>
 
