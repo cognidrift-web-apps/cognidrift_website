@@ -264,6 +264,45 @@ function ChatWidget() {
                 </svg>
               </button>
             </div>
+
+            {/* Suggestion Chips - show only before user sends a message */}
+            {messages.filter(m => m.role === 'user').length === 0 && (
+              <div className="flex flex-wrap gap-2 mt-3">
+                {[
+                  'What does CogniDrift do?',
+                  'How does AI receptionist work?',
+                  'What are the pricing plans?'
+                ].map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    onClick={() => {
+                      setInputValue(suggestion)
+                      setTimeout(() => {
+                        setInputValue('')
+                        setMessages(prev => [...prev, { role: 'user', content: suggestion }])
+                        setIsLoading(true)
+                        fetch(`${API_BASE_URL}/api/widget/chat`, {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ sessionId, message: suggestion })
+                        })
+                          .then(res => res.json())
+                          .then(data => {
+                            setMessages(prev => [...prev, { role: 'assistant', content: data.response || "Sorry, I couldn't process your request." }])
+                          })
+                          .catch(() => {
+                            setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I'm having trouble connecting." }])
+                          })
+                          .finally(() => setIsLoading(false))
+                      }, 0)
+                    }}
+                    className="text-xs text-primary-600 bg-primary-50 hover:bg-primary-100 border border-primary-200 rounded-full px-3 py-1.5 transition-colors"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Powered By */}
