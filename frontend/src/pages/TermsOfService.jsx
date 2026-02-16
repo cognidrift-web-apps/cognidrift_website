@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FileText, CheckCircle, AlertTriangle, Scale, Mail } from 'lucide-react'
+import { FileText, CheckCircle, AlertTriangle, Scale, Mail, Phone } from 'lucide-react'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -15,56 +15,64 @@ const staggerContainer = {
 }
 
 const TermsOfService = () => {
-  const lastUpdated = 'January 15, 2024'
+  const lastUpdated = 'November 1, 2024'
 
   const sections = [
     {
       title: 'Acceptance of Terms',
-      content: `By accessing or using CogniDrift's AI voice agent services ("Services"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, you may not access or use our Services. These Terms constitute a legally binding agreement between you and CogniDrift, Inc.`
+      content: `By using our website ("Site"), you confirm that you have reviewed, understood, and agreed to abide by these Terms. If you are accessing the Site on behalf of a business or organization, you represent and warrant that you have the proper authority to bind that entity to these Terms.`
     },
     {
-      title: 'Description of Services',
-      content: `CogniDrift provides AI-powered voice agent services that handle inbound and outbound calls, schedule appointments, qualify leads, and perform other communication tasks on behalf of businesses. Our Services include access to our platform, AI voice agents, analytics dashboards, and related features as described on our website.`
+      title: 'Services Provided',
+      content: `CogniDrift offers AI-powered receptionist and communication solutions, including intelligent voice agents for inbound and outbound calls, automated appointment scheduling, lead qualification, and customer engagement tools for businesses. The precise scope of services will be detailed in individual agreements between CogniDrift and its clients.`
     },
     {
-      title: 'Account Registration',
-      content: `To use our Services, you must create an account and provide accurate, complete, and current information. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must notify us immediately of any unauthorized use of your account.`
+      title: 'Eligibility',
+      content: `You must be at least 18 years of age to access and use our Site and Services. By using the Site, you confirm that you satisfy this age requirement.`
     },
     {
-      title: 'Acceptable Use',
-      content: `You agree to use our Services only for lawful purposes and in accordance with these Terms. You may not: (a) use the Services for any illegal or unauthorized purpose; (b) interfere with or disrupt the Services or servers; (c) attempt to gain unauthorized access to any systems; (d) use the Services to harass, abuse, or harm others; (e) transmit any malware or harmful code; or (f) violate any applicable laws or regulations.`
-    },
-    {
-      title: 'Payment Terms',
-      content: `Paid subscriptions are billed in advance on a monthly or annual basis. All fees are non-refundable except as expressly stated in these Terms or required by law. We reserve the right to modify pricing with 30 days' notice. Failure to pay may result in suspension or termination of your account.`
+      title: 'Use of the Site',
+      content: `You agree to use the Site solely for lawful purposes and in compliance with these Terms. You shall not: use the Site for any fraudulent or unlawful activities; attempt to obtain unauthorized access to any portion of the Site or its underlying systems; upload or distribute malicious software, viruses, or harmful content; or engage in any conduct that disrupts, damages, or interferes with the proper operation of the Site.`
     },
     {
       title: 'Intellectual Property',
-      content: `All content, features, and functionality of our Services, including but not limited to text, graphics, logos, and software, are owned by CogniDrift and are protected by copyright, trademark, and other intellectual property laws. You may not copy, modify, distribute, or create derivative works without our express written permission.`
+      content: `All content, materials, and intellectual property displayed on the Site — including but not limited to text, graphics, logos, icons, and software — are the property of CogniDrift, Inc. or its licensors and are protected under applicable copyright, trademark, and intellectual property laws. We grant you a limited, non-exclusive, non-transferable license to access and use the Site for personal or internal business purposes. This license does not permit you to reproduce, distribute, modify, or create derivative works from our content without obtaining our prior written consent.`
     },
     {
-      title: 'Data and Privacy',
-      content: `Your use of the Services is also governed by our Privacy Policy, which is incorporated into these Terms by reference. You represent that you have obtained all necessary consents for any personal data processed through our Services and that your use complies with all applicable data protection laws.`
+      title: 'Third-Party Links',
+      content: `Our Site may include links to external websites or third-party services. CogniDrift does not control and is not responsible for the content, policies, or practices of any third-party sites. Navigating to any third-party link is done entirely at your own risk, and we encourage you to review the terms and privacy policies of any external sites you visit.`
     },
     {
-      title: 'Service Level Agreement',
-      content: `CogniDrift commits to 99.9% uptime for our core Services, excluding scheduled maintenance and circumstances beyond our reasonable control. In the event of service disruptions exceeding our SLA commitments, eligible customers may receive service credits as described in their subscription agreement.`
+      title: 'Disclaimers',
+      content: `The Site and all associated Services are provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied. To the fullest extent allowed by law, CogniDrift disclaims all warranties, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement. We make no guarantees that the Site will operate without errors, remain secure, or be available without interruption at all times.`
     },
     {
       title: 'Limitation of Liability',
-      content: `To the maximum extent permitted by law, CogniDrift shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly. Our total liability for any claims arising from the Services shall not exceed the amount paid by you in the twelve months preceding the claim.`
+      content: `To the fullest extent permitted by applicable law, CogniDrift, Inc. shall not be held liable for any indirect, incidental, special, consequential, or punitive damages arising out of or in connection with your use of the Site or Services. Our aggregate liability for any claims related to your use of the Site or Services shall not exceed the total amount you have paid to us, if any, during the six (6) months immediately preceding the date the claim arose.`
+    },
+    {
+      title: 'Indemnification',
+      content: `You agree to indemnify, defend, and hold harmless CogniDrift, Inc., its affiliates, directors, officers, employees, and agents from and against any and all claims, liabilities, damages, losses, costs, or expenses — including reasonable attorneys' fees — that arise out of or relate to your use of the Site, your breach of these Terms, or your infringement of any third-party rights.`
     },
     {
       title: 'Termination',
-      content: `Either party may terminate these Terms at any time for any reason. Upon termination, your right to use the Services will immediately cease. We may suspend or terminate your access if you violate these Terms or fail to pay applicable fees. Provisions that by their nature should survive termination will survive.`
-    },
-    {
-      title: 'Changes to Terms',
-      content: `We may modify these Terms at any time by posting the revised terms on our website. Your continued use of the Services after such changes constitutes acceptance of the modified Terms. We will notify you of material changes via email or through the Services.`
+      content: `We reserve the right to suspend or terminate your access to the Site or Services at our sole discretion, without prior notice, for any conduct that we determine violates these Terms or is harmful to other users, to CogniDrift, or to any third parties.`
     },
     {
       title: 'Governing Law',
-      content: `These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law provisions. Any disputes arising from these Terms shall be resolved exclusively in the federal or state courts located in Delaware.`
+      content: `These Terms shall be governed by and interpreted in accordance with the laws of the State of Delaware, without regard to its conflict of laws principles. Any legal action or proceeding arising under or related to these Terms shall be brought exclusively in the federal or state courts located in Delaware.`
+    },
+    {
+      title: 'SMS Messaging Terms',
+      content: `By submitting your information and opting in through any form on our Site, you consent to receive SMS and text messages from CogniDrift, Inc. These messages may include appointment confirmations, service notifications, updates, and promotional content where applicable. Message frequency may vary based on your interactions with us, and standard message and data rates may apply depending on your carrier. You may opt out of SMS messages at any time by replying STOP to any message you receive. A confirmation text will be sent to verify your unsubscription. For assistance, reply HELP or contact us directly at +1 (844) 584-1083 or contact@cognidrift.com. We do not sell or rent your mobile number to third parties. Your number may only be shared with service providers necessary to facilitate SMS delivery, such as our CRM or messaging platform vendors.`
+    },
+    {
+      title: 'Changes to Terms',
+      content: `CogniDrift reserves the right to update or revise these Terms at any time. Any changes will take effect immediately upon being posted to the Site. Your continued use of the Site following the publication of updated Terms constitutes your acceptance of the revised Terms.`
+    },
+    {
+      title: 'Contact Information',
+      content: null
     }
   ]
 
@@ -108,9 +116,7 @@ const TermsOfService = () => {
           <div className="flex items-start gap-4">
             <AlertTriangle className="w-6 h-6 text-primary-600 flex-shrink-0 mt-1" />
             <p className="text-text-secondary leading-relaxed">
-              Please read these Terms of Service carefully before using CogniDrift's services.
-              By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy.
-              If you disagree with any part of these terms, you may not access our Services.
+              Welcome to CogniDrift ("Company," "we," "us," or "our"). These Terms and Conditions ("Terms") govern your access to and use of our website, services, and any related content or materials provided by CogniDrift, Inc. By accessing or using the Site, you agree to be bound by these Terms. If you do not agree, please do not use the Site.
             </p>
           </div>
         </motion.div>
@@ -155,7 +161,18 @@ const TermsOfService = () => {
                 </span>
                 <h2 className="text-xl font-bold text-text-primary">{section.title}</h2>
               </div>
-              <p className="text-text-secondary leading-relaxed">{section.content}</p>
+              {section.content ? (
+                <p className="text-text-secondary leading-relaxed">{section.content}</p>
+              ) : (
+                <div className="text-text-secondary leading-relaxed space-y-2">
+                  <p>If you have any questions or concerns regarding these Terms, please reach out to us at:</p>
+                  <div className="mt-4 space-y-1">
+                    <p className="font-semibold text-text-primary">CogniDrift, Inc.</p>
+                    <p>Email: <a href="mailto:legal@cognidrift.com" className="text-primary-600 hover:underline">legal@cognidrift.com</a></p>
+                    <p>Phone: <a href="tel:+18445841083" className="text-primary-600 hover:underline">+1 (844) 584-1083</a></p>
+                  </div>
+                </div>
+              )}
             </motion.div>
           ))}
         </div>
@@ -170,16 +187,25 @@ const TermsOfService = () => {
           <Mail className="w-10 h-10 mx-auto mb-4" />
           <h2 className="text-2xl font-bold mb-4">Questions About Our Terms?</h2>
           <p className="text-primary-100 mb-6">
-            If you have any questions about these Terms of Service,
-            please contact our legal team.
+            If you have any questions or concerns about these Terms and Conditions,
+            our team is here to help.
           </p>
-          <a
-            href="mailto:legal@cognidrift.com"
-            className="inline-flex items-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors"
-          >
-            <Mail className="w-5 h-5" />
-            legal@cognidrift.com
-          </a>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="mailto:legal@cognidrift.com"
+              className="inline-flex items-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors"
+            >
+              <Mail className="w-5 h-5" />
+              legal@cognidrift.com
+            </a>
+            <a
+              href="tel:+18445841083"
+              className="inline-flex items-center gap-2 bg-white/10 text-white border border-white/30 px-6 py-3 rounded-lg font-medium hover:bg-white/20 transition-colors"
+            >
+              <Phone className="w-5 h-5" />
+              +1 (844) 584-1083
+            </a>
+          </div>
         </motion.div>
       </div>
     </div>
