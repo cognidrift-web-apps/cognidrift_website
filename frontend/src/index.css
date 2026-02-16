@@ -347,6 +347,40 @@
     background-image: linear-gradient(135deg, #3B82F6 0%, #2563EB 50%, #1D4ED8 100%);
   }
 
+  /* 3D Text Effect */
+  .text-3d-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Shadow/depth layers behind the text */
+  .text-3d-shadow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    -webkit-text-fill-color: initial;
+    color: rgba(30, 40, 100, 0.12);
+    text-shadow:
+      0 2px 0 rgba(30, 40, 100, 0.10),
+      0 4px 0 rgba(30, 40, 100, 0.08),
+      0 6px 0 rgba(30, 40, 100, 0.06),
+      0 8px 0 rgba(30, 40, 100, 0.04),
+      0 10px 20px rgba(59, 130, 246, 0.18),
+      0 16px 40px rgba(124, 58, 237, 0.12);
+  }
+
+  /* Top highlight edge */
+  .text-3d-highlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    -webkit-text-fill-color: initial;
+    color: transparent;
+    text-shadow:
+      0 -1px 0 rgba(255, 255, 255, 0.7),
+      0 -2px 2px rgba(255, 255, 255, 0.2);
+  }
+
   /* Phone Number Display Style */
   .phone-display {
     @apply text-2xl md:text-3xl font-bold;

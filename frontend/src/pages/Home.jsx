@@ -350,11 +350,7 @@ const Home = () => {
     <div className="bg-white overflow-hidden">
       {/* Hero Section with Siri Wave Background */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 overflow-hidden bg-white px-4">
-        {/* Background Gradients (Soft Glows) - Responsive sizes */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-[20%] left-[10%] sm:left-[20%] w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-cyan-100 rounded-full blur-[80px] sm:blur-[100px] opacity-60"></div>
-          <div className="absolute bottom-[20%] right-[10%] sm:right-[20%] w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-purple-100 rounded-full blur-[80px] sm:blur-[100px] opacity-60"></div>
-        </div>
+        {/* Clean white background — no gradient blobs for cleaner 3D text contrast */}
 
         {/* 3D Wave Animation Background */}
         <SiriWaveBackground />
@@ -386,9 +382,16 @@ const Home = () => {
               variants={fadeInUp}
               className="mb-4 sm:mb-6"
             >
-              {/* AI Receptionist with Gradient - Fully Responsive Typography */}
-              <span className="block text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-[1.1] mb-3 sm:mb-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent px-2" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif', letterSpacing: '-0.02em' }}>
-                AI Receptionist
+              {/* AI Receptionist with 3D Effect */}
+              <span className="block mb-3 sm:mb-4 px-2 text-3d-wrapper text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-[1.1]" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif', letterSpacing: '-0.02em' }}>
+                {/* Depth shadow layer */}
+                <span className="text-3d-shadow" aria-hidden="true">AI Receptionist</span>
+                {/* Top highlight layer */}
+                <span className="text-3d-highlight" aria-hidden="true">AI Receptionist</span>
+                {/* Main gradient text on top */}
+                <span className="relative bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent" style={{ zIndex: 1 }}>
+                  AI Receptionist
+                </span>
               </span>
               <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-slate-600 leading-relaxed px-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
                 Never miss{' '}
