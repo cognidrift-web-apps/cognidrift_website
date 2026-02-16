@@ -12,7 +12,7 @@ const CompanyTimeline = () => {
       title: 'The Idea',
       description: 'Founded with a vision to make AI accessible to every business',
       color: 'from-blue-500 to-blue-600',
-      lightBg: 'bg-blue-50',
+      lightBg: 'bg-blue-100/70',
       iconColor: 'text-blue-600'
     },
     {
@@ -20,36 +20,36 @@ const CompanyTimeline = () => {
       icon: Rocket,
       title: 'Launch',
       description: 'First AI receptionist deployed, handling 1,000+ calls',
-      color: 'from-purple-500 to-purple-600',
-      lightBg: 'bg-purple-50',
-      iconColor: 'text-purple-600'
+      color: 'from-blue-500 to-blue-600',
+      lightBg: 'bg-blue-100/70',
+      iconColor: 'text-blue-600'
     },
     {
       year: '2025',
       icon: Users,
       title: 'Growth',
       description: 'Expanded to serve 100+ businesses across industries',
-      color: 'from-green-500 to-green-600',
-      lightBg: 'bg-green-50',
-      iconColor: 'text-green-600'
+      color: 'from-blue-500 to-blue-600',
+      lightBg: 'bg-blue-100/70',
+      iconColor: 'text-blue-600'
     },
     {
       year: '2026',
       icon: Award,
       title: 'Recognition',
       description: 'Industry leader in AI-powered business communication',
-      color: 'from-orange-500 to-orange-600',
-      lightBg: 'bg-orange-50',
-      iconColor: 'text-orange-600'
+      color: 'from-blue-500 to-blue-600',
+      lightBg: 'bg-blue-100/70',
+      iconColor: 'text-blue-600'
     },
     {
       year: 'Future',
       icon: Sparkles,
       title: 'Innovation',
       description: 'Building the next generation of AI assistants',
-      color: 'from-indigo-500 to-indigo-600',
-      lightBg: 'bg-indigo-50',
-      iconColor: 'text-indigo-600'
+      color: 'from-blue-500 to-blue-600',
+      lightBg: 'bg-blue-100/70',
+      iconColor: 'text-blue-600'
     }
   ]
 

@@ -56,7 +56,7 @@ const AnimatedCalendar = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative bg-white p-4 lg:p-6 overflow-hidden"
+          className="relative bg-white p-3 lg:p-4 overflow-hidden"
         >
         {/* Animated Background */}
         <motion.div
@@ -73,35 +73,35 @@ const AnimatedCalendar = () => {
 
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-3">
             <div>
-              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 flex items-center gap-2">
-                <CalendarIcon className="w-5 h-5 text-blue-600" />
+              <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                <CalendarIcon className="w-4 h-4 text-blue-600" />
                 Smart Scheduling
               </h3>
             </div>
           </div>
 
           {/* Calendar Header */}
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-3 mb-4 border border-blue-100">
+          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-2.5 mb-3 border border-blue-100">
             <div className="flex items-center justify-between">
-              <div className="w-8 h-8 rounded-lg bg-white/80 flex items-center justify-center text-gray-400">
-                <ChevronLeft className="w-4 h-4" />
+              <div className="w-7 h-7 rounded-lg bg-white/80 flex items-center justify-center text-gray-400">
+                <ChevronLeft className="w-3.5 h-3.5" />
               </div>
 
               <div className="text-center">
-                <p className="text-lg font-bold text-gray-900">{monthName} {year}</p>
-                <p className="text-xs text-gray-500">{appointments.length} appointments</p>
+                <p className="text-sm font-bold text-gray-900">{monthName} {year}</p>
+                <p className="text-[10px] text-gray-500">{appointments.length} appointments</p>
               </div>
 
-              <div className="w-8 h-8 rounded-lg bg-white/80 flex items-center justify-center text-gray-400">
-                <ChevronRight className="w-4 h-4" />
+              <div className="w-7 h-7 rounded-lg bg-white/80 flex items-center justify-center text-gray-400">
+                <ChevronRight className="w-3.5 h-3.5" />
               </div>
             </div>
           </div>
 
           {/* Weekday Headers */}
-          <div className="grid grid-cols-7 gap-1 mb-2">
+          <div className="grid grid-cols-7 gap-1 mb-1.5">
             {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day, idx) => (
               <div key={idx} className="text-center">
                 <p className="text-[10px] font-bold text-gray-400">{day}</p>
@@ -110,10 +110,10 @@ const AnimatedCalendar = () => {
           </div>
 
           {/* Calendar Grid */}
-          <div className="grid grid-cols-7 gap-1 mb-4">
+          <div className="grid grid-cols-7 gap-1 mb-3">
             {/* Empty cells for days before month starts */}
             {[...Array(firstDay)].map((_, i) => (
-              <div key={`empty-${i}`} className="aspect-square" />
+              <div key={`empty-${i}`} className="h-8" />
             ))}
 
             {/* Actual days */}
@@ -124,8 +124,8 @@ const AnimatedCalendar = () => {
               const isToday = day === 15
 
               return (
-                <div key={day} className="relative aspect-square">
-                  <div className={`w-full h-full rounded-lg flex flex-col items-center justify-center transition-all duration-300 ${
+                <div key={day} className="relative h-8">
+                  <div className={`w-full h-full rounded-md flex flex-col items-center justify-center transition-all duration-300 ${
                     isToday
                       ? 'bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md'
                       : hasAppointments
@@ -154,13 +154,13 @@ const AnimatedCalendar = () => {
           </div>
 
           {/* Upcoming Appointments List */}
-          <div className="bg-gray-50 rounded-xl p-3 border border-gray-100">
-            <p className="text-xs font-bold text-gray-600 flex items-center gap-1.5 mb-2">
+          <div className="bg-gray-50 rounded-lg p-2.5 border border-gray-100">
+            <p className="text-[10px] font-bold text-gray-600 flex items-center gap-1.5 mb-1.5">
               <Clock className="w-3 h-3 text-blue-600" />
               Today's Appointments
             </p>
 
-            <div className="space-y-2 max-h-32 overflow-y-auto">
+            <div className="space-y-1.5 max-h-24 overflow-y-auto">
               <AnimatePresence>
                 {/* New appointment animation */}
                 {newAppointment && (
@@ -168,7 +168,7 @@ const AnimatedCalendar = () => {
                     initial={{ opacity: 0, x: -30, scale: 0.9 }}
                     animate={{ opacity: 1, x: 0, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
-                    className="flex items-center gap-2 bg-green-50 rounded-lg p-2 border border-green-200"
+                    className="flex items-center gap-2 bg-green-50 rounded-md p-1.5 border border-green-200"
                   >
                     <Plus className="w-4 h-4 text-green-600" />
                     <div className="flex-1 min-w-0">
@@ -189,7 +189,7 @@ const AnimatedCalendar = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: idx * 0.1 }}
-                      className="flex items-center gap-2 bg-white rounded-lg p-2 border border-gray-200"
+                      className="flex items-center gap-2 bg-white rounded-md p-1.5 border border-gray-200"
                     >
                       <User className="w-4 h-4 text-gray-400" />
                       <div className="flex-1 min-w-0">

@@ -300,32 +300,32 @@ const Home = () => {
       title: 'Healthcare',
       description: 'HIPAA-compliant AI for medical practices and clinics.',
       features: ['Patient scheduling', 'Insurance verification', 'Prescription refills', 'Appointment reminders'],
-      iconBgColor: 'bg-teal-500/10',
-      iconTextColor: 'text-teal-500'
+      iconBgColor: 'bg-blue-100/70',
+      iconTextColor: 'text-blue-600'
     },
     {
       icon: BsShieldFillCheck,
       title: 'Insurance',
       description: 'Handle claims inquiries and policy questions 24/7.',
       features: ['Claims status updates', 'Policy information', 'Quote requests', 'Agent routing'],
-      iconBgColor: 'bg-orange-500/10',
-      iconTextColor: 'text-orange-500'
+      iconBgColor: 'bg-blue-100/70',
+      iconTextColor: 'text-blue-600'
     },
     {
       icon: BsHouseDoorFill,
       title: 'Real Estate',
       description: 'Qualify leads and schedule property viewings automatically.',
       features: ['Lead qualification', 'Showing scheduling', 'Property inquiries', 'Agent matching'],
-      iconBgColor: 'bg-emerald-500/10',
-      iconTextColor: 'text-emerald-500'
+      iconBgColor: 'bg-blue-100/70',
+      iconTextColor: 'text-blue-600'
     },
     {
       icon: BsBuildingFill,
       title: 'Professional Services',
       description: 'Custom solutions for law firms, accounting, and consulting.',
       features: ['Consultation booking', 'Client intake', 'Document requests', 'Follow-up calls'],
-      iconBgColor: 'bg-violet-500/10',
-      iconTextColor: 'text-violet-500'
+      iconBgColor: 'bg-blue-100/70',
+      iconTextColor: 'text-blue-600'
     }
   ]
 
@@ -485,7 +485,7 @@ const Home = () => {
                 animate={{ opacity: 1 }}
                 className={`mt-4 text-sm font-medium transition-colors duration-300 ${isConnected ? 'text-emerald-600' : 'text-slate-600'}`}
               >
-                {isConnecting ? 'Connecting...' : isConnected ? 'Tap to end call' : 'Tap to talk with our AI'}
+                {isConnecting ? 'Connecting...' : isConnected ? 'Tap to end call' : 'Talk to Our Voice Agent'}
               </motion.p>
             </motion.div>
           </motion.div>
@@ -829,7 +829,7 @@ const Home = () => {
               variants={fadeInUp}
               className="section-title hero-display mb-6"
             >
-              Everything You Need, <span className="text-gradient">Nothing You Don't</span>
+              Everything  <span className="text-gradient">You Need</span>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
@@ -1117,8 +1117,8 @@ const Home = () => {
                     variants={fadeInUp}
                     className="flex items-start gap-2 sm:gap-3"
                   >
-                    <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-indigo-100 flex items-center justify-center mt-0.5">
-                      <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-indigo-600" />
+                    <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-100/70 flex items-center justify-center mt-0.5">
+                      <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
                     </div>
                     <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{item.text}</p>
                   </motion.div>

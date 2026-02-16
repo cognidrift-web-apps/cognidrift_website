@@ -74,7 +74,7 @@ const Navbar = () => {
 
   // Mega dropdown for Product
   const productMega = {
-    name: 'Product',
+    name: 'Products',
     path: '/products/phone-receptionist',
     mega: true,
     sections: [
@@ -138,10 +138,15 @@ const Navbar = () => {
     {
       name: 'Resources',
       path: '/resources',
-      submenu: [
-        { name: 'Blog', description: 'Latest insights, tips & industry news', path: '/resources/blog', icon: FileText, iconColor: 'bg-gradient-to-br from-violet-100 to-purple-100 text-violet-600' },
-        { name: 'Case Studies', description: 'Real results from real businesses', path: '/resources/case-studies', icon: BookOpen, iconColor: 'bg-gradient-to-br from-emerald-100 to-green-100 text-emerald-600' },
-        { name: 'Help Center', description: 'FAQs, guides & support resources', path: '/resources/help-center', icon: HelpCircle, iconColor: 'bg-gradient-to-br from-amber-100 to-orange-100 text-amber-600' },
+      mega: true,
+      sections: [
+        {
+          items: [
+            { name: 'Case Studies', description: 'Real results from real businesses', path: '/resources/case-studies', icon: BookOpen, iconColor: 'bg-blue-100/70 text-blue-600' },
+            { name: 'Blog', description: 'Latest insights, tips & industry news', path: '/resources/blog', icon: FileText, iconColor: 'bg-blue-100/70 text-blue-600' },
+            { name: 'Help Center', description: 'FAQs, guides & support resources', path: '/resources/help-center', icon: HelpCircle, iconColor: 'bg-blue-100/70 text-blue-600' },
+          ]
+        }
       ]
     },
     { name: 'About', path: '/about' },
@@ -280,13 +285,13 @@ const Navbar = () => {
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
                       transition={{ duration: 0.25, ease: [0.68, -0.05, 0.265, 1.2] }}
                       className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 rounded-t-none rounded-b-2xl p-5 overflow-hidden border border-t-0 border-gray-200 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12),0_4px_16px_rgba(59,130,246,0.08)] ${
-                        link.name === 'Product' ? 'w-[820px]' : 'w-[580px]'
+                        link.name === 'Products' ? 'w-[820px]' : link.name === 'Resources' ? 'w-[360px]' : 'w-[580px]'
                       }`}
                     >
                       {/* Glass refraction highlight */}
                       <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-white/20 pointer-events-none rounded-b-2xl" />
 
-                      <div className="relative grid grid-cols-2 gap-4">
+                      <div className={`relative grid gap-4 ${link.name === 'Resources' ? 'grid-cols-1' : 'grid-cols-2'}`}>
                         {link.sections.map((section, sIdx) => (
                           <div key={section.title || `section-${sIdx}`}>
                             {section.title && (

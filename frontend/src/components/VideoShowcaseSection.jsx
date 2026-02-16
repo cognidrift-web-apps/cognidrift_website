@@ -5,10 +5,7 @@ import {
   Phone, Calendar, Users, Zap, Clock, Globe, Sparkles,
   CheckCircle, ArrowRight, Bell, MessageSquare, TrendingUp
 } from 'lucide-react'
-import { BsFillTelephoneFill } from 'react-icons/bs'
 import { HiSparkles } from 'react-icons/hi'
-import { BsFillCalendarCheckFill, BsChatDotsFill } from 'react-icons/bs'
-import { IoTrendingUpSharp } from 'react-icons/io5'
 import GlowCard from './ui/GlowCard'
 
 const VideoShowcaseSection = () => {
@@ -18,34 +15,34 @@ const VideoShowcaseSection = () => {
   // Floating notifications around the video
   const notifications = [
     {
-      icon: BsFillTelephoneFill,
+      icon: Phone,
       title: "New call answered",
       subtitle: "Sarah from ABC Corp",
-      iconColor: "text-green-500",
+      iconColor: "text-blue-600",
       position: "top-[10%] -left-4 lg:-left-8",
       delay: 0
     },
     {
-      icon: BsFillCalendarCheckFill,
+      icon: Calendar,
       title: "Appointment booked",
       subtitle: "Tomorrow at 2:00 PM",
-      iconColor: "text-blue-500",
+      iconColor: "text-blue-600",
       position: "top-[35%] -right-4 lg:-right-10",
       delay: 0.3
     },
     {
-      icon: BsChatDotsFill,
+      icon: MessageSquare,
       title: "Lead captured",
       subtitle: "John D. requested demo",
-      iconColor: "text-purple-500",
+      iconColor: "text-blue-600",
       position: "bottom-[30%] -left-4 lg:-left-12",
       delay: 0.6
     },
     {
-      icon: IoTrendingUpSharp,
+      icon: TrendingUp,
       title: "Conversion +24%",
       subtitle: "This week's performance",
-      iconColor: "text-orange-500",
+      iconColor: "text-blue-600",
       position: "bottom-[10%] -right-4 lg:-right-6",
       delay: 0.9
     }
@@ -135,7 +132,7 @@ const VideoShowcaseSection = () => {
 
                     <div className="relative flex items-center gap-3">
                       {/* Transparent Colorful Icon */}
-                      <div className="w-10 h-10 rounded-xl bg-white/30 backdrop-blur-sm flex items-center justify-center shadow-lg flex-shrink-0 border border-white/20">
+                      <div className="w-10 h-10 rounded-xl bg-blue-100/70 flex items-center justify-center flex-shrink-0">
                         <notification.icon className={`w-5 h-5 ${notification.iconColor}`} />
                       </div>
 

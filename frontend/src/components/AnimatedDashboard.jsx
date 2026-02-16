@@ -23,7 +23,7 @@ const AnimatedDashboard = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8 }}
-          className="relative bg-white p-6 lg:p-8 overflow-hidden"
+          className="relative bg-white p-4 lg:p-5 overflow-hidden"
         >
         {/* Animated Background Gradient */}
         <motion.div
@@ -41,10 +41,10 @@ const AnimatedDashboard = () => {
         {/* Content */}
         <div className="relative z-10">
           {/* Header */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4">
             <div>
-              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-1">Live Analytics</h3>
-              <p className="text-sm text-gray-500">Real-time performance metrics</p>
+              <h3 className="text-lg font-bold text-gray-900 mb-0.5">Live Analytics</h3>
+              <p className="text-xs text-gray-500">Real-time performance metrics</p>
             </div>
             <motion.div
               animate={{ scale: [1, 1.05, 1] }}
@@ -57,34 +57,34 @@ const AnimatedDashboard = () => {
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="grid grid-cols-2 gap-3 mb-4">
             {/* Calls Handled */}
             <motion.div
               whileHover={{ scale: 1.03 }}
-              className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-5 border-2 border-blue-100"
+              className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-3 border-2 border-blue-100"
             >
-              <div className="flex items-center justify-between mb-3">
-                <Phone className="w-6 h-6 text-blue-600" />
-                <TrendingUp className="w-4 h-4 text-green-500" />
+              <div className="flex items-center justify-between mb-2">
+                <Phone className="w-5 h-5 text-blue-600" />
+                <TrendingUp className="w-3.5 h-3.5 text-green-500" />
               </div>
               <motion.div
                 key={callCount}
                 initial={{ scale: 1.2, color: '#3b82f6' }}
                 animate={{ scale: 1, color: '#1e40af' }}
-                className="text-3xl lg:text-4xl font-black text-blue-900 mb-1"
+                className="text-2xl lg:text-3xl font-black text-blue-900 mb-0.5"
               >
                 {callCount}
               </motion.div>
-              <p className="text-xs text-blue-600 font-semibold">Calls Handled</p>
+              <p className="text-[10px] text-blue-600 font-semibold">Calls Handled</p>
             </motion.div>
 
             {/* Active Now */}
             <motion.div
               whileHover={{ scale: 1.03 }}
-              className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-5 border-2 border-purple-100"
+              className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl p-3 border-2 border-purple-100"
             >
-              <div className="flex items-center justify-between mb-3">
-                <Users className="w-6 h-6 text-purple-600" />
+              <div className="flex items-center justify-between mb-2">
+                <Users className="w-5 h-5 text-purple-600" />
                 <motion.div
                   animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
@@ -95,23 +95,23 @@ const AnimatedDashboard = () => {
                 key={activeUsers}
                 initial={{ scale: 1.2, color: '#a855f7' }}
                 animate={{ scale: 1, color: '#7e22ce' }}
-                className="text-3xl lg:text-4xl font-black text-purple-900 mb-1"
+                className="text-2xl lg:text-3xl font-black text-purple-900 mb-0.5"
               >
                 {activeUsers}
               </motion.div>
-              <p className="text-xs text-purple-600 font-semibold">Active Now</p>
+              <p className="text-[10px] text-purple-600 font-semibold">Active Now</p>
             </motion.div>
           </div>
 
           {/* Chart Visualization */}
-          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-5 border-2 border-gray-100 mb-6">
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm font-bold text-gray-700">Call Volume Today</p>
-              <span className="text-xs text-green-600 font-semibold">+24%</span>
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl p-3 border-2 border-gray-100 mb-4">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-xs font-bold text-gray-700">Call Volume Today</p>
+              <span className="text-[10px] text-green-600 font-semibold">+24%</span>
             </div>
-            
+
             {/* Animated Bar Chart */}
-            <div className="flex items-end justify-between gap-2 h-32">
+            <div className="flex items-end justify-between gap-2 h-20">
               {[65, 45, 80, 55, 90, 70, 95].map((height, i) => (
                 <motion.div
                   key={i}
@@ -131,7 +131,7 @@ const AnimatedDashboard = () => {
                 </motion.div>
               ))}
             </div>
-            <div className="flex justify-between mt-3 text-xs text-gray-500">
+            <div className="flex justify-between mt-2 text-[10px] text-gray-500">
               <span>Mon</span>
               <span>Tue</span>
               <span>Wed</span>
@@ -143,8 +143,8 @@ const AnimatedDashboard = () => {
           </div>
 
           {/* Recent Activity */}
-          <div className="space-y-3">
-            <p className="text-sm font-bold text-gray-700 mb-3">Recent Activity</p>
+          <div className="space-y-2">
+            <p className="text-xs font-bold text-gray-700 mb-2">Recent Activity</p>
             {[
               { icon: CheckCircle, color: 'green', text: 'Appointment scheduled', time: '2m ago' },
               { icon: Phone, color: 'blue', text: 'Call transferred to Dr. Smith', time: '5m ago' },
@@ -155,14 +155,14 @@ const AnimatedDashboard = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1 + i * 0.2 }}
-                className="flex items-center gap-3 bg-white rounded-xl p-3 border border-gray-200"
+                className="flex items-center gap-2.5 bg-white rounded-lg p-2.5 border border-gray-200"
               >
-                <div className={`w-10 h-10 rounded-lg bg-${activity.color}-50 flex items-center justify-center`}>
-                  <activity.icon className={`w-5 h-5 text-${activity.color}-600`} />
+                <div className={`w-8 h-8 rounded-lg bg-${activity.color}-50 flex items-center justify-center flex-shrink-0`}>
+                  <activity.icon className={`w-4 h-4 text-${activity.color}-600`} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate">{activity.text}</p>
-                  <p className="text-xs text-gray-500">{activity.time}</p>
+                  <p className="text-xs font-semibold text-gray-900 truncate">{activity.text}</p>
+                  <p className="text-[10px] text-gray-500">{activity.time}</p>
                 </div>
               </motion.div>
             ))}

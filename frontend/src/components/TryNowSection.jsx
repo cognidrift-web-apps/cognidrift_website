@@ -1,7 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Phone, MessageSquare, ArrowRight, Calendar, Search, Send, Headphones, Mic } from 'lucide-react'
-import { BsFillTelephoneFill } from 'react-icons/bs'
-import { RiMessage2Fill } from 'react-icons/ri'
 import { useState, useEffect } from 'react'
 import GlowCard from './ui/GlowCard'
 
@@ -29,7 +27,7 @@ const TryNowSection = () => {
       userText: "Is there any slot available for a demo next Tuesday?",
       aiLabel: "Google Cal API",
       aiIcon: Calendar,
-      aiColor: "green",
+      aiColor: "blue",
       aiStatus: "Success",
       aiContent: {
         line1: { label: "Check:", value: "Tuesday, 10th" },
@@ -53,7 +51,7 @@ const TryNowSection = () => {
       userText: "Send me the address to my phone, please.",
       aiLabel: "SMS Sent",
       aiIcon: Send,
-      aiColor: "purple",
+      aiColor: "blue",
       aiStatus: "Delivered",
       aiContent: {
         line1: { label: "To:", value: "+1 (XXX) XXX-1234" },
@@ -65,7 +63,7 @@ const TryNowSection = () => {
       userText: "I have a complex billing issue. I need a human.",
       aiLabel: "Live Transfer",
       aiIcon: Headphones,
-      aiColor: "orange",
+      aiColor: "blue",
       aiStatus: "Connecting",
       aiContent: {
         line1: { label: "Transfer to:", value: "Support Desk" },
@@ -129,8 +127,8 @@ const TryNowSection = () => {
     },
     blue: {
       bg: 'bg-blue-500',
-      bgLight: 'bg-blue-50',
-      text: 'text-blue-500',
+      bgLight: 'bg-blue-100/70',
+      text: 'text-blue-600',
       border: 'border-blue-200',
       statusBg: 'bg-blue-900/50',
       statusText: 'text-blue-300'
@@ -216,17 +214,17 @@ const TryNowSection = () => {
               {/* Phone Number */}
               <a
                 href="tel:+18445841083"
-                className="group relative flex items-center gap-4 bg-white border-2 border-green-100 rounded-2xl p-5 overflow-hidden transition-transform hover:-translate-y-1 cursor-pointer"
-                style={{ animation: 'pulse-glow-green 3s infinite' }}
+                className="group relative flex items-center gap-4 bg-white border-2 border-blue-100 rounded-2xl p-5 overflow-hidden transition-transform hover:-translate-y-1 cursor-pointer"
+                style={{ animation: 'pulse-glow-blue 3s infinite' }}
               >
                 <div className="group-hover:animate-[shine-sweep_0.75s_ease-in-out] absolute top-0 left-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)', transform: 'translateX(-100%) skewX(-15deg)' }} />
 
                 <div className="relative z-10 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <BsFillTelephoneFill className="w-14 h-14 text-green-500" />
+                  <Phone className="w-14 h-14 text-blue-600" />
                 </div>
 
                 <div className="relative z-10 flex-1 min-w-0">
-                  <p className="font-bold text-text-primary text-lg group-hover:text-green-600 transition-colors">Call Now</p>
+                  <p className="font-bold text-text-primary text-lg group-hover:text-blue-600 transition-colors">Call Now</p>
                   <p className="text-xl md:text-2xl font-bold text-text-primary tracking-wide font-mono">
                     +1 (844) 584-1083
                   </p>
@@ -235,7 +233,7 @@ const TryNowSection = () => {
                   </p>
                 </div>
 
-                <div className="relative z-10 text-gray-300 group-hover:text-green-500 group-hover:translate-x-1 transition-all">
+                <div className="relative z-10 text-gray-300 group-hover:text-blue-500 group-hover:translate-x-1 transition-all">
                   <ArrowRight className="w-5 h-5" />
                 </div>
               </a>
@@ -249,7 +247,7 @@ const TryNowSection = () => {
                 <div className="group-hover:animate-[shine-sweep_0.75s_ease-in-out] absolute top-0 left-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)', transform: 'translateX(-100%) skewX(-15deg)' }} />
 
                 <div className="relative z-10 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <RiMessage2Fill className="w-14 h-14 text-blue-500" />
+                  <MessageSquare className="w-14 h-14 text-blue-600" />
                 </div>
 
                 <div className="relative z-10 flex-1 min-w-0">
@@ -307,7 +305,7 @@ const TryNowSection = () => {
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                           className="relative mb-5"
                         >
-                          <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-2xl">
+                          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
                             <Phone className="w-12 h-12 text-white" />
                           </div>
                           {/* Pulse rings */}
@@ -324,7 +322,7 @@ const TryNowSection = () => {
                                 delay: i * 0.6,
                                 ease: "easeOut"
                               }}
-                              className="absolute inset-0 border-3 border-green-500 rounded-full"
+                              className="absolute inset-0 border-3 border-blue-500 rounded-full"
                             />
                           ))}
                         </motion.div>
@@ -336,7 +334,7 @@ const TryNowSection = () => {
                         <p className="text-sm text-text-secondary mb-0.5">
                           AI Receptionist
                         </p>
-                        <p className="text-xs text-green-600 font-medium mb-6">
+                        <p className="text-xs text-blue-600 font-medium mb-6">
                           Incoming call...
                         </p>
 
@@ -399,7 +397,7 @@ const TryNowSection = () => {
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                           className="relative mb-5"
                         >
-                          <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-2xl">
+                          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
                             <Phone className="w-12 h-12 text-white" />
                           </div>
                           {/* Pulse rings */}
@@ -416,7 +414,7 @@ const TryNowSection = () => {
                                 delay: i * 0.6,
                                 ease: "easeOut"
                               }}
-                              className="absolute inset-0 border-3 border-green-500 rounded-full"
+                              className="absolute inset-0 border-3 border-blue-500 rounded-full"
                             />
                           ))}
                         </motion.div>
@@ -428,7 +426,7 @@ const TryNowSection = () => {
                         <p className="text-sm text-text-secondary mb-0.5">
                           AI Receptionist
                         </p>
-                        <p className="text-xs text-green-600 font-medium mb-6">
+                        <p className="text-xs text-blue-600 font-medium mb-6">
                           Ongoing call...
                         </p>
 
@@ -550,8 +548,8 @@ const TryNowSection = () => {
                           }}
                           className="relative"
                         >
-                          <div className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center shadow-md">
-                            <Mic className="w-4 h-4 text-green-600" />
+                          <div className="w-8 h-8 rounded-full bg-blue-100/70 flex items-center justify-center shadow-md">
+                            <Mic className="w-4 h-4 text-blue-600" />
                           </div>
                           {/* Pulse ring */}
                           <motion.div
@@ -564,7 +562,7 @@ const TryNowSection = () => {
                               repeat: Infinity,
                               ease: "easeOut"
                             }}
-                            className="absolute inset-0 rounded-full border-2 border-green-500"
+                            className="absolute inset-0 rounded-full border-2 border-blue-500"
                           />
                         </motion.div>
                       </div>
