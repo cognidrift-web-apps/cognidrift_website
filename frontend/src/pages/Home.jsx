@@ -14,6 +14,7 @@ import AIConversationFlow from '../components/AIConversationFlow'
 import AnimatedCalendar from '../components/AnimatedCalendar'
 import FloatingNotifications from '../components/FloatingNotifications'
 import SiriWaveBackground from '../components/SiriWaveBackground'
+import Orb from '../components/ui/Orb'
 import useRetellWebCall from '../hooks/useRetellWebCall'
 import {
   SiSalesforce,
@@ -419,106 +420,61 @@ const Home = () => {
                 </motion.div>
               )}
 
-              {/* Animated Voice Orb */}
-              <button
-                onClick={isConnected ? endCall : startCall}
-                disabled={isConnecting}
-                className="group relative cursor-pointer disabled:cursor-not-allowed focus:outline-none"
+              {/* Animated Voice Orb with React Bits Orb Background */}
+              <motion.div
+                className="relative w-[160px] h-[160px] sm:w-[180px] sm:h-[180px]"
+                whileHover={{ scale: 1.08 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                {/* Orbiting Particles */}
-                <div className="absolute inset-0 w-20 h-20 sm:w-24 sm:h-24">
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0"
-                  >
-                    <div className={`absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-400' : 'bg-cyan-400'} shadow-lg`} style={{ boxShadow: isConnected ? '0 0 10px #34d399' : '0 0 10px #22d3ee' }}></div>
-                  </motion.div>
-                  <motion.div
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0"
-                  >
-                    <div className={`absolute top-1/2 -right-1 -translate-y-1/2 w-1.5 h-1.5 rounded-full ${isConnected ? 'bg-green-400' : 'bg-purple-400'} shadow-lg`} style={{ boxShadow: isConnected ? '0 0 8px #4ade80' : '0 0 8px #c084fc' }}></div>
-                  </motion.div>
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0"
-                  >
-                    <div className={`absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full ${isConnected ? 'bg-teal-400' : 'bg-pink-400'} shadow-lg`} style={{ boxShadow: isConnected ? '0 0 8px #2dd4bf' : '0 0 8px #f472b6' }}></div>
-                  </motion.div>
+                {/* React Bits Orb - fills entire container */}
+                <div className="absolute inset-0" style={{ zIndex: 0 }}>
+                  <Orb
+                    hue={isConnected ? 240 : 0}
+                    hoverIntensity={2}
+                    rotateOnHover
+                    forceHoverState={false}
+                    backgroundColor="#000000"
+                  />
                 </div>
 
-                {/* Pulsing Rings - Always visible */}
-                <motion.div
-                  animate={{ scale: [1, 1.5, 1.5], opacity: [0.5, 0, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 ${isConnected ? 'border-emerald-400' : 'border-cyan-400'}`}
-                ></motion.div>
-                <motion.div
-                  animate={{ scale: [1, 1.4, 1.4], opacity: [0.4, 0, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 0.5 }}
-                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 ${isConnected ? 'border-green-400' : 'border-purple-400'}`}
-                ></motion.div>
-                <motion.div
-                  animate={{ scale: [1, 1.3, 1.3], opacity: [0.3, 0, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: 1 }}
-                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 ${isConnected ? 'border-teal-400' : 'border-pink-400'}`}
-                ></motion.div>
-
-                {/* Soft Glow Background */}
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className={`absolute inset-0 w-20 h-20 sm:w-24 sm:h-24 rounded-full blur-xl ${isConnected ? 'bg-gradient-to-r from-emerald-400 to-teal-400' : 'bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-400'}`}
-                ></motion.div>
-
-                {/* Rotating Gradient Border */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                  className="absolute -inset-0.5 rounded-full p-0.5"
-                  style={{ background: isConnected ? 'conic-gradient(from 0deg, #10b981, #34d399, #14b8a6, #22d3d3, #10b981)' : 'conic-gradient(from 0deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4)' }}
+                {/* Voice Button - perfectly centered */}
+                <button
+                  onClick={isConnected ? endCall : startCall}
+                  disabled={isConnecting}
+                  className="absolute inset-0 flex items-center justify-center group cursor-pointer disabled:cursor-not-allowed focus:outline-none"
+                  style={{ zIndex: 10 }}
                 >
-                  <div className="w-full h-full rounded-full bg-slate-900/90"></div>
-                </motion.div>
+                  <div className="relative w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full flex items-center justify-center">
+                    {/* Inner Gradient Background */}
+                    <div className={`absolute inset-0 rounded-full transition-all duration-500 ${isConnected ? 'bg-gradient-to-br from-red-400 via-red-500 to-rose-600' : 'bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600'}`}></div>
 
-                {/* Main Orb with Floating Animation */}
-                <motion.div
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                  className={`relative w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center transition-all duration-300 ${!isConnecting && 'group-hover:scale-110'}`}
-                >
-                  {/* Inner Gradient Background */}
-                  <div className={`absolute inset-0.5 rounded-full transition-all duration-500 ${isConnected ? 'bg-gradient-to-br from-emerald-400 via-green-500 to-teal-600' : 'bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600'}`}></div>
+                    {/* Animated Inner Glow */}
+                    <motion.div
+                      animate={{ opacity: [0.5, 0.8, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-white/20 to-white/40"
+                    ></motion.div>
 
-                  {/* Animated Inner Glow */}
-                  <motion.div
-                    animate={{ opacity: [0.5, 0.8, 0.5] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute inset-0.5 rounded-full bg-gradient-to-t from-transparent via-white/20 to-white/40"
-                  ></motion.div>
-
-                  {/* Icon */}
-                  <div className="relative z-10">
-                    {isConnecting ? (
-                      <Loader2 className="w-8 h-8 sm:w-10 sm:h-10 text-white animate-spin drop-shadow-lg" />
-                    ) : isConnected ? (
-                      <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 1, repeat: Infinity }}>
-                        <Phone className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow-lg" />
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <Mic className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow-lg transition-transform duration-300 group-hover:scale-110" />
-                      </motion.div>
-                    )}
+                    {/* Icon */}
+                    <div className="relative z-10">
+                      {isConnecting ? (
+                        <Loader2 className="w-7 h-7 sm:w-8 sm:h-8 text-white animate-spin drop-shadow-lg" />
+                      ) : isConnected ? (
+                        <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 1, repeat: Infinity }}>
+                          <Phone className="w-7 h-7 sm:w-8 sm:h-8 text-white drop-shadow-lg" />
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          animate={{ scale: [1, 1.05, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <Mic className="w-7 h-7 sm:w-8 sm:h-8 text-white drop-shadow-lg" />
+                        </motion.div>
+                      )}
+                    </div>
                   </div>
-                </motion.div>
-              </button>
+                </button>
+              </motion.div>
 
               {/* Status Text */}
               <motion.p
