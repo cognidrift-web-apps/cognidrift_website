@@ -46,6 +46,9 @@ const FAQPage = lazy(() => import('./pages/FAQ'))
 // Integrations Page
 const Integrations = lazy(() => import('./pages/Integrations'))
 
+// Error Page
+const NotFound = lazy(() => import('./pages/NotFound'))
+
 // Loading Spinner Component
 const LoadingSpinner = () => (
   <div className="min-h-screen flex items-center justify-center bg-neutral-offWhite">
@@ -104,6 +107,9 @@ function App() {
 
               {/* Integrations Route */}
               <Route path="/integrations" element={<Integrations />} />
+
+              {/* 404 Catch-all */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </main>
