@@ -481,23 +481,36 @@ const Home = () => {
                 >
                   <div className="relative w-16 h-16 sm:w-[72px] sm:h-[72px] rounded-full flex items-center justify-center">
                     {/* Inner Gradient Background */}
-                    <div className={`absolute inset-0 rounded-full transition-all duration-500 ${isConnected ? 'bg-gradient-to-br from-red-400 via-red-500 to-rose-600' : 'bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600'}`}></div>
+                    <div className={`absolute inset-0 rounded-full transition-all duration-500 ${isConnected ? 'bg-transparent' : 'bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600'}`}></div>
 
                     {/* Animated Inner Glow */}
-                    <motion.div
-                      animate={{ opacity: [0.5, 0.8, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-white/20 to-white/40"
-                    ></motion.div>
+                    {!isConnected && (
+                      <motion.div
+                        animate={{ opacity: [0.5, 0.8, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute inset-0 rounded-full bg-gradient-to-t from-transparent via-white/20 to-white/40"
+                      ></motion.div>
+                    )}
 
                     {/* Icon */}
                     <div className="relative z-10">
                       {isConnecting ? (
                         <Loader2 className="w-7 h-7 sm:w-8 sm:h-8 text-white animate-spin drop-shadow-lg" />
                       ) : isConnected ? (
-                        <motion.div animate={{ scale: [1, 1.1, 1] }} transition={{ duration: 1, repeat: Infinity }}>
-                          <Phone className="w-7 h-7 sm:w-8 sm:h-8 text-white drop-shadow-lg" />
-                        </motion.div>
+                        <div className="flex items-center gap-1">
+                          {[0, 1, 2, 3, 4].map((i) => (
+                            <motion.div
+                              key={i}
+                              animate={{ scaleY: [0.3, 1, 0.3] }}
+                              transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.1, ease: "easeInOut" }}
+                              className="w-2 rounded-full drop-shadow-lg"
+                              style={{ 
+                                height: i === 2 ? '40px' : i === 1 || i === 3 ? '30px' : '20px',
+                                background: 'linear-gradient(to bottom, #f87171, #dc2626, #be123c)'
+                              }}
+                            />
+                          ))}
+                        </div>
                       ) : (
                         <motion.div
                           animate={{ scale: [1, 1.05, 1] }}

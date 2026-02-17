@@ -53,6 +53,12 @@ const GlowCard = ({
       inner: 'from-orange-400 via-amber-500 to-yellow-500',
       accentStart: 'border-orange-400/50',
       accentEnd: 'border-yellow-400/50'
+    },
+    'red-purple': {
+      outer: 'from-red-600/30 via-rose-500/30 to-purple-600/30',
+      inner: 'from-red-500 via-rose-500 to-purple-600',
+      accentStart: 'border-red-500/50',
+      accentEnd: 'border-purple-500/50'
     }
   }
 
