@@ -1055,18 +1055,20 @@ const Home = () => {
                 className="space-y-2 sm:space-y-3"
               >
                 {[
-                  { icon: Check, text: 'Real-time sync with Google Calendar & Outlook' },
-                  { icon: Check, text: 'Automatic conflict detection and resolution' },
-                  { icon: Check, text: 'Smart reminders reduce no-shows by 35%' },
-                  { icon: Check, text: 'Multi-timezone support for global teams' }
+                  { icon: Calendar, text: 'Real-time sync with Google Calendar & Outlook' },
+                  { icon: Shield, text: 'Automatic conflict detection and resolution' },
+                  { icon: Bell, text: 'Smart reminders reduce no-shows by 35%' },
+                  { icon: Globe, text: 'Multi-timezone support for global teams' }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
                     variants={fadeInUp}
-                    className="flex items-center gap-2 sm:gap-3"
+                    className="flex items-start gap-2 sm:gap-3"
                   >
-                    <item.icon className="flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
-                    <p className="text-sm sm:text-base text-gray-700">{item.text}</p>
+                    <div className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-blue-100/70 flex items-center justify-center mt-0.5">
+                      <item.icon className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
+                    </div>
+                    <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{item.text}</p>
                   </motion.div>
                 ))}
               </motion.div>
