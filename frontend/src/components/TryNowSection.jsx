@@ -407,8 +407,8 @@ const TryNowSection = () => {
                           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                           className="relative mb-5"
                         >
-                          <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-2xl">
-                            <Phone className="w-12 h-12 text-white" />
+                          <div className="w-16 h-16 bg-gradient-to-br from-green-300 to-green-400 rounded-full flex items-center justify-center shadow-2xl">
+                            <Phone className="w-8 h-8 text-white" />
                           </div>
                           {/* Pulse rings */}
                           {[0, 1, 2].map((i) => (
@@ -424,7 +424,7 @@ const TryNowSection = () => {
                                 delay: i * 0.6,
                                 ease: "easeOut"
                               }}
-                              className="absolute inset-0 border-3 border-blue-500 rounded-full"
+                              className="absolute inset-0 border-3 border-green-400 rounded-full"
                             />
                           ))}
                         </motion.div>
@@ -436,87 +436,46 @@ const TryNowSection = () => {
                         <p className="text-sm text-text-secondary mb-0.5">
                           AI Receptionist
                         </p>
-                        <p className="text-xs text-blue-600 font-medium mb-6">
+                        <p className="text-xs text-green-500 font-medium mb-6">
                           Ongoing call...
                         </p>
 
                         {/* Animated Voice Orb */}
                         <div className="relative flex items-center justify-center">
-                          {/* Outer glow rings */}
-                          {[0, 1, 2, 3].map((i) => (
-                            <motion.div
-                              key={i}
-                              animate={{
-                                scale: [1, 2.5],
-                                opacity: [0.6, 0]
-                              }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                delay: i * 0.75,
-                                ease: "easeOut"
-                              }}
-                              className="absolute w-24 h-24 rounded-full"
-                              style={{
-                                background: 'radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%)'
-                              }}
-                            />
-                          ))}
-                          
-                          {/* Main orb */}
-                          <motion.div
-                            animate={{
-                              scale: [1, 1.15, 1],
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                            className="relative w-32 h-32 rounded-full flex items-center justify-center"
-                            style={{
-                              background: 'radial-gradient(circle at 30% 30%, #60a5fa, #3b82f6, #2563eb)',
-                              boxShadow: '0 0 40px rgba(59, 130, 246, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3)'
-                            }}
-                          >
-                            {/* Inner light effect */}
-                            <motion.div
-                              animate={{
-                                opacity: [0.3, 0.7, 0.3],
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                              }}
-                              className="absolute inset-4 rounded-full"
-                              style={{
-                                background: 'radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.8), transparent 60%)'
-                              }}
-                            />
-                            
-                            {/* Sound waves inside */}
-                            <div className="relative flex items-center gap-1">
-                              {[0, 1, 2, 3, 4].map((i) => (
+                          {/* Main orb - no background */}
+                          <div className="relative flex items-center justify-center">
+                            {/* Sound waves inside - random conversation pattern */}
+                            <div className="relative flex items-center gap-1.5">
+                              {[
+                                { height: '18px', duration: 0.6, delay: 0.1, pattern: [0.4, 0.9, 0.3, 0.8, 0.4] },
+                                { height: '28px', duration: 0.8, delay: 0.3, pattern: [0.5, 0.3, 1, 0.6, 0.5] },
+                                { height: '38px', duration: 0.7, delay: 0, pattern: [0.6, 1, 0.4, 0.9, 0.6] },
+                                { height: '50px', duration: 0.9, delay: 0.2, pattern: [0.7, 0.5, 0.9, 0.4, 1, 0.7] },
+                                { height: '38px', duration: 0.65, delay: 0.4, pattern: [0.5, 0.8, 0.3, 1, 0.5] },
+                                { height: '28px', duration: 0.75, delay: 0.15, pattern: [0.4, 1, 0.6, 0.3, 0.8, 0.4] },
+                                { height: '18px', duration: 0.85, delay: 0.25, pattern: [0.6, 0.4, 0.9, 0.5, 0.6] }
+                              ].map((bar, i) => (
                                 <motion.div
                                   key={i}
                                   animate={{
-                                    scaleY: [0.3, 1, 0.3],
+                                    scaleY: bar.pattern,
                                   }}
                                   transition={{
-                                    duration: 1,
+                                    duration: bar.duration,
                                     repeat: Infinity,
-                                    delay: i * 0.1,
-                                    ease: "easeInOut"
+                                    delay: bar.delay,
+                                    ease: "easeInOut",
+                                    repeatType: "reverse"
                                   }}
-                                  className="w-1 bg-white rounded-full"
+                                  className="w-2.5 rounded-full"
                                   style={{
-                                    height: i === 2 ? '32px' : i === 1 || i === 3 ? '24px' : '16px'
+                                    height: bar.height,
+                                    background: 'linear-gradient(to bottom, #06b6d4, #3b82f6, #8b5cf6, #d946ef)'
                                   }}
                                 />
                               ))}
                             </div>
-                          </motion.div>
+                          </div>
                         </div>
                       </motion.div>
                     )}
