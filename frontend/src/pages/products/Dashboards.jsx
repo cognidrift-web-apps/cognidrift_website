@@ -38,7 +38,7 @@ const Dashboards = () => {
   const stats = [
     { value: '100+', label: 'Dashboard Templates' },
     { value: 'Real-time', label: 'Data Sync' },
-    { value: '50+', label: 'Integrations' },
+    { value: '25+', label: 'Integrations' },
     { value: '24/7', label: 'Monitoring' }
   ]
 

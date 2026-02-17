@@ -24,7 +24,23 @@ import {
   SiMicrosoftoutlook,
   SiSlack,
   SiTwilio,
-  SiZapier
+  SiZapier,
+  SiGoogle,
+  SiMicrosoftteams,
+  SiNotion,
+  SiAirtable,
+  SiMailchimp,
+  SiStripe,
+  SiShopify,
+  SiWordpress,
+  SiSquarespace,
+  SiIntercom,
+  SiZendesk,
+  SiAsana,
+  SiTrello,
+  SiGithub,
+  SiDropbox,
+  SiFigma
 } from 'react-icons/si'
 import { BsFillTelephoneFill, BsRobot, BsCalendarCheck, BsBellFill, BsShieldFillCheck, BsHouseDoorFill, BsBuildingFill } from 'react-icons/bs'
 import { FaUserMd } from 'react-icons/fa'
@@ -337,7 +353,23 @@ const Home = () => {
     { name: 'Zapier', icon: SiZapier },
     { name: 'Outlook', icon: SiMicrosoftoutlook },
     { name: 'Slack', icon: SiSlack },
-    { name: 'Twilio', icon: SiTwilio }
+    { name: 'Twilio', icon: SiTwilio },
+    { name: 'Google Ads', icon: SiGoogle },
+    { name: 'Teams', icon: SiMicrosoftteams },
+    { name: 'Notion', icon: SiNotion },
+    { name: 'Airtable', icon: SiAirtable },
+    { name: 'Mailchimp', icon: SiMailchimp },
+    { name: 'Stripe', icon: SiStripe },
+    { name: 'Shopify', icon: SiShopify },
+    { name: 'WordPress', icon: SiWordpress },
+    { name: 'Squarespace', icon: SiSquarespace },
+    { name: 'Intercom', icon: SiIntercom },
+    { name: 'Zendesk', icon: SiZendesk },
+    { name: 'Asana', icon: SiAsana },
+    { name: 'Trello', icon: SiTrello },
+    { name: 'GitHub', icon: SiGithub },
+    { name: 'Dropbox', icon: SiDropbox },
+    { name: 'Figma', icon: SiFigma }
   ]
 
   const stats = [
@@ -1214,7 +1246,7 @@ const Home = () => {
                   x: {
                     repeat: Infinity,
                     repeatType: 'loop',
-                    duration: 20,
+                    duration: 40,
                     ease: 'linear',
                   },
                 }}
@@ -1294,7 +1326,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="mt-6 text-sm text-text-muted"
               >
-                <span className="font-semibold text-primary-600">50+</span> integrations and counting
+                <span className="font-semibold text-primary-600">25+</span> integrations and counting
               </motion.p>
             </motion.div>
           </div>

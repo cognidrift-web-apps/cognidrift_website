@@ -158,7 +158,7 @@ const Integrations = () => {
               variants={fadeInUp}
               className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto mb-8"
             >
-              CogniDrift seamlessly integrates with 50+ tools you already use. Automate workflows, sync data, and supercharge your productivity.
+              CogniDrift seamlessly integrates with 25+ tools you already use. Automate workflows, sync data, and supercharge your productivity.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-text-secondary">
