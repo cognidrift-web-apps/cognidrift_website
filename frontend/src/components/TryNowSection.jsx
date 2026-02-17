@@ -220,7 +220,17 @@ const TryNowSection = () => {
                 <div className="group-hover:animate-[shine-sweep_0.75s_ease-in-out] absolute top-0 left-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)', transform: 'translateX(-100%) skewX(-15deg)' }} />
 
                 <div className="relative z-10 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <Phone className="w-14 h-14 text-blue-600" />
+                  <Phone className="w-14 h-14" style={{ stroke: 'url(#icon-gradient)' }} />
+                  <svg width="0" height="0" className="absolute">
+                    <defs>
+                      <linearGradient id="icon-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#06b6d4" />
+                        <stop offset="35%" stopColor="#3b82f6" />
+                        <stop offset="70%" stopColor="#8b5cf6" />
+                        <stop offset="100%" stopColor="#d946ef" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
                 </div>
 
                 <div className="relative z-10 flex-1 min-w-0">
@@ -247,7 +257,7 @@ const TryNowSection = () => {
                 <div className="group-hover:animate-[shine-sweep_0.75s_ease-in-out] absolute top-0 left-0 w-full h-full pointer-events-none opacity-0 group-hover:opacity-100" style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)', transform: 'translateX(-100%) skewX(-15deg)' }} />
 
                 <div className="relative z-10 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <MessageSquare className="w-14 h-14 text-blue-600" />
+                  <MessageSquare className="w-14 h-14" style={{ stroke: 'url(#icon-gradient)' }} />
                 </div>
 
                 <div className="relative z-10 flex-1 min-w-0">
