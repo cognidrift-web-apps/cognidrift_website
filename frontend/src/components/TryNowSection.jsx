@@ -224,7 +224,7 @@ const TryNowSection = () => {
                 </div>
 
                 <div className="relative z-10 flex-1 min-w-0">
-                  <p className="font-bold text-text-primary text-lg group-hover:text-blue-600 transition-colors">Call Now</p>
+                  <p className="font-bold text-lg group-hover:text-blue-600 transition-colors text-gradient">Call Now</p>
                   <p className="text-xl md:text-2xl font-bold text-text-primary tracking-wide font-mono">
                     +1 (844) 584-1083
                   </p>
@@ -251,7 +251,7 @@ const TryNowSection = () => {
                 </div>
 
                 <div className="relative z-10 flex-1 min-w-0">
-                  <p className="font-bold text-text-primary text-lg group-hover:text-blue-600 transition-colors">Text Now</p>
+                  <p className="font-bold text-lg group-hover:text-blue-600 transition-colors text-gradient">Text Now</p>
                   <p className="text-xl md:text-2xl font-bold text-text-primary tracking-wide font-mono">
                     +1 (844) 584-1083
                   </p>
