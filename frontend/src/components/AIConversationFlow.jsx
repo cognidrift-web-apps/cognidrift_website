@@ -108,11 +108,11 @@ const AIConversationFlow = () => {
             return {}
           }}
           viewport={{ once: true, amount: 0.3 }}
-          className="relative bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-8 overflow-hidden"
+          className="relative bg-white p-3 lg:p-4 overflow-hidden"
         >
         <div className="relative z-10">
           {/* Conversation Display */}
-          <div className="relative backdrop-blur-xl bg-white/20 rounded-2xl p-6 shadow-2xl border border-white/40 min-h-[300px]" style={{ backdropFilter: 'blur(20px) saturate(180%)' }}>
+          <div className="relative backdrop-blur-xl bg-gradient-to-br from-indigo-50/60 via-purple-50/60 to-pink-50/60 rounded-2xl p-4 shadow-sm border border-white/40 min-h-[280px]" style={{ backdropFilter: 'blur(20px) saturate(180%)' }}>
             {/* Glass shimmer effect */}
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 via-white/10 to-transparent pointer-events-none" />
 
