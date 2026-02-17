@@ -528,9 +528,9 @@ const Home = () => {
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className={`mt-4 text-sm font-medium transition-colors duration-300 ${isConnected ? 'text-emerald-600' : 'text-slate-600'}`}
+                className={`mt-4 text-sm font-medium transition-colors duration-300 ${isConnected ? 'bg-gradient-to-r from-red-400 via-red-600 to-rose-700 bg-clip-text text-transparent' : isConnecting ? 'text-slate-600' : 'bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent'}`}
               >
-                {isConnecting ? 'Connecting...' : isConnected ? 'Tap to end call' : 'Talk to Our Voice Agent'}
+                {isConnecting ? 'Connecting...' : isConnected ? 'Tap to End The Call' : 'Talk to Our Voice Agent'}
               </motion.p>
             </motion.div>
           </motion.div>
