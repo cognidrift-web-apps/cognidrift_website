@@ -1328,7 +1328,7 @@ const Home = () => {
                 viewport={{ once: true }}
                 className="mt-6 text-sm text-text-muted"
               >
-                <span className="font-semibold text-primary-600">25+</span> integrations and counting
+                <span className="font-semibold text-primary-600">100+</span> integrations and counting
               </motion.p>
             </motion.div>
           </div>

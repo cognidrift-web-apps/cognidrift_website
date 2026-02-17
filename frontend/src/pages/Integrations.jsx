@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
@@ -24,9 +25,89 @@ import {
   SiTrello,
   SiGithub,
   SiDropbox,
-  SiFigma
+  SiFigma,
+  SiJira,
+  SiConfluence,
+  SiLinear,
+  SiMongodb,
+  SiFirebase,
+  SiSupabase,
+  SiAmazonaws,
+  SiGooglecloud,
+  SiMicrosoftazure,
+  SiVercel,
+  SiNetlify,
+  SiHeroku,
+  SiDocker,
+  SiKubernetes,
+  SiTerraform,
+  SiDatadog,
+  SiGrafana,
+  SiElasticsearch,
+  SiRedis,
+  SiPostgresql,
+  SiMysql,
+  SiMicrosoftexcel,
+  SiGooglesheets,
+  SiGoogledrive,
+  SiMicrosoftonedrive,
+  SiBox,
+  SiEvernote,
+  SiTodoist,
+  SiClickup,
+  SiMiro,
+  SiCanva,
+  SiAdobe,
+  SiSketch,
+  SiInvision,
+  SiWebflow,
+  SiWix,
+  SiGhost,
+  SiDrupal,
+  SiMagento,
+  SiBigcommerce,
+  SiWoocommerce,
+  SiPaypal,
+  SiSquare,
+  SiQuickbooks,
+  SiXero,
+  SiSap,
+  SiOracle,
+  SiPagerduty,
+  SiOpsgenie,
+  SiSentry,
+  SiNewrelic,
+  SiSplunk,
+  SiTwitch,
+  SiDiscord,
+  SiTelegram,
+  SiWhatsapp,
+  SiMessenger,
+  SiLine,
+  SiViber,
+  SiSkype,
+  SiZoom,
+  SiGooglemeet,
+  SiGotomeeting,
+  SiDocusign,
+  SiTypeform,
+  SiSurveymonkey,
+  SiSendinblue,
+  SiMixpanel,
+  SiHotjar,
+  SiGoogleanalytics,
+  SiSemrush,
+  SiCisco,
+  SiCivicrm,
+  SiHelpdesk,
+  SiCampaignmonitor,
+  SiPlausibleanalytics,
+  SiMozilla,
 } from 'react-icons/si'
-import { Zap, ArrowRight, Check, ChevronRight } from 'lucide-react'
+import {
+  Zap, ArrowRight, Check, ChevronRight,
+  Calendar, FileText, BarChart3, Send, Database, Workflow, Receipt
+} from 'lucide-react'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -35,7 +116,7 @@ const fadeInUp = {
 
 const staggerContainer = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.08 } }
+  visible: { opacity: 1, transition: { staggerChildren: 0.04 } }
 }
 
 const categories = [
@@ -46,8 +127,20 @@ const categories = [
       { name: 'Salesforce', icon: SiSalesforce, color: 'blue' },
       { name: 'HubSpot', icon: SiHubspot, color: 'orange' },
       { name: 'Zoho', icon: SiZoho, color: 'red' },
+      { name: 'Pipedrive', icon: SiCivicrm, color: 'emerald' },
+      { name: 'SAP', icon: SiSap, color: 'blue' },
+      { name: 'Oracle', icon: SiOracle, color: 'red' },
+      { name: 'Dynamics 365', icon: Workflow, color: 'blue' },
+    ]
+  },
+  {
+    title: 'Customer Support',
+    description: 'Deliver seamless support with your existing helpdesk tools.',
+    integrations: [
       { name: 'Intercom', icon: SiIntercom, color: 'blue' },
       { name: 'Zendesk', icon: SiZendesk, color: 'emerald' },
+      { name: 'ServiceNow', icon: SiHelpdesk, color: 'emerald' },
+      { name: 'Freshdesk', icon: SiHelpdesk, color: 'blue' },
     ]
   },
   {
@@ -56,15 +149,33 @@ const categories = [
     integrations: [
       { name: 'Google Calendar', icon: SiGooglecalendar, color: 'blue' },
       { name: 'Outlook', icon: SiMicrosoftoutlook, color: 'blue' },
+      { name: 'Calendly', icon: Calendar, color: 'blue' },
     ]
   },
   {
-    title: 'Communication',
+    title: 'Communication & Messaging',
     description: 'Connect your phone, messaging, and team chat tools.',
     integrations: [
       { name: 'Slack', icon: SiSlack, color: 'purple' },
       { name: 'Twilio', icon: SiTwilio, color: 'red' },
       { name: 'Microsoft Teams', icon: SiMicrosoftteams, color: 'blue' },
+      { name: 'Discord', icon: SiDiscord, color: 'purple' },
+      { name: 'Telegram', icon: SiTelegram, color: 'blue' },
+      { name: 'WhatsApp', icon: SiWhatsapp, color: 'emerald' },
+      { name: 'Messenger', icon: SiMessenger, color: 'blue' },
+      { name: 'Line', icon: SiLine, color: 'emerald' },
+      { name: 'Viber', icon: SiViber, color: 'purple' },
+      { name: 'Skype', icon: SiSkype, color: 'blue' },
+    ]
+  },
+  {
+    title: 'Video Conferencing',
+    description: 'Schedule and manage virtual meetings effortlessly.',
+    integrations: [
+      { name: 'Zoom', icon: SiZoom, color: 'blue' },
+      { name: 'Google Meet', icon: SiGooglemeet, color: 'emerald' },
+      { name: 'Webex', icon: SiCisco, color: 'blue' },
+      { name: 'GoToMeeting', icon: SiGotomeeting, color: 'orange' },
     ]
   },
   {
@@ -76,6 +187,11 @@ const categories = [
       { name: 'Airtable', icon: SiAirtable, color: 'blue' },
       { name: 'Asana', icon: SiAsana, color: 'orange' },
       { name: 'Trello', icon: SiTrello, color: 'blue' },
+      { name: 'Jira', icon: SiJira, color: 'blue' },
+      { name: 'Linear', icon: SiLinear, color: 'purple' },
+      { name: 'ClickUp', icon: SiClickup, color: 'purple' },
+      { name: 'Monday.com', icon: Workflow, color: 'orange' },
+      { name: 'Todoist', icon: SiTodoist, color: 'red' },
     ]
   },
   {
@@ -84,6 +200,22 @@ const categories = [
     integrations: [
       { name: 'Mailchimp', icon: SiMailchimp, color: 'yellow' },
       { name: 'Google Ads', icon: SiGoogle, color: 'blue' },
+      { name: 'Campaign Monitor', icon: SiCampaignmonitor, color: 'blue' },
+      { name: 'Brevo', icon: SiSendinblue, color: 'blue' },
+      { name: 'Marketo', icon: Send, color: 'purple' },
+    ]
+  },
+  {
+    title: 'Analytics & Tracking',
+    description: 'Measure performance and gain actionable insights.',
+    integrations: [
+      { name: 'Google Analytics', icon: SiGoogleanalytics, color: 'orange' },
+      { name: 'Plausible', icon: SiPlausibleanalytics, color: 'blue' },
+      { name: 'Mixpanel', icon: SiMixpanel, color: 'purple' },
+      { name: 'Amplitude', icon: BarChart3, color: 'blue' },
+      { name: 'Hotjar', icon: SiHotjar, color: 'red' },
+      { name: 'Semrush', icon: SiSemrush, color: 'orange' },
+      { name: 'Moz', icon: SiMozilla, color: 'blue' },
     ]
   },
   {
@@ -92,6 +224,30 @@ const categories = [
     integrations: [
       { name: 'Stripe', icon: SiStripe, color: 'purple' },
       { name: 'Shopify', icon: SiShopify, color: 'emerald' },
+      { name: 'PayPal', icon: SiPaypal, color: 'blue' },
+      { name: 'Square', icon: SiSquare, color: 'gray' },
+      { name: 'WooCommerce', icon: SiWoocommerce, color: 'purple' },
+      { name: 'Magento', icon: SiMagento, color: 'orange' },
+      { name: 'BigCommerce', icon: SiBigcommerce, color: 'blue' },
+    ]
+  },
+  {
+    title: 'Accounting & Finance',
+    description: 'Keep your books in sync with automated data flow.',
+    integrations: [
+      { name: 'QuickBooks', icon: SiQuickbooks, color: 'emerald' },
+      { name: 'FreshBooks', icon: Receipt, color: 'blue' },
+      { name: 'Xero', icon: SiXero, color: 'blue' },
+    ]
+  },
+  {
+    title: 'Documents & Signing',
+    description: 'Automate document workflows and e-signatures.',
+    integrations: [
+      { name: 'DocuSign', icon: SiDocusign, color: 'blue' },
+      { name: 'PandaDoc', icon: FileText, color: 'emerald' },
+      { name: 'Typeform', icon: SiTypeform, color: 'purple' },
+      { name: 'SurveyMonkey', icon: SiSurveymonkey, color: 'emerald' },
     ]
   },
   {
@@ -100,17 +256,86 @@ const categories = [
     integrations: [
       { name: 'WordPress', icon: SiWordpress, color: 'blue' },
       { name: 'Squarespace', icon: SiSquarespace, color: 'gray' },
+      { name: 'Webflow', icon: SiWebflow, color: 'blue' },
+      { name: 'Wix', icon: SiWix, color: 'gray' },
+      { name: 'Ghost', icon: SiGhost, color: 'gray' },
+      { name: 'Drupal', icon: SiDrupal, color: 'blue' },
     ]
   },
   {
-    title: 'Developer Tools',
-    description: 'Extend CogniDrift with APIs and custom integrations.',
+    title: 'Cloud Storage',
+    description: 'Access and sync files from your preferred cloud storage.',
+    integrations: [
+      { name: 'Google Drive', icon: SiGoogledrive, color: 'blue' },
+      { name: 'OneDrive', icon: SiMicrosoftonedrive, color: 'blue' },
+      { name: 'Dropbox', icon: SiDropbox, color: 'blue' },
+      { name: 'Box', icon: SiBox, color: 'blue' },
+      { name: 'Evernote', icon: SiEvernote, color: 'emerald' },
+    ]
+  },
+  {
+    title: 'Design & Collaboration',
+    description: 'Bridge design and development workflows seamlessly.',
+    integrations: [
+      { name: 'Figma', icon: SiFigma, color: 'purple' },
+      { name: 'Miro', icon: SiMiro, color: 'yellow' },
+      { name: 'Canva', icon: SiCanva, color: 'blue' },
+      { name: 'Adobe', icon: SiAdobe, color: 'red' },
+      { name: 'Sketch', icon: SiSketch, color: 'orange' },
+      { name: 'InVision', icon: SiInvision, color: 'red' },
+      { name: 'Confluence', icon: SiConfluence, color: 'blue' },
+    ]
+  },
+  {
+    title: 'Spreadsheets & Data',
+    description: 'Sync data to and from your spreadsheets automatically.',
+    integrations: [
+      { name: 'Google Sheets', icon: SiGooglesheets, color: 'emerald' },
+      { name: 'Excel', icon: SiMicrosoftexcel, color: 'emerald' },
+    ]
+  },
+  {
+    title: 'DevOps & Infrastructure',
+    description: 'Integrate with your CI/CD, monitoring, and cloud platforms.',
     integrations: [
       { name: 'GitHub', icon: SiGithub, color: 'gray' },
-      { name: 'Dropbox', icon: SiDropbox, color: 'blue' },
-      { name: 'Figma', icon: SiFigma, color: 'purple' },
+      { name: 'AWS', icon: SiAmazonaws, color: 'orange' },
+      { name: 'Google Cloud', icon: SiGooglecloud, color: 'blue' },
+      { name: 'Azure', icon: SiMicrosoftazure, color: 'blue' },
+      { name: 'Vercel', icon: SiVercel, color: 'gray' },
+      { name: 'Netlify', icon: SiNetlify, color: 'emerald' },
+      { name: 'Heroku', icon: SiHeroku, color: 'purple' },
+      { name: 'Docker', icon: SiDocker, color: 'blue' },
+      { name: 'Kubernetes', icon: SiKubernetes, color: 'blue' },
+      { name: 'Terraform', icon: SiTerraform, color: 'purple' },
     ]
-  }
+  },
+  {
+    title: 'Monitoring & Observability',
+    description: 'Stay on top of performance and incidents in real-time.',
+    integrations: [
+      { name: 'Datadog', icon: SiDatadog, color: 'purple' },
+      { name: 'Grafana', icon: SiGrafana, color: 'orange' },
+      { name: 'Sentry', icon: SiSentry, color: 'purple' },
+      { name: 'New Relic', icon: SiNewrelic, color: 'emerald' },
+      { name: 'PagerDuty', icon: SiPagerduty, color: 'emerald' },
+      { name: 'OpsGenie', icon: SiOpsgenie, color: 'blue' },
+      { name: 'Splunk', icon: SiSplunk, color: 'emerald' },
+    ]
+  },
+  {
+    title: 'Databases',
+    description: 'Connect directly with your database layer.',
+    integrations: [
+      { name: 'MongoDB', icon: SiMongodb, color: 'emerald' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: 'blue' },
+      { name: 'MySQL', icon: SiMysql, color: 'blue' },
+      { name: 'Redis', icon: SiRedis, color: 'red' },
+      { name: 'Elasticsearch', icon: SiElasticsearch, color: 'yellow' },
+      { name: 'Firebase', icon: SiFirebase, color: 'orange' },
+      { name: 'Supabase', icon: SiSupabase, color: 'emerald' },
+    ]
+  },
 ]
 
 const colorMap = {
@@ -124,6 +349,8 @@ const colorMap = {
 }
 
 const Integrations = () => {
+  const totalCount = categories.reduce((sum, cat) => sum + cat.integrations.length, 0)
+
   return (
     <div className="bg-white overflow-hidden">
       {/* Hero Section */}
@@ -158,7 +385,7 @@ const Integrations = () => {
               variants={fadeInUp}
               className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto mb-8"
             >
-              CogniDrift seamlessly integrates with 25+ tools you already use. Automate workflows, sync data, and supercharge your productivity.
+              CogniDrift seamlessly integrates with {totalCount}+ tools you already use. Automate workflows, sync data, and supercharge your productivity.
             </motion.p>
 
             <motion.div variants={fadeInUp} className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-text-secondary">
