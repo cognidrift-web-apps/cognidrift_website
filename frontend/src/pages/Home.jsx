@@ -1199,66 +1199,68 @@ const Home = () => {
             </motion.p>
           </motion.div>
 
-          {/* Animated logo cards */}
+          {/* Infinite Logo Marquee */}
           <div className="relative">
-            {/* Scrolling container */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-              className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4 lg:gap-6"
-            >
-              {integrations.map((integration, i) => {
-                const colors = [
-                  { bg: 'bg-blue-500', light: 'bg-blue-50', text: 'text-blue-600', glow: 'shadow-blue-500/30', hoverBg: 'group-hover:bg-blue-500' },
-                  { bg: 'bg-orange-500', light: 'bg-orange-50', text: 'text-orange-600', glow: 'shadow-orange-500/30', hoverBg: 'group-hover:bg-orange-500' },
-                  { bg: 'bg-red-500', light: 'bg-red-50', text: 'text-red-600', glow: 'shadow-red-500/30', hoverBg: 'group-hover:bg-red-500' },
-                  { bg: 'bg-emerald-500', light: 'bg-emerald-50', text: 'text-emerald-600', glow: 'shadow-emerald-500/30', hoverBg: 'group-hover:bg-emerald-500' },
-                  { bg: 'bg-orange-600', light: 'bg-orange-50', text: 'text-orange-600', glow: 'shadow-orange-600/30', hoverBg: 'group-hover:bg-orange-600' },
-                  { bg: 'bg-blue-600', light: 'bg-blue-50', text: 'text-blue-600', glow: 'shadow-blue-600/30', hoverBg: 'group-hover:bg-blue-600' },
-                  { bg: 'bg-purple-500', light: 'bg-purple-50', text: 'text-purple-600', glow: 'shadow-purple-500/30', hoverBg: 'group-hover:bg-purple-500' },
-                  { bg: 'bg-red-600', light: 'bg-red-50', text: 'text-red-600', glow: 'shadow-red-600/30', hoverBg: 'group-hover:bg-red-600' },
-                ]
-                const color = colors[i % colors.length]
-                const IconComponent = integration.icon
+            {/* Fade edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
-                return (
-                  <motion.div
-                    key={i}
-                    variants={fadeInUp}
-                    whileHover={{ y: -8, scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="group relative"
-                  >
-                    {/* Card */}
-                    <div className={`relative bg-white border-2 border-gray-200 group-hover:border-primary-300 rounded-xl sm:rounded-2xl p-4 sm:p-6 aspect-square flex items-center justify-center transition-all duration-300 overflow-hidden shadow-sm group-hover:shadow-xl`}>
-                      {/* Hover gradient background */}
-                      <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            {/* Marquee track */}
+            <div className="overflow-hidden">
+              <motion.div
+                className="flex items-center gap-4 sm:gap-6"
+                animate={{ x: ['0%', '-50%'] }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: 'loop',
+                    duration: 20,
+                    ease: 'linear',
+                  },
+                }}
+              >
+                {/* Duplicate integrations for seamless loop */}
+                {[...integrations, ...integrations].map((integration, i) => {
+                  const colors = [
+                    { light: 'bg-blue-50', text: 'text-blue-600' },
+                    { light: 'bg-orange-50', text: 'text-orange-600' },
+                    { light: 'bg-red-50', text: 'text-red-600' },
+                    { light: 'bg-emerald-50', text: 'text-emerald-600' },
+                    { light: 'bg-orange-50', text: 'text-orange-600' },
+                    { light: 'bg-blue-50', text: 'text-blue-600' },
+                    { light: 'bg-purple-50', text: 'text-purple-600' },
+                    { light: 'bg-red-50', text: 'text-red-600' },
+                  ]
+                  const color = colors[i % colors.length]
+                  const IconComponent = integration.icon
 
-                      <div className="relative text-center z-10">
-                        {/* Brand Icon */}
-                        <motion.div
-                          whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-                          transition={{ duration: 0.5 }}
-                          className={`w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 ${color.light} rounded-lg sm:rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}
-                        >
-                          <IconComponent className={`w-5 h-5 sm:w-7 sm:h-7 ${color.text}`} />
-                        </motion.div>
-                        <p className="text-xs sm:text-sm font-bold text-text-primary group-hover:text-primary-600 transition-colors duration-300">
-                          {integration.name}
-                        </p>
+                  return (
+                    <motion.div
+                      key={i}
+                      whileHover={{ y: -8, scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="group relative flex-shrink-0"
+                    >
+                      <div className="relative bg-white border-2 border-gray-200 group-hover:border-primary-300 rounded-xl sm:rounded-2xl w-28 h-28 sm:w-36 sm:h-36 flex items-center justify-center transition-all duration-300 overflow-hidden shadow-sm group-hover:shadow-xl">
+                        <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="relative text-center z-10">
+                          <motion.div
+                            whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
+                            transition={{ duration: 0.5 }}
+                            className={`w-10 h-10 sm:w-14 sm:h-14 mx-auto mb-2 sm:mb-3 ${color.light} rounded-lg sm:rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-all duration-300`}
+                          >
+                            <IconComponent className={`w-5 h-5 sm:w-7 sm:h-7 ${color.text}`} />
+                          </motion.div>
+                          <p className="text-xs sm:text-sm font-bold text-text-primary group-hover:text-primary-600 transition-colors duration-300">
+                            {integration.name}
+                          </p>
+                        </div>
                       </div>
-
-                      {/* Animated corner accent */}
-                      <motion.div
-                        className="absolute top-0 right-0 w-16 h-16 bg-primary-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
-                      />
-                    </div>
-                  </motion.div>
-                )
-              })}
-            </motion.div>
+                    </motion.div>
+                  )
+                })}
+              </motion.div>
+            </div>
 
             {/* Floating CTA */}
             <motion.div
@@ -1268,19 +1270,21 @@ const Home = () => {
               transition={{ delay: 0.8 }}
               className="text-center mt-16"
             >
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 sm:gap-3 bg-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-glow transition-all duration-300 group text-sm sm:text-base"
-              >
-                <span>Explore All Integrations</span>
-                <motion.span
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
+              <Link to="/integrations">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-flex items-center gap-2 sm:gap-3 bg-primary-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold shadow-lg hover:shadow-glow transition-all duration-300 group text-sm sm:text-base"
                 >
-                  <ChevronRight className="w-5 h-5" />
-                </motion.span>
-              </motion.button>
+                  <span>Explore All Integrations</span>
+                  <motion.span
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </motion.span>
+                </motion.button>
+              </Link>
 
               {/* Stats below button */}
               <motion.p

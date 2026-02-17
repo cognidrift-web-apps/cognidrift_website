@@ -43,6 +43,9 @@ const TermsOfService = lazy(() => import('./pages/TermsOfService'))
 // FAQ Page
 const FAQPage = lazy(() => import('./pages/FAQ'))
 
+// Integrations Page
+const Integrations = lazy(() => import('./pages/Integrations'))
+
 // Loading Spinner Component
 const LoadingSpinner = () => (
   <div className="min-h-screen flex items-center justify-center bg-neutral-offWhite">
@@ -98,6 +101,9 @@ function App() {
 
               {/* FAQ Route */}
               <Route path="/faq" element={<FAQPage />} />
+
+              {/* Integrations Route */}
+              <Route path="/integrations" element={<Integrations />} />
             </Routes>
           </Suspense>
         </main>
