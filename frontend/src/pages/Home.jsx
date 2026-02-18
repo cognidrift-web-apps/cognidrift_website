@@ -833,7 +833,7 @@ const Home = () => {
 
 
       {/* Features Grid - Unique Bento Style */}
-      <section className="relative py-16 sm:py-20 lg:py-32 bg-neutral-offWhite overflow-hidden">
+      <section className="relative py-12 sm:py-16 lg:py-20 bg-neutral-offWhite overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0 pointer-events-none opacity-30">
           <motion.div
@@ -861,7 +861,7 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12"
           >
             <motion.div
               variants={fadeInUp}
@@ -872,32 +872,22 @@ const Home = () => {
             </motion.div>
             <motion.h2
               variants={fadeInUp}
-              className="section-title hero-display mb-6"
+              className="section-title hero-display mb-4"
             >
               Everything  <span className="text-gradient">You Need</span>
             </motion.h2>
             <motion.p
               variants={fadeInUp}
-              className="text-base sm:text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed px-2"
+              className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed"
             >
               A complete suite of AI-powered features designed to transform how your business handles communication
             </motion.p>
           </motion.div>
 
-          {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
+          {/* Collage Grid Layout */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 lg:grid-rows-[auto_auto_auto] gap-3 sm:gap-4">
             {features.map((feature, index) => {
               const Icon = feature.icon
-              const layouts = [
-                'lg:col-span-2 lg:row-span-2', // Large
-                'lg:col-span-2', // Wide
-                'lg:col-span-1', // Regular
-                'lg:col-span-1', // Regular
-                'lg:col-span-1', // Regular
-                'lg:col-span-2', // Wide
-                'lg:col-span-1', // Regular
-                'lg:col-span-2 lg:row-span-1' // Wide
-              ]
 
               const colorSchemes = [
                 { bg: 'bg-blue-500', lightBg: 'bg-blue-50', icon: 'text-blue-600', border: 'border-blue-200', glow: 'shadow-blue-500/20' },
@@ -910,77 +900,74 @@ const Home = () => {
                 { bg: 'bg-sky-500', lightBg: 'bg-sky-50', icon: 'text-sky-600', border: 'border-sky-200', glow: 'shadow-sky-500/20' }
               ]
 
-              const layout = layouts[index % layouts.length]
+              // Collage layout: asymmetric, editorial grid
+              // Row 1: [wide 5col] [3col] [4col]
+              // Row 2: [3col] [5col tall/row-span-2] [4col]
+              // Row 3: [3col] [---continued---] [4col]
+              const collageLayouts = [
+                'lg:col-span-5',                        // 0: wide left
+                'lg:col-span-3',                        // 1: narrow center
+                'lg:col-span-4',                        // 2: medium right
+                'lg:col-span-3',                        // 3: narrow left
+                'lg:col-span-5 lg:row-span-2',          // 4: tall center piece
+                'lg:col-span-4',                        // 5: medium right
+                'lg:col-span-3',                        // 6: narrow left
+                'lg:col-span-4',                        // 7: medium right
+              ]
+
               const colors = colorSchemes[index % colorSchemes.length]
-              const isLarge = layout.includes('row-span-2')
+              const layout = collageLayouts[index]
+              const isTall = layout.includes('row-span-2')
+              const isWide = index === 0
 
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  transition={{ delay: index * 0.07, duration: 0.5 }}
                   className={`${layout} group`}
                 >
                   <motion.div
-                    whileHover={{ y: -8, scale: 1.02 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
                     transition={{ type: "spring", stiffness: 300 }}
-                    className={`relative h-full bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border-2 ${colors.border} overflow-hidden shadow-lg hover:shadow-2xl ${colors.glow} transition-all duration-500`}
+                    className={`relative h-full bg-white rounded-xl sm:rounded-2xl ${isTall ? 'p-5 sm:p-6' : isWide ? 'p-4 sm:p-5 lg:p-6' : 'p-4 sm:p-5'} border-2 ${colors.border} overflow-hidden shadow-md hover:shadow-xl ${colors.glow} transition-all duration-500`}
                   >
                     {/* Background Pattern */}
                     <div className={`absolute inset-0 ${colors.lightBg} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}></div>
 
                     {/* Decorative Circle */}
                     <motion.div
-                      className={`absolute -top-10 -right-10 w-40 h-40 ${colors.bg} opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700`}
+                      className={`absolute -top-10 -right-10 ${isTall ? 'w-48 h-48' : 'w-32 h-32'} ${colors.bg} opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700`}
                     />
 
                     {/* Content */}
-                    <div className="relative z-10 flex flex-col h-full">
+                    <div className={`relative z-10 flex ${isWide ? 'lg:flex-row lg:items-center lg:gap-5' : 'flex-col'} h-full`}>
                       {/* Icon */}
                       <motion.div
                         whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                         transition={{ duration: 0.5 }}
-                        className={`inline-flex w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${isLarge ? 'lg:w-20 lg:h-20' : ''} ${colors.lightBg} rounded-xl sm:rounded-2xl items-center justify-center mb-4 sm:mb-6 shadow-md group-hover:shadow-xl transition-shadow`}
+                        className={`inline-flex ${isTall ? 'w-14 h-14' : 'w-10 h-10 sm:w-12 sm:h-12'} ${colors.lightBg} rounded-xl items-center justify-center ${isWide ? 'mb-3 lg:mb-0 flex-shrink-0' : 'mb-3'} shadow-md group-hover:shadow-xl transition-shadow`}
                       >
-                        <Icon className={`w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 ${isLarge ? 'lg:w-10 lg:h-10' : ''} ${colors.icon}`} />
+                        <Icon className={`${isTall ? 'w-7 h-7' : 'w-5 h-5 sm:w-6 sm:h-6'} ${colors.icon}`} />
                       </motion.div>
 
-                      {/* Title */}
-                      <h3 className={`${isLarge ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-lg sm:text-xl lg:text-2xl'} font-bold text-text-primary mb-2 sm:mb-3 leading-tight group-hover:text-primary-600 transition-colors`}>
-                        {feature.title}
-                      </h3>
+                      <div className={isTall ? 'flex flex-col justify-center flex-grow' : ''}>
+                        {/* Title */}
+                        <h3 className={`${isTall ? 'text-lg sm:text-xl' : 'text-base sm:text-lg'} font-bold text-text-primary mb-1.5 leading-tight group-hover:text-primary-600 transition-colors`}>
+                          {feature.title}
+                        </h3>
 
-                      {/* Description */}
-                      <p className={`text-text-secondary ${isLarge ? 'text-sm sm:text-base lg:text-lg' : 'text-xs sm:text-sm lg:text-base'} leading-relaxed flex-grow`}>
-                        {feature.description}
-                      </p>
-
-                      {/* Hover Arrow */}
-                      <motion.div
-                        initial={{ x: -10, opacity: 0 }}
-                        whileHover={{ x: 0, opacity: 1 }}
-                        className={`mt-4 flex items-center gap-2 ${colors.icon} font-semibold text-sm`}
-                      >
-                        <span>Learn more</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </motion.div>
+                        {/* Description */}
+                        <p className={`text-text-secondary ${isTall ? 'text-sm' : 'text-xs sm:text-sm'} leading-relaxed`}>
+                          {feature.description}
+                        </p>
+                      </div>
                     </div>
 
-                    {/* Floating Badge for Large Cards */}
-                    {isLarge && (
-                      <motion.div
-                        animate={{ y: [0, -8, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute top-6 right-6 bg-white rounded-full px-4 py-2 shadow-lg"
-                      >
-                        <span className={`text-xs font-bold ${colors.icon} uppercase tracking-wide`}>Popular</span>
-                      </motion.div>
-                    )}
-
                     {/* Corner Accent */}
-                    <div className={`absolute bottom-0 right-0 w-24 h-24 ${colors.bg} opacity-5 rounded-tl-full transition-all duration-500 group-hover:w-32 group-hover:h-32`}></div>
+                    <div className={`absolute bottom-0 right-0 ${isTall ? 'w-24 h-24' : 'w-16 h-16'} ${colors.bg} opacity-5 rounded-tl-full transition-all duration-500 group-hover:w-32 group-hover:h-32`}></div>
                   </motion.div>
                 </motion.div>
               )
@@ -992,10 +979,10 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mt-10 sm:mt-16"
+            className="text-center mt-8 sm:mt-10"
           >
             <Link to="/products/phone-receptionist">
-              <button className="btn-primary text-base sm:text-lg px-6 sm:px-10 py-3 sm:py-5 animate-glow group">
+              <button className="btn-primary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 animate-glow group">
                 Explore All Features
                 <motion.span
                   animate={{ x: [0, 5, 0] }}
