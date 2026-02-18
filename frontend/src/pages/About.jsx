@@ -194,20 +194,34 @@ const About = () => {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="bg-primary-600 rounded-3xl p-12 md:p-16 text-center"
+            className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden border-2 border-primary-100"
           >
-            <motion.h2 variants={fadeInUp} className="section-title hero-display !text-white mb-6">
-              Ready to <span className="text-primary-200">Learn More?</span>
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+            </div>
+
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
+              <Building2 className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
+            </div>
+
+            <motion.h2 variants={fadeInUp} className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
+              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Learn More?</span>
             </motion.h2>
-            <motion.p variants={fadeInUp} className="text-lg text-primary-100 mb-8 max-w-2xl mx-auto">
+            <motion.p variants={fadeInUp} className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
               Schedule a conversation with our team to see how CogniDrift can help your business.
             </motion.p>
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} className="relative z-10">
               <Link to="/contact">
-                <button className="bg-white text-primary-600 px-8 py-4 rounded-lg font-medium hover:bg-primary-50 transition-colors inline-flex items-center gap-2 animate-glow">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-primary px-8 py-4 text-lg"
+                >
                   Get in Touch
                   <ArrowRight className="w-5 h-5" />
-                </button>
+                </motion.button>
               </Link>
             </motion.div>
           </motion.div>
