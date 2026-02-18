@@ -1,19 +1,17 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Typed from 'typed.js'
 import CompanyTimeline from '../components/CompanyTimeline'
-import TechStackVisualization from '../components/TechStackVisualization'
-import { 
-  Lightbulb, 
-  Users, 
-  Rocket, 
+import {
+  Lightbulb,
+  Users,
   Heart,
   Target,
-  Zap,
-  Shield,
-  Award,
   ArrowRight,
-  Check
+  Building2,
+  Clock,
+  Gem
 } from 'lucide-react'
 
 const fadeInUp = {
@@ -29,39 +27,23 @@ const staggerContainer = {
   }
 }
 
-// Counter hook
-const useCounter = (end, duration = 2000, inView) => {
-  const [count, setCount] = useState(0)
-  
-  useEffect(() => {
-    if (!inView) return
-    let startTime
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
-      setCount(Math.floor(progress * end))
-      if (progress < 1) requestAnimationFrame(animate)
-    }
-    requestAnimationFrame(animate)
-  }, [end, duration, inView])
-  
-  return count
-}
-
-const StatItem = ({ number, suffix, label }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-  const count = useCounter(number, 2000, isInView)
-  
-  return (
-    <div ref={ref} className="text-center">
-      <div className="text-5xl md:text-6xl font-bold text-white mb-2">{count}{suffix}</div>
-      <div className="text-lg text-primary-100">{label}</div>
-    </div>
-  )
-}
-
 const About = () => {
+  const typedRef = useRef(null)
+
+  useEffect(() => {
+    const typed = new Typed(typedRef.current, {
+      strings: ['Business', 'Communication', 'Customer Experience', 'Intelligence', 'Workflow'],
+      typeSpeed: 80,
+      backSpeed: 50,
+      backDelay: 1500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '|'
+    })
+
+    return () => typed.destroy()
+  }, [])
+
   const values = [
     {
       icon: Lightbulb,
@@ -85,24 +67,10 @@ const About = () => {
     }
   ]
 
-  const stats = [
-    { number: 24, suffix: '/7', label: 'AI Availability' },
-    { number: 99, suffix: '.9%', label: 'Uptime Guarantee' },
-    { number: 50, suffix: '+', label: 'Integrations' },
-    { number: 10, suffix: 'k+', label: 'Calls Handled' }
-  ]
-
-  const techStack = [
-    'Advanced Language Models',
-    'Real-time Voice Processing',
-    'Enterprise Security',
-    'Cloud Infrastructure'
-  ]
-
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 bg-neutral-offWhite overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-white overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200/30 rounded-full blur-3xl"></div>
           <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent-cyan/10 rounded-full blur-3xl"></div>
@@ -115,17 +83,18 @@ const About = () => {
             variants={staggerContainer}
             className="text-center max-w-3xl mx-auto"
           >
-            <motion.span
+            <motion.div
               variants={fadeInUp}
-              className="section-eyebrow"
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
             >
-              About Us
-            </motion.span>
+              <Building2 className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">About Us</span>
+            </motion.div>
             <motion.h1
               variants={fadeInUp}
               className="section-title hero-display !mb-4"
             >
-              Building the Future of<br /><span className="text-gradient">Business Communication</span>
+              Building the Future of<br /><span ref={typedRef} className="text-gradient"></span>
             </motion.h1>
             <motion.p
               variants={fadeInUp}
@@ -138,77 +107,20 @@ const About = () => {
         </div>
       </section>
 
-      {/* Mission Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={staggerContainer}
-            >
-              <motion.span variants={fadeInUp} className="section-eyebrow">Our Mission</motion.span>
-              <motion.h2 variants={fadeInUp} className="section-title hero-display">
-                AI That Works <span className="text-gradient">For You</span>
-              </motion.h2>
-              <motion.p variants={fadeInUp} className="text-lg text-text-secondary mb-6">
-                At CogniDrift, we believe every business deserves access to enterprise-grade 
-                AI technology. We're building voice AI solutions that are powerful enough for 
-                corporations but accessible to small businesses.
-              </motion.p>
-              <motion.p variants={fadeInUp} className="text-lg text-text-secondary mb-8">
-                Our team combines deep expertise in AI, natural language processing, and 
-                business operations to create solutions that don't just answer calls—they 
-                understand your customers and help grow your business.
-              </motion.p>
-              <motion.ul variants={staggerContainer} className="space-y-4">
-                {techStack.map((tech, i) => (
-                  <motion.li key={i} variants={fadeInUp} className="flex items-center gap-3">
-                    <div className="w-6 h-6 bg-accent-cyan/10 rounded-full flex items-center justify-center">
-                      <Check className="w-4 h-4 text-accent-cyan" />
-                    </div>
-                    <span className="text-text-primary font-medium">{tech}</span>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative"
-            >
-              <div className="bg-primary-50 rounded-3xl p-12 text-center">
-                <div className="w-24 h-24 bg-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Rocket className="w-12 h-12 text-white" />
-                </div>
-                <h3 className="text-2xl font-bold text-text-primary mb-4">
-                  "Technology should empower, not complicate."
-                </h3>
-                <p className="text-text-secondary">
-                  That's why we focus on solutions that integrate seamlessly into your 
-                  existing workflows and deliver measurable results from day one.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Company Timeline Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16 bg-neutral-offWhite">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <motion.span variants={fadeInUp} className="section-eyebrow">Our Story</motion.span>
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6">
+              <Clock className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Our Story</span>
+            </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
               From Vision to <span className="text-gradient">Reality</span>
             </motion.h2>
@@ -229,7 +141,7 @@ const About = () => {
       </section>
 
       {/* Values Section */}
-      <section className="py-24 bg-neutral-offWhite">
+      <section className="py-24 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial="hidden"
@@ -238,7 +150,10 @@ const About = () => {
             variants={staggerContainer}
             className="section-header"
           >
-            <motion.span variants={fadeInUp} className="section-eyebrow">Our Values</motion.span>
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6">
+              <Gem className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Our Values</span>
+            </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
               What <span className="text-gradient">Drives Us</span>
             </motion.h2>
@@ -267,56 +182,6 @@ const About = () => {
                 <p className="text-text-secondary">{value.description}</p>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24 bg-primary-600">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8"
-          >
-            {stats.map((stat, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <StatItem {...stat} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Technology Section */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            variants={staggerContainer}
-            className="section-header"
-          >
-            <motion.span variants={fadeInUp} className="section-eyebrow">Our Technology</motion.span>
-            <motion.h2 variants={fadeInUp} className="section-title hero-display">
-              Built With the <span className="text-gradient">Best</span>
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="section-subtitle">
-              Enterprise-grade infrastructure and cutting-edge AI power every conversation.
-            </motion.p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-12"
-          >
-            <TechStackVisualization />
           </motion.div>
         </div>
       </section>

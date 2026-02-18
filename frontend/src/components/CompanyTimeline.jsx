@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Lightbulb, Rocket, Users, Award, Sparkles, TrendingUp } from 'lucide-react'
+import { Lightbulb, Rocket, Users, Award, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 
 const CompanyTimeline = () => {
@@ -10,46 +10,31 @@ const CompanyTimeline = () => {
       year: '2023',
       icon: Lightbulb,
       title: 'The Idea',
-      description: 'Founded with a vision to make AI accessible to every business',
-      color: 'from-blue-500 to-blue-600',
-      lightBg: 'bg-blue-100/70',
-      iconColor: 'text-blue-600'
+      description: 'Founded with a vision to make AI accessible to every business'
     },
     {
       year: '2024',
       icon: Rocket,
       title: 'Launch',
-      description: 'First AI receptionist deployed, handling 1,000+ calls',
-      color: 'from-blue-500 to-blue-600',
-      lightBg: 'bg-blue-100/70',
-      iconColor: 'text-blue-600'
+      description: 'First AI receptionist deployed, handling 1,000+ calls'
     },
     {
       year: '2025',
       icon: Users,
       title: 'Growth',
-      description: 'Expanded to serve 100+ businesses across industries',
-      color: 'from-blue-500 to-blue-600',
-      lightBg: 'bg-blue-100/70',
-      iconColor: 'text-blue-600'
+      description: 'Expanded to serve 100+ businesses across industries'
     },
     {
       year: '2026',
       icon: Award,
       title: 'Recognition',
-      description: 'Industry leader in AI-powered business communication',
-      color: 'from-blue-500 to-blue-600',
-      lightBg: 'bg-blue-100/70',
-      iconColor: 'text-blue-600'
+      description: 'Industry leader in AI-powered business communication'
     },
     {
       year: 'Future',
       icon: Sparkles,
       title: 'Innovation',
-      description: 'Building the next generation of AI assistants',
-      color: 'from-blue-500 to-blue-600',
-      lightBg: 'bg-blue-100/70',
-      iconColor: 'text-blue-600'
+      description: 'Building the next generation of AI assistants'
     }
   ]
 
@@ -59,7 +44,7 @@ const CompanyTimeline = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative bg-white rounded-3xl shadow-2xl p-8 lg:p-10 border-2 border-gray-100 overflow-hidden"
+        className="relative bg-white rounded-2xl shadow-lg p-6 lg:p-8 border border-gray-100 overflow-hidden"
       >
         {/* Animated Background */}
         <motion.div
@@ -75,23 +60,10 @@ const CompanyTimeline = () => {
         />
 
         <div className="relative z-10">
-          {/* Header */}
-          <div className="text-center mb-10">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.3, type: 'spring' }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-purple-50 px-5 py-2 rounded-full mb-4"
-            >
-              <TrendingUp className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-bold text-blue-600 uppercase tracking-wider">Our Journey</span>
-            </motion.div>
-            <h3 className="text-3xl lg:text-4xl font-bold text-gray-900">Company Timeline</h3>
-            <p className="text-gray-600 mt-2">From idea to industry leader</p>
-          </div>
+          {/* Header - Removed for compactness, info is in About page header */}
 
           {/* Timeline */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             {milestones.map((milestone, index) => {
               const Icon = milestone.icon
               const isActive = index === activeIndex
@@ -105,7 +77,7 @@ const CompanyTimeline = () => {
                   onHoverStart={() => setActiveIndex(index)}
                   className="relative"
                 >
-                  <div className="flex items-start gap-6 group cursor-pointer">
+                  <div className="flex items-start gap-4 group">
                     {/* Timeline Line & Dot */}
                     <div className="relative flex flex-col items-center">
                       {/* Dot */}
@@ -139,94 +111,56 @@ const CompanyTimeline = () => {
 
                     {/* Content Card */}
                     <motion.div
-                      whileHover={{ scale: 1.02, x: 5 }}
-                      className={`flex-1 rounded-2xl p-6 border-2 transition-all duration-300 ${
+                      whileHover={{ scale: 1.01, x: 3 }}
+                      className={`flex-1 rounded-xl p-4 border transition-all duration-300 ${
                         isActive 
-                          ? 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50 shadow-lg' 
-                          : 'border-gray-200 bg-white hover:border-indigo-100'
+                          ? 'border-blue-200 bg-blue-50/50 shadow-md' 
+                          : 'border-gray-200 bg-white hover:border-blue-100'
                       }`}
                     >
-                      <div className="flex items-start gap-4">
+                      <div className="flex items-start gap-3">
                         {/* Icon */}
                         <motion.div
                           animate={{
-                            rotate: isActive ? [0, 360] : 0,
-                            scale: isActive ? 1.1 : 1
+                            scale: isActive ? 1.05 : 1
                           }}
-                          transition={{ duration: 0.6 }}
-                          className={`w-14 h-14 rounded-xl bg-gradient-to-br ${milestone.color} flex items-center justify-center shadow-md flex-shrink-0`}
+                          transition={{ duration: 0.4 }}
+                          className={`w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center flex-shrink-0 ${
+                            isActive ? 'shadow-md' : ''
+                          }`}
                         >
-                          <Icon className="w-7 h-7 text-white" />
+                          <Icon className="w-6 h-6 text-blue-600" />
                         </motion.div>
 
                         {/* Text Content */}
                         <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className={`text-sm font-black uppercase tracking-wider ${
-                              isActive ? 'text-indigo-600' : 'text-gray-500'
+                          <div className="flex items-center gap-3 mb-1.5">
+                            <span className={`text-xs font-bold uppercase tracking-wider ${
+                              isActive ? 'text-blue-600' : 'text-gray-500'
                             }`}>
                               {milestone.year}
                             </span>
-                            {isActive && (
-                              <motion.div
-                                initial={{ scale: 0 }}
-                                animate={{ scale: 1 }}
-                                className="bg-indigo-600 text-white text-xs px-3 py-1 rounded-full font-bold"
-                              >
-                                Active
-                              </motion.div>
-                            )}
                           </div>
-                          <h4 className={`text-xl font-bold mb-2 transition-colors ${
-                            isActive ? 'text-indigo-900' : 'text-gray-900'
+                          <h4 className={`text-lg font-bold mb-1.5 transition-colors ${
+                            isActive ? 'text-blue-900' : 'text-gray-900'
                           }`}>
                             {milestone.title}
                           </h4>
                           <p className={`text-sm leading-relaxed ${
-                            isActive ? 'text-indigo-700' : 'text-gray-600'
+                            isActive ? 'text-blue-700' : 'text-gray-600'
                           }`}>
                             {milestone.description}
                           </p>
                         </div>
                       </div>
 
-                      {/* Progress Bar */}
-                      {isActive && (
-                        <motion.div
-                          initial={{ scaleX: 0 }}
-                          animate={{ scaleX: 1 }}
-                          className={`h-1 mt-4 rounded-full bg-gradient-to-r ${milestone.color}`}
-                        />
-                      )}
+                      {/* Progress Bar - Removed for compactness */}
                     </motion.div>
                   </div>
                 </motion.div>
               )
             })}
           </div>
-
-          {/* Summary Stats at Bottom */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1 }}
-            className="mt-10 pt-8 border-t-2 border-gray-100"
-          >
-            <div className="grid grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-3xl font-black text-indigo-600 mb-1">3+</div>
-                <div className="text-sm text-gray-600 font-medium">Years</div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-purple-600 mb-1">100+</div>
-                <div className="text-sm text-gray-600 font-medium">Clients</div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-orange-600 mb-1">10k+</div>
-                <div className="text-sm text-gray-600 font-medium">Calls</div>
-              </div>
-            </div>
-          </motion.div>
         </div>
 
         {/* Floating Elements */}
