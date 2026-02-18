@@ -58,7 +58,7 @@ const VideoShowcaseSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 lg:py-28 overflow-hidden bg-neutral-offWhite"
+      className="relative py-20 lg:py-28 overflow-hidden bg-white"
     >
       {/* Background Elements - Using CSS animations for better performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

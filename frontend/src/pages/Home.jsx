@@ -688,7 +688,7 @@ const Home = () => {
       */}
 
       {/* How It Works Section - Enhanced */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+      <section className="py-16 sm:py-20 lg:py-28 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -782,7 +782,7 @@ const Home = () => {
       </section>
 
       {/* Industry Solutions - Enhanced */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-neutral-offWhite">
+      <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"

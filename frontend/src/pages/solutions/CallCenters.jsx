@@ -471,15 +471,16 @@ const CallCenters = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-gray-50 pt-24 pb-20">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-20"
-        >
+      <section className="pt-24 pb-16 sm:pb-20 bg-white">
+        <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
           {/* Animated Icon Cluster */}
           <div className="relative inline-block mb-8">
             <motion.div
@@ -556,13 +557,17 @@ const CallCenters = () => {
             </Link>
           </div>
         </motion.div>
+        </div>
+      </section>
 
-        {/* Stats Bar */}
+      {/* Stats Section */}
+      <section className="py-12 sm:py-16 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isHeroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
         >
           {[
             { icon: PhoneCall, value: 100, suffix: "M+", label: "Calls/Month", color: "text-blue-600" },
@@ -583,15 +588,23 @@ const CallCenters = () => {
             </motion.div>
           ))}
         </motion.div>
+        </div>
+      </section>
 
-        {/* Section Cards */}
-        <div className="space-y-10 mb-20">
+      {/* Section Cards */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="space-y-10">
           {sections.map((section, index) => (
             <SectionCard key={index} {...section} index={index} />
           ))}
         </div>
+        </div>
+      </section>
 
-        {/* CTA Section */}
+      {/* CTA Section */}
+      <section className="py-16 sm:py-20 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -638,7 +651,8 @@ const CallCenters = () => {
             </Link>
           </div>
         </motion.div>
-      </div>
+        </div>
+      </section>
     </div>
   )
 }
