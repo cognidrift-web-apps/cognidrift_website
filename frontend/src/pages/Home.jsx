@@ -1117,7 +1117,7 @@ const Home = () => {
               variants={fadeInUp}
               className="section-title hero-display"
             >
-              See Every <span className="text-gradient">Interaction Live</span>
+              Monitor <span className="text-gradient">Live</span>
             </motion.h2>
 
             <motion.p

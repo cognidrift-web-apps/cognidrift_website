@@ -103,7 +103,7 @@ const Navbar = () => {
         ]
       },
       {
-        title: 'Analytics & Reporting',
+        title: 'Enterprise Solutions',
         items: [
           { name: 'AI Automation', description: 'Intelligent insights and performance metrics', path: '/products/ai-automation', icon: TrendingUp, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
