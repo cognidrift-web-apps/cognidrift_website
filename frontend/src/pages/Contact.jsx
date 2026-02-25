@@ -147,7 +147,7 @@ const Contact = () => {
       const cal = await getCalApi({ namespace: "cognidrift-booking" })
       cal("inline", {
         elementOrSelector: "#cal-booking-widget",
-        calLink: "cognidrift-llc-alefpr", // Shows all event type options
+        calLink: "cognidrift",
         layout: "month_view",
         config: {
           theme: "light"

@@ -23,6 +23,7 @@ const AutomatedCalls = lazy(() => import('./pages/products/AutomatedCalls'))
 const AutomatedSms = lazy(() => import('./pages/products/AutomatedSms'))
 const AiAutomation = lazy(() => import('./pages/products/AiAutomation'))
 const Dashboards = lazy(() => import('./pages/products/Dashboards'))
+const MultiModelChat = lazy(() => import('./pages/products/MultiModelChat'))
 
 // Industries Pages
 const Healthcare = lazy(() => import('./pages/solutions/Healthcare'))
@@ -85,6 +86,7 @@ function App() {
               <Route path="/products/automated-sms" element={<AutomatedSms />} />
               <Route path="/products/ai-automation" element={<AiAutomation />} />
               <Route path="/products/dashboards" element={<Dashboards />} />
+              <Route path="/products/multi-model-chat" element={<MultiModelChat />} />
 
               {/* Industries Routes */}
               <Route path="/industries/healthcare" element={<Healthcare />} />

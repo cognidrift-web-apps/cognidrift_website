@@ -5,7 +5,7 @@ import {
   Menu, X, ChevronDown, Phone, Building2, Stethoscope,
   Home as HomeIcon, FileText, BookOpen, HelpCircle, Zap,
   Mic, Bot, Smartphone, Database, Ticket, MessageSquare,
-  PhoneCall, Calendar, TrendingUp, Wrench, Headphones
+  PhoneCall, Calendar, TrendingUp, Wrench, Headphones, BrainCircuit
 } from 'lucide-react'
 
 const Navbar = () => {
@@ -106,6 +106,7 @@ const Navbar = () => {
         title: 'Enterprise Solutions',
         items: [
           { name: 'AI Automation', description: 'Intelligent insights and performance metrics', path: '/products/ai-automation', icon: TrendingUp, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'Multi-Model AI Chat Platform', description: 'Chat with GPT, Claude, Gemini & more in one unified interface', path: '/products/multi-model-chat', icon: BrainCircuit, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       }
     ]
