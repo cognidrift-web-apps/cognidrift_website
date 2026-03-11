@@ -101,7 +101,7 @@ const About = () => {
               variants={fadeInUp}
               className="section-title hero-display !mb-4"
             >
-              Building the Future of<br /><span ref={typedRef} className="text-gradient"></span>
+              Building the Future of<br /><span ref={typedRef} className="text-gradient font-normal"></span>
             </motion.h1>
             <motion.p
               variants={fadeInUp}

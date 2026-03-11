@@ -6,6 +6,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Typed.js cursor — always thin */
+.typed-cursor {
+  font-weight: 100;
+  opacity: 1;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
