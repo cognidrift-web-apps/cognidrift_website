@@ -101,11 +101,15 @@ const TechStackVisualization = () => {
                 className="w-32 h-32 rounded-full bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-1 shadow-2xl"
               >
                 <div className="w-full h-full rounded-full bg-white flex items-center justify-center">
-                  <div className="text-center">
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
+                    className="text-center"
+                  >
                     <Brain className="w-10 h-10 text-indigo-600 mx-auto mb-1" />
                     <div className="text-xs font-bold text-gray-900">CogniDrift</div>
                     <div className="text-xs text-gray-500">Core AI</div>
-                  </div>
+                  </motion.div>
                 </div>
               </motion.div>
 

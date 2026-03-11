@@ -119,7 +119,12 @@ const FloatingNotifications = () => {
                     transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
                     className={`relative flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br ${notification.color} flex items-center justify-center shadow-lg`}
                   >
-                    <notification.icon className="w-6 h-6 text-white" />
+                    <motion.div
+                      animate={{ rotate: [0, -10, 10, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                    >
+                      <notification.icon className="w-6 h-6 text-white" />
+                    </motion.div>
                     
                     {/* Pulse effect */}
                     <motion.div

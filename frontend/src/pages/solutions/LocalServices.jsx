@@ -159,6 +159,8 @@ const SectionCard = ({
                   {chartData.map((item, idx) => (
                     <motion.div
                       key={idx}
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                       className="absolute w-10 h-10 rounded-xl flex items-center justify-center shadow-md border border-blue-100 bg-blue-50/80"
                       style={{
                         top: `${50 + 45 * Math.sin((idx * 2 * Math.PI) / chartData.length)}%`,

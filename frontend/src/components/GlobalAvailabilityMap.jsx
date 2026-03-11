@@ -184,7 +184,12 @@ const GlobalAvailabilityMap = () => {
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
                 className="w-10 h-10 mx-auto mb-2"
               >
-                <Globe className="w-10 h-10 text-blue-300" />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                >
+                  <Globe className="w-10 h-10 text-blue-300" />
+                </motion.div>
               </motion.div>
               <p className="text-2xl font-black text-white">6</p>
               <p className="text-xs text-blue-200 font-medium uppercase tracking-wide">Continents</p>

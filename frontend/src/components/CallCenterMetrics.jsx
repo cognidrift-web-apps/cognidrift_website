@@ -180,7 +180,12 @@ const CallCenterMetrics = () => {
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
               >
-                <Zap className="w-4 h-4 text-yellow-400" />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
+                >
+                  <Zap className="w-4 h-4 text-yellow-400" />
+                </motion.div>
               </motion.div>
               Recent Call Activity
             </h4>
