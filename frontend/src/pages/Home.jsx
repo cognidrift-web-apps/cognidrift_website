@@ -423,12 +423,12 @@ const Home = () => {
               {/* AI Receptionist with 3D Effect */}
               <span className="block mb-3 sm:mb-4 px-2 text-3d-wrapper text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold tracking-tight leading-[1.1]" style={{ fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif', letterSpacing: '-0.02em' }}>
                 {/* Depth shadow layer */}
-                <span className="text-3d-shadow" aria-hidden="true">AI Receptionist</span>
+                <span className="text-3d-shadow" aria-hidden="true">Your 24/7 AI Workforce</span>
                 {/* Top highlight layer */}
-                <span className="text-3d-highlight" aria-hidden="true">AI Receptionist</span>
+                <span className="text-3d-highlight" aria-hidden="true">Your 24/7 AI Workforce</span>
                 {/* Main gradient text on top */}
                 <span className="relative bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent" style={{ zIndex: 1 }}>
-                  AI Receptionist
+                  Your 24/7 AI Workforce
                 </span>
               </span>
               <span className="block text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light tracking-wide text-slate-600 leading-relaxed px-2" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
@@ -442,7 +442,7 @@ const Home = () => {
               className="text-sm sm:text-base md:text-lg lg:text-2xl text-slate-600 max-w-full mx-auto mt-6 sm:mt-8 md:mt-12 pt-4 sm:pt-6 md:pt-8 mb-6 sm:mb-8 md:mb-10 leading-relaxed font-light px-2"
               style={{ fontFamily: 'system-ui, -apple-system, sans-serif', letterSpacing: '-0.01em' }}
             >
-              24×7 AI voice agents for inbound and outbound calls, SMS, email, web chat, and avatars.
+              A unified AI front-office. One platform to automate every call, chat, and lead.
             </motion.p>
 
             {/* Voice Orb - Try Demo */}
