@@ -180,7 +180,7 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive, icon
 
     {/* Icon with animation */}
     <motion.div
-      className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-5 transition-shadow ${
+      className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-5 mx-auto transition-shadow ${
         iconBgColor
           ? `${iconBgColor}`
           : isActive
@@ -201,10 +201,10 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive, icon
     </motion.div>
 
     {/* Title */}
-    <h3 className="relative text-lg sm:text-xl lg:text-2xl font-bold text-text-primary mb-2 sm:mb-3 group-hover:text-primary-600 transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
+    <h3 className="relative text-lg sm:text-xl lg:text-2xl font-bold text-text-primary mb-2 sm:mb-3 text-center group-hover:text-primary-600 transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
 
     {/* Description */}
-    <p className="relative text-sm sm:text-base text-text-secondary mb-4 sm:mb-5 leading-relaxed">{description}</p>
+    <p className="relative text-sm sm:text-base text-text-secondary mb-4 sm:mb-5 leading-relaxed text-center">{description}</p>
 
     {/* Features list */}
     <ul className="relative space-y-2 sm:space-y-3 flex-grow">
