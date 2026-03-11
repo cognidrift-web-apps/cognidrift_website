@@ -64,39 +64,39 @@ const LiveMetricsDashboard = () => {
   }, [isInView])
 
   return (
-    <div ref={ref} className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 shadow-2xl">
+    <div ref={ref} className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
       <div className="flex items-center justify-between mb-6">
-        <h4 className="text-white font-semibold">Live Dashboard</h4>
+        <h4 className="text-text-primary font-semibold">Live Dashboard</h4>
         <motion.div
           animate={{ opacity: [1, 0.5, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
           className="flex items-center gap-2"
         >
           <div className="w-2 h-2 bg-green-500 rounded-full" />
-          <span className="text-green-400 text-xs">Live</span>
+          <span className="text-green-600 text-xs">Live</span>
         </motion.div>
       </div>
 
       <div className="grid grid-cols-3 gap-4">
-        <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-blue-400">{activeAgents}</div>
-          <div className="text-xs text-gray-400 mt-1">AI Agents Active</div>
+        <div className="bg-blue-50/70 rounded-xl p-4 text-center">
+          <div className="text-3xl font-bold text-blue-600">{activeAgents}</div>
+          <div className="text-xs text-text-secondary mt-1">AI Agents Active</div>
         </div>
-        <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-blue-300">{callsInQueue}</div>
-          <div className="text-xs text-gray-400 mt-1">Calls in Queue</div>
+        <div className="bg-blue-50/70 rounded-xl p-4 text-center">
+          <div className="text-3xl font-bold text-blue-600">{callsInQueue}</div>
+          <div className="text-xs text-text-secondary mt-1">Calls in Queue</div>
         </div>
-        <div className="bg-gray-800/50 rounded-xl p-4 text-center">
-          <div className="text-3xl font-bold text-blue-200">{avgWaitTime.toFixed(1)}s</div>
-          <div className="text-xs text-gray-400 mt-1">Avg Wait Time</div>
+        <div className="bg-blue-50/70 rounded-xl p-4 text-center">
+          <div className="text-3xl font-bold text-blue-600">{avgWaitTime.toFixed(1)}s</div>
+          <div className="text-xs text-text-secondary mt-1">Avg Wait Time</div>
         </div>
       </div>
 
       {/* Live Call Activity */}
       <div className="mt-6">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-sm text-gray-400">Call Activity</span>
-          <span className="text-xs text-gray-500">Last 60 seconds</span>
+          <span className="text-sm text-text-secondary">Call Activity</span>
+          <span className="text-xs text-text-muted">Last 60 seconds</span>
         </div>
         <div className="flex items-end gap-1 h-16">
           {[...Array(20)].map((_, i) => (
@@ -303,17 +303,17 @@ const CallCenters = () => {
       visual: (
         <div className="space-y-4">
           {/* Support Flow Visualization */}
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-blue-500 rounded-xl flex items-center justify-center">
-                <Monitor className="w-5 h-5 text-white" />
+              <div className="w-10 h-10 bg-blue-100/70 rounded-xl flex items-center justify-center">
+                <Monitor className="w-5 h-5 text-blue-600" />
               </div>
               <div>
-                <div className="text-white font-semibold text-sm">Tech Support AI</div>
-                <div className="text-blue-400 text-xs">Processing...</div>
+                <div className="text-text-primary font-semibold text-sm">Tech Support AI</div>
+                <div className="text-blue-500 text-xs">Processing...</div>
               </div>
             </div>
-            <WaveVisualization color="bg-blue-500" />
+            <WaveVisualization color="bg-blue-400" />
             <div className="mt-4 space-y-2">
               {[
                 { label: "Issue Identified", status: "complete", color: "bg-green-500" },
@@ -333,7 +333,7 @@ const CallCenters = () => {
                     transition={{ duration: 1, repeat: Infinity }}
                     className={`w-3 h-3 ${step.color} rounded-full`}
                   />
-                  <span className="text-gray-300 text-sm">{step.label}</span>
+                  <span className="text-text-secondary text-sm">{step.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -499,29 +499,6 @@ const CallCenters = () => {
               <Headphones className="w-12 h-12 text-white" />
             </motion.div>
 
-            {/* Floating Elements */}
-            {[
-              { icon: Phone, color: "bg-blue-500", position: "-top-2 -left-8" },
-              { icon: Activity, color: "bg-blue-400", position: "-top-2 -right-8" },
-              { icon: Settings, color: "bg-primary-500", position: "-bottom-2 -left-6" },
-              { icon: Globe, color: "bg-blue-600", position: "-bottom-2 -right-6" }
-            ].map(({ icon: Icon, color, position }, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3 + idx * 0.1, type: "spring" }}
-                className={`absolute ${position}`}
-              >
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: idx * 0.3 }}
-                  className={`w-10 h-10 ${color} rounded-xl flex items-center justify-center shadow-lg`}
-                >
-                  <Icon className="w-5 h-5 text-white" />
-                </motion.div>
-              </motion.div>
-            ))}
           </div>
 
           <motion.span
