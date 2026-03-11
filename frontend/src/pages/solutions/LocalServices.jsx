@@ -157,19 +157,23 @@ const SectionCard = ({
                   className="absolute inset-0"
                 >
                   {chartData.map((item, idx) => (
-                    <motion.div
+                    <div
                       key={idx}
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                      className="absolute w-10 h-10 rounded-xl flex items-center justify-center shadow-md border border-blue-100 bg-blue-50/80"
+                      className="absolute"
                       style={{
                         top: `${50 + 45 * Math.sin((idx * 2 * Math.PI) / chartData.length)}%`,
                         left: `${50 + 45 * Math.cos((idx * 2 * Math.PI) / chartData.length)}%`,
                         transform: 'translate(-50%, -50%)'
                       }}
                     >
-                      <item.icon className="w-5 h-5 text-blue-600" />
-                    </motion.div>
+                      <motion.div
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                        className="w-10 h-10 rounded-xl flex items-center justify-center shadow-md border border-blue-100 bg-blue-50/80"
+                      >
+                        <item.icon className="w-5 h-5 text-blue-600" />
+                      </motion.div>
+                    </div>
                   ))}
                 </motion.div>
               </div>

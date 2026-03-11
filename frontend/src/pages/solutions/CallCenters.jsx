@@ -126,7 +126,7 @@ const LiveMetricsDashboard = () => {
 // Animated Wave Visualization
 const WaveVisualization = ({ color }) => {
   return (
-    <div className="flex items-center justify-center gap-1 h-16">
+    <div className="flex items-center justify-center gap-1 h-16 opacity-25">
       {[...Array(12)].map((_, i) => (
         <motion.div
           key={i}

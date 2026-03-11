@@ -115,29 +115,33 @@ const TechStackVisualization = () => {
 
               {/* Orbiting Features */}
               {centerFeatures.map((feature, i) => (
-                <motion.div
+                <div
                   key={i}
-                  animate={{
-                    rotate: [0, 360],
-                    x: Math.cos((i * Math.PI * 2) / 4) * 80,
-                    y: Math.sin((i * Math.PI * 2) / 4) * 80
-                  }}
-                  transition={{
-                    rotate: { duration: 20, repeat: Infinity, ease: 'linear' },
-                    x: { duration: 0 },
-                    y: { duration: 0 }
-                  }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  className="absolute top-1/2 left-1/2"
+                  style={{ transform: 'translate(-50%, -50%)' }}
                 >
                   <motion.div
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                    className="w-12 h-12 rounded-full bg-white shadow-lg border-2 border-indigo-200 flex items-center justify-center"
-                    whileHover={{ scale: 1.2 }}
+                    animate={{
+                      rotate: [0, 360],
+                      x: Math.cos((i * Math.PI * 2) / 4) * 80,
+                      y: Math.sin((i * Math.PI * 2) / 4) * 80
+                    }}
+                    transition={{
+                      rotate: { duration: 20, repeat: Infinity, ease: 'linear' },
+                      x: { duration: 0 },
+                      y: { duration: 0 }
+                    }}
                   >
-                    <feature.icon className="w-5 h-5 text-indigo-600" />
+                    <motion.div
+                      animate={{ rotate: -360 }}
+                      transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                      className="w-12 h-12 rounded-full bg-white shadow-lg border-2 border-indigo-200 flex items-center justify-center"
+                      whileHover={{ scale: 1.2 }}
+                    >
+                      <feature.icon className="w-5 h-5 text-indigo-600" />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
+                </div>
               ))}
             </motion.div>
 
