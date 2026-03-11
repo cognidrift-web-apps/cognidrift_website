@@ -949,17 +949,17 @@ const Home = () => {
                     />
 
                     {/* Content */}
-                    <div className={`relative z-10 flex ${isWide ? 'lg:flex-row lg:items-center lg:gap-5' : 'flex-col items-center text-center'} h-full`}>
+                    <div className="relative z-10 flex flex-col items-center text-center justify-center h-full">
                       {/* Icon */}
                       <motion.div
                         whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                         transition={{ duration: 0.5 }}
-                        className={`inline-flex ${isTall ? 'w-14 h-14' : 'w-10 h-10 sm:w-12 sm:h-12'} ${colors.lightBg} rounded-xl items-center justify-center ${isWide ? 'mb-3 lg:mb-0 flex-shrink-0' : 'mb-3'} shadow-md group-hover:shadow-xl transition-shadow`}
+                        className={`inline-flex ${isTall ? 'w-14 h-14' : 'w-10 h-10 sm:w-12 sm:h-12'} ${colors.lightBg} rounded-xl items-center justify-center mb-3 shadow-md group-hover:shadow-xl transition-shadow`}
                       >
                         <Icon className={`${isTall ? 'w-7 h-7' : 'w-5 h-5 sm:w-6 sm:h-6'} ${colors.icon}`} />
                       </motion.div>
 
-                      <div className={isTall ? 'flex flex-col justify-center flex-grow' : ''}>
+                      <div>
                         {/* Title */}
                         <h3 className={`${isTall ? 'text-lg sm:text-xl' : 'text-base sm:text-lg'} font-bold text-text-primary mb-1.5 leading-tight group-hover:text-primary-600 transition-colors`}>
                           {feature.title}
