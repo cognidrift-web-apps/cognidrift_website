@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { ArrowRight, Target, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -254,6 +255,12 @@ const CaseStudies = () => {
 
   return (
     <div className="min-h-screen bg-neutral-offWhite">
+      <SEOMeta
+        title="Case Studies - AI Automation Success Stories"
+        description="Read how businesses use CogniDrift's AI automation solutions, AI agents, and AI digital workforce to improve productivity and reduce costs. Real results, real businesses."
+        keywords="AI automation case studies, how companies use AI assistants, how AI automation improves productivity, AI agents for business"
+        url="/resources/case-studies"
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">

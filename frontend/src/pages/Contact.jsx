@@ -1,3 +1,4 @@
+import SEOMeta from '../components/SEOMeta'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { getCalApi } from '@calcom/embed-react'
@@ -158,6 +159,12 @@ const Contact = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEOMeta
+        title="Contact Us - Get Started with AI Workflow Automation"
+        description="Contact CogniDrift to learn how our AI workflow automation and AI agents for business can transform your operations. Book a demo today."
+        keywords="AI workflow automation, AI consulting services, book AI demo"
+        url="/contact"
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-neutral-offWhite overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">

@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -472,6 +473,12 @@ const CallCenters = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI for Call Centers - Intelligent Call Center Automation"
+        description="Transform your call center with CogniDrift's AI automation. AI agents for business that handle inbound/outbound calls, reduce wait times, and improve customer satisfaction."
+        keywords="AI for call centers, conversational AI platform, AI agents for business, AI workflow automation"
+        url="/industries/call-centers"
+      />
       {/* Hero Section */}
       <section className="pt-24 pb-16 sm:pb-20 bg-white">
         <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

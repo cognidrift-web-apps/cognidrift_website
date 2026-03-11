@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow admin/legal pages from being indexed
+Disallow: /privacy
+Disallow: /terms
+
+# Sitemap
+Sitemap: https://cognidrift.com/sitemap.xml

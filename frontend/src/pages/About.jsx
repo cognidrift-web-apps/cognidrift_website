@@ -1,3 +1,4 @@
+import SEOMeta from '../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -69,6 +70,12 @@ const About = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEOMeta
+        title="About Us - AI Consulting Services & AI Automation Company"
+        description="CogniDrift is a leading AI consulting services company building intelligent automation platforms and AI digital workforce solutions for modern enterprises."
+        keywords="AI consulting services, AI automation company, intelligent automation platform"
+        url="/about"
+      />
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-white overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">

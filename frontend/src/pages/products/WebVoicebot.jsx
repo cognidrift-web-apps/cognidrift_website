@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Mic, Volume2, MessageCircle, CheckCircle2, ArrowRight, Sparkles, Globe, Headphones, Shield, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const WebVoicebot = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Web Voicebot - Voice AI Automation for Websites"
+        description="CogniDrift's AI web voicebot enables voice-powered customer interactions on your website. Part of our AI automation solutions for enterprise businesses."
+        keywords="AI web voicebot, voice AI automation, conversational AI platform, AI automation solutions"
+        url="/products/web-voicebot"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { HelpCircle, Search, BookOpen, MessageCircle, Phone, Mail } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -70,6 +71,12 @@ const HelpCenter = () => {
 
   return (
     <div className="min-h-screen bg-primary-50 pt-24 pb-20">
+      <SEOMeta
+        title="Help Center - AI Automation Platform Support & Documentation"
+        description="Get help with CogniDrift's AI automation platform. Find guides, tutorials, and documentation for AI agents, workflow automation, and all CogniDrift products."
+        keywords="AI automation platform help, AI agents documentation, AI workflow automation guide"
+        url="/resources/help-center"
+      />
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

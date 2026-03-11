@@ -1,4 +1,5 @@
 
+import SEOMeta from '../components/SEOMeta'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
@@ -353,6 +354,12 @@ const Integrations = () => {
 
   return (
     <div className="bg-white overflow-hidden">
+      <SEOMeta
+        title="Integrations - Connect AI Workflow Automation to Your Tools"
+        description="Connect CogniDrift's AI workflow automation and intelligent automation platform with Salesforce, HubSpot, Zapier, Slack, and 100+ business tools."
+        keywords="AI workflow automation integrations, intelligent automation platform, AI business intelligence"
+        url="/integrations"
+      />
       {/* Hero Section */}
       <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 bg-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]">

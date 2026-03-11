@@ -1,3 +1,4 @@
+import SEOMeta from '../components/SEOMeta'
 import { Link } from 'react-router-dom'
 import { motion, useInView, useAnimation } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
@@ -380,6 +381,12 @@ const Home = () => {
 
   return (
     <div className="bg-white overflow-hidden">
+      <SEOMeta
+        title="AI Automation Solutions & AI Agents for Business"
+        description="CogniDrift offers enterprise AI automation solutions, AI agents for business, and AI digital workforce tools. Automate workflows, calls, SMS, and customer communications with intelligent AI."
+        keywords="AI automation solutions, AI agents for business, enterprise AI automation, AI digital workforce, business AI automation platform"
+        url="/"
+      />
       {/* Hero Section with Siri Wave Background */}
       <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 sm:pt-24 md:pt-32 pb-12 sm:pb-16 md:pb-20 overflow-hidden bg-white px-4">
         {/* Clean white background — no gradient blobs for cleaner 3D text contrast */}

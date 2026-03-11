@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { BarChart3, TrendingUp, PieChart, Download, CheckCircle2, ArrowRight, Eye, Zap, Shield, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const Dashboards = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Analytics Dashboards - Business Intelligence & AI Insights"
+        description="Visualize business performance with CogniDrift's AI analytics dashboards. Real-time AI business intelligence and analytics solutions for data-driven decisions."
+        keywords="AI analytics solutions, AI business intelligence, intelligent automation platform, AI automation solutions"
+        url="/products/dashboards"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

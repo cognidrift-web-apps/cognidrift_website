@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -356,6 +357,12 @@ const LocalServices = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Automation for Local Services - AI Agents for Small Business"
+        description="CogniDrift's AI automation for local service businesses. AI agents handle bookings, calls, and customer communications for restaurants, salons, and more."
+        keywords="AI automation for local services, AI agents for small business, AI workflow automation, business AI automation platform"
+        url="/industries/local-services"
+      />
       {/* Hero Section */}
       <section className="pt-24 pb-16 sm:pb-20 bg-white">
         <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

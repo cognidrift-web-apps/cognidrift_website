@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -498,6 +499,12 @@ const ProfessionalServices = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Automation for Professional Services - Law, Finance & Consulting"
+        description="Automate client communications and workflows with CogniDrift's AI automation for professional services firms — law, accounting, consulting, and real estate."
+        keywords="AI automation professional services, AI consulting services, enterprise AI automation, intelligent automation platform"
+        url="/industries/professional-services"
+      />
       {/* Hero Section */}
       <section className="pt-24 pb-16 sm:pb-20 bg-white">
         <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

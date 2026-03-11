@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Calendar, User, ArrowLeft, ArrowRight, Clock, Briefcase } from 'lucide-react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
@@ -31,6 +32,11 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-white pt-20">
+      <SEOMeta
+        title={currentPost?.title}
+        description={currentPost?.excerpt || currentPost?.description}
+        url={'/resources/blog/' + currentPost?.slug}
+      />
       {/* Hero Section */}
       <div className="relative h-[300px] sm:h-[400px] lg:h-[500px] overflow-hidden">
         <img

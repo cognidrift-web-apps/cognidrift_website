@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Calendar, Clock, CheckCircle2, ArrowRight, Users, Repeat, Bell, Globe, Zap, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const AiCalendar = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Calendar - Intelligent Scheduling & Meeting Automation"
+        description="Automate scheduling with CogniDrift's AI calendar. An AI digital workforce tool that books meetings, sends reminders, and manages appointments automatically."
+        keywords="AI calendar scheduling, AI digital workforce, AI workflow automation examples, AI automation solutions"
+        url="/products/ai-calendar"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

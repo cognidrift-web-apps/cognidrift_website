@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Bot, MessageSquare, Users, Zap, CheckCircle2, ArrowRight, Globe, BarChart3, Shield, Headphones } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const WebChatbot = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Web Chatbot - Conversational AI Platform for Websites"
+        description="Deploy CogniDrift's AI web chatbot — a conversational AI platform that automates customer support, lead capture, and engagement on your website 24/7."
+        keywords="AI web chatbot, conversational AI platform, AI agents for business, intelligent automation platform"
+        url="/products/web-chatbot"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

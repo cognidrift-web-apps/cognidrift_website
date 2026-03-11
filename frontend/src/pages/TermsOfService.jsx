@@ -1,3 +1,4 @@
+import SEOMeta from '../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { FileText, CheckCircle, AlertTriangle, Scale, Mail, Phone } from 'lucide-react'
 
@@ -78,6 +79,12 @@ const TermsOfService = () => {
 
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
+      <SEOMeta
+        title="Terms of Service - CogniDrift AI Automation Platform"
+        description="CogniDrift's terms of service and usage agreement for our AI automation platform and AI agents for business."
+        url="/terms"
+        noIndex={true}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

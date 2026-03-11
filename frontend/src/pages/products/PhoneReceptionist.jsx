@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const PhoneReceptionist = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Phone Receptionist - 24/7 AI Voice Agent for Business Calls"
+        description="Never miss a call with CogniDrift's AI phone receptionist. An AI voice agent for business that handles calls, books appointments, and automates customer communications 24/7."
+        keywords="AI phone receptionist, AI voice agent for business, AI agents for business, conversational AI platform"
+        url="/products/phone-receptionist"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

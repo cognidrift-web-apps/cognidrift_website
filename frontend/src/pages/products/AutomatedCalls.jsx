@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { PhoneCall, Target, CheckCircle2, ArrowRight, TrendingUp, Users, Zap, BarChart3, Shield, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const AutomatedCalls = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="Automated AI Calls - Outbound Call Automation for Business"
+        description="Scale outbound communications with CogniDrift's automated AI calls. AI agents for business that handle sales calls, reminders, and follow-ups automatically."
+        keywords="automated AI calls, AI agents for business, AI workflow automation, AI digital workforce"
+        url="/products/automated-calls"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

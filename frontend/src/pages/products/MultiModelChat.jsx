@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { BrainCircuit, MessageSquare, CheckCircle2, ArrowRight, Layers, Shuffle, Shield, Clock, Globe, Zap, Users, Lock } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const MultiModelChat = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="Multi-Model AI Chat - Enterprise AI Chat Platform"
+        description="CogniDrift's multi-model AI chat platform lets businesses access GPT-4, Claude, Gemini, and more in one unified interface. Enterprise AI automation for teams."
+        keywords="multi-model AI chat, enterprise AI automation, conversational AI platform, AI agents for business"
+        url="/products/multi-model-chat"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

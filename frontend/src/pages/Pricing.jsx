@@ -1,3 +1,4 @@
+import SEOMeta from '../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Check, X, ArrowRight, Zap, Building2, Rocket, Sparkles, Phone, HelpCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -118,6 +119,12 @@ const Pricing = () => {
 
   return (
     <div className="min-h-screen bg-white pt-24 pb-20 overflow-hidden">
+      <SEOMeta
+        title="Pricing - AI Automation Platform Plans for Every Business"
+        description="Affordable pricing for CogniDrift's AI automation platform. Choose from Starter, Growth, or Enterprise plans for AI agents, workflow automation, and AI digital workforce."
+        keywords="AI automation platform pricing, AI agents for business cost, enterprise AI automation plans"
+        url="/pricing"
+      />
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <motion.div

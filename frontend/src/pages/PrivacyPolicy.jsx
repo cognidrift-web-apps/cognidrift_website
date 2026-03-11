@@ -1,3 +1,4 @@
+import SEOMeta from '../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Shield, Lock, Eye, FileText, Mail } from 'lucide-react'
 
@@ -94,6 +95,12 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
+      <SEOMeta
+        title="Privacy Policy - CogniDrift AI Automation Platform"
+        description="CogniDrift's privacy policy. Learn how we collect, use, and protect your data on our AI automation platform and AI agents for business."
+        url="/privacy"
+        noIndex={true}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

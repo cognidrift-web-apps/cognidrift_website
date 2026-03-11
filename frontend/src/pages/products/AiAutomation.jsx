@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Zap, BarChart3, CheckCircle2, ArrowRight, TrendingUp, LineChart, PieChart, Shield, Clock, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const AiAutomation = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Automation - Enterprise AI Workflow Automation Platform"
+        description="CogniDrift's AI automation platform automates complex business workflows end-to-end. Enterprise AI automation that reduces costs and scales operations with AI agents."
+        keywords="AI workflow automation, enterprise AI automation, AI automation solutions, AI workflow automation examples, how AI automation improves productivity"
+        url="/products/ai-automation"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

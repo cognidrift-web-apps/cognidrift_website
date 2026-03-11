@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Ticket, ArrowRight, CheckCircle2, Bell, Tag, BarChart3, GitBranch, Users, Zap, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const SmartTickets = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Smart Ticketing - Automated Support Ticket Management"
+        description="Streamline support with CogniDrift's AI smart ticketing system. AI workflow automation that routes, prioritizes, and resolves tickets intelligently."
+        keywords="AI smart ticketing, AI workflow automation, intelligent automation platform, AI automation solutions"
+        url="/products/smart-ticketing"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

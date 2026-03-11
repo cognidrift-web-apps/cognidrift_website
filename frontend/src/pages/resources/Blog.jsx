@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { FileText, Calendar, ArrowRight, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -1335,6 +1336,12 @@ export const blogPosts = [
 const Blog = () => {
   return (
     <div className="min-h-screen bg-primary-50 pt-24 pb-20">
+      <SEOMeta
+        title="Blog - AI Automation Insights, Guides & Industry News"
+        description="Explore CogniDrift's blog for expert insights on AI automation solutions, AI workflow automation examples, and how companies use AI assistants to grow their business."
+        keywords="AI workflow automation examples, how companies use AI assistants, AI automation solutions blog, AI agents for business guides"
+        url="/resources/blog"
+      />
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

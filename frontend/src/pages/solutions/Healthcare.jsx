@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -309,6 +310,12 @@ const Healthcare = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI Automation for Healthcare - Medical AI Agents & Workflows"
+        description="CogniDrift's AI automation solutions for healthcare automate patient scheduling, call handling, and communications. AI agents built for medical practices and hospitals."
+        keywords="AI automation for healthcare, medical AI agents, AI workflow automation, AI agents for business"
+        url="/industries/healthcare"
+      />
       {/* Hero Section */}
       <section className="pt-24 pb-16 sm:pb-20 bg-white">
         <div ref={heroRef} className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

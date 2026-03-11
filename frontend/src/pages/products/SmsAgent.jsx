@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Smartphone, MessageSquare, Clock, Bell, CheckCircle2, ArrowRight, Send, Users, BarChart3, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const SmsAgent = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI SMS Agent - Automated SMS Business Communication"
+        description="Automate customer SMS communications with CogniDrift's AI SMS agent. Part of our AI digital workforce platform for business workflow automation."
+        keywords="AI SMS agent, automated SMS business, AI workflow automation, AI digital workforce"
+        url="/products/sms-agent"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">

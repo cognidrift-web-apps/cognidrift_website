@@ -1,3 +1,4 @@
+import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Database, Users, BarChart3, Zap, CheckCircle2, ArrowRight, FileText, Shield, Clock, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -67,6 +68,12 @@ const AiCrm = () => {
 
   return (
     <div className="min-h-screen">
+      <SEOMeta
+        title="AI CRM - Intelligent CRM Automation for Business"
+        description="CogniDrift's AI CRM automates customer relationship management with AI business intelligence. Manage contacts, track interactions, and grow revenue with AI agents."
+        keywords="AI CRM, AI business intelligence, intelligent automation platform, AI agents for business"
+        url="/products/ai-crm"
+      />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
