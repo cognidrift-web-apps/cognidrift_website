@@ -488,19 +488,6 @@ const CallCenters = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-          {/* Animated Icon Cluster */}
-          <div className="relative inline-block mb-8">
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, type: "spring" }}
-              className="w-24 h-24 bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center shadow-2xl mx-auto"
-            >
-              <Headphones className="w-12 h-12 text-white" />
-            </motion.div>
-
-          </div>
-
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
