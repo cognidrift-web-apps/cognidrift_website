@@ -61,6 +61,7 @@ import {
   ArrowRight,
   Play,
   Check,
+  CheckCircle,
   PhoneCall,
   Bot,
   Bell,
@@ -210,7 +211,7 @@ const IndustryCard = ({ icon: Icon, title, description, features, isActive, icon
     <ul className="relative space-y-2 sm:space-y-3 flex-grow">
       {features.map((feature, i) => (
         <li key={i} className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-text-secondary font-medium">
-          <Check className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 flex-shrink-0" />
+          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 flex-shrink-0" />
           {feature}
         </li>
       ))}
