@@ -949,7 +949,7 @@ const Home = () => {
                     />
 
                     {/* Content */}
-                    <div className={`relative z-10 flex ${isWide ? 'lg:flex-row lg:items-center lg:gap-5' : 'flex-col'} h-full`}>
+                    <div className={`relative z-10 flex ${isWide ? 'lg:flex-row lg:items-center lg:gap-5' : 'flex-col items-center text-center'} h-full`}>
                       {/* Icon */}
                       <motion.div
                         whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
