@@ -43,7 +43,6 @@ import {
   SiDropbox,
   SiFigma
 } from 'react-icons/si'
-import { BsFillTelephoneFill, BsRobot, BsCalendarCheck, BsBellFill } from 'react-icons/bs'
 import {
   Phone,
   Clock,
@@ -730,10 +729,10 @@ const Home = () => {
               className="space-y-6"
             >
               {[
-                { icon: BsFillTelephoneFill, title: 'Visitor Arrives', desc: 'Customer visits your website', color: 'blue', bgColor: 'bg-blue-500/10', textColor: 'text-blue-500' },
-                { icon: BsRobot, title: 'Widget Appears', desc: 'AI chat widget greets instantly', color: 'purple', bgColor: 'bg-purple-500/10', textColor: 'text-purple-500' },
-                { icon: BsCalendarCheck, title: 'Smart Assistance', desc: 'Answers questions, books appointments', color: 'indigo', bgColor: 'bg-indigo-500/10', textColor: 'text-indigo-500' },
-                { icon: BsBellFill, title: 'Lead Captured', desc: 'Information saved, ready to convert', color: 'green', bgColor: 'bg-green-500/10', textColor: 'text-green-500' }
+                { icon: Phone, title: 'Visitor Arrives', desc: 'Customer visits your website', color: 'blue', bgColor: 'bg-blue-500/10', textColor: 'text-blue-500' },
+                { icon: Bot, title: 'Widget Appears', desc: 'AI chat widget greets instantly', color: 'purple', bgColor: 'bg-purple-500/10', textColor: 'text-purple-500' },
+                { icon: Calendar, title: 'Smart Assistance', desc: 'Answers questions, books appointments', color: 'indigo', bgColor: 'bg-indigo-500/10', textColor: 'text-indigo-500' },
+                { icon: Bell, title: 'Lead Captured', desc: 'Information saved, ready to convert', color: 'green', bgColor: 'bg-green-500/10', textColor: 'text-green-500' }
               ].map((step, i) => (
                 <motion.div
                   key={i}
