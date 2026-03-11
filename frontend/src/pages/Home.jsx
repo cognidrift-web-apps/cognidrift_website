@@ -43,8 +43,7 @@ import {
   SiDropbox,
   SiFigma
 } from 'react-icons/si'
-import { BsFillTelephoneFill, BsRobot, BsCalendarCheck, BsBellFill, BsShieldFillCheck, BsHouseDoorFill, BsBuildingFill } from 'react-icons/bs'
-import { FaUserMd } from 'react-icons/fa'
+import { BsFillTelephoneFill, BsRobot, BsCalendarCheck, BsBellFill } from 'react-icons/bs'
 import {
   Phone,
   Clock,
@@ -313,7 +312,7 @@ const Home = () => {
 
   const industries = [
     {
-      icon: FaUserMd,
+      icon: Stethoscope,
       title: 'Healthcare',
       description: 'HIPAA-compliant AI for medical practices and clinics.',
       features: ['Patient scheduling', 'Insurance verification', 'Prescription refills', 'Appointment reminders'],
@@ -321,7 +320,7 @@ const Home = () => {
       iconTextColor: 'text-blue-600'
     },
     {
-      icon: BsShieldFillCheck,
+      icon: Shield,
       title: 'Insurance',
       description: 'Handle claims inquiries and policy questions 24/7.',
       features: ['Claims status updates', 'Policy information', 'Quote requests', 'Agent routing'],
@@ -329,7 +328,7 @@ const Home = () => {
       iconTextColor: 'text-blue-600'
     },
     {
-      icon: BsHouseDoorFill,
+      icon: HomeIcon,
       title: 'Real Estate',
       description: 'Qualify leads and schedule property viewings automatically.',
       features: ['Lead qualification', 'Showing scheduling', 'Property inquiries', 'Agent matching'],
@@ -337,7 +336,7 @@ const Home = () => {
       iconTextColor: 'text-blue-600'
     },
     {
-      icon: BsBuildingFill,
+      icon: Building2,
       title: 'Professional Services',
       description: 'Custom solutions for law firms, accounting, and consulting.',
       features: ['Consultation booking', 'Client intake', 'Document requests', 'Follow-up calls'],
