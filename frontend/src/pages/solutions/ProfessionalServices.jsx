@@ -233,6 +233,7 @@ const ProfessionalServices = () => {
         <div className="text-center">
           <div className="relative w-40 h-40 mx-auto mb-4">
             <DonutChart
+              size={160}
               segments={[
                 { percent: 35, color: "#2563eb" },
                 { percent: 25, color: "#3b82f6" },
