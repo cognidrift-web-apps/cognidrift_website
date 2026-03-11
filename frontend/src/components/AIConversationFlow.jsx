@@ -122,7 +122,7 @@ const AIConversationFlow = () => {
                   <BsRobot className="w-10 h-10 text-indigo-600" />
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-gray-800">AI Web Widget</p>
+                  <p className="text-sm font-bold text-gray-800">Cognidrift AI Widget</p>
                   <div className="flex items-center gap-2">
                     <motion.div
                       animate={{ scale: [1, 1.3, 1] }}
