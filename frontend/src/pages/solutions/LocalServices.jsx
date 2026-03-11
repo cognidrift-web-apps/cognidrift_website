@@ -159,14 +159,16 @@ const SectionCard = ({
                   {chartData.map((item, idx) => (
                     <motion.div
                       key={idx}
-                      className={`absolute w-10 h-10 ${item.color} rounded-xl flex items-center justify-center shadow-lg`}
+                      className="absolute w-10 h-10 rounded-xl flex items-center justify-center shadow-md border border-fuchsia-200"
                       style={{
                         top: `${50 + 45 * Math.sin((idx * 2 * Math.PI) / chartData.length)}%`,
                         left: `${50 + 45 * Math.cos((idx * 2 * Math.PI) / chartData.length)}%`,
-                        transform: 'translate(-50%, -50%)'
+                        transform: 'translate(-50%, -50%)',
+                        background: 'rgba(250, 232, 255, 0.75)',
+                        backdropFilter: 'blur(4px)'
                       }}
                     >
-                      <item.icon className="w-5 h-5 text-white" />
+                      <item.icon className="w-5 h-5 text-fuchsia-500" />
                     </motion.div>
                   ))}
                 </motion.div>
