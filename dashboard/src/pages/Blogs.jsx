@@ -6,6 +6,7 @@ import {
   updateBlog,
   deleteBlog
 } from '../api';
+import RichTextEditor from '../components/RichTextEditor';
 import {
   FileText,
   Plus,
@@ -164,14 +165,10 @@ function BlogFormModal({ editId, onClose, onSaved }) {
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">
                 Content <span className="text-red-500">*</span>
-                <span className="text-slate-400 font-normal ml-1">(HTML supported)</span>
               </label>
-              <textarea
+              <RichTextEditor
                 value={form.content}
-                onChange={e => set('content', e.target.value)}
-                rows={14}
-                className="form-input w-full font-mono text-sm resize-y"
-                placeholder={"<p>Write your blog content here. HTML tags are supported.</p>\n<h2>Section Title</h2>\n<p>More content...</p>"}
+                onChange={val => set('content', val)}
               />
             </div>
 
