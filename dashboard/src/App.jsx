@@ -7,6 +7,7 @@ import Conversations from './pages/Conversations';
 import Customers from './pages/Customers';
 import Callbacks from './pages/Callbacks';
 import Settings from './pages/Settings';
+import Blogs from './pages/Blogs';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -72,6 +73,7 @@ function AppRoutes() {
         <Route path="conversations" element={<Conversations />} />
         <Route path="customers" element={<Customers />} />
         <Route path="callbacks" element={<Callbacks />} />
+        <Route path="blogs" element={<Blogs />} />
         <Route path="settings" element={<Settings />} />
       </Route>
 

@@ -12,7 +12,8 @@ import {
   X,
   Bell,
   Search,
-  ChevronDown
+  ChevronDown,
+  FileText
 } from 'lucide-react';
 
 const navItems = [
@@ -20,6 +21,7 @@ const navItems = [
   { path: '/dashboard/conversations', icon: MessageSquare, label: 'Conversations' },
   { path: '/dashboard/customers', icon: Users, label: 'Customers' },
   { path: '/dashboard/callbacks', icon: PhoneCall, label: 'Callbacks' },
+  { path: '/dashboard/blogs', icon: FileText, label: 'Blog Posts' },
   { path: '/dashboard/settings', icon: Settings, label: 'Settings' },
 ];
 

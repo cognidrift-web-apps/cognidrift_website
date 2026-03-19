@@ -22,6 +22,15 @@ import {
   updatePassword
 } from './controllers/dashboardController.js';
 import { submitContactForm, getContacts, updateContactStatus } from './controllers/contactController.js';
+import {
+  getPublishedBlogs,
+  getBlogBySlug,
+  getAllBlogs,
+  getBlogById,
+  createBlog,
+  updateBlog,
+  deleteBlog
+} from './controllers/blogController.js';
 import WidgetChatHistory from './models/WidgetChatHistory.js';
 import { generateWidgetResponse } from './services/widgetLLMService.js';
 
@@ -754,6 +763,35 @@ app.get('/api/contacts', authMiddleware, getContacts);
 
 // Protected - Update contact status (dashboard)
 app.patch('/api/contacts/:id', authMiddleware, updateContactStatus);
+
+// ============================================
+// BLOG PUBLIC ROUTES
+// ============================================
+
+// Public - Get all published blogs
+app.get('/api/blogs', getPublishedBlogs);
+
+// Public - Get single published blog by slug
+app.get('/api/blogs/:slug', getBlogBySlug);
+
+// ============================================
+// BLOG ADMIN ROUTES (protected)
+// ============================================
+
+// Get all blogs (including drafts)
+app.get('/api/admin/blogs', authMiddleware, getAllBlogs);
+
+// Get single blog by ID (for editing)
+app.get('/api/admin/blogs/:id', authMiddleware, getBlogById);
+
+// Create new blog
+app.post('/api/admin/blogs', authMiddleware, createBlog);
+
+// Update blog
+app.put('/api/admin/blogs/:id', authMiddleware, updateBlog);
+
+// Delete blog
+app.delete('/api/admin/blogs/:id', authMiddleware, deleteBlog);
 
 // ============================================
 // DASHBOARD API ROUTES

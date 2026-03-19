@@ -2,6 +2,9 @@ import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { FileText, Calendar, ArrowRight, User } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 // Blog posts data - exported for use in BlogPost component
 export const blogPosts = [
@@ -1334,6 +1337,42 @@ export const blogPosts = [
 ]
 
 const Blog = () => {
+  const [apiBlogPosts, setApiBlogPosts] = useState([])
+
+  useEffect(() => {
+    fetch(`${API_BASE}/api/blogs`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.success && Array.isArray(data.blogs)) {
+          // Map API blogs to the same shape as static blogPosts
+          const mapped = data.blogs.map(b => ({
+            id: b._id,
+            slug: b.slug,
+            title: b.title,
+            excerpt: b.excerpt,
+            content: b.content || '',
+            author: b.author,
+            authorRole: b.authorRole || '',
+            category: b.category,
+            image: b.image || 'https://placehold.co/800x450/2563eb/ffffff?text=Blog+Post',
+            readTime: b.readTime || '5 min read',
+            date: new Date(b.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+            tags: b.tags || [],
+            fromAPI: true
+          }))
+          setApiBlogPosts(mapped)
+        }
+      })
+      .catch(() => {/* silently fall back to static posts */})
+  }, [])
+
+  // API posts first, then static posts (excluding any slug overlap)
+  const apiSlugs = new Set(apiBlogPosts.map(p => p.slug))
+  const allPosts = [
+    ...apiBlogPosts,
+    ...blogPosts.filter(p => !apiSlugs.has(p.slug))
+  ]
+
   return (
     <div className="min-h-screen bg-primary-50 pt-24 pb-20">
       <SEOMeta
@@ -1363,7 +1402,7 @@ const Blog = () => {
 
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {blogPosts.map((post, index) => (
+          {allPosts.map((post, index) => (
             <motion.article
               key={post.id}
               initial={{ opacity: 0, y: 30 }}

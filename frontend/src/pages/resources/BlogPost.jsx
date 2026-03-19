@@ -1,18 +1,88 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { Calendar, User, ArrowLeft, ArrowRight, Clock, Briefcase } from 'lucide-react'
+import { Calendar, User, ArrowLeft, ArrowRight, Clock } from 'lucide-react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { blogPosts } from './Blog'
+import { useState, useEffect } from 'react'
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
 
 const BlogPost = () => {
   const { slug } = useParams()
   const navigate = useNavigate()
+  const [currentPost, setCurrentPost] = useState(null)
+  const [suggestedPosts, setSuggestedPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
 
-  // Find the current post
-  const currentPost = blogPosts.find(post => post.slug === slug)
+  useEffect(() => {
+    setLoading(true)
+    setNotFound(false)
 
-  // If post not found, redirect to blog
-  if (!currentPost) {
+    // Try API first
+    fetch(`${API_BASE}/api/blogs/${slug}`)
+      .then(r => r.json())
+      .then(data => {
+        if (data.success && data.blog) {
+          const b = data.blog
+          const post = {
+            id: b._id,
+            slug: b.slug,
+            title: b.title,
+            excerpt: b.excerpt,
+            content: b.content || '',
+            author: b.author,
+            authorRole: b.authorRole || '',
+            category: b.category,
+            image: b.image || 'https://placehold.co/800x450/2563eb/ffffff?text=Blog+Post',
+            readTime: b.readTime || '5 min read',
+            date: new Date(b.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+          }
+          setCurrentPost(post)
+          // Fetch other posts for suggestions
+          return fetch(`${API_BASE}/api/blogs`)
+            .then(r => r.json())
+            .then(listData => {
+              const others = listData.success
+                ? listData.blogs
+                    .filter(p => p.slug !== slug)
+                    .slice(0, 3)
+                    .map(p => ({
+                      id: p._id, slug: p.slug, title: p.title, excerpt: p.excerpt,
+                      category: p.category, readTime: p.readTime,
+                      image: p.image || 'https://placehold.co/800x450/2563eb/ffffff?text=Blog+Post',
+                    }))
+                : []
+              // Fill remaining suggestions from static posts
+              const combined = [...others, ...blogPosts.filter(p => p.slug !== slug && !others.find(o => o.slug === p.slug))].slice(0, 3)
+              setSuggestedPosts(combined)
+            })
+        } else {
+          throw new Error('not found')
+        }
+      })
+      .catch(() => {
+        // Fall back to static posts
+        const staticPost = blogPosts.find(p => p.slug === slug)
+        if (staticPost) {
+          setCurrentPost(staticPost)
+          setSuggestedPosts(blogPosts.filter(p => p.id !== staticPost.id).slice(0, 3))
+        } else {
+          setNotFound(true)
+        }
+      })
+      .finally(() => setLoading(false))
+  }, [slug])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white pt-24 pb-20 flex items-center justify-center">
+        <div className="w-10 h-10 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin" />
+      </div>
+    )
+  }
+
+  if (notFound || !currentPost) {
     return (
       <div className="min-h-screen bg-primary-50 pt-24 pb-20 flex items-center justify-center">
         <div className="text-center">
@@ -24,11 +94,6 @@ const BlogPost = () => {
       </div>
     )
   }
-
-  // Get suggested posts (exclude current post)
-  const suggestedPosts = blogPosts
-    .filter(post => post.id !== currentPost.id)
-    .slice(0, 3)
 
   return (
     <div className="min-h-screen bg-white pt-20">

@@ -74,4 +74,36 @@ export const updatePassword = async (currentPassword, newPassword) => {
   return response.data;
 };
 
+// ─── Blog API ────────────────────────────────────────────────────────────────
+
+// Admin: Get all blogs (drafts + published)
+export const getAdminBlogs = async () => {
+  const response = await api.get('/api/admin/blogs');
+  return response.data;
+};
+
+// Admin: Get single blog by ID (full content for editing)
+export const getAdminBlogById = async (id) => {
+  const response = await api.get(`/api/admin/blogs/${id}`);
+  return response.data;
+};
+
+// Admin: Create blog
+export const createBlog = async (blogData) => {
+  const response = await api.post('/api/admin/blogs', blogData);
+  return response.data;
+};
+
+// Admin: Update blog
+export const updateBlog = async (id, blogData) => {
+  const response = await api.put(`/api/admin/blogs/${id}`, blogData);
+  return response.data;
+};
+
+// Admin: Delete blog
+export const deleteBlog = async (id) => {
+  const response = await api.delete(`/api/admin/blogs/${id}`);
+  return response.data;
+};
+
 export default api;
