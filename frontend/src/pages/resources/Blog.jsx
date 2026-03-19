@@ -1449,29 +1449,6 @@ const Blog = () => {
           ))}
         </div>
 
-        {/* Newsletter CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-12 sm:mt-16 bg-primary-600 rounded-xl sm:rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 text-center text-white"
-        >
-          <FileText className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-4" />
-          <h2 className="hero-display text-2xl sm:text-3xl md:text-4xl mb-4">Stay <span className="text-primary-200">Updated</span></h2>
-          <p className="text-base sm:text-lg mb-6 opacity-90">
-            Get the latest insights on AI voice automation delivered to your inbox.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-text-primary text-sm sm:text-base"
-            />
-            <button className="bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors animate-glow text-sm sm:text-base">
-              Subscribe
-            </button>
-          </div>
-        </motion.div>
       </div>
     </div>
   )
