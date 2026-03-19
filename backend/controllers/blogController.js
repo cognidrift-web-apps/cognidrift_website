@@ -1,5 +1,17 @@
 import Blog from '../models/Blog.js';
 
+// Helper: if content has no HTML tags, auto-wrap paragraphs in <p> tags
+function ensureHtml(content) {
+  if (!content) return content;
+  if (/<[a-z][\s\S]*>/i.test(content)) return content; // already HTML
+  return content
+    .split(/\n\s*\n/)
+    .map(para => para.trim())
+    .filter(Boolean)
+    .map(para => `<p>${para.replace(/\n/g, '<br/>')}</p>`)
+    .join('\n');
+}
+
 // Helper: generate unique slug from title
 async function generateSlug(title, excludeId = null) {
   let base = title
@@ -88,7 +100,7 @@ export const createBlog = async (req, res) => {
     const slug = await generateSlug(title);
 
     const blog = new Blog({
-      title, slug, excerpt, content, author,
+      title, slug, excerpt, content: ensureHtml(content), author,
       authorRole: authorRole || '',
       category,
       image: image || undefined,
@@ -119,7 +131,7 @@ export const updateBlog = async (req, res) => {
     }
 
     if (excerpt !== undefined) blog.excerpt = excerpt;
-    if (content !== undefined) blog.content = content;
+    if (content !== undefined) blog.content = ensureHtml(content);
     if (author !== undefined) blog.author = author;
     if (authorRole !== undefined) blog.authorRole = authorRole;
     if (category !== undefined) blog.category = category;
