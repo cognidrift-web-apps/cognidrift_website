@@ -753,6 +753,33 @@ app.delete('/api/widget/chat/:sessionId', async (req, res) => {
 });
 
 // ============================================
+// RESEND WEBHOOK - Receive incoming emails
+// ============================================
+app.post('/api/webhook/email', async (req, res) => {
+  try {
+    const { type, data } = req.body;
+
+    // Only process email.received events
+    if (type === 'email.received') {
+      const { from, to, subject, html, text } = data;
+
+      console.log('📨 Incoming email received:');
+      console.log(`   From: ${from}`);
+      console.log(`   To: ${to}`);
+      console.log(`   Subject: ${subject}`);
+
+      // You can process/store the email here
+      // For example, save to database, forward, etc.
+    }
+
+    res.status(200).json({ received: true });
+  } catch (error) {
+    console.error('❌ Email webhook error:', error);
+    res.status(500).json({ error: 'Webhook processing failed' });
+  }
+});
+
+// ============================================
 // CONTACT FORM API ROUTES
 // ============================================
 
