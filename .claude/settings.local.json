@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(timeout:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npm install:*)",
+      "Bash(dir \"f:\\\\ELITE PROJECTS\\\\Ratul Vaiya\\\\cognidriftAgent\\\\backend\")"
     ]
   }
 }

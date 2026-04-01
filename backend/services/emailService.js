@@ -1,45 +1,17 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-// Create reusable transporter object using SMTP transport
-const createTransporter = () => {
-  const port = parseInt(process.env.SMTP_PORT);
-  const isSecure = port === 465; // true for 465, false for 587 (STARTTLS)
+// Initialize Resend client
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-  const config = {
-    host: process.env.SMTP_HOST,
-    port: port,
-    secure: isSecure,
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
-    },
-    connectionTimeout: 30000, // 30 seconds
-    greetingTimeout: 30000,
-    socketTimeout: 30000,
-    tls: {
-      rejectUnauthorized: false,
-      minVersion: 'TLSv1.2'
-    },
-    debug: process.env.NODE_ENV !== 'production',
-    logger: process.env.NODE_ENV !== 'production'
-  };
-
-  console.log('📧 Creating SMTP transporter with config:', {
-    host: config.host,
-    port: config.port,
-    secure: config.secure,
-    user: config.auth.user
-  });
-
-  return nodemailer.createTransport(config);
-};
+// Admin email to receive contact form notifications
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'contact@cognidrift.com';
+const FROM_EMAIL = process.env.FROM_EMAIL || 'noreply@cognidrift.com';
+const FROM_NAME = process.env.FROM_NAME || 'CogniDrift';
 
 /**
  * Send notification email to admin when contact form is submitted
  */
 export const sendAdminNotification = async (contactData) => {
-  const transporter = createTransporter();
-
   const { name, email, company, message } = contactData;
 
   const htmlContent = `
@@ -98,10 +70,10 @@ export const sendAdminNotification = async (contactData) => {
     </html>
   `;
 
-  const mailOptions = {
-    from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
-    to: process.env.SMTP_USER, // Send to self (admin)
-    replyTo: email, // Reply goes to the customer
+  const { data, error } = await resend.emails.send({
+    from: `${FROM_NAME} <${FROM_EMAIL}>`,
+    to: ADMIN_EMAIL,
+    replyTo: email,
     subject: `New Demo Request from ${name}${company ? ` (${company})` : ''}`,
     html: htmlContent,
     text: `
@@ -116,17 +88,19 @@ ${message ? `\nMessage:\n${message}` : ''}
 ---
 Reply to this email to respond to ${name}.
     `.trim()
-  };
+  });
 
-  return transporter.sendMail(mailOptions);
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 };
 
 /**
  * Send confirmation email to the customer
  */
 export const sendCustomerConfirmation = async (contactData) => {
-  const transporter = createTransporter();
-
   const { name, email } = contactData;
 
   const htmlContent = `
@@ -189,7 +163,7 @@ export const sendCustomerConfirmation = async (contactData) => {
           </div>
 
           <div class="cta-section">
-            <a href="https://cognidrift-agent.vercel.app/contact" class="cta-button">Book Your Demo Now</a>
+            <a href="https://cognidrift.com/contact" class="cta-button">Book Your Demo Now</a>
           </div>
         </div>
         <div class="footer">
@@ -206,8 +180,8 @@ export const sendCustomerConfirmation = async (contactData) => {
     </html>
   `;
 
-  const mailOptions = {
-    from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
+  const { data, error } = await resend.emails.send({
+    from: `${FROM_NAME} <${FROM_EMAIL}>`,
     to: email,
     subject: `Thanks for reaching out, ${name}! Your demo request is confirmed`,
     html: htmlContent,
@@ -224,24 +198,36 @@ What You'll See in Your Demo:
 - ROI analysis and pricing tailored to your needs
 - Q&A session with our AI specialists
 
-Can't wait? Book your demo directly: https://cognidrift-agent.vercel.app/contact
+Can't wait? Book your demo directly: https://cognidrift.com/contact
 
 ---
 CogniDrift - AI-Powered Voice Automation
 Email: contact@cognidrift.com
 Phone: +1 (844) 584-1083
     `.trim()
-  };
+  });
 
-  return transporter.sendMail(mailOptions);
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data;
 };
 
 /**
- * Verify SMTP connection
+ * Verify Resend API connection
  */
 export const verifyConnection = async () => {
-  const transporter = createTransporter();
-  return transporter.verify();
+  try {
+    // Attempt to list domains to verify API key works
+    const { data, error } = await resend.domains.list();
+    if (error) {
+      throw new Error(error.message);
+    }
+    return { success: true, domains: data };
+  } catch (err) {
+    throw new Error(`Resend connection failed: ${err.message}`);
+  }
 };
 
 export default {

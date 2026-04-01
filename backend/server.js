@@ -53,7 +53,8 @@ const requiredEnvVars = [
   'RETELL_API_KEY',
   'RETELL_AGENT_ID',
   'MONGODB_URI',
-  'OPENAI_API_KEY'
+  'OPENAI_API_KEY',
+  'RESEND_API_KEY'
 ];
 
 const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
