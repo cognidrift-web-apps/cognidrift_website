@@ -6,6 +6,7 @@ import twilio from 'twilio';
 import axios from 'axios';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { Webhook } from 'svix';
 import connectDB from './config/database.js';
 import Customer from './models/Customer.js';
 import Callback from './models/Callback.js';
@@ -73,6 +74,11 @@ const twilioClient = twilio(
 
 // Middleware
 app.use(cors());
+
+// Capture raw body for webhook signature verification
+app.use('/api/webhook/email', express.raw({ type: 'application/json' }));
+
+// Parse JSON for all other routes
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -756,26 +762,41 @@ app.delete('/api/widget/chat/:sessionId', async (req, res) => {
 // RESEND WEBHOOK - Receive incoming emails
 // ============================================
 app.post('/api/webhook/email', async (req, res) => {
+  const secret = process.env.RESEND_WEBHOOK_SECRET;
+
+  if (!secret) {
+    console.error('❌ RESEND_WEBHOOK_SECRET not configured');
+    return res.status(500).json({ error: 'Webhook secret not configured' });
+  }
+
   try {
-    const { type, data } = req.body;
+    // Verify webhook signature
+    const wh = new Webhook(secret);
+    const payload = wh.verify(req.body, {
+      'svix-id': req.headers['svix-id'],
+      'svix-timestamp': req.headers['svix-timestamp'],
+      'svix-signature': req.headers['svix-signature'],
+    });
+
+    console.log('✅ Webhook signature verified');
 
     // Only process email.received events
-    if (type === 'email.received') {
-      const { from, to, subject, html, text } = data;
+    if (payload.type === 'email.received') {
+      const { from, to, subject, html, text } = payload.data;
 
       console.log('📨 Incoming email received:');
       console.log(`   From: ${from}`);
-      console.log(`   To: ${to}`);
+      console.log(`   To: ${JSON.stringify(to)}`);
       console.log(`   Subject: ${subject}`);
 
       // You can process/store the email here
-      // For example, save to database, forward, etc.
+      // For example, save to database, forward, notify via Slack, etc.
     }
 
     res.status(200).json({ received: true });
   } catch (error) {
-    console.error('❌ Email webhook error:', error);
-    res.status(500).json({ error: 'Webhook processing failed' });
+    console.error('❌ Email webhook verification failed:', error.message);
+    res.status(400).json({ error: 'Invalid webhook signature' });
   }
 });
 
