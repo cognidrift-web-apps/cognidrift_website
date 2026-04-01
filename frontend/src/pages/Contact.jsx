@@ -4,6 +4,9 @@ import { motion } from 'framer-motion'
 import { getCalApi } from '@calcom/embed-react'
 import LiveSupportVisualization from '../components/LiveSupportVisualization'
 import GlobalAvailabilityMap from '../components/GlobalAvailabilityMap'
+
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cognidrift-send-and-receive-sms-production.up.railway.app'
+
 import {
   Mail,
   Phone,
@@ -70,7 +73,7 @@ const Contact = () => {
     setStatus({ type: '', message: '' })
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
