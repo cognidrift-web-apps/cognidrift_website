@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Brain, Twitter, Linkedin, Github, Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
+import { Twitter, Linkedin, Github, Mail, Phone } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -51,21 +51,6 @@ const Footer = () => {
               AI-powered voice agents that never miss a call. Transform your customer
               communications with intelligent automation.
             </p>
-
-            {/* Newsletter Signup */}
-            <div className="mb-6">
-              <p className="text-white font-medium mb-3">Stay updated</p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
-                />
-                <button className="px-4 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 hover:shadow-glow transition-all duration-300 animate-glow">
-                  <ArrowRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
 
             {/* Social Links */}
             <div className="flex gap-4">
@@ -156,17 +141,9 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="border-t border-gray-800">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
-              © {currentYear} CogniDrift. All rights reserved.
-            </p>
-            <div className="flex items-center gap-6">
-              <span className="text-gray-500 text-sm flex items-center gap-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                All systems operational
-              </span>
-            </div>
-          </div>
+          <p className="text-gray-500 text-sm text-center">
+            © {currentYear} CogniDrift. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
