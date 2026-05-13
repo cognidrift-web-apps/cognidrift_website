@@ -40,6 +40,7 @@ const HelpCenter = lazy(() => import('./pages/resources/HelpCenter'))
 // Legal Pages
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const TermsOfService = lazy(() => import('./pages/TermsOfService'))
+const SmsConsent = lazy(() => import('./pages/SmsConsent'))
 
 // FAQ Page
 const FAQPage = lazy(() => import('./pages/FAQ'))
@@ -103,6 +104,7 @@ function App() {
               {/* Legal Routes */}
               <Route path="/privacy" element={<PrivacyPolicy />} />
               <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/sms-consent" element={<SmsConsent />} />
 
               {/* FAQ Route */}
               <Route path="/faq" element={<FAQPage />} />

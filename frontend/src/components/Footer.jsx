@@ -23,6 +23,7 @@ const Footer = () => {
       { name: 'FAQ', path: '/faq' },
       { name: 'Privacy Policy', path: '/privacy' },
       { name: 'Terms of Service', path: '/terms' },
+      { name: 'SMS Consent', path: '/sms-consent' },
     ],
   }
 
