@@ -13,6 +13,7 @@ const Pricing = lazy(() => import('./pages/Pricing'))
 
 // Product Pages
 const PhoneReceptionist = lazy(() => import('./pages/products/PhoneReceptionist'))
+const PhoneReceptionistPricing = lazy(() => import('./pages/products/PhoneReceptionistPricing'))
 const WebChatbot = lazy(() => import('./pages/products/WebChatbot'))
 const WebVoicebot = lazy(() => import('./pages/products/WebVoicebot'))
 const SmsAgent = lazy(() => import('./pages/products/SmsAgent'))
@@ -77,6 +78,7 @@ function App() {
 
               {/* Product Routes */}
               <Route path="/products/phone-receptionist" element={<PhoneReceptionist />} />
+              <Route path="/products/phone-receptionist/pricing" element={<PhoneReceptionistPricing />} />
               <Route path="/products/web-chatbot" element={<WebChatbot />} />
               <Route path="/products/web-voicebot" element={<WebVoicebot />} />
               <Route path="/products/sms-agent" element={<SmsAgent />} />
