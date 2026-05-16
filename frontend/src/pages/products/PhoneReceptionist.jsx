@@ -2,6 +2,7 @@ import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import CogniVoicePricingCards from '../../components/CogniVoicePricingCards'
 
 const PhoneReceptionist = () => {
   const features = [
@@ -115,7 +116,7 @@ const PhoneReceptionist = () => {
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </Link>
-              <Link to="/pricing">
+              <a href="#pricing">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -123,7 +124,7 @@ const PhoneReceptionist = () => {
                 >
                   View Pricing
                 </motion.button>
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -277,6 +278,42 @@ const PhoneReceptionist = () => {
                 )
               })}
             </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
+              CogniVoice <span className="text-blue-600">Pricing</span>
+            </h2>
+            <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
+              Simple, transparent pricing. No hidden fees. Every plan includes a dedicated phone number, AI call handling, appointment booking, and more.
+            </p>
+          </motion.div>
+
+          <CogniVoicePricingCards />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-10"
+          >
+            <Link
+              to="/products/phone-receptionist/pricing"
+              className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+            >
+              Compare all plans in detail
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </section>
