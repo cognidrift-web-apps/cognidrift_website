@@ -77,6 +77,13 @@ const MultiChannelShowcase = ({ compact = false }) => {
   const timerRef = useRef(null)
   const messagesEndRef = useRef(null)
   const scrollContainerRef = useRef(null)
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    if (hasStarted) return
+    const timer = setTimeout(() => setHasStarted(true), 800)
+    return () => clearTimeout(timer)
+  }, [hasStarted])
 
   const activeChannel = channels[activeChannelIndex]
   const activeConversation = conversations[activeChannel.id]
@@ -159,16 +166,13 @@ const MultiChannelShowcase = ({ compact = false }) => {
   const ChannelIcon = activeChannel.icon
 
   return (
-    <div className="relative w-full h-full">
+    <div ref={containerRef} className="relative w-full h-full">
       <GlowCard glowColor="purple" glowSize="md">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          onViewportEnter={() => {
-            if (!hasStarted) setHasStarted(true)
-          }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           className="relative bg-white p-3 lg:p-4 overflow-hidden"
         >
           <div className="relative z-10">
