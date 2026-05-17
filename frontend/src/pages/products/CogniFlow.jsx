@@ -1,78 +1,78 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { BrainCircuit, MessageSquare, CheckCircle2, ArrowRight, Layers, Shuffle, Shield, Clock, Globe, Zap, Users, Lock } from 'lucide-react'
+import { Zap, BarChart3, CheckCircle2, ArrowRight, TrendingUp, LineChart, PieChart, Shield, Clock, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const MultiModelChat = () => {
+const CogniFlow = () => {
   const features = [
     {
-      icon: Layers,
-      title: 'Unified Multi-Model Interface',
-      description: 'Access GPT-4, Claude, Gemini, Llama, and more from a single chat window—no switching between platforms.'
+      icon: BarChart3,
+      title: 'Performance Analytics',
+      description: 'Real-time insights into call volumes, response times, conversion rates, and more.'
     },
     {
-      icon: Shuffle,
-      title: 'Smart Model Routing',
-      description: 'Automatically routes each query to the best-performing model based on task type, complexity, and cost.'
+      icon: TrendingUp,
+      title: 'Predictive Intelligence',
+      description: 'AI-powered forecasting to predict trends and optimize your operations proactively.'
     },
     {
-      icon: MessageSquare,
-      title: 'Side-by-Side Comparison',
-      description: 'Send the same prompt to multiple models simultaneously and compare responses in real time.'
+      icon: LineChart,
+      title: 'Custom Dashboards',
+      description: 'Build personalized dashboards tailored to your specific KPIs and business goals.'
     },
     {
-      icon: BrainCircuit,
-      title: 'Context-Aware Conversations',
-      description: 'Maintain conversation history across model switches for seamless, continuous interactions.'
+      icon: PieChart,
+      title: 'Deep Reporting',
+      description: 'Comprehensive reports with actionable insights and data visualization.'
     }
   ]
 
   const benefits = [
-    { icon: Zap, text: 'Switch models mid-conversation instantly' },
-    { icon: Users, text: 'Team workspaces with shared chat history' },
-    { icon: Lock, text: 'Enterprise-grade data privacy & encryption' },
-    { icon: Globe, text: 'API access for custom integrations' },
-    { icon: Clock, text: 'Usage analytics and cost tracking per model' },
-    { icon: Shield, text: 'SOC 2 compliant infrastructure' }
+    { icon: Clock, text: 'Real-time data updates' },
+    { icon: BarChart3, text: 'Exportable reports in multiple formats' },
+    { icon: TrendingUp, text: 'Custom metric tracking' },
+    { icon: Shield, text: 'Team performance benchmarking' },
+    { icon: Zap, text: 'Automated alert notifications' },
+    { icon: Globe, text: 'Historical data analysis' }
   ]
 
   const stats = [
-    { value: '10+', label: 'AI Models Available' },
-    { value: '<500ms', label: 'Average Latency' },
-    { value: '99.9%', label: 'Platform Uptime' },
-    { value: '50M+', label: 'Messages Processed' }
+    { value: '100+', label: 'Metrics Tracked' },
+    { value: 'Real-time', label: 'Data Updates' },
+    { value: '50+', label: 'Report Templates' },
+    { value: '99.9%', label: 'Uptime' }
   ]
 
   const useCases = [
     {
-      title: 'Content Teams',
-      description: 'Generate, refine, and compare content drafts across multiple AI models to find the perfect voice.',
-      features: ['Multi-model drafting', 'Tone comparison', 'Brand voice tuning']
-    },
-    {
-      title: 'Development Teams',
-      description: 'Get code suggestions from multiple models, compare solutions, and pick the most efficient approach.',
-      features: ['Code generation', 'Bug analysis', 'Architecture review']
-    },
-    {
-      title: 'Research & Analysis',
-      description: 'Cross-reference AI responses for deeper insights, fact-checking, and comprehensive research.',
-      features: ['Multi-source analysis', 'Fact verification', 'Report generation']
+      title: 'Sales Teams',
+      description: 'Track conversion rates, call volumes, and revenue metrics to optimize sales performance.',
+      features: ['Conversion tracking', 'Revenue reports', 'Team leaderboards']
     },
     {
       title: 'Customer Support',
-      description: 'Route customer queries to the model best suited for each type of question automatically.',
-      features: ['Smart routing', 'Response quality', 'Escalation handling']
+      description: 'Monitor response times, resolution rates, and customer satisfaction scores.',
+      features: ['SLA tracking', 'CSAT scores', 'Agent performance']
+    },
+    {
+      title: 'Marketing',
+      description: 'Measure campaign effectiveness, lead quality, and attribution across channels.',
+      features: ['Campaign ROI', 'Lead scoring', 'Channel attribution']
+    },
+    {
+      title: 'Operations',
+      description: 'Optimize workflows with capacity planning, trend analysis, and forecasting.',
+      features: ['Capacity planning', 'Trend analysis', 'Resource allocation']
     }
   ]
 
   return (
     <div className="min-h-screen">
       <SEOMeta
-        title="Multi-Model AI Chat - Enterprise AI Chat Platform"
-        description="CogniDrift's multi-model AI chat platform lets businesses access GPT-4, Claude, Gemini, and more in one unified interface. Enterprise AI automation for teams."
-        keywords="multi-model AI chat, enterprise AI automation, conversational AI platform, AI agents for business"
-        url="/products/multi-model-chat"
+        title="CogniFlow - Enterprise AI Workflow Automation Platform"
+        description="CogniDrift's AI automation platform automates complex business workflows end-to-end. Enterprise AI automation that reduces costs and scales operations with AI agents."
+        keywords="AI workflow automation, enterprise AI automation, AI automation solutions, AI workflow automation examples, how AI automation improves productivity"
+        url="/products/cogniflow"
       />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
@@ -90,17 +90,17 @@ const MultiModelChat = () => {
               transition={{ duration: 0.5, type: 'spring' }}
               className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-100/70 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8"
             >
-              <BrainCircuit className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
+              <Zap className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
             </motion.div>
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 sm:mb-6">
-              Multi-Model <span className="text-blue-600">AI Chat Platform</span>
+              <span className="text-blue-600">CogniFlow</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-              Chat with GPT, Claude, Gemini, and more from one unified interface—compare responses, switch models mid-conversation, and always get the best answer.
+              Intelligent insights and performance metrics powered by AI—transform your data into actionable decisions.
             </p>
 
             {/* CTA Buttons */}
@@ -167,7 +167,7 @@ const MultiModelChat = () => {
               Powerful <span className="text-blue-600">Features</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Everything you need for multi-model AI conversations
+              Everything you need for intelligent business automation
             </p>
           </motion.div>
 
@@ -209,7 +209,7 @@ const MultiModelChat = () => {
               Built for <span className="text-blue-600">Every Team</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Multi-model AI for every workflow and use case
+              AI automation for every department
             </p>
           </motion.div>
 
@@ -250,10 +250,10 @@ const MultiModelChat = () => {
           >
             <div className="text-center mb-10 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Why Choose Our <span className="text-blue-600">AI Chat Platform</span>
+                Why Choose <span className="text-blue-600">AI Automation</span>
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-                One platform, every leading AI model at your fingertips
+                Join thousands of businesses that make data-driven decisions
               </p>
             </div>
 
@@ -296,15 +296,15 @@ const MultiModelChat = () => {
             </div>
 
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
-              <BrainCircuit className="w-4 h-4" />
+              <Zap className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
-              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Chat With Every AI?</span>
+              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Unlock Your Data's Potential?</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
-              Stop juggling multiple AI platforms. Get the best answer from the best model, every time.
+              Join businesses that transform data into actionable insights.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <Link to="/contact">
@@ -334,4 +334,4 @@ const MultiModelChat = () => {
   )
 }
 
-export default MultiModelChat
+export default CogniFlow

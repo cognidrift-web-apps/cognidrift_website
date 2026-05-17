@@ -1,78 +1,78 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { Mic, Volume2, MessageCircle, CheckCircle2, ArrowRight, Sparkles, Globe, Headphones, Shield, Zap } from 'lucide-react'
+import { PhoneCall, Target, CheckCircle2, ArrowRight, TrendingUp, Users, Zap, BarChart3, Shield, Globe } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const WebVoicebot = () => {
+const CogniReachCalls = () => {
   const features = [
     {
-      icon: Volume2,
-      title: 'Voice Interactions',
-      description: 'Enable natural voice conversations directly on your website with advanced speech recognition.'
+      icon: PhoneCall,
+      title: 'Outbound Campaigns',
+      description: 'Launch AI-powered calling campaigns that scale to thousands of calls per day.'
     },
     {
-      icon: MessageCircle,
-      title: 'Real-time Responses',
-      description: 'Instant voice responses that feel natural and human-like for better user engagement.'
+      icon: Target,
+      title: 'Smart Targeting',
+      description: 'AI analyzes customer data to identify the best prospects and optimal call times.'
     },
     {
-      icon: Sparkles,
-      title: 'Smart Context',
-      description: 'Understands user intent and maintains context throughout the conversation.'
+      icon: Users,
+      title: 'Personalized Messages',
+      description: 'Dynamic script adaptation based on recipient profile and past interactions.'
     },
     {
-      icon: Globe,
-      title: 'Multi-Language Voice',
-      description: 'Support for 50+ languages with natural accents and pronunciation.'
+      icon: TrendingUp,
+      title: 'Performance Analytics',
+      description: 'Track call outcomes, conversion rates, and campaign ROI in real-time.'
     }
   ]
 
   const benefits = [
-    { icon: Headphones, text: 'Hands-free website navigation' },
-    { icon: Globe, text: 'Multi-language voice support' },
-    { icon: MessageCircle, text: 'Seamless text-to-speech conversion' },
-    { icon: Shield, text: 'Voice authentication capabilities' },
-    { icon: Sparkles, text: 'Real-time transcription' },
-    { icon: Zap, text: 'Mobile and desktop compatible' }
+    { icon: Zap, text: 'Scale to 10,000+ calls per day' },
+    { icon: Users, text: 'Natural-sounding AI voices' },
+    { icon: Target, text: 'Intelligent call routing' },
+    { icon: BarChart3, text: 'A/B testing capabilities' },
+    { icon: Shield, text: 'Compliance management built-in' },
+    { icon: Globe, text: 'CRM integration for seamless workflow' }
   ]
 
   const stats = [
-    { value: '50+', label: 'Languages Supported' },
-    { value: '99%', label: 'Speech Accuracy' },
-    { value: '<1s', label: 'Response Time' },
-    { value: '24/7', label: 'Voice Availability' }
+    { value: '10K+', label: 'Calls Per Day' },
+    { value: '3x', label: 'More Connections' },
+    { value: '40%', label: 'Higher Conversion' },
+    { value: '24/7', label: 'Campaign Running' }
   ]
 
   const useCases = [
     {
-      title: 'Accessibility',
-      description: 'Make your website accessible to users with visual impairments or motor disabilities.',
-      features: ['Screen reader integration', 'Voice navigation', 'Hands-free browsing']
+      title: 'Sales Outreach',
+      description: 'Reach more prospects with automated outbound calls that qualify and schedule meetings.',
+      features: ['Lead qualification', 'Meeting scheduling', 'Follow-up calls']
     },
     {
-      title: 'Customer Support',
-      description: 'Provide instant voice-based support without the need for typing or waiting.',
-      features: ['Voice FAQs', 'Instant answers', 'Agent escalation']
+      title: 'Appointment Reminders',
+      description: 'Reduce no-shows by automatically calling customers with appointment confirmations.',
+      features: ['Reminder calls', 'Confirmations', 'Reschedule options']
     },
     {
-      title: 'E-Commerce',
-      description: 'Let customers search and shop using voice commands for a frictionless experience.',
-      features: ['Voice search', 'Product inquiries', 'Order tracking']
+      title: 'Debt Collection',
+      description: 'Automate payment reminder calls with compliant, professional AI voice agents.',
+      features: ['Payment reminders', 'Plan options', 'Compliance built-in']
     },
     {
-      title: 'Healthcare',
-      description: 'Enable patients to schedule appointments and get information hands-free.',
-      features: ['Appointment booking', 'Symptom checker', 'Prescription info']
+      title: 'Customer Surveys',
+      description: 'Collect feedback at scale with automated survey calls after service interactions.',
+      features: ['NPS surveys', 'Feedback collection', 'Real-time reporting']
     }
   ]
 
   return (
     <div className="min-h-screen">
       <SEOMeta
-        title="AI Web Voicebot - Voice AI Automation for Websites"
-        description="CogniDrift's AI web voicebot enables voice-powered customer interactions on your website. Part of our AI automation solutions for enterprise businesses."
-        keywords="AI web voicebot, voice AI automation, conversational AI platform, AI automation solutions"
-        url="/products/web-voicebot"
+        title="CogniReach Calls - Outbound Call Automation for Business"
+        description="Scale outbound communications with CogniDrift's automated AI calls. AI agents for business that handle sales calls, reminders, and follow-ups automatically."
+        keywords="automated AI calls, AI agents for business, AI workflow automation, AI digital workforce"
+        url="/products/cognireach-calls"
       />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
@@ -90,17 +90,17 @@ const WebVoicebot = () => {
               transition={{ duration: 0.5, type: 'spring' }}
               className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-100/70 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8"
             >
-              <Mic className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
+              <PhoneCall className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
             </motion.div>
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 sm:mb-6">
-              AI <span className="text-blue-600">Web Voicebot</span>
+              <span className="text-blue-600">CogniReach</span> Calls
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-              Voice-enabled interactions on your website—making digital experiences more natural and accessible.
+              AI-powered outbound calling campaigns that scale effortlessly and convert more leads into customers.
             </p>
 
             {/* CTA Buttons */}
@@ -167,7 +167,7 @@ const WebVoicebot = () => {
               Powerful <span className="text-blue-600">Features</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Everything you need for voice-enabled web experiences
+              Everything you need to automate outbound calling
             </p>
           </motion.div>
 
@@ -206,10 +206,10 @@ const WebVoicebot = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Built for <span className="text-blue-600">Your Industry</span>
+              Built for <span className="text-blue-600">Your Use Case</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Voice solutions for every business need
+              Automated calling for every business need
             </p>
           </motion.div>
 
@@ -250,10 +250,10 @@ const WebVoicebot = () => {
           >
             <div className="text-center mb-10 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Why Choose Our <span className="text-blue-600">Web Voicebot</span>
+                Why Choose <span className="text-blue-600">Automated Calls</span>
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-                Transform your website with voice-enabled AI
+                Join thousands of businesses that scale outreach with AI
               </p>
             </div>
 
@@ -296,15 +296,15 @@ const WebVoicebot = () => {
             </div>
 
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
-              <Mic className="w-4 h-4" />
+              <PhoneCall className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
-              Ready to Add <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Voice to Your Website?</span>
+              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Scale Your Outreach?</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
-              Join businesses that enhance user experience with voice AI.
+              Join businesses that reach more customers with AI calling.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <Link to="/contact">
@@ -334,4 +334,4 @@ const WebVoicebot = () => {
   )
 }
 
-export default WebVoicebot
+export default CogniReachCalls

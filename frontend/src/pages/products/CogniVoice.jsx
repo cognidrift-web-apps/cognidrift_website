@@ -1,78 +1,79 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { Zap, BarChart3, CheckCircle2, ArrowRight, TrendingUp, LineChart, PieChart, Shield, Clock, Globe } from 'lucide-react'
+import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import CogniVoicePricingCards from '../../components/CogniVoicePricingCards'
 
-const AiAutomation = () => {
+const CogniVoice = () => {
   const features = [
     {
-      icon: BarChart3,
-      title: 'Performance Analytics',
-      description: 'Real-time insights into call volumes, response times, conversion rates, and more.'
+      icon: Phone,
+      title: 'Inbound Call Handling',
+      description: 'Answer every call instantly with a natural-sounding AI that greets, qualifies, and routes callers automatically.'
     },
     {
-      icon: TrendingUp,
-      title: 'Predictive Intelligence',
-      description: 'AI-powered forecasting to predict trends and optimize your operations proactively.'
+      icon: Calendar,
+      title: 'Appointment Booking',
+      description: 'Let callers book, reschedule, or cancel appointments in real time without human intervention.'
     },
     {
-      icon: LineChart,
-      title: 'Custom Dashboards',
-      description: 'Build personalized dashboards tailored to your specific KPIs and business goals.'
+      icon: MessageSquare,
+      title: 'Lead Qualification',
+      description: 'Ask the right questions, capture caller intent, and score leads before they ever reach your team.'
     },
     {
-      icon: PieChart,
-      title: 'Deep Reporting',
-      description: 'Comprehensive reports with actionable insights and data visualization.'
+      icon: Clock,
+      title: '24/7 Availability',
+      description: 'Never miss a call again—your AI receptionist works nights, weekends, and holidays.'
     }
   ]
 
   const benefits = [
-    { icon: Clock, text: 'Real-time data updates' },
-    { icon: BarChart3, text: 'Exportable reports in multiple formats' },
-    { icon: TrendingUp, text: 'Custom metric tracking' },
-    { icon: Shield, text: 'Team performance benchmarking' },
-    { icon: Zap, text: 'Automated alert notifications' },
-    { icon: Globe, text: 'Historical data analysis' }
+    { icon: Zap, text: 'Answers calls in under 1 second' },
+    { icon: Users, text: 'Customizable greetings and call flows' },
+    { icon: Headphones, text: 'Transfers to live agents when needed' },
+    { icon: BarChart3, text: 'Records and transcribes every call' },
+    { icon: Globe, text: 'Multi-language support out of the box' },
+    { icon: Shield, text: 'Integrates with your existing phone system' }
   ]
 
   const stats = [
-    { value: '100+', label: 'Metrics Tracked' },
-    { value: 'Real-time', label: 'Data Updates' },
-    { value: '50+', label: 'Report Templates' },
-    { value: '99.9%', label: 'Uptime' }
+    { value: '99.9%', label: 'Uptime Guarantee' },
+    { value: '<1s', label: 'Average Response Time' },
+    { value: '50+', label: 'Languages Supported' },
+    { value: '24/7', label: 'Always Available' }
   ]
 
   const useCases = [
     {
-      title: 'Sales Teams',
-      description: 'Track conversion rates, call volumes, and revenue metrics to optimize sales performance.',
-      features: ['Conversion tracking', 'Revenue reports', 'Team leaderboards']
+      title: 'Healthcare Practices',
+      description: 'Handle patient scheduling, prescription refills, and appointment reminders with HIPAA-compliant AI.',
+      features: ['Patient intake', 'Insurance verification', 'Appointment scheduling']
     },
     {
-      title: 'Customer Support',
-      description: 'Monitor response times, resolution rates, and customer satisfaction scores.',
-      features: ['SLA tracking', 'CSAT scores', 'Agent performance']
+      title: 'Professional Services',
+      description: 'Qualify leads, schedule consultations, and route calls to the right team members.',
+      features: ['Lead qualification', 'Consultation booking', 'Call routing']
     },
     {
-      title: 'Marketing',
-      description: 'Measure campaign effectiveness, lead quality, and attribution across channels.',
-      features: ['Campaign ROI', 'Lead scoring', 'Channel attribution']
+      title: 'Real Estate Agencies',
+      description: 'Capture property inquiries, schedule showings, and never miss a potential buyer.',
+      features: ['Property inquiries', 'Showing scheduling', 'Lead capture']
     },
     {
-      title: 'Operations',
-      description: 'Optimize workflows with capacity planning, trend analysis, and forecasting.',
-      features: ['Capacity planning', 'Trend analysis', 'Resource allocation']
+      title: 'Home Services',
+      description: 'Book service appointments, provide quotes, and handle emergency calls.',
+      features: ['Service booking', 'Quote requests', 'Emergency routing']
     }
   ]
 
   return (
     <div className="min-h-screen">
       <SEOMeta
-        title="AI Automation - Enterprise AI Workflow Automation Platform"
-        description="CogniDrift's AI automation platform automates complex business workflows end-to-end. Enterprise AI automation that reduces costs and scales operations with AI agents."
-        keywords="AI workflow automation, enterprise AI automation, AI automation solutions, AI workflow automation examples, how AI automation improves productivity"
-        url="/products/ai-automation"
+        title="CogniVoice - 24/7 AI Voice Agent for Business Calls"
+        description="Never miss a call with CogniDrift's AI phone receptionist. An AI voice agent for business that handles calls, books appointments, and automates customer communications 24/7."
+        keywords="AI phone receptionist, AI voice agent for business, AI agents for business, conversational AI platform"
+        url="/products/cognivoice"
       />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
@@ -90,17 +91,17 @@ const AiAutomation = () => {
               transition={{ duration: 0.5, type: 'spring' }}
               className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-100/70 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8"
             >
-              <Zap className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
+              <Phone className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
             </motion.div>
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 sm:mb-6">
-              AI <span className="text-blue-600">Automation</span>
+              <span className="text-blue-600">CogniVoice</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-              Intelligent insights and performance metrics powered by AI—transform your data into actionable decisions.
+              Answers calls 24/7, qualifies leads, and books appointments—so your team can focus on what matters most.
             </p>
 
             {/* CTA Buttons */}
@@ -115,7 +116,7 @@ const AiAutomation = () => {
                   <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </Link>
-              <Link to="/pricing">
+              <a href="#pricing">
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -123,7 +124,7 @@ const AiAutomation = () => {
                 >
                   View Pricing
                 </motion.button>
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -167,7 +168,7 @@ const AiAutomation = () => {
               Powerful <span className="text-blue-600">Features</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Everything you need for intelligent business automation
+              Everything you need to automate your phone communications
             </p>
           </motion.div>
 
@@ -206,10 +207,10 @@ const AiAutomation = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Built for <span className="text-blue-600">Every Team</span>
+              Built for <span className="text-blue-600">Your Industry</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              AI automation for every department
+              Tailored solutions for businesses of all types
             </p>
           </motion.div>
 
@@ -250,10 +251,10 @@ const AiAutomation = () => {
           >
             <div className="text-center mb-10 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Why Choose <span className="text-blue-600">AI Automation</span>
+                Why Businesses Love Our <span className="text-blue-600">AI Receptionist</span>
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-                Join thousands of businesses that make data-driven decisions
+                Join thousands of businesses that trust CogniDrift
               </p>
             </div>
 
@@ -281,6 +282,42 @@ const AiAutomation = () => {
         </div>
       </section>
 
+      {/* Pricing Section */}
+      <section id="pricing" className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
+              CogniVoice <span className="text-blue-600">Pricing</span>
+            </h2>
+            <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
+              Simple, transparent pricing. No hidden fees. Every plan includes a dedicated phone number, AI call handling, appointment booking, and more.
+            </p>
+          </motion.div>
+
+          <CogniVoicePricingCards />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mt-10"
+          >
+            <Link
+              to="/products/phone-receptionist/pricing"
+              className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+            >
+              Compare all plans in detail
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -296,15 +333,15 @@ const AiAutomation = () => {
             </div>
 
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
-              <Zap className="w-4 h-4" />
+              <Phone className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
-              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Unlock Your Data's Potential?</span>
+              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Never Miss a Call Again?</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
-              Join businesses that transform data into actionable insights.
+              Join businesses that capture every lead with AI-powered phone reception.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <Link to="/contact">
@@ -334,4 +371,4 @@ const AiAutomation = () => {
   )
 }
 
-export default AiAutomation
+export default CogniVoice

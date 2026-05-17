@@ -6,7 +6,7 @@ import CogniChatPricingCards from '../../components/CogniChatPricingCards'
 import MultiChannelShowcase from '../../components/MultiChannelShowcase'
 import { usePageAnimation } from '../../utils/useFirstMount'
 
-const WebChatbot = () => {
+const CogniChat = () => {
   const { heroInitial, heroAnimate, iconInitial, iconAnimate } = usePageAnimation()
   const features = [
     {
@@ -73,10 +73,10 @@ const WebChatbot = () => {
   return (
     <div className="min-h-screen">
       <SEOMeta
-        title="AI Web Chatbot - Conversational AI Platform for Websites"
+        title="CogniChat - Conversational AI Platform for Websites"
         description="Deploy CogniDrift's AI web chatbot — a conversational AI platform that automates customer support, lead capture, and engagement on your website 24/7."
         keywords="AI web chatbot, conversational AI platform, AI agents for business, intelligent automation platform"
-        url="/products/web-chatbot"
+        url="/products/cognichat"
       />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-10 bg-white">
@@ -385,4 +385,4 @@ const WebChatbot = () => {
   )
 }
 
-export default WebChatbot
+export default CogniChat

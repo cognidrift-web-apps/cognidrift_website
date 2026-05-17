@@ -1,9 +1,9 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, ArrowRight, ChevronDown, MessageSquare, Star } from 'lucide-react'
+import { Check, ArrowRight, ChevronDown, Phone, Star } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import CogniChatPricingCards from '../../components/CogniChatPricingCards'
+import CogniVoicePricingCards from '../../components/CogniVoicePricingCards'
 import {
   plans,
   comparisonRows,
@@ -11,9 +11,9 @@ import {
   conciergeSetup,
   billingTerms,
   faqs,
-} from '../../data/cognichatPricing'
+} from '../../data/cognivoicePricing'
 
-const WebChatbotPricing = () => {
+const CogniVoicePricing = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
   const fadeInUp = {
@@ -32,10 +32,10 @@ const WebChatbotPricing = () => {
   return (
     <div className="min-h-screen bg-white">
       <SEOMeta
-        title="CogniChat Pricing - AI Web Chatbot Plans"
-        description="Simple, transparent pricing for CogniChat AI web chatbot. Plans starting at $29/mo. 14-day free trial, no credit card required."
-        keywords="AI chatbot pricing, CogniChat plans, AI web chat cost, conversational AI pricing"
-        url="/products/web-chatbot/pricing"
+        title="CogniVoice Pricing - AI Phone Receptionist Plans"
+        description="Simple, transparent pricing for CogniVoice AI phone receptionist. Plans starting at $69/mo. 14-day free trial, no credit card required."
+        keywords="AI receptionist pricing, CogniVoice plans, AI phone answering cost"
+        url="/products/cognivoice/pricing"
       />
 
       {/* Hero Header */}
@@ -55,8 +55,8 @@ const WebChatbotPricing = () => {
               variants={fadeInUp}
               className="inline-flex items-center gap-2 bg-primary-600 text-white px-5 py-2 rounded-full mb-6"
             >
-              <MessageSquare className="w-4 h-4" />
-              <span className="text-sm font-bold uppercase tracking-widest">CogniChat Pricing</span>
+              <Phone className="w-4 h-4" />
+              <span className="text-sm font-bold uppercase tracking-widest">CogniVoice Pricing</span>
             </motion.div>
 
             <motion.h1
@@ -72,13 +72,13 @@ const WebChatbotPricing = () => {
               variants={fadeInUp}
               className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed mb-4"
             >
-              No hidden fees. Every plan includes an AI chatbot on your website, Smart Insights, team handoff, custom branding, full analytics, conversation transcripts, and built-in privacy management.
+              No hidden fees. Every plan includes a dedicated phone number, AI call handling, appointment booking, SMS confirmations, call recording, transcripts, full analytics dashboard, and custom greeting.
             </motion.p>
             <motion.p
               variants={fadeInUp}
               className="text-base text-text-muted max-w-2xl mx-auto"
             >
-              Pick the plan that fits your chat volume. Upgrade or cancel anytime.
+              Pick the plan that fits your call volume. Upgrade or cancel anytime.
             </motion.p>
           </motion.div>
         </div>
@@ -87,7 +87,7 @@ const WebChatbotPricing = () => {
       {/* Pricing Cards */}
       <section className="pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <CogniChatPricingCards />
+          <CogniVoicePricingCards />
         </div>
       </section>
 
@@ -111,9 +111,9 @@ const WebChatbotPricing = () => {
             viewport={{ once: true }}
             className="overflow-x-auto"
           >
-            <div className="min-w-[768px] bg-white rounded-2xl shadow-lg border border-neutral-border overflow-hidden">
+            <div className="min-w-[640px] bg-white rounded-2xl shadow-lg border border-neutral-border overflow-hidden">
               {/* Header */}
-              <div className="grid grid-cols-6 gap-0 bg-primary-600 text-white font-bold text-sm">
+              <div className="grid grid-cols-5 gap-0 bg-primary-600 text-white font-bold text-sm">
                 <div className="p-4"></div>
                 {plans.map((plan) => (
                   <div key={plan.name} className="p-4 text-center">
@@ -127,7 +127,7 @@ const WebChatbotPricing = () => {
               {comparisonRows.map((row, index) => (
                 <div
                   key={index}
-                  className={`grid grid-cols-6 gap-0 border-t border-neutral-border ${
+                  className={`grid grid-cols-5 gap-0 border-t border-neutral-border ${
                     index % 2 === 0 ? 'bg-white' : 'bg-neutral-offWhite'
                   }`}
                 >
@@ -138,8 +138,6 @@ const WebChatbotPricing = () => {
                         <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mx-auto">
                           <Check className="w-3.5 h-3.5 text-green-600" />
                         </div>
-                      ) : value === false ? (
-                        <span className="text-text-muted text-lg">-</span>
                       ) : (
                         <span className="font-medium">{value}</span>
                       )}
@@ -162,17 +160,17 @@ const WebChatbotPricing = () => {
             className="text-center"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-6">
-              Need more chats? <span className="text-gradient">No surprises.</span>
+              Need more minutes? <span className="text-gradient">No surprises.</span>
             </h2>
             <div className="text-left bg-neutral-offWhite rounded-2xl p-6 sm:p-8 border border-neutral-border space-y-4 text-text-secondary leading-relaxed">
               <p>
-                If you go over your included chats, conversations keep flowing at <span className="font-bold text-text-primary">$0.30 per extra chat</span>. Your AI never stops answering. Your customers never see a &quot;we are offline&quot; message.
+                If you go over your included minutes, calls keep flowing at <span className="font-bold text-text-primary">$1.00 per extra minute</span>. Your AI never stops answering. Your customers never hear a busy signal.
               </p>
               <p>
-                We alert you at 80%, 90%, and 100% of your chat volume so there are no surprises. If the math makes sense, we will recommend upgrading. It is usually cheaper.
+                We alert you at 80%, 90%, and 100% of your minutes so there are no surprises. If the math makes sense, we will recommend upgrading. It is usually cheaper.
               </p>
               <p>
-                Want a hard cap instead? Set a monthly limit in your dashboard. When you hit it, the widget shows a contact form or routes to email.
+                Want a hard cap instead? Set a monthly limit in your dashboard. When you hit it, calls route to voicemail or a backup number of your choice.
               </p>
             </div>
           </motion.div>
@@ -236,7 +234,7 @@ const WebChatbotPricing = () => {
                 <span className="font-bold text-text-primary">$999 value</span> — waived for founding customers.
               </p>
               <p className="text-sm text-text-secondary mt-2">
-                Our team configures your AI chatbot for you. No technical skills required. You are live in days, not weeks.
+                Our team configures your AI receptionist for you. No technical skills required. You are live in days, not weeks.
               </p>
             </div>
 
@@ -381,7 +379,7 @@ const WebChatbotPricing = () => {
 
             <div className="relative z-10">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Ready to try <span className="text-gradient">CogniChat</span>?
+                Ready to try <span className="text-gradient">CogniVoice</span>?
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-xl mx-auto mb-8">
                 Start your 14-day free trial. Concierge setup included. No credit card required.
@@ -415,4 +413,4 @@ const WebChatbotPricing = () => {
   )
 }
 
-export default WebChatbotPricing
+export default CogniVoicePricing

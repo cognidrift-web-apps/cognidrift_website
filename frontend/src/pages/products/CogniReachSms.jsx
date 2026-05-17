@@ -1,78 +1,78 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { PhoneCall, Target, CheckCircle2, ArrowRight, TrendingUp, Users, Zap, BarChart3, Shield, Globe } from 'lucide-react'
+import { Smartphone, MessageSquare, CheckCircle2, ArrowRight, Send, Clock, Users, BarChart3, Shield, Zap } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const AutomatedCalls = () => {
+const CogniReachSms = () => {
   const features = [
     {
-      icon: PhoneCall,
-      title: 'Outbound Campaigns',
-      description: 'Launch AI-powered calling campaigns that scale to thousands of calls per day.'
+      icon: Send,
+      title: 'Bulk SMS Campaigns',
+      description: 'Send personalized messages to thousands of contacts with perfect timing and delivery.'
     },
     {
-      icon: Target,
-      title: 'Smart Targeting',
-      description: 'AI analyzes customer data to identify the best prospects and optimal call times.'
+      icon: Clock,
+      title: 'Scheduled Messaging',
+      description: 'Plan and automate SMS campaigns based on triggers, dates, and customer behavior.'
     },
     {
       icon: Users,
-      title: 'Personalized Messages',
-      description: 'Dynamic script adaptation based on recipient profile and past interactions.'
+      title: 'Segmentation',
+      description: 'Target specific customer groups with tailored messages for maximum engagement.'
     },
     {
-      icon: TrendingUp,
-      title: 'Performance Analytics',
-      description: 'Track call outcomes, conversion rates, and campaign ROI in real-time.'
+      icon: MessageSquare,
+      title: 'Two-Way Conversations',
+      description: 'Enable automated responses and conversations that feel personal and timely.'
     }
   ]
 
   const benefits = [
-    { icon: Zap, text: 'Scale to 10,000+ calls per day' },
-    { icon: Users, text: 'Natural-sounding AI voices' },
-    { icon: Target, text: 'Intelligent call routing' },
-    { icon: BarChart3, text: 'A/B testing capabilities' },
-    { icon: Shield, text: 'Compliance management built-in' },
-    { icon: Globe, text: 'CRM integration for seamless workflow' }
+    { icon: BarChart3, text: '98% open rate within minutes' },
+    { icon: Users, text: 'Personalization at scale' },
+    { icon: Shield, text: 'Compliance with TCPA and GDPR' },
+    { icon: Zap, text: 'Link tracking and analytics' },
+    { icon: Clock, text: 'Automated follow-ups' },
+    { icon: Send, text: 'Integration with CRM and marketing tools' }
   ]
 
   const stats = [
-    { value: '10K+', label: 'Calls Per Day' },
-    { value: '3x', label: 'More Connections' },
-    { value: '40%', label: 'Higher Conversion' },
-    { value: '24/7', label: 'Campaign Running' }
+    { value: '98%', label: 'Open Rate' },
+    { value: '45%', label: 'Response Rate' },
+    { value: '100K+', label: 'Messages/Hour' },
+    { value: '24/7', label: 'Automation' }
   ]
 
   const useCases = [
     {
-      title: 'Sales Outreach',
-      description: 'Reach more prospects with automated outbound calls that qualify and schedule meetings.',
-      features: ['Lead qualification', 'Meeting scheduling', 'Follow-up calls']
+      title: 'Marketing Campaigns',
+      description: 'Launch promotional campaigns with personalized offers and track engagement in real-time.',
+      features: ['Promotional offers', 'Flash sales', 'Product launches']
     },
     {
       title: 'Appointment Reminders',
-      description: 'Reduce no-shows by automatically calling customers with appointment confirmations.',
-      features: ['Reminder calls', 'Confirmations', 'Reschedule options']
+      description: 'Reduce no-shows by sending automated appointment reminders and confirmations.',
+      features: ['Reminder sequences', 'Confirmations', 'Reschedule links']
     },
     {
-      title: 'Debt Collection',
-      description: 'Automate payment reminder calls with compliant, professional AI voice agents.',
-      features: ['Payment reminders', 'Plan options', 'Compliance built-in']
+      title: 'Transactional Messages',
+      description: 'Send order confirmations, shipping updates, and delivery notifications automatically.',
+      features: ['Order updates', 'Shipping alerts', 'Delivery notifications']
     },
     {
-      title: 'Customer Surveys',
-      description: 'Collect feedback at scale with automated survey calls after service interactions.',
-      features: ['NPS surveys', 'Feedback collection', 'Real-time reporting']
+      title: 'Customer Engagement',
+      description: 'Build loyalty with birthday messages, anniversary offers, and re-engagement campaigns.',
+      features: ['Birthday messages', 'Loyalty rewards', 'Win-back campaigns']
     }
   ]
 
   return (
     <div className="min-h-screen">
       <SEOMeta
-        title="Automated AI Calls - Outbound Call Automation for Business"
-        description="Scale outbound communications with CogniDrift's automated AI calls. AI agents for business that handle sales calls, reminders, and follow-ups automatically."
-        keywords="automated AI calls, AI agents for business, AI workflow automation, AI digital workforce"
-        url="/products/automated-calls"
+        title="CogniReach SMS - AI-Powered SMS Marketing & Notifications"
+        description="Send automated SMS campaigns and notifications with CogniDrift's AI-powered SMS automation. Part of our AI workflow automation and digital workforce platform."
+        keywords="automated SMS AI, AI workflow automation, AI digital workforce, business AI automation platform"
+        url="/products/cognireach-sms"
       />
       {/* Hero Section */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
@@ -90,17 +90,17 @@ const AutomatedCalls = () => {
               transition={{ duration: 0.5, type: 'spring' }}
               className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-100/70 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8"
             >
-              <PhoneCall className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
+              <Smartphone className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
             </motion.div>
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 sm:mb-6">
-              AI <span className="text-blue-600">Automated Calls</span>
+              <span className="text-blue-600">CogniReach</span> SMS
             </h1>
 
             {/* Subtitle */}
             <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-              AI-powered outbound calling campaigns that scale effortlessly and convert more leads into customers.
+              Scheduled and triggered SMS campaigns that reach customers at the perfect moment—automatically.
             </p>
 
             {/* CTA Buttons */}
@@ -167,7 +167,7 @@ const AutomatedCalls = () => {
               Powerful <span className="text-blue-600">Features</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Everything you need to automate outbound calling
+              Everything you need for automated SMS marketing
             </p>
           </motion.div>
 
@@ -209,7 +209,7 @@ const AutomatedCalls = () => {
               Built for <span className="text-blue-600">Your Use Case</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Automated calling for every business need
+              Automated SMS for every business need
             </p>
           </motion.div>
 
@@ -250,10 +250,10 @@ const AutomatedCalls = () => {
           >
             <div className="text-center mb-10 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Why Choose <span className="text-blue-600">Automated Calls</span>
+                Why Choose <span className="text-blue-600">Automated SMS</span>
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-                Join thousands of businesses that scale outreach with AI
+                Join thousands of businesses that engage customers via SMS
               </p>
             </div>
 
@@ -296,15 +296,15 @@ const AutomatedCalls = () => {
             </div>
 
             <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
-              <PhoneCall className="w-4 h-4" />
+              <Smartphone className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
-              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Scale Your Outreach?</span>
+              Ready to <span className="bg-gradient-to-r from-primary-500 to-blue-600 bg-clip-text text-transparent">Automate Your SMS Marketing?</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
-              Join businesses that reach more customers with AI calling.
+              Join businesses that reach customers with automated SMS campaigns.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10">
               <Link to="/contact">
@@ -334,4 +334,4 @@ const AutomatedCalls = () => {
   )
 }
 
-export default AutomatedCalls
+export default CogniReachSms
