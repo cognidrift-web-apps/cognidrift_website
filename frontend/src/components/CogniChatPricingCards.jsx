@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Check, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import { plans } from '../data/cognivoicePricing'
+import { plans } from '../data/cognichatPricing'
 
 const colorSchemes = {
   blue: {
@@ -41,7 +41,7 @@ const staggerContainer = {
   },
 }
 
-const CogniVoicePricingCards = () => {
+const CogniChatPricingCards = () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly')
 
   return (
@@ -86,7 +86,7 @@ const CogniVoicePricingCards = () => {
         whileInView="visible"
         viewport={{ once: true }}
         variants={staggerContainer}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
       >
         {plans.map((plan) => {
           const colors = colorSchemes[plan.color]
@@ -143,9 +143,9 @@ const CogniVoicePricingCards = () => {
                   )}
                 </div>
 
-                {/* Minutes */}
+                {/* Chats */}
                 <p className="text-sm font-semibold text-primary-600 mb-4">
-                  {typeof plan.minutes === 'number' ? `${plan.minutes} AI call minutes included` : `${plan.minutes} AI call minutes`}
+                  {typeof plan.chats === 'number' ? plan.chats + ' customer chats/mo' : plan.chats + ' customer chats/mo'}
                 </p>
 
                 {/* CTA Button */}
@@ -190,4 +190,4 @@ const CogniVoicePricingCards = () => {
   )
 }
 
-export default CogniVoicePricingCards
+export default CogniChatPricingCards

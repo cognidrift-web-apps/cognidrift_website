@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ChatWidget from './components/ChatWidget'
@@ -15,6 +15,7 @@ const Pricing = lazy(() => import('./pages/Pricing'))
 const PhoneReceptionist = lazy(() => import('./pages/products/PhoneReceptionist'))
 const PhoneReceptionistPricing = lazy(() => import('./pages/products/PhoneReceptionistPricing'))
 const WebChatbot = lazy(() => import('./pages/products/WebChatbot'))
+const WebChatbotPricing = lazy(() => import('./pages/products/WebChatbotPricing'))
 const WebVoicebot = lazy(() => import('./pages/products/WebVoicebot'))
 const SmsAgent = lazy(() => import('./pages/products/SmsAgent'))
 const AiCrm = lazy(() => import('./pages/products/AiCrm'))
@@ -52,15 +53,24 @@ const Integrations = lazy(() => import('./pages/Integrations'))
 // Error Page
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-// Loading Spinner Component
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center bg-neutral-offWhite">
-    <div className="relative">
-      <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
-      <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-primary-400 rounded-full animate-spin animation-delay-200" style={{ animationDirection: 'reverse' }}></div>
+// Loading fallback — invisible for the first 400ms so fast chunk loads don't flash
+const LoadingSpinner = () => {
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    const id = setTimeout(() => setShow(true), 400)
+    return () => clearTimeout(id)
+  }, [])
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      {show && (
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
+        </div>
+      )}
     </div>
-  </div>
-)
+  )
+}
 
 function App() {
   return (
@@ -80,6 +90,7 @@ function App() {
               <Route path="/products/phone-receptionist" element={<PhoneReceptionist />} />
               <Route path="/products/phone-receptionist/pricing" element={<PhoneReceptionistPricing />} />
               <Route path="/products/web-chatbot" element={<WebChatbot />} />
+              <Route path="/products/web-chatbot/pricing" element={<WebChatbotPricing />} />
               <Route path="/products/web-voicebot" element={<WebVoicebot />} />
               <Route path="/products/sms-agent" element={<SmsAgent />} />
               <Route path="/products/ai-crm" element={<AiCrm />} />
