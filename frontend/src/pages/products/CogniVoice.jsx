@@ -1,6 +1,6 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones } from 'lucide-react'
+import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones, Mic } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import CogniVoicePricingCards from '../../components/CogniVoicePricingCards'
 
@@ -193,6 +193,109 @@ const CogniVoice = () => {
                 </motion.div>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Deploy Anywhere Section */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12 sm:mb-16"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
+              Deploy <span className="text-blue-600">Anywhere</span>
+            </h2>
+            <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
+              One AI receptionist, two ways to connect with customers
+            </p>
+          </motion.div>
+
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="group"
+            >
+              <motion.div
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="relative h-full bg-white rounded-2xl p-6 sm:p-8 border-2 border-blue-200 overflow-hidden shadow-md hover:shadow-xl shadow-blue-500/20 transition-all duration-500"
+              >
+                <div className="absolute inset-0 bg-blue-50 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <motion.div
+                    whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-flex w-12 h-12 bg-blue-50 rounded-xl items-center justify-center mb-4 shadow-md"
+                  >
+                    <Phone className="w-6 h-6 text-blue-600" />
+                  </motion.div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">Phone Line</h3>
+                  <p className="text-text-secondary leading-relaxed mb-4">Your AI receptionist answers inbound calls 24/7. Customers call your business number and speak naturally with the AI.</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm text-text-secondary">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      Toll-free or local numbers
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-text-secondary">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      Call recording & transcription
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-text-secondary">
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                      Transfer to live agents
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="group"
+            >
+              <motion.div
+                whileHover={{ y: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="relative h-full bg-white rounded-2xl p-6 sm:p-8 border-2 border-purple-200 overflow-hidden shadow-md hover:shadow-xl shadow-purple-500/20 transition-all duration-500"
+              >
+                <div className="absolute inset-0 bg-purple-50 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <motion.div
+                    whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                    className="inline-flex w-12 h-12 bg-purple-50 rounded-xl items-center justify-center mb-4 shadow-md"
+                  >
+                    <Mic className="w-6 h-6 text-purple-600" />
+                  </motion.div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">Web Widget</h3>
+                  <p className="text-text-secondary leading-relaxed mb-4">Embed a voice-enabled widget on your website. Visitors click to speak with your AI directly in the browser.</p>
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm text-text-secondary">
+                      <CheckCircle2 className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      One-line embed code
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-text-secondary">
+                      <CheckCircle2 className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      Custom branding
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-text-secondary">
+                      <CheckCircle2 className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      Works on mobile
+                    </li>
+                  </ul>
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
