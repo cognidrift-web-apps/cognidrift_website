@@ -3,8 +3,11 @@ import { motion } from 'framer-motion'
 import { Bot, MessageSquare, Users, Zap, CheckCircle2, ArrowRight, Globe, BarChart3, Shield, Headphones } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import CogniChatPricingCards from '../../components/CogniChatPricingCards'
+import MultiChannelShowcase from '../../components/MultiChannelShowcase'
+import { usePageAnimation } from '../../utils/useFirstMount'
 
 const WebChatbot = () => {
+  const { heroInitial, heroAnimate, iconInitial, iconAnimate } = usePageAnimation()
   const features = [
     {
       icon: MessageSquare,
@@ -76,55 +79,43 @@ const WebChatbot = () => {
         url="/products/web-chatbot"
       />
       {/* Hero Section */}
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
+      <section className="pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-10 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={heroInitial}
+            animate={heroAnimate}
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            {/* Icon */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, type: 'spring' }}
-              className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-100/70 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8"
-            >
-              <Bot className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
-            </motion.div>
-
-            {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 sm:mb-6">
-              AI <span className="text-blue-600">Web Chatbot</span>
-            </h1>
+            {/* Title with Icon */}
+            <div className="flex items-center justify-center gap-4 mb-4 sm:mb-6">
+              <motion.div
+                initial={iconInitial}
+                animate={iconAnimate}
+                transition={{ duration: 0.5, type: 'spring' }}
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100/70 rounded-xl flex items-center justify-center"
+              >
+                <Bot className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              </motion.div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary">
+                <span className="text-blue-600">CogniChat</span>
+              </h1>
+            </div>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-              Capture, qualify, and convert website visitors in real time with an intelligent chatbot that never sleeps.
+            <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed">
+              Every customer answered. Every channel covered.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="btn-primary w-full sm:w-auto"
-                >
-                  Schedule a Demo
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
-              <a href="#pricing">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-blue-600 bg-white border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  View Pricing
-                </motion.button>
-              </a>
+            {/* Multi-Channel Showcase - Wider + Faded */}
+            <div
+              className="mt-6 sm:mt-8 max-w-2xl mx-auto opacity-90"
+              style={{
+                maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+              }}
+            >
+              <MultiChannelShowcase compact />
             </div>
           </motion.div>
         </div>
@@ -175,21 +166,44 @@ const WebChatbot = () => {
           <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon
+              const colorSchemes = [
+                { lightBg: 'bg-blue-50', icon: 'text-blue-600', border: 'border-blue-200', glow: 'shadow-blue-500/20', bg: 'bg-blue-500' },
+                { lightBg: 'bg-purple-50', icon: 'text-purple-600', border: 'border-purple-200', glow: 'shadow-purple-500/20', bg: 'bg-purple-500' },
+                { lightBg: 'bg-cyan-50', icon: 'text-cyan-600', border: 'border-cyan-200', glow: 'shadow-cyan-500/20', bg: 'bg-cyan-500' },
+                { lightBg: 'bg-teal-50', icon: 'text-teal-600', border: 'border-teal-200', glow: 'shadow-teal-500/20', bg: 'bg-teal-500' },
+              ]
+              const colors = colorSchemes[index % colorSchemes.length]
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="group"
                 >
-                  <div className="w-14 h-14 bg-blue-100/70 rounded-xl flex items-center justify-center mb-5">
-                    <Icon className="w-7 h-7 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">{feature.title}</h3>
-                  <p className="text-text-secondary leading-relaxed">{feature.description}</p>
+                  <motion.div
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className={`relative h-full bg-white rounded-2xl p-6 sm:p-8 border-2 ${colors.border} overflow-hidden shadow-md hover:shadow-xl ${colors.glow} transition-all duration-500`}
+                  >
+                    <div className={`absolute inset-0 ${colors.lightBg} opacity-40 group-hover:opacity-60 transition-opacity duration-500`} />
+                    <motion.div className={`absolute -top-10 -right-10 w-32 h-32 ${colors.bg} opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700`} />
+
+                    <div className="relative z-10">
+                      <motion.div
+                        whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                        className={`inline-flex w-12 h-12 ${colors.lightBg} rounded-xl items-center justify-center mb-4 shadow-md group-hover:shadow-xl transition-shadow`}
+                      >
+                        <Icon className={`w-6 h-6 ${colors.icon}`} />
+                      </motion.div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3 group-hover:text-primary-600 transition-colors">{feature.title}</h3>
+                      <p className="text-text-secondary leading-relaxed">{feature.description}</p>
+                    </div>
+
+                    <div className={`absolute bottom-0 right-0 w-16 h-16 ${colors.bg} opacity-5 rounded-tl-full transition-all duration-500 group-hover:w-24 group-hover:h-24`} />
+                  </motion.div>
                 </motion.div>
               )
             })}
