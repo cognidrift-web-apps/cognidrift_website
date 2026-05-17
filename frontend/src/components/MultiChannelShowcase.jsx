@@ -216,7 +216,7 @@ const MultiChannelShowcase = ({ compact = false }) => {
               {/* Messages - Scrolling Container */}
               <div
                 ref={scrollContainerRef}
-                className="relative flex-1 overflow-y-auto overflow-x-hidden space-y-2.5 scrollbar-hide"
+                className="relative flex-1 min-h-0 overflow-y-auto overflow-x-hidden space-y-2.5 scrollbar-hide"
                 style={{
                   maskImage: 'linear-gradient(to bottom, transparent 0%, black 12%)',
                   WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 12%)',
