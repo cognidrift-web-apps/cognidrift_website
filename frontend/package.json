@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.3",
-    "@react-three/drei": "^9.88.0",
-    "@react-three/fiber": "^8.15.0",
     "animejs": "^3.2.2",
     "aos": "^2.3.4",
     "axios": "^1.6.2",
@@ -23,7 +21,6 @@
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.563.0",
     "nodemailer": "^6.10.1",
-    "ogl": "^1.0.11",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-ga4": "^2.1.0",
@@ -32,7 +29,6 @@
     "react-router-dom": "^6.20.1",
     "retell-client-js-sdk": "^2.0.7",
     "tailwind-merge": "^2.2.0",
-    "three": "^0.159.0",
     "typed.js": "^3.0.0"
   },
   "devDependencies": {

@@ -1,21 +1,22 @@
 import SEOMeta from '../components/SEOMeta'
 import { Link } from 'react-router-dom'
 import { motion, useInView, useAnimation } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, lazy, Suspense } from 'react'
 import Typed from 'typed.js'
-import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 // import Testimonials from '../components/Testimonials' // Hidden for future use
 // import ClientLogos from '../components/ClientLogos' // Hidden for future use
 import TrustBadges from '../components/TrustBadges'
 // import DemoCalls from '../components/DemoCalls' // Hidden for future use
-import TryNowSection from '../components/TryNowSection'
 import VideoShowcaseSection from '../components/VideoShowcaseSection'
-import AnimatedDashboard from '../components/AnimatedDashboard'
-import AIConversationFlow from '../components/AIConversationFlow'
-import AnimatedCalendar from '../components/AnimatedCalendar'
 import FloatingNotifications from '../components/FloatingNotifications'
 import SiriWaveBackground from '../components/SiriWaveBackground'
 import Orb from '../components/ui/Orb'
+
+const ScrollStack = lazy(() => import('../components/ScrollStack'))
+const TryNowSection = lazy(() => import('../components/TryNowSection'))
+const AnimatedDashboard = lazy(() => import('../components/AnimatedDashboard'))
+const AIConversationFlow = lazy(() => import('../components/AIConversationFlow'))
+const AnimatedCalendar = lazy(() => import('../components/AnimatedCalendar'))
 import useRetellWebCall from '../hooks/useRetellWebCall'
 import {
   SiSalesforce,
@@ -544,7 +545,9 @@ const Home = () => {
       </section>
 
       {/* Try Now Section */}
-      <TryNowSection />
+      <Suspense fallback={null}>
+        <TryNowSection />
+      </Suspense>
 
       {/* Video Showcase Section */}
       <VideoShowcaseSection />
@@ -766,7 +769,7 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <AIConversationFlow />
+              <Suspense fallback={null}><AIConversationFlow /></Suspense>
             </motion.div>
           </div>
 
@@ -1045,7 +1048,7 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="order-2 lg:order-1 pointer-events-none"
             >
-              <AnimatedCalendar />
+              <Suspense fallback={null}><AnimatedCalendar /></Suspense>
             </motion.div>
 
             {/* Right: Text Content */}
@@ -1182,7 +1185,7 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <AnimatedDashboard />
+              <Suspense fallback={null}><AnimatedDashboard /></Suspense>
             </motion.div>
           </div>
         </div>

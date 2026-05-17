@@ -487,12 +487,17 @@ const TryNowSection = () => {
               {/* Rotating Bubble Notifications - Only show with Frame 2 (Voice Orb) */}
               {phoneFrame === 1 && (
                 <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`bubbles-${currentStep}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                   {/* Left Bubble - User Voice */}
                   <motion.div
-                    key={`user-${currentStep}`}
                     initial={{ opacity: 0, scale: 0.8, x: 20 }}
                     animate={{ opacity: 1, scale: 1, x: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, x: -20 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                     className="absolute -left-20 sm:-left-24 lg:-left-28 top-16 sm:top-20 lg:top-24 w-32 sm:w-36 lg:w-40 z-20"
                   >
@@ -549,10 +554,8 @@ const TryNowSection = () => {
 
                 {/* Right Bubble - AI Response */}
                 <motion.div
-                  key={`ai-${currentStep}`}
                   initial={{ opacity: 0, scale: 0.8, x: -20 }}
                   animate={{ opacity: 1, scale: 1, x: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, x: 20 }}
                   transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
                   className="absolute -right-20 sm:-right-28 lg:-right-32 bottom-24 sm:bottom-32 lg:bottom-36 w-36 sm:w-40 lg:w-44 z-20"
                 >
@@ -618,6 +621,7 @@ const TryNowSection = () => {
                       <path d="M20 0 Q10 5, 0 20 L20 10 Z" fill="rgba(255, 255, 255, 0.3)" stroke="rgba(255, 255, 255, 0.4)" strokeWidth="2" strokeLinejoin="round"/>
                     </svg>
                   </div>
+                </motion.div>
                 </motion.div>
                 </AnimatePresence>
               )}

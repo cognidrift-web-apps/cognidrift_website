@@ -36,7 +36,7 @@ const AnimatedCalendar = () => {
       setNewAppointment(newAppt)
       
       setTimeout(() => {
-        setAppointments(prev => [...prev, newAppt])
+        setAppointments(prev => [...prev.slice(-8), newAppt])
         setNewAppointment(null)
       }, 2000)
     }, 8000)
