@@ -4,8 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Menu, X, ChevronDown, Phone, Building2, Stethoscope,
   Home as HomeIcon, FileText, BookOpen, HelpCircle, Zap,
-  Mic, Bot, Smartphone, Database, Ticket, MessageSquare,
-  PhoneCall, Calendar, TrendingUp, Wrench, Headphones, BrainCircuit
+  Bot, Smartphone, Database, Ticket, MessageSquare,
+  PhoneCall, Calendar, TrendingUp, Wrench, Headphones,
+  Sparkles, UserCircle, BarChart3
 } from 'lucide-react'
 
 const Navbar = () => {
@@ -75,38 +76,29 @@ const Navbar = () => {
   // Mega dropdown for Product
   const productMega = {
     name: 'Products',
-    path: '/products/phone-receptionist',
+    path: '/products/cognivoice',
     mega: true,
     sections: [
       {
-        title: 'Inbound Automation',
+        title: 'AI Products',
         items: [
-          { name: 'AI Phone Receptionist', description: 'Answers calls 24/7, qualifies leads, books appointments', path: '/products/phone-receptionist', icon: Phone, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'AI Web Chatbot', description: 'Capture, qualify, and convert website visitors in real time', path: '/products/web-chatbot', icon: Bot, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'AI Web Voicebot', description: 'Voice-enabled interactions on your website', path: '/products/web-voicebot', icon: Mic, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'SMS Texting Agent', description: 'Handles two-way SMS conversations with leads', path: '/products/sms-agent', icon: MessageSquare, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'CogniVoice', description: 'AI voice receptionist for phone & web', path: '/products/cognivoice', icon: Phone, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'CogniChat', description: 'AI chatbot for websites & messaging', path: '/products/cognichat', icon: Bot, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'CogniReach Calls', description: 'AI-powered outbound calling campaigns', path: '/products/cognireach-calls', icon: PhoneCall, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'CogniReach SMS', description: 'AI-powered SMS outreach campaigns', path: '/products/cognireach-sms', icon: Smartphone, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'CogniHub', description: 'Multi-model AI workspace for teams', path: '/products/cognihub', icon: Sparkles, iconColor: 'bg-purple-100/70 text-purple-600' },
+          { name: 'CogniFlow', description: 'AI workflow automation', path: '/products/cogniflow', icon: TrendingUp, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'CogniAvatar', description: 'AI digital human for engagement', path: '/contact', icon: UserCircle, iconColor: 'bg-purple-100/70 text-purple-600', badge: 'Coming Soon' },
         ]
       },
       {
-        title: 'Lead Management',
+        title: 'Platform',
         items: [
           { name: 'AI CRM', description: 'Centralizes all interactions and tracks every lead', path: '/products/ai-crm', icon: Database, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'Smart Ticketing', description: 'Automatically creates and routes tickets from every channel', path: '/products/smart-ticketing', icon: Ticket, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'Smart Ticketing', description: 'Auto-creates and routes tickets from every channel', path: '/products/smart-ticketing', icon: Ticket, iconColor: 'bg-blue-100/70 text-blue-600' },
           { name: 'AI Calendar', description: 'Smart scheduling and appointment management', path: '/products/ai-calendar', icon: Calendar, iconColor: 'bg-blue-100/70 text-blue-600' },
-        ]
-      },
-      {
-        title: 'Outbound Engagement',
-        items: [
-          { name: 'Automated Calls', description: 'AI-powered outbound calling campaigns', path: '/products/automated-calls', icon: PhoneCall, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'Automated SMS', description: 'Scheduled and triggered SMS campaigns', path: '/products/automated-sms', icon: Smartphone, iconColor: 'bg-blue-100/70 text-blue-600' },
-        ]
-      },
-      {
-        title: 'Enterprise Solutions',
-        items: [
-          { name: 'AI Automation', description: 'Intelligent insights and performance metrics', path: '/products/ai-automation', icon: TrendingUp, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'Multi-Model AI Chat Platform', description: 'Chat with GPT, Claude, Gemini & more in one unified interface', path: '/products/multi-model-chat', icon: BrainCircuit, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'Dashboards', description: 'Analytics and reporting', path: '/products/dashboards', icon: BarChart3, iconColor: 'bg-blue-100/70 text-blue-600' },
+          { name: 'SMS Agent', description: 'Two-way SMS conversations with leads', path: '/products/sms-agent', icon: MessageSquare, iconColor: 'bg-blue-100/70 text-blue-600' },
         ]
       }
     ]
@@ -330,6 +322,11 @@ const Navbar = () => {
                                     <div className="relative z-10 min-w-0">
                                       <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
                                         {item.name}
+                                        {item.badge && (
+                                          <span className="ml-1.5 text-[10px] bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded-full font-semibold">
+                                            {item.badge}
+                                          </span>
+                                        )}
                                       </p>
                                       <p className="text-xs text-gray-500 leading-relaxed mt-0.5">
                                         {item.description}
@@ -547,7 +544,14 @@ const Navbar = () => {
                                           <Icon className="w-4 h-4" />
                                         </div>
                                         <div className="relative z-10">
-                                          <p className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm">{item.name}</p>
+                                          <p className="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors text-sm">
+                                            {item.name}
+                                            {item.badge && (
+                                              <span className="ml-1.5 text-[10px] bg-purple-100 text-purple-600 px-1.5 py-0.5 rounded-full font-semibold">
+                                                {item.badge}
+                                              </span>
+                                            )}
+                                          </p>
                                           <p className="text-xs text-gray-500 mt-0.5">{item.description}</p>
                                         </div>
                                       </Link>
