@@ -131,7 +131,7 @@ const CogniVoicePricingCards = () => {
                       </div>
                       {billingPeriod === 'yearly' && (
                         <p className="text-xs text-green-600 font-semibold mt-1">
-                          Billed annually — save ${(plan.price - plan.annualPrice) * 12}/yr
+                          Billed annually, save ${(plan.price - plan.annualPrice) * 12}/yr
                         </p>
                       )}
                     </>
@@ -179,6 +179,9 @@ const CogniVoicePricingCards = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Bottom decorative circle */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full bg-gradient-to-t from-primary-100/40 to-transparent blur-2xl pointer-events-none"></div>
             </motion.div>
           )
         })}

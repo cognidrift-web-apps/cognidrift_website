@@ -2,7 +2,7 @@ export const plans = [
   {
     name: 'Essentials',
     price: 29,
-    annualPrice: 26,
+    annualPrice: 24,
     subtitle: 'For solo businesses getting started with AI chat',
     chatVolume: 'Handles roughly 5–8 customer chats per day',
     chats: 150,
@@ -32,7 +32,7 @@ export const plans = [
   {
     name: 'Starter',
     price: 89,
-    annualPrice: 80,
+    annualPrice: 74,
     subtitle: 'For small teams ready to chat on every channel',
     chatVolume: 'Handles roughly 15–20 customer chats per day',
     chats: 500,
@@ -58,7 +58,7 @@ export const plans = [
   {
     name: 'Growth',
     price: 149,
-    annualPrice: 134,
+    annualPrice: 124,
     subtitle: 'For growing businesses with steady customer volume',
     chatVolume: 'Handles roughly 30–40 customer chats per day',
     chats: 1200,
@@ -82,7 +82,7 @@ export const plans = [
   {
     name: 'Professional',
     price: 249,
-    annualPrice: 224,
+    annualPrice: 207,
     subtitle: 'For busy teams that want the best value',
     chatVolume: 'Handles roughly 60–80 customer chats per day',
     chats: 2500,
@@ -149,7 +149,7 @@ export const comparisonRows = [
   { label: 'Monthly price', values: ['$29', '$89', '$149', '$249', 'From $449'] },
   { label: 'Customer chats', values: ['150', '500', '1,200', '2,500', '5,000+'] },
   { label: 'Channels', values: ['Web, Slack, Teams', '+ SMS, WhatsApp', 'All', 'All', 'All'] },
-  { label: 'Phone numbers', values: ['—', '1', '1', '2', '3+'] },
+  { label: 'Phone numbers', values: ['None', '1', '1', '2', '3+'] },
   { label: 'Chats at the same time', values: ['1', '2', '3', '5', '10+'] },
   { label: 'A/B testing', values: [false, false, true, true, true] },
   { label: 'CRM integration', values: ['Zapier/Webhooks', 'Zapier/Webhooks', '1 CRM direct', 'All CRMs', 'All + custom'] },
@@ -178,7 +178,7 @@ export const conciergeSetup = [
 export const billingTerms = [
   { label: 'Free trial', value: '14 days. No credit card required. Full access to your selected plan.' },
   { label: 'Monthly billing', value: 'Billed at the start of each month. Cancel anytime.' },
-  { label: 'Annual billing', value: 'Save 10%. Billed upfront for the year.' },
+  { label: 'Annual billing', value: 'Pay for 10 months, get 12. Save 17%.' },
   { label: 'Upgrade', value: 'Instant. Prorated billing for the current month.' },
   { label: 'Downgrade', value: 'Takes effect at the end of your current billing period.' },
   { label: 'Extra chats', value: '$0.30/chat. Billed monthly in arrears. Alerts at 80%, 90%, 100%.' },

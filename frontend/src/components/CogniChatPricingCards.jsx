@@ -76,7 +76,7 @@ const CogniChatPricingCards = () => {
           animate={{ scale: billingPeriod === 'yearly' ? 1 : 0 }}
           className="inline-flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold"
         >
-          Save 10%
+          Save 17%
         </motion.span>
       </motion.div>
 
@@ -131,7 +131,7 @@ const CogniChatPricingCards = () => {
                       </div>
                       {billingPeriod === 'yearly' && (
                         <p className="text-xs text-green-600 font-semibold mt-1">
-                          Billed annually — save ${(plan.price - plan.annualPrice) * 12}/yr
+                          Billed annually, save ${(plan.price - plan.annualPrice) * 12}/yr
                         </p>
                       )}
                     </>
@@ -179,6 +179,9 @@ const CogniChatPricingCards = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Bottom decorative circle */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 w-40 h-40 rounded-full bg-gradient-to-t from-primary-100/40 to-transparent blur-2xl pointer-events-none"></div>
             </motion.div>
           )
         })}

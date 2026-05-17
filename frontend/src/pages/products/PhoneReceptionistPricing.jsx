@@ -6,7 +6,6 @@ import { useState } from 'react'
 import CogniVoicePricingCards from '../../components/CogniVoicePricingCards'
 import {
   plans,
-  universalFeatures,
   comparisonRows,
   addOns,
   conciergeSetup,
@@ -29,8 +28,6 @@ const PhoneReceptionistPricing = () => {
       transition: { staggerChildren: 0.08 },
     },
   }
-
-  const planNames = plans.map((p) => p.name)
 
   return (
     <div className="min-h-screen bg-white">
@@ -94,60 +91,8 @@ const PhoneReceptionistPricing = () => {
         </div>
       </section>
 
-      {/* Universal Features Table */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              What is included in <span className="text-gradient">every plan</span>
-            </h2>
-            <p className="text-text-secondary">No exceptions. Every feature below works on every plan.</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg border border-neutral-border overflow-hidden"
-          >
-            {/* Table Header */}
-            <div className="hidden md:grid grid-cols-5 gap-0 bg-primary-600 text-white font-bold text-sm">
-              <div className="p-4">Feature</div>
-              {planNames.map((name) => (
-                <div key={name} className="p-4 text-center">{name}</div>
-              ))}
-            </div>
-
-            {/* Table Rows */}
-            {universalFeatures.map((feature, index) => (
-              <div
-                key={index}
-                className={`grid grid-cols-1 md:grid-cols-5 gap-0 border-t border-neutral-border ${
-                  index % 2 === 0 ? 'bg-white' : 'bg-neutral-offWhite'
-                }`}
-              >
-                <div className="p-4 font-medium text-text-primary text-sm">{feature}</div>
-                {planNames.map((name) => (
-                  <div key={name} className="p-4 flex items-center justify-center md:justify-center">
-                    <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center">
-                      <Check className="w-3.5 h-3.5 text-green-600" />
-                    </div>
-                    <span className="md:hidden ml-2 text-sm text-text-secondary">{name}</span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* Comparison Table */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+      <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -205,6 +150,33 @@ const PhoneReceptionistPricing = () => {
         </div>
       </section>
 
+      {/* Overage Info */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-6">
+              Need more minutes? <span className="text-gradient">No surprises.</span>
+            </h2>
+            <div className="text-left bg-neutral-offWhite rounded-2xl p-6 sm:p-8 border border-neutral-border space-y-4 text-text-secondary leading-relaxed">
+              <p>
+                If you go over your included minutes, calls keep flowing at <span className="font-bold text-text-primary">$1.00 per extra minute</span>. Your AI never stops answering. Your customers never hear a busy signal.
+              </p>
+              <p>
+                We alert you at 80%, 90%, and 100% of your minutes so there are no surprises. If the math makes sense, we will recommend upgrading. It is usually cheaper.
+              </p>
+              <p>
+                Want a hard cap instead? Set a monthly limit in your dashboard. When you hit it, calls route to voicemail or a backup number of your choice.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Add-Ons */}
       <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
@@ -218,7 +190,7 @@ const PhoneReceptionistPricing = () => {
               Optional <span className="text-gradient">add-ons</span>
             </h2>
             <p className="text-text-secondary max-w-2xl mx-auto">
-              These are genuine upgrades — not missing features. Everything above works perfectly out of the box.
+              Genuine upgrades, not missing features. Everything above works perfectly out of the box.
             </p>
           </motion.div>
 
@@ -240,33 +212,6 @@ const PhoneReceptionistPricing = () => {
                 <p className="text-sm text-text-secondary leading-relaxed">{addon.description}</p>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Overage Info */}
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-6">
-              Need more minutes? <span className="text-gradient">No surprises.</span>
-            </h2>
-            <div className="text-left bg-neutral-offWhite rounded-2xl p-6 sm:p-8 border border-neutral-border space-y-4 text-text-secondary leading-relaxed">
-              <p>
-                If you go over your included minutes, calls keep flowing at <span className="font-bold text-text-primary">$1.00 per extra minute</span>. Your AI never stops answering — your customers never hear a busy signal.
-              </p>
-              <p>
-                We alert you at 80%, 90%, and 100% of your minutes so there are no surprises. If the math makes sense, we will recommend upgrading — it is usually cheaper.
-              </p>
-              <p>
-                Want a hard cap instead? Set a monthly limit in your dashboard. When you hit it, calls route to voicemail or a backup number of your choice.
-              </p>
-            </div>
           </motion.div>
         </div>
       </section>
