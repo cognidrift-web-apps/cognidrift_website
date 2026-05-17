@@ -21,13 +21,13 @@ const PricingCard = ({ plans }) => (
         </div>
       ))}
     </div>
-    <p className="text-[10px] text-indigo-500 font-medium text-center mt-1.5 cursor-pointer hover:underline">View Full Pricing →</p>
+    <p className="text-[10px] text-indigo-500 font-medium text-center mt-1.5 select-none">View Full Pricing →</p>
   </div>
 )
 
 const AppointmentButton = ({ label }) => (
   <div className="mt-2">
-    <div className="inline-flex items-center gap-1.5 px-3 py-2 bg-white rounded-lg border border-indigo-200 shadow-sm cursor-pointer hover:bg-indigo-50 transition-colors">
+    <div className="inline-flex items-center gap-1.5 px-3 py-2 bg-white rounded-lg border border-indigo-200 shadow-sm select-none">
       <Calendar className="w-3.5 h-3.5 text-indigo-600" />
       <span className="text-xs font-semibold text-indigo-600">{label}</span>
     </div>
@@ -43,7 +43,7 @@ const CalendarCard = ({ date, time, status }) => (
         <p className="text-[10px] text-green-600 font-medium">{status} ✓</p>
       </div>
     </div>
-    <p className="text-[10px] text-indigo-500 font-medium mt-1.5 cursor-pointer hover:underline">Add to Calendar →</p>
+    <p className="text-[10px] text-indigo-500 font-medium mt-1.5 select-none">Add to Calendar →</p>
   </div>
 )
 
@@ -52,7 +52,7 @@ const ConfirmationCard = ({ service, date, time, address }) => (
     <p className="text-xs font-bold text-gray-900">{service}</p>
     <p className="text-[10px] text-gray-600">{date} at {time}</p>
     <p className="text-[10px] text-gray-500 mt-0.5">{address}</p>
-    <p className="text-[10px] text-indigo-500 font-medium mt-1.5 cursor-pointer hover:underline">Get Directions →</p>
+    <p className="text-[10px] text-indigo-500 font-medium mt-1.5 select-none">Get Directions →</p>
   </div>
 )
 
@@ -162,8 +162,7 @@ const MultiChannelShowcase = ({ compact = false }) => {
     setActiveChannelIndex(index)
   }, [activeChannelIndex, clearTimer])
 
-  const containerHeight = compact ? 'h-[300px]' : 'h-[380px]'
-  const ChannelIcon = activeChannel.icon
+  const containerHeight = compact ? 'h-[360px]' : 'h-[460px]'
 
   return (
     <div ref={containerRef} className="relative w-full h-full">
@@ -182,42 +181,36 @@ const MultiChannelShowcase = ({ compact = false }) => {
             >
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/30 via-white/10 to-transparent pointer-events-none" />
 
-              {/* Header - Center Aligned */}
-              <div className="relative flex flex-col items-center text-center mb-3">
+              {/* Compact Header + Tabs */}
+              <div className="relative flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
-                  <ChannelIcon className="w-6 h-6 text-indigo-600" />
-                  <p className="text-sm font-bold text-gray-800">{activeChannel.headerTitle}</p>
-                </div>
-                <div className="flex items-center gap-1.5 mt-0.5">
                   <motion.div
                     animate={{ scale: [1, 1.3, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                     className="w-1.5 h-1.5 bg-green-500 rounded-full"
                   />
-                  <span className="text-[11px] text-gray-500">{activeChannel.statusLabel}</span>
+                  <p className="text-sm font-bold text-gray-800">{activeChannel.headerTitle}</p>
                 </div>
-              </div>
-
-              {/* Channel Tabs */}
-              <div className="relative flex justify-center gap-2 mb-3">
-                {channels.map((channel, index) => {
-                  const TabIcon = channel.icon
-                  const isActive = index === activeChannelIndex
-                  return (
-                    <button
-                      key={channel.id}
-                      onClick={() => handleTabClick(index)}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-300 ${
-                        isActive
-                          ? 'bg-white/60 text-indigo-600 border border-indigo-200/50 shadow-sm'
-                          : 'bg-white/30 text-gray-500 border border-white/30 hover:bg-white/40'
-                      }`}
-                    >
-                      <TabIcon className="w-3.5 h-3.5" />
-                      <span className="hidden sm:inline">{channel.label}</span>
-                    </button>
-                  )
-                })}
+                <div className="flex items-center gap-1.5">
+                  {channels.map((channel, index) => {
+                    const TabIcon = channel.icon
+                    const isActive = index === activeChannelIndex
+                    return (
+                      <button
+                        key={channel.id}
+                        onClick={() => handleTabClick(index)}
+                        className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
+                          isActive
+                            ? 'bg-white/60 text-indigo-600 border border-indigo-200/50 shadow-sm'
+                            : 'bg-white/30 text-gray-500 border border-white/30 hover:bg-white/40'
+                        }`}
+                      >
+                        <TabIcon className="w-3.5 h-3.5" />
+                        <span className="hidden sm:inline">{channel.label}</span>
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
 
               {/* Messages - Scrolling Container */}
@@ -286,21 +279,23 @@ const MultiChannelShowcase = ({ compact = false }) => {
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="flex justify-end items-end gap-2 flex-row-reverse"
+                        className="flex justify-end"
                       >
-                        <div className="w-6 h-6 flex items-center justify-center">
-                          <BsRobot className="w-6 h-6 text-purple-600" />
-                        </div>
-                        <div className="bg-gradient-to-br from-indigo-500/80 to-purple-600/80 px-4 py-3 rounded-2xl rounded-br-sm shadow-lg">
-                          <div className="flex gap-1">
-                            {[0, 1, 2].map((i) => (
-                              <motion.div
-                                key={i}
-                                animate={{ y: [0, -5, 0] }}
-                                transition={{ duration: 0.4, repeat: Infinity, delay: i * 0.1 }}
-                                className="w-1.5 h-1.5 bg-white/80 rounded-full"
-                              />
-                            ))}
+                        <div className="flex items-end gap-2 flex-row-reverse max-w-[85%]">
+                          <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+                            <BsRobot className="w-6 h-6 text-purple-600" />
+                          </div>
+                          <div className="bg-gradient-to-br from-indigo-500/80 to-purple-600/80 px-4 py-3 rounded-2xl rounded-br-sm shadow-lg">
+                            <div className="flex gap-1">
+                              {[0, 1, 2].map((i) => (
+                                <motion.div
+                                  key={i}
+                                  animate={{ y: [0, -5, 0] }}
+                                  transition={{ duration: 0.4, repeat: Infinity, delay: i * 0.1 }}
+                                  className="w-1.5 h-1.5 bg-white/80 rounded-full"
+                                />
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </motion.div>

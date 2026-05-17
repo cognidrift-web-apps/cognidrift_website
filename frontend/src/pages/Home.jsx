@@ -708,7 +708,7 @@ const Home = () => {
               className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
             >
               <Zap className="w-4 h-4" />
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">AI Chatting</span>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Omnichannel AI</span>
             </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
               Your AI<span className="text-gradient"> Web Widget</span>
@@ -777,7 +777,7 @@ const Home = () => {
             variants={fadeInUp}
             className="text-center mt-12"
           >
-            <Link to="/products/phone-receptionist">
+            <Link to="/products/web-chatbot">
               <button className="btn-primary animate-glow">
                 See How It Works
                 <ChevronRight className="w-5 h-5" />
@@ -987,7 +987,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mt-8 sm:mt-10"
           >
-            <Link to="/products/phone-receptionist">
+            <Link to="/products/web-chatbot">
               <button className="btn-primary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 animate-glow group">
                 Explore All Features
                 <motion.span
@@ -1080,7 +1080,7 @@ const Home = () => {
               </motion.div>
 
               <motion.div variants={fadeInUp} className="mt-5 sm:mt-6">
-                <Link to="/products/phone-receptionist">
+                <Link to="/products/ai-calendar">
                   <button className="btn-primary text-sm sm:text-base">
                     Learn About Scheduling
                     <ArrowRight className="w-5 h-5" />
