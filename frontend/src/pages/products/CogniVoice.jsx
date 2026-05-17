@@ -3,8 +3,12 @@ import { motion } from 'framer-motion'
 import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones, Mic } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import CogniVoicePricingCards from '../../components/CogniVoicePricingCards'
+import { usePageAnimation } from '../../utils/useFirstMount'
+import TryNowSection from '../../components/TryNowSection'
 
 const CogniVoice = () => {
+  const { heroInitial, heroAnimate, iconInitial, iconAnimate } = usePageAnimation()
+
   const features = [
     {
       icon: Phone,
@@ -76,55 +80,43 @@ const CogniVoice = () => {
         url="/products/cognivoice"
       />
       {/* Hero Section */}
-      <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 sm:pb-20 bg-white">
+      <section className="pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-10 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={heroInitial}
+            animate={heroAnimate}
             transition={{ duration: 0.6 }}
             className="text-center max-w-4xl mx-auto"
           >
-            {/* Icon */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, type: 'spring' }}
-              className="w-20 h-20 sm:w-24 sm:h-24 bg-blue-100/70 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 sm:mb-8"
-            >
-              <Phone className="w-10 h-10 sm:w-12 sm:h-12 text-blue-600" />
-            </motion.div>
-
-            {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-4 sm:mb-6">
-              <span className="text-blue-600">CogniVoice</span>
-            </h1>
+            {/* Title with Icon */}
+            <div className="flex items-center justify-center gap-4 mb-4 sm:mb-6">
+              <motion.div
+                initial={iconInitial}
+                animate={iconAnimate}
+                transition={{ duration: 0.5, type: 'spring' }}
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100/70 rounded-xl flex items-center justify-center"
+              >
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+              </motion.div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary">
+                <span className="text-blue-600">CogniVoice</span>
+              </h1>
+            </div>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed">
-              Answers calls 24/7, qualifies leads, and books appointments—so your team can focus on what matters most.
+            <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed">
+              Your AI voice agent. Phone calls. Web widget. Always on.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="btn-primary w-full sm:w-auto"
-                >
-                  Schedule a Demo
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
-              <a href="#pricing">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-blue-600 bg-white border-2 border-blue-200 hover:border-blue-400 hover:bg-blue-50 transition-all duration-300 flex items-center justify-center gap-2"
-                >
-                  View Pricing
-                </motion.button>
-              </a>
+            {/* TryNowSection - Wider + Faded */}
+            <div
+              className="mt-6 sm:mt-8 max-w-2xl mx-auto opacity-90"
+              style={{
+                maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+              }}
+            >
+              <TryNowSection compact />
             </div>
           </motion.div>
         </div>
@@ -168,28 +160,51 @@ const CogniVoice = () => {
               Powerful <span className="text-blue-600">Features</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Everything you need to automate your phone communications
+              AI voice capabilities for phone and web
             </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon
+              const colorSchemes = [
+                { lightBg: 'bg-blue-50', icon: 'text-blue-600', border: 'border-blue-200', glow: 'shadow-blue-500/20', bg: 'bg-blue-500' },
+                { lightBg: 'bg-purple-50', icon: 'text-purple-600', border: 'border-purple-200', glow: 'shadow-purple-500/20', bg: 'bg-purple-500' },
+                { lightBg: 'bg-cyan-50', icon: 'text-cyan-600', border: 'border-cyan-200', glow: 'shadow-cyan-500/20', bg: 'bg-cyan-500' },
+                { lightBg: 'bg-teal-50', icon: 'text-teal-600', border: 'border-teal-200', glow: 'shadow-teal-500/20', bg: 'bg-teal-500' },
+              ]
+              const colors = colorSchemes[index % colorSchemes.length]
               return (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  className="group"
                 >
-                  <div className="w-14 h-14 bg-blue-100/70 rounded-xl flex items-center justify-center mb-5">
-                    <Icon className="w-7 h-7 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">{feature.title}</h3>
-                  <p className="text-text-secondary leading-relaxed">{feature.description}</p>
+                  <motion.div
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className={`relative h-full bg-white rounded-2xl p-6 sm:p-8 border-2 ${colors.border} overflow-hidden shadow-md hover:shadow-xl ${colors.glow} transition-all duration-500`}
+                  >
+                    <div className={`absolute inset-0 ${colors.lightBg} opacity-40 group-hover:opacity-60 transition-opacity duration-500`} />
+                    <motion.div className={`absolute -top-10 -right-10 w-32 h-32 ${colors.bg} opacity-10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700`} />
+
+                    <div className="relative z-10">
+                      <motion.div
+                        whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                        className={`inline-flex w-12 h-12 ${colors.lightBg} rounded-xl items-center justify-center mb-4 shadow-md group-hover:shadow-xl transition-shadow`}
+                      >
+                        <Icon className={`w-6 h-6 ${colors.icon}`} />
+                      </motion.div>
+                      <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3 group-hover:text-primary-600 transition-colors">{feature.title}</h3>
+                      <p className="text-text-secondary leading-relaxed">{feature.description}</p>
+                    </div>
+
+                    <div className={`absolute bottom-0 right-0 w-16 h-16 ${colors.bg} opacity-5 rounded-tl-full transition-all duration-500 group-hover:w-24 group-hover:h-24`} />
+                  </motion.div>
                 </motion.div>
               )
             })}
@@ -229,6 +244,37 @@ const CogniVoice = () => {
               >
                 <div className="absolute inset-0 bg-blue-50 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
                 <div className="relative z-10">
+                  {/* Mini Phone Call Mockup */}
+                  <div className="mb-5 bg-gray-900 rounded-xl p-3 shadow-inner">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                      <span className="text-[11px] text-gray-400 font-mono">Live Call</span>
+                    </div>
+                    <div className="space-y-1.5">
+                      <div className="flex gap-2 items-start">
+                        <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Phone className="w-2.5 h-2.5 text-blue-400" />
+                        </div>
+                        <div className="bg-gradient-to-br from-indigo-500/80 to-purple-600/80 rounded-lg px-2.5 py-1.5 max-w-[85%]">
+                          <p className="text-[11px] text-white/90 leading-relaxed">Hello! How can I help you today?</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 items-start justify-end">
+                        <div className="bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-1.5 max-w-[85%] border border-white/10">
+                          <p className="text-[11px] text-gray-300 leading-relaxed">I need to book an appointment</p>
+                        </div>
+                      </div>
+                      <div className="flex gap-2 items-start">
+                        <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <Phone className="w-2.5 h-2.5 text-blue-400" />
+                        </div>
+                        <div className="bg-gradient-to-br from-indigo-500/80 to-purple-600/80 rounded-lg px-2.5 py-1.5 max-w-[85%]">
+                          <p className="text-[11px] text-white/90 leading-relaxed">Let me check availability...</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <motion.div
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                     transition={{ duration: 0.5 }}
@@ -270,6 +316,38 @@ const CogniVoice = () => {
               >
                 <div className="absolute inset-0 bg-purple-50 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
                 <div className="relative z-10">
+                  {/* Mini Browser Mockup */}
+                  <div className="mb-5 bg-gray-100 rounded-xl overflow-hidden shadow-inner">
+                    <div className="bg-gray-200 px-3 py-1.5 flex items-center gap-2">
+                      <div className="flex gap-1">
+                        <div className="w-2 h-2 rounded-full bg-red-400" />
+                        <div className="w-2 h-2 rounded-full bg-yellow-400" />
+                        <div className="w-2 h-2 rounded-full bg-green-400" />
+                      </div>
+                      <div className="flex-1 bg-white rounded-md px-2 py-0.5 text-[9px] text-gray-400 font-mono">yourwebsite.com</div>
+                    </div>
+                    <div className="relative p-3 h-24 bg-gradient-to-br from-gray-50 to-white">
+                      <div className="absolute bottom-2 right-2">
+                        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30">
+                          <Mic className="w-5 h-5 text-white" />
+                        </div>
+                        <div className="absolute -top-10 -left-28 bg-white rounded-xl shadow-lg px-3 py-2 border border-gray-100 w-32">
+                          <p className="text-[9px] text-gray-600 leading-relaxed">Listening...</p>
+                          <div className="flex gap-0.5 mt-1">
+                            {[...Array(8)].map((_, i) => (
+                              <motion.div
+                                key={i}
+                                animate={{ height: [3, 8 + Math.random() * 6, 3] }}
+                                transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.08 }}
+                                className="w-1 bg-purple-400 rounded-full"
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <motion.div
                     whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
                     transition={{ duration: 0.5 }}
@@ -354,7 +432,7 @@ const CogniVoice = () => {
           >
             <div className="text-center mb-10 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Why Businesses Love Our <span className="text-blue-600">AI Receptionist</span>
+                Why Teams Choose <span className="text-blue-600">CogniVoice</span>
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
                 Join thousands of businesses that trust CogniDrift
@@ -411,7 +489,7 @@ const CogniVoice = () => {
             className="text-center mt-10"
           >
             <Link
-              to="/products/phone-receptionist/pricing"
+              to="/products/cognivoice/pricing"
               className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors"
             >
               Compare all plans in detail
