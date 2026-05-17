@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ChatWidget from './components/ChatWidget'
@@ -53,15 +53,24 @@ const Integrations = lazy(() => import('./pages/Integrations'))
 // Error Page
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-// Loading Spinner Component
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center bg-neutral-offWhite">
-    <div className="relative">
-      <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
-      <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-primary-400 rounded-full animate-spin animation-delay-200" style={{ animationDirection: 'reverse' }}></div>
+// Loading fallback — invisible for the first 400ms so fast chunk loads don't flash
+const LoadingSpinner = () => {
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    const id = setTimeout(() => setShow(true), 400)
+    return () => clearTimeout(id)
+  }, [])
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-white">
+      {show && (
+        <div className="relative">
+          <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
+        </div>
+      )}
     </div>
-  </div>
-)
+  )
+}
 
 function App() {
   return (
