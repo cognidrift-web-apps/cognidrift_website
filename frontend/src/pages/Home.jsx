@@ -15,7 +15,7 @@ import Orb from '../components/ui/Orb'
 const ScrollStack = lazy(() => import('../components/ScrollStack'))
 const TryNowSection = lazy(() => import('../components/TryNowSection'))
 const AnimatedDashboard = lazy(() => import('../components/AnimatedDashboard'))
-const AIConversationFlow = lazy(() => import('../components/AIConversationFlow'))
+const MultiChannelShowcase = lazy(() => import('../components/MultiChannelShowcase'))
 const AnimatedCalendar = lazy(() => import('../components/AnimatedCalendar'))
 import useRetellWebCall from '../hooks/useRetellWebCall'
 import {
@@ -769,7 +769,7 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="relative"
             >
-              <Suspense fallback={null}><AIConversationFlow /></Suspense>
+              <Suspense fallback={null}><MultiChannelShowcase /></Suspense>
             </motion.div>
           </div>
 
@@ -780,7 +780,7 @@ const Home = () => {
             variants={fadeInUp}
             className="text-center mt-12"
           >
-            <Link to="/products/web-chatbot">
+            <Link to="/products/cognichat">
               <button className="btn-primary animate-glow">
                 See How It Works
                 <ChevronRight className="w-5 h-5" />
@@ -990,7 +990,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="text-center mt-8 sm:mt-10"
           >
-            <Link to="/products/web-chatbot">
+            <Link to="/products/cognichat">
               <button className="btn-primary text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4 animate-glow group">
                 Explore All Features
                 <motion.span
