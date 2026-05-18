@@ -3,14 +3,13 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Phone, Calendar, Users, Zap, Clock, Globe, Sparkles,
-  CheckCircle, ArrowRight, Bell, MessageSquare, TrendingUp
+  ArrowRight, MessageSquare, TrendingUp
 } from 'lucide-react'
-import { HiSparkles } from 'react-icons/hi'
 import GlowCard from './ui/GlowCard'
 
 const VideoShowcaseSection = () => {
   const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 })
 
   // Floating notifications around the video
   const notifications = [
@@ -49,16 +48,16 @@ const VideoShowcaseSection = () => {
   ]
 
   const features = [
-    { icon: Clock, text: "24/7 availability, never miss a call" },
-    { icon: Globe, text: "50+ languages supported" },
-    { icon: Users, text: "Handle unlimited concurrent calls" },
-    { icon: Zap, text: "Instant response, zero wait time" }
+    { icon: Clock, title: "Always Available", desc: "24/7 availability, never miss a call" },
+    { icon: Globe, title: "50+ Languages", desc: "Speak to visitors in their native language" },
+    { icon: Users, title: "Unlimited Capacity", desc: "Handle unlimited concurrent conversations" },
+    { icon: Zap, title: "Instant Response", desc: "Zero wait time, instant AI-powered replies" }
   ]
 
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 lg:py-28 overflow-hidden bg-white"
+      className="relative py-16 sm:py-20 lg:py-28 overflow-hidden bg-white"
     >
       {/* Background Elements - Using CSS animations for better performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -78,18 +77,18 @@ const VideoShowcaseSection = () => {
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6">
             <Sparkles className="w-4 h-4" />
             <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">
-              AI Avatar
+              AI Avatar: Cogni<span className="text-fuchsia-500">Avatar</span>
             </span>
           </div>
 
           {/* Title */}
           <h2 className="section-title hero-display">
-            AI Receptionist, <span className="text-gradient">24/7</span>
+            Your AI, <span className="text-gradient">Face to Face</span>
           </h2>
 
           {/* Description */}
           <p className="section-subtitle max-w-2xl mx-auto">
-            Watch our AI handle conversations, schedule appointments, and capture leads 24/7 — like your best employee.
+            A lifelike AI avatar that greets visitors, answers questions, and books meetings on your website.
           </p>
         </motion.div>
 
@@ -151,11 +150,10 @@ const VideoShowcaseSection = () => {
             {/* Video Container with Glow Effect */}
             <div className="relative">
               <GlowCard glowColor="cyan-purple" glowSize="md">
-                {/* Video wrapper */}
-                <div className="bg-gray-900 aspect-video shadow-inner will-change-transform">
+                <div className="aspect-video will-change-transform">
                   <img
                     src="/hero.gif"
-                    alt="Hero Animation"
+                    alt="CogniAvatar AI avatar demo"
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -178,42 +176,41 @@ const VideoShowcaseSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="order-2 lg:order-2"
           >
-            {/* Features List */}
+            {/* Features List — zipper stagger */}
             <div className="space-y-4 mb-8">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
-                  transition={{ delay: 0.5 + index * 0.1 }}
-                  className="flex items-center gap-3 group"
-                >
-                  <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-50 to-purple-50 border border-gray-100 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <feature.icon className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <span className="text-gray-700 font-medium">{feature.text}</span>
-                </motion.div>
-              ))}
+              {features.map((feature, index) => {
+                const fromX = index % 2 === 0 ? -20 : 20
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: fromX, y: 10 }}
+                    animate={isInView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: fromX, y: 10 }}
+                    transition={{ delay: 0.4 + index * 0.1, duration: 0.5, ease: 'easeOut' }}
+                    className="flex items-start gap-3"
+                  >
+                    <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-blue-100/70 flex items-center justify-center mt-0.5">
+                      <feature.icon className="w-5 h-5 text-blue-600" />
+                    </div>
+                    <div>
+                      <h4 className="text-base sm:text-lg font-semibold text-text-primary mb-1">{feature.title}</h4>
+                      <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{feature.desc}</p>
+                    </div>
+                  </motion.div>
+                )
+              })}
             </div>
 
-            {/* CTA Buttons */}
+            {/* CTA Button */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ delay: 0.9 }}
-              className="flex flex-col sm:flex-row gap-4"
             >
               <Link to="/contact">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="btn-primary w-full sm:w-auto"
-                >
-                  Get Started Today
+                <button className="btn-primary animate-glow">
+                  Explore CogniAvatar
                   <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
-              <Link to="/products/phone-receptionist">
+                </button>
               </Link>
             </motion.div>
           </motion.div>

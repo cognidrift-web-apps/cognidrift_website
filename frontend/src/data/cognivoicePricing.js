@@ -137,6 +137,7 @@ export const addOns = [
   { name: 'CRM integration', price: '$39/mo', description: 'Direct sync to HubSpot, Salesforce, or other CRM platforms' },
   { name: 'Custom AI voice', price: '$50/mo', description: 'Match the AI voice to your brand personality' },
   { name: 'Extended call archive', price: '$10/mo', description: 'Keep recordings for 1 year instead of 90 days' },
+  { name: 'Parallel calling lines', price: '$10/mo per line', description: 'Handle multiple simultaneous calls — add concurrent lines beyond your plan limit' },
 ]
 
 export const conciergeSetup = [

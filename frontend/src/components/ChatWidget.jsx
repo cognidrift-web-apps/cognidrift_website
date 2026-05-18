@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { X, Send, MessageCircle } from 'lucide-react'
 
 // Configuration
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cognidrift-send-and-receive-sms-production.up.railway.app'
@@ -135,9 +136,7 @@ function ChatWidget() {
                 onClick={() => setShowPopup(false)}
                 className="absolute -top-2 -right-2 w-6 h-6 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors"
               >
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <X className="w-3 h-3" strokeWidth={3} />
               </button>
 
               <div className="flex items-start gap-3">
@@ -201,9 +200,7 @@ function ChatWidget() {
               onClick={toggleChat}
               className="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
             >
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="w-5 h-5 text-white" />
             </button>
           </div>
 
@@ -259,9 +256,7 @@ function ChatWidget() {
                 disabled={isLoading || !inputValue.trim()}
                 className="w-12 h-12 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary-500/25"
               >
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
+                <Send className="w-5 h-5 text-white" />
               </button>
             </div>
 
@@ -327,13 +322,9 @@ function ChatWidget() {
             }`}
           >
             {isOpen ? (
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <X className="w-6 h-6 text-white" />
             ) : (
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/>
-              </svg>
+              <MessageCircle className="w-6 h-6 text-white" />
             )}
           </button>
         </div>

@@ -743,3 +743,12 @@ elevenlabs-convai {
     border-radius: 20px !important;
   }
 }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+

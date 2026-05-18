@@ -1,9 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ChatWidget from './components/ChatWidget'
 import ScrollToTop from './components/ScrollToTop'
+import LoadingScreen from './components/LoadingScreen'
 
 // Lazy load all pages for better performance
 const Home = lazy(() => import('./pages/Home'))
@@ -12,19 +13,20 @@ const Contact = lazy(() => import('./pages/Contact'))
 const Pricing = lazy(() => import('./pages/Pricing'))
 
 // Product Pages
-const PhoneReceptionist = lazy(() => import('./pages/products/PhoneReceptionist'))
-const PhoneReceptionistPricing = lazy(() => import('./pages/products/PhoneReceptionistPricing'))
-const WebChatbot = lazy(() => import('./pages/products/WebChatbot'))
-const WebVoicebot = lazy(() => import('./pages/products/WebVoicebot'))
+const CogniVoice = lazy(() => import('./pages/products/CogniVoice'))
+const CogniVoicePricing = lazy(() => import('./pages/products/CogniVoicePricing'))
+const CogniChat = lazy(() => import('./pages/products/CogniChat'))
+const CogniChatPricing = lazy(() => import('./pages/products/CogniChatPricing'))
 const SmsAgent = lazy(() => import('./pages/products/SmsAgent'))
 const AiCrm = lazy(() => import('./pages/products/AiCrm'))
 const SmartTickets = lazy(() => import('./pages/products/SmartTickets'))
 const AiCalendar = lazy(() => import('./pages/products/AiCalendar'))
-const AutomatedCalls = lazy(() => import('./pages/products/AutomatedCalls'))
-const AutomatedSms = lazy(() => import('./pages/products/AutomatedSms'))
-const AiAutomation = lazy(() => import('./pages/products/AiAutomation'))
+const CogniReachCalls = lazy(() => import('./pages/products/CogniReachCalls'))
+const CogniReachSms = lazy(() => import('./pages/products/CogniReachSms'))
+const CogniFlow = lazy(() => import('./pages/products/CogniFlow'))
 const Dashboards = lazy(() => import('./pages/products/Dashboards'))
-const MultiModelChat = lazy(() => import('./pages/products/MultiModelChat'))
+const CogniHub = lazy(() => import('./pages/products/CogniHub'))
+const CogniHubPricing = lazy(() => import('./pages/products/CogniHubPricing'))
 
 // Industries Pages
 const Healthcare = lazy(() => import('./pages/solutions/Healthcare'))
@@ -52,15 +54,6 @@ const Integrations = lazy(() => import('./pages/Integrations'))
 // Error Page
 const NotFound = lazy(() => import('./pages/NotFound'))
 
-// Loading Spinner Component
-const LoadingSpinner = () => (
-  <div className="min-h-screen flex items-center justify-center bg-neutral-offWhite">
-    <div className="relative">
-      <div className="w-16 h-16 border-4 border-primary-200 border-t-primary-600 rounded-full animate-spin"></div>
-      <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-primary-400 rounded-full animate-spin animation-delay-200" style={{ animationDirection: 'reverse' }}></div>
-    </div>
-  </div>
-)
 
 function App() {
   return (
@@ -69,7 +62,7 @@ function App() {
       <div className="min-h-screen flex flex-col bg-white">
         <Navbar />
         <main className="flex-grow">
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense fallback={<LoadingScreen />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/pricing" element={<Pricing />} />
@@ -77,19 +70,31 @@ function App() {
               <Route path="/contact" element={<Contact />} />
 
               {/* Product Routes */}
-              <Route path="/products/phone-receptionist" element={<PhoneReceptionist />} />
-              <Route path="/products/phone-receptionist/pricing" element={<PhoneReceptionistPricing />} />
-              <Route path="/products/web-chatbot" element={<WebChatbot />} />
-              <Route path="/products/web-voicebot" element={<WebVoicebot />} />
+              <Route path="/products/cognivoice" element={<CogniVoice />} />
+              <Route path="/products/cognivoice/pricing" element={<CogniVoicePricing />} />
+              <Route path="/products/cognichat" element={<CogniChat />} />
+              <Route path="/products/cognichat/pricing" element={<CogniChatPricing />} />
               <Route path="/products/sms-agent" element={<SmsAgent />} />
               <Route path="/products/ai-crm" element={<AiCrm />} />
               <Route path="/products/smart-ticketing" element={<SmartTickets />} />
               <Route path="/products/ai-calendar" element={<AiCalendar />} />
-              <Route path="/products/automated-calls" element={<AutomatedCalls />} />
-              <Route path="/products/automated-sms" element={<AutomatedSms />} />
-              <Route path="/products/ai-automation" element={<AiAutomation />} />
+              <Route path="/products/cognireach-calls" element={<CogniReachCalls />} />
+              <Route path="/products/cognireach-sms" element={<CogniReachSms />} />
+              <Route path="/products/cogniflow" element={<CogniFlow />} />
               <Route path="/products/dashboards" element={<Dashboards />} />
-              <Route path="/products/multi-model-chat" element={<MultiModelChat />} />
+              <Route path="/products/cognihub" element={<CogniHub />} />
+              <Route path="/products/cognihub/pricing" element={<CogniHubPricing />} />
+
+              {/* Legacy route redirects */}
+              <Route path="/products/phone-receptionist" element={<Navigate to="/products/cognivoice" replace />} />
+              <Route path="/products/phone-receptionist/pricing" element={<Navigate to="/products/cognivoice/pricing" replace />} />
+              <Route path="/products/web-chatbot" element={<Navigate to="/products/cognichat" replace />} />
+              <Route path="/products/web-chatbot/pricing" element={<Navigate to="/products/cognichat/pricing" replace />} />
+              <Route path="/products/web-voicebot" element={<Navigate to="/products/cognivoice" replace />} />
+              <Route path="/products/automated-calls" element={<Navigate to="/products/cognireach-calls" replace />} />
+              <Route path="/products/automated-sms" element={<Navigate to="/products/cognireach-sms" replace />} />
+              <Route path="/products/ai-automation" element={<Navigate to="/products/cogniflow" replace />} />
+              <Route path="/products/multi-model-chat" element={<Navigate to="/products/cognihub" replace />} />
 
               {/* Industries Routes */}
               <Route path="/industries/healthcare" element={<Healthcare />} />

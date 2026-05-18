@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { ChevronDown, HelpCircle } from 'lucide-react'
+import { fadeInUp, staggerContainer } from '../utils/motionVariants'
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(0)
@@ -52,18 +53,7 @@ const FAQ = () => {
     setOpenIndex(openIndex === index ? -1 : index)
   }
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 }
-    }
-  }
 
   return (
     <section className="relative py-24 lg:py-32 bg-neutral-offWhite overflow-hidden">

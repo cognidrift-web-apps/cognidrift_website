@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Check, X, ArrowRight, Zap, Building2, Rocket, Sparkles, Phone, HelpCircle } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { fadeInUp, staggerContainer } from '../utils/motionVariants'
 
 const Pricing = () => {
   const [billingPeriod, setBillingPeriod] = useState('monthly') // 'monthly' or 'yearly'
@@ -80,18 +81,7 @@ const Pricing = () => {
     }
   ]
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12 }
-    }
-  }
 
   const colorSchemes = {
     blue: {
