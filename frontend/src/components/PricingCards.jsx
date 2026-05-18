@@ -103,7 +103,7 @@ const PricingCards = ({ plans: flatPlans, tracks, gridClass, renderUnits }) => {
           animate={{ scale: billingPeriod === 'yearly' ? 1 : 0 }}
           className="inline-flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold"
         >
-          Save 17%
+          Save 10%
         </motion.span>
       </motion.div>
 
@@ -138,40 +138,45 @@ const PricingCards = ({ plans: flatPlans, tracks, gridClass, renderUnits }) => {
                 </div>
               )}
 
-              {/* Card Content */}
-              <div className={`p-6 ${plan.popular ? '' : 'pt-6'}`}>
-                {/* Plan Name */}
-                <h3 className="text-xl font-bold text-text-primary mb-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>
-                  {plan.name}
-                </h3>
-                <p className="text-sm text-text-secondary mb-4">
-                  {plan.subtitle}
-                </p>
+              {/* Card Content — flex column to align divider across cards */}
+              <div className={`p-6 flex flex-col ${plan.popular ? '' : 'pt-6'}`}>
+                {/* Top section — fixed height to keep dividers aligned */}
+                <div className="text-center min-h-[200px] flex flex-col">
+                  {/* Plan Name */}
+                  <h3 className="text-xl font-bold text-text-primary mb-1" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                    {plan.name}
+                  </h3>
+                  <p className="text-sm text-text-secondary mb-4">
+                    {plan.subtitle}
+                  </p>
 
-                {/* Price */}
-                <div className="mb-4">
-                  {price ? (
-                    <>
-                      <div className="flex items-end gap-1">
-                        <span className="text-4xl font-bold text-text-primary">${price}</span>
-                        <span className="text-text-secondary mb-1">/mo</span>
+                  {/* Price */}
+                  <div className="mb-4">
+                    {price ? (
+                      <>
+                        <div className="flex items-end justify-center gap-1">
+                          <span className="text-4xl font-bold text-text-primary">${price}</span>
+                          <span className="text-text-secondary mb-1">/mo</span>
+                        </div>
+                        {billingPeriod === 'yearly' && (
+                          <p className="text-xs text-green-600 font-semibold mt-1">
+                            Billed annually, save ${(plan.price - plan.annualPrice) * 12}/yr
+                          </p>
+                        )}
+                      </>
+                    ) : (
+                      <div>
+                        <span className="text-2xl font-bold text-text-primary">Custom pricing</span>
+                        <p className="text-sm text-text-secondary mt-1">Starting from ${plan.startingFrom}/mo</p>
                       </div>
-                      {billingPeriod === 'yearly' && (
-                        <p className="text-xs text-green-600 font-semibold mt-1">
-                          Billed annually, save ${(plan.price - plan.annualPrice) * 12}/yr
-                        </p>
-                      )}
-                    </>
-                  ) : (
-                    <div>
-                      <span className="text-2xl font-bold text-text-primary">Custom pricing</span>
-                      <p className="text-sm text-text-secondary mt-1">Starting from ${plan.startingFrom}/mo</p>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
 
-                {/* Unit rows — product-specific */}
-                {renderUnits(plan)}
+                  {/* Unit rows — product-specific */}
+                  <div className="mt-auto">
+                    {renderUnits(plan)}
+                  </div>
+                </div>
 
                 {/* CTA Button */}
                 <Link to={plan.ctaLink} className="block mb-6">
@@ -189,7 +194,7 @@ const PricingCards = ({ plans: flatPlans, tracks, gridClass, renderUnits }) => {
                   </motion.button>
                 </Link>
 
-                {/* Divider */}
+                {/* Divider — now aligned across all cards */}
                 <div className="h-px bg-neutral-border mb-4"></div>
 
                 {/* Features */}

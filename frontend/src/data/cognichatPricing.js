@@ -2,7 +2,7 @@ export const plans = [
   {
     name: 'Essentials',
     price: 29,
-    annualPrice: 24,
+    annualPrice: 26,
     subtitle: 'For solo businesses getting started with AI chat',
     chatVolume: 'Handles roughly 5–8 customer chats per day',
     chats: 150,
@@ -32,7 +32,7 @@ export const plans = [
   {
     name: 'Starter',
     price: 89,
-    annualPrice: 74,
+    annualPrice: 80,
     subtitle: 'For small teams ready to chat on every channel',
     chatVolume: 'Handles roughly 15–20 customer chats per day',
     chats: 500,
@@ -58,7 +58,7 @@ export const plans = [
   {
     name: 'Growth',
     price: 149,
-    annualPrice: 124,
+    annualPrice: 134,
     subtitle: 'For growing businesses with steady customer volume',
     chatVolume: 'Handles roughly 30–40 customer chats per day',
     chats: 1200,
@@ -82,7 +82,7 @@ export const plans = [
   {
     name: 'Professional',
     price: 249,
-    annualPrice: 207,
+    annualPrice: 224,
     subtitle: 'For busy teams that want the best value',
     chatVolume: 'Handles roughly 60–80 customer chats per day',
     chats: 2500,
@@ -178,7 +178,7 @@ export const conciergeSetup = [
 export const billingTerms = [
   { label: 'Free trial', value: '14 days. No credit card required. Full access to your selected plan.' },
   { label: 'Monthly billing', value: 'Billed at the start of each month. Cancel anytime.' },
-  { label: 'Annual billing', value: 'Pay for 10 months, get 12. Save 17%.' },
+  { label: 'Annual billing', value: 'Pay annually and save 10% on every month.' },
   { label: 'Upgrade', value: 'Instant. Prorated billing for the current month.' },
   { label: 'Downgrade', value: 'Takes effect at the end of your current billing period.' },
   { label: 'Extra chats', value: '$0.30/chat. Billed monthly in arrears. Alerts at 80%, 90%, 100%.' },

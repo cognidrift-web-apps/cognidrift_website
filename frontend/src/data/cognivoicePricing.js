@@ -2,7 +2,7 @@ export const plans = [
   {
     name: 'Essentials',
     price: 69,
-    annualPrice: 57,
+    annualPrice: 62,
     subtitle: 'For solo practitioners just getting started',
     callVolume: 'Handles roughly 5 calls per day',
     minutes: 100,
@@ -30,7 +30,7 @@ export const plans = [
   {
     name: 'Starter',
     price: 109,
-    annualPrice: 91,
+    annualPrice: 98,
     subtitle: 'For small teams with steady call volume',
     callVolume: 'Handles roughly 8–10 calls per day',
     minutes: 200,
@@ -50,7 +50,7 @@ export const plans = [
   {
     name: 'Professional',
     price: 229,
-    annualPrice: 191,
+    annualPrice: 206,
     subtitle: 'For growing businesses and busy practices',
     callVolume: 'Handles roughly 15–20 calls per day',
     minutes: 500,
@@ -152,7 +152,7 @@ export const conciergeSetup = [
 export const billingTerms = [
   { label: 'Free trial', value: '14 days. No credit card required. Full access to your selected plan.' },
   { label: 'Monthly billing', value: 'Billed at the start of each month. Cancel anytime.' },
-  { label: 'Annual billing', value: 'Pay for 10 months, get 12. Save 17%.' },
+  { label: 'Annual billing', value: 'Pay annually and save 10% on every month.' },
   { label: 'Upgrade', value: 'Instant. Prorated billing for the current month.' },
   { label: 'Downgrade', value: 'Takes effect at the end of your current billing period.' },
   { label: 'Overages', value: '$1.00/min. Billed monthly in arrears. Alerts at 80%, 90%, 100%.' },
@@ -170,7 +170,7 @@ export const faqs = [
   },
   {
     question: 'Is there a long-term contract?',
-    answer: 'No. Monthly plans can be cancelled anytime. Annual plans save you 17% and are honored through the term.',
+    answer: 'No. Monthly plans can be cancelled anytime. Annual plans save you 10% and are honored through the term.',
   },
   {
     question: 'What does the 14-day trial include?',

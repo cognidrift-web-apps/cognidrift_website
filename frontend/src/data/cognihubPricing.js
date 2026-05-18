@@ -2,7 +2,7 @@ export const managedPlans = [
   {
     name: 'Starter',
     price: 69,
-    annualPrice: 57,
+    annualPrice: 62,
     subtitle: 'For small teams getting started with multi-model AI',
     users: 3,
     actions: '1,000',
@@ -29,7 +29,7 @@ export const managedPlans = [
   {
     name: 'Growth',
     price: 129,
-    annualPrice: 107,
+    annualPrice: 116,
     subtitle: 'For growing teams that need more power',
     users: 5,
     actions: '3,000',
@@ -54,7 +54,7 @@ export const managedPlans = [
   {
     name: 'Pro',
     price: 249,
-    annualPrice: 207,
+    annualPrice: 224,
     subtitle: 'Full power for teams that depend on AI daily',
     users: 10,
     actions: '10,000',
@@ -80,7 +80,7 @@ export const managedPlans = [
   {
     name: 'Business',
     price: 499,
-    annualPrice: 415,
+    annualPrice: 449,
     subtitle: 'For organizations running AI at scale',
     users: 25,
     actions: '30,000',
@@ -110,7 +110,7 @@ export const byokPlans = [
   {
     name: 'Starter',
     price: 29,
-    annualPrice: 24,
+    annualPrice: 26,
     subtitle: 'Bring your own API keys — full control',
     users: 3,
     actions: 'Unlimited',
@@ -136,7 +136,7 @@ export const byokPlans = [
   {
     name: 'Growth',
     price: 49,
-    annualPrice: 41,
+    annualPrice: 44,
     subtitle: 'More power, your keys, your costs',
     users: 5,
     actions: 'Unlimited',
@@ -159,7 +159,7 @@ export const byokPlans = [
   {
     name: 'Pro',
     price: 99,
-    annualPrice: 82,
+    annualPrice: 89,
     subtitle: 'Full platform, full control',
     users: 10,
     actions: 'Unlimited',
@@ -183,7 +183,7 @@ export const byokPlans = [
   {
     name: 'Business',
     price: 199,
-    annualPrice: 165,
+    annualPrice: 179,
     subtitle: 'Enterprise platform, your infrastructure',
     users: 25,
     actions: 'Unlimited',
@@ -216,7 +216,7 @@ export const addOns = [
 
 export const billingTerms = [
   'Monthly billing, billed at start of each period',
-  'Annual billing saves 17% (pay for 10 months, get 12)',
+  'Annual billing saves 10% on every month',
   '14-day free trial, no credit card required',
   'Setup fee ($999) waived through summer 2026',
   'AI actions reset monthly, do not roll over (Managed)',
