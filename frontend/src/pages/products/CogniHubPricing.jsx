@@ -5,22 +5,12 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import CogniHubPricingCards from '../../components/CogniHubPricingCards'
 import { addOns, billingTerms, faqs } from '../../data/cognihubPricing'
+import { fadeInUp, staggerContainer } from '../../utils/motionVariants'
 
 const CogniHubPricing = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  }
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08 },
-    },
-  }
 
   return (
     <div className="min-h-screen bg-white">

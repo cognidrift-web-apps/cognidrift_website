@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Play, Phone, MessageSquare, Calendar } from 'lucide-react'
 import { useState } from 'react'
+import { fadeInUp, staggerContainer } from '../utils/motionVariants'
 
 const DemoCalls = () => {
   const [activeDemo, setActiveDemo] = useState(0)
@@ -48,18 +49,7 @@ const DemoCalls = () => {
     }
   ]
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
 
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  }
 
   const colorSchemes = {
     blue: {

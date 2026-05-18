@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const VoiceWaveAnimation = () => {
-  const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
+  const mousePosRef = useRef({ x: 0.5, y: 0.5 });
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const timeRef = useRef(0);
@@ -16,6 +16,7 @@ const VoiceWaveAnimation = () => {
     const resizeCanvas = () => {
       canvas.width = canvas.offsetWidth * window.devicePixelRatio;
       canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     };
 
@@ -146,7 +147,7 @@ const VoiceWaveAnimation = () => {
           
           const horizontalFlow = -timeRef.current * wave.flowSpeed;
           
-          const mouseInfluence = 1 + (mousePos.x - 0.5) * 0.15;
+          const mouseInfluence = 1 + (mousePosRef.current.x - 0.5) * 0.15;
           const noise = Math.sin((x + horizontalFlow * 20) * wave.frequency + timeRef.current * wave.speed + wave.offset) * mouseInfluence;
           const secondaryNoise = Math.sin((x - horizontalFlow * 15) * wave.frequency * 1.5 - timeRef.current * wave.speed * 0.7);
           const tertiaryNoise = Math.cos((x + horizontalFlow * 10) * wave.frequency * 0.8 + timeRef.current * wave.speed * 0.5) * 0.5;
@@ -272,18 +273,18 @@ const VoiceWaveAnimation = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [mousePos]);
+  }, []);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
-    setMousePos({ x, y });
+    mousePosRef.current = { x, y };
     targetIntensity.current = 0.8 + y * 0.6;
   };
 
   const handleMouseLeave = () => {
-    setMousePos({ x: 0.5, y: 0.5 });
+    mousePosRef.current = { x: 0.5, y: 0.5 };
     targetIntensity.current = 0.6;
   };
 

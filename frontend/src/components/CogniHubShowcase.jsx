@@ -275,7 +275,7 @@ const RichContent = ({ type }) => {
   }
 }
 
-const CogniHubShowcase = () => {
+const CogniHubShowcase = ({ compact = false }) => {
   const [visibleMessages, setVisibleMessages] = useState([])
   const [typingText, setTypingText] = useState('')
   const [isTypingInInput, setIsTypingInInput] = useState(false)
@@ -398,7 +398,7 @@ const CogniHubShowcase = () => {
       <GlowCard glowColor="cyan-purple" glowSize="md">
         <div className="relative bg-white p-3 lg:p-4 overflow-hidden">
           <div className="relative z-10">
-            <div className="relative backdrop-blur-xl bg-gradient-to-br from-slate-50/60 via-blue-50/60 to-indigo-50/60 rounded-2xl shadow-sm border border-white/40 h-[420px] flex flex-col overflow-hidden">
+            <div className={`relative backdrop-blur-xl bg-gradient-to-br from-slate-50/60 via-blue-50/60 to-indigo-50/60 rounded-2xl shadow-sm border border-white/40 ${compact ? 'h-[360px]' : 'h-[420px]'} flex flex-col overflow-hidden`}>
 
               {/* Top Bar */}
               <div className="px-3 py-2 border-b border-gray-100/80 flex items-center justify-between bg-white/60 backdrop-blur-sm">

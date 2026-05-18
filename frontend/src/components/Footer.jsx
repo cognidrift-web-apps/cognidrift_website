@@ -15,9 +15,9 @@ const Footer = () => {
     ],
     industries: [
       { name: 'Healthcare', path: '/industries/healthcare' },
-      { name: 'Real Estate', path: '/industries/real-estate' },
+      { name: 'Local Services', path: '/industries/local-services' },
       { name: 'Professional Services', path: '/industries/professional-services' },
-      { name: 'Call Center', path: '/industries/call-center' },
+      { name: 'Call Centers', path: '/industries/call-centers' },
     ],
     company: [
       { name: 'About', path: '/about' },

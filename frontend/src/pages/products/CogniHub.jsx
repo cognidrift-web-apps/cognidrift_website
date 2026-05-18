@@ -1,8 +1,9 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { Sparkles, Bot, Database, Code, Users, Zap, CheckCircle2, ArrowRight, Globe, BarChart3, Shield, Headphones } from 'lucide-react'
+import { Sparkles, Bot, Database, FileText, Users, Zap, CheckCircle2, ArrowRight, Globe, BarChart3, Shield, Headphones, TrendingUp } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import CogniHubPricingCards from '../../components/CogniHubPricingCards'
+import CogniHubShowcase from '../../components/CogniHubShowcase'
 import { usePageAnimation } from '../../utils/useFirstMount'
 
 const CogniHub = () => {
@@ -11,71 +12,71 @@ const CogniHub = () => {
   const features = [
     {
       icon: Sparkles,
-      title: 'Multi-Model Access',
-      description: 'Access GPT-4o, Claude, Gemini, Mistral, and more. Switch models mid-conversation for the right AI on every task.'
+      title: '50+ AI Models, One Platform',
+      description: 'GPT, Claude, Gemini, Mistral, Llama, DeepSeek, and dozens of open-source models. Pick the best AI for every task without switching apps or paying separate bills.'
     },
     {
       icon: Bot,
-      title: 'AI Agents',
-      description: 'Create agents that execute multi-step tasks with tools, API actions, and custom logic. Share across your organization.'
+      title: 'AI Agents That Work for You',
+      description: 'Build custom agents that draft proposals, follow up with leads, summarize meetings, and handle repetitive tasks — no technical skills required.'
     },
     {
       icon: Database,
-      title: 'Knowledge Base',
-      description: 'Upload your docs, product info, and FAQs. AI answers grounded in your business data with RAG technology.'
+      title: 'Train AI on Your Business',
+      description: 'Upload your product catalog, pricing sheets, SOPs, and FAQs. AI answers grounded in your actual business data — not generic responses.'
     },
     {
-      icon: Code,
-      title: 'Code Interpreter',
-      description: 'Run code, generate charts, and create interactive artifacts directly in chat. Full development environment built in.'
+      icon: FileText,
+      title: 'Reports & Insights on Demand',
+      description: 'Generate sales reports, market analysis, client summaries, and data visualizations in seconds. Ask questions, get charts — not spreadsheets.'
     }
   ]
 
   const benefits = [
     { icon: BarChart3, text: 'One bill replaces 3+ AI subscriptions' },
-    { icon: Shield, text: 'Enterprise auth: SSO, OAuth, LDAP, 2FA' },
-    { icon: Zap, text: 'Bring your own API keys for full control' },
-    { icon: Users, text: 'Team workspaces with shared agents' },
-    { icon: Globe, text: '30+ language support out of the box' },
-    { icon: Headphones, text: 'Priority support with onboarding' }
+    { icon: TrendingUp, text: 'Save 10+ hours per employee per week' },
+    { icon: Shield, text: 'Enterprise-grade security: SSO, 2FA, encryption' },
+    { icon: Users, text: 'Shared workspace — your whole team on one platform' },
+    { icon: Globe, text: 'Serve global clients in 30+ languages' },
+    { icon: Headphones, text: 'Priority onboarding and dedicated support' }
   ]
 
   const stats = [
-    { value: '10+', label: 'AI Models' },
-    { value: '<1s', label: 'Response Time' },
+    { value: '50+', label: 'AI Models' },
+    { value: 'Multi', label: 'Modalities' },
     { value: '30+', label: 'Languages' },
     { value: '99.9%', label: 'Uptime' }
   ]
 
   const useCases = [
     {
-      title: 'Small Teams',
-      description: 'Stop paying for ChatGPT AND Claude AND Gemini separately. One platform, all models, one bill.',
-      features: ['Multi-model access', 'Shared workspace', 'Simple billing']
+      title: 'Small & Mid-Size Businesses',
+      description: 'Stop paying for ChatGPT AND Claude AND Gemini separately. One platform, every model, one predictable bill.',
+      features: ['All 50+ models included', 'Simple per-seat pricing', 'No AI expertise needed']
     },
     {
-      title: 'SaaS Companies',
-      description: 'Build custom AI agents for support, onboarding, and internal workflows.',
-      features: ['Agent builder', 'Knowledge bases', 'API integrations']
+      title: 'Sales & Marketing Teams',
+      description: 'Draft outreach emails, generate ad copy, analyze competitors, and build pitch decks — all from one AI workspace.',
+      features: ['Lead research agents', 'Content generation', 'Campaign analysis']
     },
     {
-      title: 'Agencies',
-      description: 'Give every client project the right AI model. Manage teams and usage from one dashboard.',
-      features: ['Team management', 'Usage analytics', 'Client separation']
+      title: 'Agencies & Consultancies',
+      description: 'Give every client project the right AI model. Manage teams, track usage, and keep client data separated.',
+      features: ['Client workspaces', 'Usage analytics', 'White-label options']
     },
     {
-      title: 'Education',
-      description: 'Access frontier models for research, teaching, and content creation at team-friendly pricing.',
-      features: ['All model tiers', 'Code interpreter', 'Content studio']
+      title: 'Operations & Support',
+      description: 'Automate ticket responses, generate SOPs, summarize customer feedback, and train new hires faster with AI.',
+      features: ['Knowledge base agents', 'Ticket auto-drafts', 'Onboarding assistants']
     }
   ]
 
   return (
     <div className="min-h-screen">
       <SEOMeta
-        title="CogniHub - Multi-Model AI Workspace for Teams"
-        description="Access GPT, Claude, Gemini, Mistral and more in one workspace. AI agents, knowledge bases, code interpreter, and team management. Managed or BYOK."
-        keywords="multi-model AI, AI workspace, GPT Claude Gemini, AI agents, knowledge base, team AI platform"
+        title="CogniHub - 50+ AI Models in One Workspace for Your Team"
+        description="Access GPT, Claude, Gemini, Llama, and 50+ AI models in one platform. Build AI agents, train on your business data, and cut AI costs for your entire team."
+        keywords="multi-model AI workspace, AI for business teams, AI agents for SMB, GPT Claude Gemini one platform, AI productivity tools"
         url="/products/cognihub"
       />
 
@@ -93,18 +94,28 @@ const CogniHub = () => {
                 initial={iconInitial}
                 animate={iconAnimate}
                 transition={{ duration: 0.5, type: 'spring' }}
-                className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-100/70 rounded-xl flex items-center justify-center"
+                className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100/70 rounded-xl flex items-center justify-center"
               >
-                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
+                <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
               </motion.div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary">
-                <span className="text-purple-600">CogniHub</span>
+                <span className="text-blue-600">CogniHub</span>
               </h1>
             </div>
 
             <p className="text-base sm:text-lg lg:text-xl text-text-secondary max-w-3xl mx-auto mb-6 sm:mb-8 leading-relaxed">
               Every AI model. One workspace. Your whole team.
             </p>
+
+            <div
+              className="mt-6 sm:mt-8 max-w-2xl mx-auto opacity-90"
+              style={{
+                maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+              }}
+            >
+              <CogniHubShowcase compact />
+            </div>
           </motion.div>
         </div>
       </section>
@@ -122,7 +133,7 @@ const CogniHub = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-purple-600 mb-2">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-blue-600 mb-2">
                   {stat.value}
                 </div>
                 <div className="text-sm sm:text-base text-text-secondary font-medium">
@@ -144,10 +155,10 @@ const CogniHub = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Powerful <span className="text-purple-600">Features</span>
+              Everything Your Team Needs to <span className="text-blue-600">Work Smarter</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              Everything your team needs in one AI workspace
+              One AI platform that replaces multiple subscriptions and puts every model at your team's fingertips
             </p>
           </motion.div>
 
@@ -156,7 +167,7 @@ const CogniHub = () => {
               const Icon = feature.icon
               const colorSchemes = [
                 { lightBg: 'bg-blue-50', icon: 'text-blue-600', border: 'border-blue-200', glow: 'shadow-blue-500/20', bg: 'bg-blue-500' },
-                { lightBg: 'bg-purple-50', icon: 'text-purple-600', border: 'border-purple-200', glow: 'shadow-purple-500/20', bg: 'bg-purple-500' },
+                { lightBg: 'bg-blue-50', icon: 'text-blue-600', border: 'border-purple-200', glow: 'shadow-purple-500/20', bg: 'bg-blue-500' },
                 { lightBg: 'bg-cyan-50', icon: 'text-cyan-600', border: 'border-cyan-200', glow: 'shadow-cyan-500/20', bg: 'bg-cyan-500' },
                 { lightBg: 'bg-teal-50', icon: 'text-teal-600', border: 'border-teal-200', glow: 'shadow-teal-500/20', bg: 'bg-teal-500' },
               ]
@@ -209,10 +220,10 @@ const CogniHub = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Built for <span className="text-purple-600">Your Team</span>
+              Built for <span className="text-blue-600">How You Work</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              One AI platform for every team and workflow
+              Whether you're a 5-person startup or a 500-person company, CogniHub scales with you
             </p>
           </motion.div>
 
@@ -231,7 +242,7 @@ const CogniHub = () => {
                 <ul className="space-y-2">
                   {useCase.features.map((feature, fIndex) => (
                     <li key={fIndex} className="flex items-center gap-2 text-sm text-text-secondary">
-                      <CheckCircle2 className="w-4 h-4 text-purple-600 flex-shrink-0" />
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
                       {feature}
                     </li>
                   ))}
@@ -253,7 +264,7 @@ const CogniHub = () => {
           >
             <div className="text-center mb-10 sm:mb-12">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Why Teams Choose <span className="text-purple-600">CogniHub</span>
+                Why Teams Choose <span className="text-blue-600">CogniHub</span>
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
                 One platform replaces multiple AI subscriptions
@@ -270,10 +281,10 @@ const CogniHub = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-center gap-4 p-4 rounded-xl bg-purple-50/50 hover:bg-purple-50 transition-colors"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-blue-50/50 hover:bg-blue-50 transition-colors"
                   >
-                    <div className="w-10 h-10 bg-purple-100/70 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-5 h-5 text-purple-600" />
+                    <div className="w-10 h-10 bg-blue-100/70 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-blue-600" />
                     </div>
                     <p className="text-text-primary font-medium">{benefit.text}</p>
                   </motion.div>
@@ -294,7 +305,7 @@ const CogniHub = () => {
             className="text-center mb-12 sm:mb-16"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Simple, transparent <span className="text-purple-600">pricing</span>
+              Simple, transparent <span className="text-blue-600">pricing</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
               Choose Managed for simplicity or BYOK for full control. Upgrade or cancel anytime.
@@ -327,20 +338,20 @@ const CogniHub = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-purple-50 to-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden border-2 border-purple-100"
+            className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center relative overflow-hidden border-2 border-blue-100"
           >
             <div className="absolute inset-0 opacity-20">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
               <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
             </div>
 
-            <div className="inline-flex items-center gap-2 bg-purple-50 text-purple-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-purple-100">
+            <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6 relative z-10 border border-blue-100">
               <Sparkles className="w-4 h-4" />
               <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Get Started</span>
             </div>
 
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4 sm:mb-6 relative z-10">
-              Ready to <span className="bg-gradient-to-r from-purple-500 to-blue-600 bg-clip-text text-transparent">Unify Your Team's AI?</span>
+              Ready to <span className="bg-gradient-to-r from-primary-500 to-accent-indigo bg-clip-text text-transparent">Unify Your Team's AI?</span>
             </h2>
             <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto mb-8 relative z-10">
               Stop paying for multiple AI subscriptions. One platform, every model, your whole team.
@@ -360,7 +371,7 @@ const CogniHub = () => {
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full sm:w-auto border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all duration-300"
+                  className="w-full sm:w-auto border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all duration-300"
                 >
                   View Case Studies
                 </motion.button>

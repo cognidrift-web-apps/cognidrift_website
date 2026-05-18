@@ -1,32 +1,27 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, MessageSquare, ArrowRight, Calendar, Search, Send, CheckCircle, Bot, User } from 'lucide-react'
+import { Phone, MessageSquare, ArrowRight, Calendar, Send, CheckCircle } from 'lucide-react'
+import { BsRobot } from 'react-icons/bs'
+import { FaUserCircle } from 'react-icons/fa'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import VoiceWaveform from './VoiceWaveform'
+import { fadeInUp, staggerContainer } from '../utils/motionVariants'
 
 const MESSAGES = [
-  { role: 'caller', text: "Hi, I'd like to book an appointment for next Tuesday" },
-  { role: 'ai', text: "Of course! Let me check Dr. Chen's availability for Tuesday..." },
-  { role: 'action', icon: Calendar, loading: 'Checking schedule...', resolved: 'Tuesday 2:00 PM — Available' },
-  { role: 'ai', text: "I've booked you for Tuesday at 2:00 PM with Dr. Chen" },
-  { role: 'action', icon: Send, loading: 'Sending confirmation SMS...', resolved: 'SMS sent to (555) 867-5309' },
-  { role: 'caller', text: 'Can you check if my insurance is on file?' },
-  { role: 'ai', text: 'Let me look that up for you...' },
-  { role: 'action', icon: Search, loading: 'Checking patient records...', resolved: 'Blue Cross PPO — Active' },
-  { role: 'ai', text: 'Your Blue Cross PPO is active and on file' },
-  { role: 'ai', text: "You're all set! You'll receive a reminder 24 hours before" },
+  { role: 'ai', text: "Hello! CogniDrift AI speaking, how can I help you today?" },
+  { role: 'caller', text: "Hi, I'd like to book an appointment for Monday afternoon" },
+  { role: 'ai', text: "Sure! Let me check Dr. Chen's availability for Monday..." },
+  { role: 'action', icon: Calendar, loading: 'Checking availability...', resolved: 'Monday 1:00 PM — Available' },
+  { role: 'ai', text: "Great news! Dr. Chen has an opening at 1:00 PM. Shall I book it?" },
+  { role: 'caller', text: "Yes, please book that slot" },
+  { role: 'ai', text: "Booked! Would you like a confirmation SMS?" },
+  { role: 'caller', text: "Yes please" },
+  { role: 'action', icon: Send, loading: 'Sending confirmation...', resolved: 'Confirmation SMS sent!' },
+  { role: 'ai', text: "Done! Confirmation sent to your phone. Anything else?" },
 ]
 
-const STAGE_DURATIONS = [4000, 3000, 0, 3000]
+const STAGE_DURATIONS = { incoming: 4500, connected: 3500, complete: 3500 }
+const CHAR_DELAY = 50
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-}
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
-}
 
 const formatTime = (seconds) => {
   const m = Math.floor(seconds / 60)
@@ -34,274 +29,377 @@ const formatTime = (seconds) => {
   return `${m}:${s.toString().padStart(2, '0')}`
 }
 
-const StatusBar = ({ light }) => (
-  <div className={`flex items-center justify-between px-5 pt-2 pb-1 text-[10px] font-semibold ${light ? 'text-white/70' : 'text-gray-500'}`}>
+const StatusBar = () => (
+  <div className="flex items-center justify-between px-5 pt-2 pb-1 text-[10px] font-semibold text-gray-400">
     <span>9:41</span>
     <div className="flex items-center gap-1">
-      <div className="flex gap-[2px]">
+      <div className="flex items-end gap-[2px]">
         {[4, 6, 8, 10].map((h, i) => (
-          <div key={i} className={`w-[3px] rounded-sm ${light ? 'bg-white/50' : 'bg-gray-400'}`} style={{ height: h }} />
+          <div key={i} className="w-[3px] rounded-sm bg-gray-300" style={{ height: h }} />
         ))}
       </div>
-      <div className={`w-5 h-2.5 border rounded-sm relative ml-1 ${light ? 'border-white/50' : 'border-gray-400'}`}>
-        <div className={`absolute inset-[1px] rounded-[1px] ${light ? 'bg-white/50' : 'bg-gray-400'}`} style={{ width: '70%' }} />
+      <div className="w-5 h-2.5 border border-gray-300 rounded-sm relative ml-1">
+        <div className="absolute inset-[1px] rounded-[1px] bg-gray-300" style={{ width: '70%' }} />
       </div>
     </div>
   </div>
 )
 
-const VoiceBars = ({ active, size = 'md' }) => {
-  const barConfigs = size === 'sm'
-    ? [{ h: 8, d: 0.5 }, { h: 12, d: 0.7 }, { h: 16, d: 0.4 }, { h: 12, d: 0.6 }, { h: 8, d: 0.8 }]
-    : [{ h: 14, d: 0.5 }, { h: 22, d: 0.7 }, { h: 30, d: 0.4 }, { h: 22, d: 0.6 }, { h: 14, d: 0.8 }, { h: 18, d: 0.3 }, { h: 26, d: 0.9 }]
+const AudioVisualizer = ({ active, ended }) => {
+  const canvasRef = useRef(null)
+  const ampRef = useRef(0.12)
 
-  return (
-    <div className="flex items-center gap-[3px]">
-      {barConfigs.map((bar, i) => (
-        <motion.div
-          key={i}
-          animate={active ? { scaleY: [0.3, 1, 0.3] } : { scaleY: 0.15 }}
-          transition={active ? { duration: 0.6 + bar.d * 0.4, repeat: Infinity, delay: i * 0.08, ease: 'easeInOut' } : { duration: 0.3 }}
-          className="rounded-full origin-center"
-          style={{
-            width: size === 'sm' ? 2.5 : 3,
-            height: bar.h,
-            background: 'linear-gradient(to top, #06b6d4, #8b5cf6)',
-          }}
-        />
-      ))}
-    </div>
-  )
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    const dpr = window.devicePixelRatio || 1
+    const w = 140
+    const h = 40
+    canvas.width = w * dpr
+    canvas.height = h * dpr
+    ctx.scale(dpr, dpr)
+
+    let rafId
+
+    const waves = [
+      { r: 99, g: 102, b: 241, a: 0.55, spd: 2.2, off: 0, mul: 1.0, lw: 2.5 },
+      { r: 139, g: 92, b: 246, a: 0.35, spd: 1.6, off: 2, mul: 0.7, lw: 2 },
+      { r: 168, g: 85, b: 247, a: 0.22, spd: 3.0, off: 4, mul: 0.5, lw: 1.5 },
+    ]
+
+    const draw = (now) => {
+      const t = now * 0.001
+
+      const target = ended ? 0.02 : active ? 1 : 0.12
+      ampRef.current += (target - ampRef.current) * 0.045
+      const baseAmp = ampRef.current
+
+      const speechMod = active
+        ? 0.55 + 0.45 * Math.abs(Math.sin(t * 1.1) * Math.sin(t * 0.4 + 1.7))
+        : 1.0
+      const amp = baseAmp * speechMod
+
+      ctx.clearRect(0, 0, w, h)
+      const cy = h / 2
+
+      for (const l of waves) {
+        ctx.save()
+
+        if (amp > 0.1) {
+          ctx.shadowBlur = 10 * amp
+          ctx.shadowColor = `rgba(${l.r},${l.g},${l.b},${0.3 * amp})`
+        }
+
+        ctx.beginPath()
+        const segs = 70
+        for (let i = 0; i <= segs; i++) {
+          const ratio = i / segs
+          const x = ratio * w
+          const taper = Math.sin(Math.PI * ratio)
+          const nx = ratio * 8 - 4
+          const wave =
+            Math.sin(nx * 0.6 + t * l.spd + l.off) * 0.55 +
+            Math.sin(nx * 1.1 + t * l.spd * 0.7 + l.off * 0.5) * 0.28 +
+            Math.cos(nx * 0.4 + t * l.spd * 1.3) * 0.17
+          const y = cy + wave * taper * amp * l.mul * h * 0.42
+
+          if (i === 0) ctx.moveTo(x, y)
+          else ctx.lineTo(x, y)
+        }
+
+        const grad = ctx.createLinearGradient(0, 0, w, 0)
+        grad.addColorStop(0, `rgba(${l.r},${l.g},${l.b},0)`)
+        grad.addColorStop(0.12, `rgba(${l.r},${l.g},${l.b},${l.a * Math.min(amp * 1.5, 1)})`)
+        grad.addColorStop(0.88, `rgba(${l.r},${l.g},${l.b},${l.a * Math.min(amp * 1.5, 1)})`)
+        grad.addColorStop(1, `rgba(${l.r},${l.g},${l.b},0)`)
+
+        ctx.strokeStyle = grad
+        ctx.lineWidth = l.lw
+        ctx.lineCap = 'round'
+        ctx.lineJoin = 'round'
+        ctx.stroke()
+
+        ctx.restore()
+      }
+
+      rafId = requestAnimationFrame(draw)
+    }
+
+    rafId = requestAnimationFrame(draw)
+    return () => cancelAnimationFrame(rafId)
+  }, [active, ended])
+
+  return <canvas ref={canvasRef} style={{ width: 140, height: 40 }} />
 }
 
 const IncomingCallScreen = () => (
-  <div className="flex flex-col items-center justify-center h-full bg-gradient-to-b from-slate-800 via-slate-900 to-gray-950 px-4 relative overflow-hidden">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(59,130,246,0.15),transparent_70%)]" />
+  <div className="flex flex-col items-center h-full bg-gradient-to-b from-blue-50 via-white to-cyan-50/30 px-4 pt-10 pb-6 relative overflow-hidden">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(59,130,246,0.08),transparent_70%)]" />
 
-    <p className="text-[10px] text-blue-300/80 uppercase tracking-[0.2em] mb-5 relative z-10">Incoming Call</p>
+    <p className="text-[11px] text-blue-500/70 uppercase tracking-[0.25em] mb-8 relative z-10 font-medium">
+      Incoming Call
+    </p>
 
-    <motion.div
-      className="relative mb-4 z-10"
-      animate={{ rotate: [-2, 2, -2, 2, 0] }}
-      transition={{ duration: 0.4, repeat: Infinity, repeatDelay: 1 }}
-    >
-      <div className="w-20 h-20 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.4)]">
+    <motion.div className="relative mb-5 z-10">
+      <div className="w-[76px] h-[76px] bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-lg shadow-blue-200/50">
         <Phone className="w-9 h-9 text-white" />
       </div>
       {[0, 1, 2].map(i => (
         <motion.div
           key={i}
-          animate={{ scale: [1, 2.8], opacity: [0.6, 0] }}
-          transition={{ duration: 2, repeat: Infinity, delay: i * 0.6, ease: 'easeOut' }}
-          className="absolute inset-0 border-2 border-blue-400/60 rounded-full"
+          animate={{ scale: [1, 2.5], opacity: [0.45, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, delay: i * 0.7, ease: 'easeOut' }}
+          className="absolute inset-0 border-2 border-blue-300/40 rounded-full"
         />
       ))}
     </motion.div>
 
-    <h3 className="text-base font-bold text-white mb-1 relative z-10">Business Call</h3>
+    <h3 className="text-lg font-bold text-gray-900 mb-0.5 relative z-10">Sarah Mitchell</h3>
+    <p className="text-[11px] text-gray-400 mb-1 relative z-10">Mobile</p>
     <motion.p
-      animate={{ opacity: [1, 0.4, 1] }}
-      transition={{ duration: 1.2, repeat: Infinity }}
-      className="text-[11px] text-blue-300/70 mb-8 relative z-10"
+      animate={{ opacity: [1, 0.35, 1] }}
+      transition={{ duration: 1.4, repeat: Infinity }}
+      className="text-xs text-blue-500/70 mb-auto relative z-10"
     >
       Ringing...
     </motion.p>
 
-    <div className="flex items-center gap-8 relative z-10">
-      <div className="w-12 h-12 bg-red-500/90 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30">
-        <Phone className="w-5 h-5 text-white rotate-[135deg]" />
+    <div className="flex items-center gap-10 relative z-10 mb-2">
+      <div className="flex flex-col items-center gap-1.5">
+        <div className="w-14 h-14 bg-red-500 rounded-full flex items-center justify-center shadow-lg shadow-red-200/40">
+          <Phone className="w-6 h-6 text-white rotate-[135deg]" />
+        </div>
+        <span className="text-[10px] text-gray-400">Decline</span>
       </div>
-      <motion.div
-        animate={{
-          scale: [1, 1.1, 1],
-          boxShadow: [
-            '0 0 20px rgba(34,197,94,0.3)',
-            '0 0 35px rgba(34,197,94,0.6)',
-            '0 0 20px rgba(34,197,94,0.3)'
-          ]
-        }}
-        transition={{ duration: 1.2, repeat: Infinity }}
-        className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center"
-      >
-        <Phone className="w-7 h-7 text-white" />
-      </motion.div>
+      <div className="flex flex-col items-center gap-1.5">
+        <motion.div
+          animate={{
+            scale: [1, 1.08, 1],
+            boxShadow: [
+              '0 4px 20px rgba(34,197,94,0.2)',
+              '0 4px 30px rgba(34,197,94,0.5)',
+              '0 4px 20px rgba(34,197,94,0.2)'
+            ]
+          }}
+          transition={{ duration: 1.4, repeat: Infinity }}
+          className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center"
+        >
+          <Phone className="w-6 h-6 text-white" />
+        </motion.div>
+        <span className="text-[10px] text-gray-400">Accept</span>
+      </div>
     </div>
   </div>
 )
 
 const ConnectedScreen = ({ timer }) => (
-  <div className="flex flex-col items-center justify-center h-full bg-gradient-to-b from-slate-800 via-slate-900 to-gray-950 px-4 relative overflow-hidden">
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(6,182,212,0.12),transparent_60%)]" />
+  <div className="flex flex-col items-center justify-center h-full bg-gradient-to-b from-indigo-50/30 via-white to-purple-50/20 px-4 relative overflow-hidden">
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(99,102,241,0.06),transparent_60%)]" />
 
-    <div className="flex items-center gap-1.5 mb-6 relative z-10">
-      <motion.div animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-2 h-2 bg-green-400 rounded-full" />
-      <span className="text-[11px] font-semibold text-green-400">Connected</span>
-      <span className="text-[11px] text-white/40 ml-1">{formatTime(timer)}</span>
+    <div className="absolute top-3 left-0 right-0 flex items-center justify-center gap-1.5 z-10">
+      <motion.div animate={{ scale: [1, 1.3, 1] }} transition={{ duration: 1.5, repeat: Infinity }} className="w-2 h-2 bg-green-500 rounded-full" />
+      <span className="text-[11px] font-semibold text-green-600">Connected</span>
+      <span className="text-[11px] text-gray-400 ml-1">{formatTime(timer)}</span>
     </div>
 
-    <div className="relative z-10 mb-4">
-      <div className="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500/20 to-purple-500/20 flex items-center justify-center border border-white/10">
-        <Bot className="w-8 h-8 text-cyan-400" />
+    <motion.div className="relative mb-5 z-10">
+      <div className="w-[72px] h-[72px] bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg shadow-purple-200/50">
+        <BsRobot className="w-8 h-8 text-white" />
       </div>
       {[0, 1].map(i => (
         <motion.div
           key={i}
-          animate={{ scale: [1, 1.8], opacity: [0.4, 0] }}
+          animate={{ scale: [1, 2.2], opacity: [0.3, 0] }}
           transition={{ duration: 2, repeat: Infinity, delay: i * 0.8, ease: 'easeOut' }}
-          className="absolute inset-0 border border-cyan-400/30 rounded-full"
+          className="absolute inset-0 border-2 border-purple-300/40 rounded-full"
         />
       ))}
-    </div>
+    </motion.div>
 
-    <h3 className="text-sm font-bold text-white mb-1 relative z-10">CogniDrift AI</h3>
+    <h3 className="text-base font-bold text-gray-900 mb-1 relative z-10">CogniDrift AI</h3>
+    <AudioVisualizer active ended={false} />
     <motion.p
       animate={{ opacity: [1, 0.4, 1] }}
       transition={{ duration: 1.5, repeat: Infinity }}
-      className="text-[11px] text-cyan-300/60 mb-6 relative z-10"
+      className="text-xs text-purple-500/60 relative z-10 mt-1"
     >
       Answering...
     </motion.p>
-
-    <div className="relative z-10">
-      <VoiceBars active size="md" />
-    </div>
   </div>
 )
 
-const TypingIndicator = () => (
+const CallerBubble = ({ text }) => (
   <motion.div
-    initial={{ opacity: 0, y: 8 }}
+    initial={{ opacity: 0, y: 12 }}
     animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -4 }}
-    className="flex justify-end"
+    transition={{ duration: 0.4 }}
+    className="flex justify-start"
   >
-    <div className="flex items-center gap-2 bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200/50 rounded-2xl rounded-br-md px-3 py-2.5">
-      <div className="w-4 h-4 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-        <Bot className="w-2.5 h-2.5 text-white" />
+    <div className="flex items-end gap-2 max-w-[85%]">
+      <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+        <FaUserCircle className="w-6 h-6 text-gray-400" />
       </div>
-      <VoiceBars active size="sm" />
+      <div className="bg-white/50 backdrop-blur-sm rounded-2xl rounded-bl-sm px-3.5 py-2.5 border border-white/40 shadow-lg">
+        <p className="text-sm text-gray-800 leading-relaxed">{text}</p>
+      </div>
     </div>
   </motion.div>
 )
+
+const AIBubble = ({ text, onComplete }) => {
+  const [charCount, setCharCount] = useState(0)
+  const [showFlash, setShowFlash] = useState(false)
+  const calledRef = useRef(false)
+  const onCompleteRef = useRef(onComplete)
+  onCompleteRef.current = onComplete
+  const flashTimer = useRef(null)
+  const completeTimer = useRef(null)
+
+  useEffect(() => {
+    if (charCount >= text.length) {
+      if (!calledRef.current) {
+        calledRef.current = true
+        setShowFlash(true)
+        flashTimer.current = setTimeout(() => setShowFlash(false), 450)
+        completeTimer.current = setTimeout(() => onCompleteRef.current?.(), 800)
+      }
+      return
+    }
+    const id = setTimeout(() => setCharCount(c => c + 1), CHAR_DELAY)
+    return () => clearTimeout(id)
+  }, [charCount, text.length])
+
+  useEffect(() => {
+    return () => {
+      if (flashTimer.current) clearTimeout(flashTimer.current)
+      if (completeTimer.current) clearTimeout(completeTimer.current)
+    }
+  }, [])
+
+  const isTyping = charCount < text.length
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="flex justify-end"
+    >
+      <div className="flex items-end gap-2 flex-row-reverse max-w-[85%]">
+        <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
+          <BsRobot className="w-6 h-6 text-purple-600" />
+        </div>
+        <motion.div
+          animate={
+            showFlash
+              ? { boxShadow: '0 0 24px rgba(139,92,246,0.55)' }
+              : { boxShadow: '0 0 0px rgba(139,92,246,0)' }
+          }
+          transition={{ duration: showFlash ? 0.12 : 0.5 }}
+          className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-2xl rounded-br-sm px-3.5 py-2.5 shadow-lg"
+        >
+          <p className="text-sm leading-relaxed">
+            {text.slice(0, charCount)}
+            {isTyping && <span className="inline-block w-[2px] h-3.5 bg-white/60 ml-0.5 trynow-cursor" />}
+          </p>
+        </motion.div>
+      </div>
+    </motion.div>
+  )
+}
 
 const ActionCard = ({ message, resolved }) => {
   const Icon = message.icon
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`mx-auto max-w-[92%] rounded-xl px-3 py-2 flex items-center gap-2 text-[10px] ${
-        resolved
-          ? 'bg-green-50 border border-green-300/60 shadow-sm shadow-green-100'
-          : 'bg-gray-50 border border-gray-200'
-      }`}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4 }}
+      className="flex justify-center py-1"
     >
-      {resolved
-        ? <CheckCircle className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
-        : <Icon className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
-      }
-      <span className={resolved ? 'text-green-700 font-semibold' : 'text-gray-500'}>
-        {resolved ? message.resolved : message.loading}
-      </span>
-      {!resolved && (
-        <motion.span
-          animate={{ opacity: [0.3, 1, 0.3] }}
-          transition={{ duration: 1, repeat: Infinity }}
-          className="text-gray-300 ml-auto"
+      <div className="flex flex-col items-center gap-1.5">
+        <motion.div
+          animate={
+            resolved
+              ? { boxShadow: '0 0 16px rgba(34,197,94,0.25)' }
+              : { boxShadow: ['0 0 6px rgba(99,102,241,0.15)', '0 0 18px rgba(99,102,241,0.35)', '0 0 6px rgba(99,102,241,0.15)'] }
+          }
+          transition={resolved ? {} : { duration: 1.5, repeat: Infinity }}
+          className={`relative w-11 h-11 rounded-xl flex items-center justify-center ${
+            resolved ? 'bg-green-50 border border-green-200' : 'bg-indigo-50 border border-indigo-200/60'
+          }`}
         >
-          ...
-        </motion.span>
-      )}
+          <Icon className={`w-5 h-5 ${resolved ? 'text-green-600' : 'text-indigo-500'}`} />
+          {resolved && (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="absolute -top-1 -right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center"
+            >
+              <CheckCircle className="w-3 h-3 text-white" />
+            </motion.div>
+          )}
+        </motion.div>
+        <span className={`text-[11px] font-medium ${resolved ? 'text-green-600' : 'text-gray-500'}`}>
+          {resolved ? message.resolved : message.loading}
+        </span>
+      </div>
     </motion.div>
   )
 }
 
-const TranscriptScreen = ({ visibleMessages, resolvedActions, timer, ended, aiSpeaking, showTyping }) => {
+const TranscriptScreen = ({ visibleMessages, resolvedActions, timer, ended, aiSpeaking, onAiComplete }) => {
   const scrollRef = useRef(null)
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
-  }, [visibleMessages.length, resolvedActions, showTyping])
+  }, [visibleMessages.length])
 
   return (
-    <div className="flex flex-col h-full bg-gray-50">
-      {/* Top bar */}
-      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white border-b border-gray-200/80">
-        <div className={`w-1.5 h-1.5 rounded-full ${ended ? 'bg-red-500' : 'bg-green-500'}`} />
-        <span className={`text-[10px] font-semibold ${ended ? 'text-red-500' : 'text-green-600'}`}>
-          {ended ? 'Call Ended' : 'Connected'}
+    <div className="flex flex-col h-full bg-white">
+      <div className="flex items-center gap-1.5 px-4 py-2 border-b border-gray-100">
+        <div className={`w-1.5 h-1.5 rounded-full ${ended ? 'bg-red-400' : 'bg-green-500'}`} />
+        <span className={`text-[11px] font-semibold ${ended ? 'text-red-500' : 'text-green-600'}`}>
+          {ended ? 'Call Ended' : 'Active Call'}
         </span>
-        <span className="text-[10px] text-gray-400 ml-0.5">{formatTime(timer)}</span>
-        <div className="ml-auto">
-          <VoiceWaveform size={16} active={!ended} intensity={0.5} />
+        <span className="text-[11px] text-gray-400 ml-1">{formatTime(timer)}</span>
+      </div>
+
+      <div className="flex-1 relative overflow-hidden min-h-0">
+        <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent z-10 pointer-events-none" />
+
+        <div ref={scrollRef} className="h-full overflow-y-auto px-3 py-3 space-y-2.5 trynow-hide-scrollbar">
+          {visibleMessages.map((msg, i) => {
+            if (msg.role === 'caller') return <CallerBubble key={i} text={msg.text} />
+            if (msg.role === 'ai') return <AIBubble key={i} text={msg.text} onComplete={onAiComplete} />
+            if (msg.role === 'action') return <ActionCard key={i} message={msg} resolved={resolvedActions.has(i)} />
+            return null
+          })}
         </div>
       </div>
 
-      {/* Messages */}
-      <div
-        ref={scrollRef}
-        className="flex-1 overflow-y-auto px-2.5 py-2 space-y-2.5"
-        style={{ scrollBehavior: 'smooth' }}
-      >
-        {visibleMessages.map((msg, i) => {
-          if (msg.role === 'caller') {
-            return (
-              <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="flex items-end gap-1.5">
-                <div className="w-5 h-5 rounded-full bg-gray-300 flex items-center justify-center flex-shrink-0">
-                  <User className="w-3 h-3 text-gray-600" />
-                </div>
-                <div className="bg-white border border-gray-200 rounded-2xl rounded-bl-md px-3 py-2 max-w-[80%] shadow-sm">
-                  <p className="text-[11px] text-gray-800 leading-relaxed">{msg.text}</p>
-                </div>
-              </motion.div>
-            )
-          }
-          if (msg.role === 'ai') {
-            return (
-              <motion.div key={i} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} className="flex items-end gap-1.5 justify-end">
-                <div className="bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200/50 rounded-2xl rounded-br-md px-3 py-2 max-w-[80%] shadow-sm shadow-cyan-50">
-                  <p className="text-[11px] text-gray-800 leading-relaxed">{msg.text}</p>
-                </div>
-                <div className="w-5 h-5 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                  <Bot className="w-3 h-3 text-white" />
-                </div>
-              </motion.div>
-            )
-          }
-          if (msg.role === 'action') {
-            return <ActionCard key={i} message={msg} resolved={resolvedActions.has(i)} />
-          }
-          return null
-        })}
-
-        {showTyping && (
-          <AnimatePresence>
-            <TypingIndicator />
-          </AnimatePresence>
-        )}
-      </div>
-
-      {/* Bottom voice bar */}
-      <div className="px-3 py-2 bg-white border-t border-gray-200/80 flex items-center justify-center gap-3">
-        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center shadow-md">
-          <Bot className="w-3.5 h-3.5 text-white" />
-        </div>
-        <VoiceBars active={aiSpeaking && !ended} size="md" />
+      <div className="px-3 py-2.5 border-t border-gray-100 bg-gray-50/30 flex flex-col items-center gap-1">
+        <AudioVisualizer active={aiSpeaking} ended={ended} />
+        <p className="text-[10px] text-center font-medium text-gray-400 tracking-wide">
+          {ended ? 'Call Complete' : aiSpeaking ? 'AI Speaking...' : 'Listening...'}
+        </p>
       </div>
     </div>
   )
 }
 
-const TryNowSection = () => {
+const TryNowSection = ({ compact = false }) => {
   const [stage, setStage] = useState(0)
   const [timer, setTimer] = useState(0)
   const [visibleCount, setVisibleCount] = useState(0)
   const [resolvedActions, setResolvedActions] = useState(new Set())
   const [ended, setEnded] = useState(false)
-  const [showTyping, setShowTyping] = useState(false)
   const [aiSpeaking, setAiSpeaking] = useState(false)
+  const advanceRef = useRef(null)
+  const convTimerRef = useRef(null)
 
   const resetAll = useCallback(() => {
     setStage(0)
@@ -309,7 +407,6 @@ const TryNowSection = () => {
     setVisibleCount(0)
     setResolvedActions(new Set())
     setEnded(false)
-    setShowTyping(false)
     setAiSpeaking(false)
   }, [])
 
@@ -322,66 +419,169 @@ const TryNowSection = () => {
 
   useEffect(() => {
     if (stage === 0) {
-      const id = setTimeout(() => setStage(1), STAGE_DURATIONS[0])
+      const id = setTimeout(() => setStage(1), STAGE_DURATIONS.incoming)
       return () => clearTimeout(id)
     }
     if (stage === 1) {
-      const id = setTimeout(() => setStage(2), STAGE_DURATIONS[1])
-      return () => clearTimeout(id)
-    }
-    if (stage === 2) {
-      if (visibleCount >= MESSAGES.length) {
-        setShowTyping(false)
-        setAiSpeaking(false)
-        const id = setTimeout(() => setStage(3), 1500)
-        return () => clearTimeout(id)
-      }
-
-      const nextMsg = MESSAGES[visibleCount]
-
-      if (nextMsg?.role === 'ai') {
-        setShowTyping(true)
-        setAiSpeaking(true)
-        const id = setTimeout(() => {
-          setShowTyping(false)
-          setVisibleCount(c => c + 1)
-          setTimeout(() => setAiSpeaking(false), 500)
-        }, 1200)
-        return () => clearTimeout(id)
-      }
-
-      if (nextMsg?.role === 'action') {
-        setAiSpeaking(true)
-        const actionIndex = visibleCount
-        const id = setTimeout(() => {
-          setVisibleCount(c => c + 1)
-          setTimeout(() => {
-            setResolvedActions(prev => new Set([...prev, actionIndex]))
-            setAiSpeaking(false)
-          }, 1000)
-        }, 600)
-        return () => clearTimeout(id)
-      }
-
-      setAiSpeaking(false)
-      const id = setTimeout(() => {
-        setVisibleCount(c => c + 1)
-      }, 1200)
+      const id = setTimeout(() => setStage(2), STAGE_DURATIONS.connected)
       return () => clearTimeout(id)
     }
     if (stage === 3) {
       setEnded(true)
-      const id = setTimeout(resetAll, STAGE_DURATIONS[3])
+      const id = setTimeout(resetAll, STAGE_DURATIONS.complete)
       return () => clearTimeout(id)
     }
-  }, [stage, visibleCount, resetAll])
+  }, [stage, resetAll])
+
+  useEffect(() => {
+    if (stage !== 2) {
+      advanceRef.current = null
+      return
+    }
+
+    let step = 0
+
+    const advance = () => {
+      if (step >= MESSAGES.length) {
+        convTimerRef.current = setTimeout(() => setStage(3), 2500)
+        return
+      }
+
+      const msg = MESSAGES[step]
+      const idx = step
+      step++
+      setVisibleCount(step)
+
+      if (msg.role === 'ai') {
+        setAiSpeaking(true)
+      } else if (msg.role === 'caller') {
+        setAiSpeaking(false)
+        convTimerRef.current = setTimeout(advance, 2000)
+      } else if (msg.role === 'action') {
+        setAiSpeaking(true)
+        convTimerRef.current = setTimeout(() => {
+          setResolvedActions(prev => new Set([...prev, idx]))
+          setAiSpeaking(false)
+          convTimerRef.current = setTimeout(advance, 1200)
+        }, 1800)
+      }
+    }
+
+    advanceRef.current = advance
+    convTimerRef.current = setTimeout(advance, 600)
+
+    return () => {
+      advanceRef.current = null
+      if (convTimerRef.current) clearTimeout(convTimerRef.current)
+    }
+  }, [stage])
+
+  const handleAiComplete = useCallback(() => {
+    setAiSpeaking(false)
+    convTimerRef.current = setTimeout(() => {
+      advanceRef.current?.()
+    }, 1500)
+  }, [])
 
   const visibleMessages = MESSAGES.slice(0, visibleCount)
+
+  if (compact) {
+    return (
+      <div className="relative flex justify-center">
+        <div className="phone-holo-wrap w-[260px] sm:w-[280px] lg:w-[300px]">
+          <div className="relative bg-white rounded-[2.5rem] p-[3px] z-10 shadow-2xl shadow-blue-100/40">
+            <div className="bg-white rounded-[2.3rem] overflow-hidden border border-gray-100">
+              <div className="aspect-[9/19] flex flex-col">
+                <div className="flex justify-center pt-1.5 pb-0.5 bg-white">
+                  <div className="w-20 h-5 rounded-full bg-gray-100 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-gray-300" />
+                  </div>
+                </div>
+
+                <StatusBar />
+
+                <div className="flex-1 overflow-hidden min-h-0">
+                  <AnimatePresence mode="wait">
+                    {stage === 0 && (
+                      <motion.div key="incoming" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="h-full">
+                        <IncomingCallScreen />
+                      </motion.div>
+                    )}
+                    {stage === 1 && (
+                      <motion.div key="connected" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="h-full">
+                        <ConnectedScreen timer={timer} />
+                      </motion.div>
+                    )}
+                    {(stage === 2 || stage === 3) && (
+                      <motion.div key="transcript" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="h-full">
+                        <TranscriptScreen
+                          visibleMessages={visibleMessages}
+                          resolvedActions={resolvedActions}
+                          timer={timer}
+                          ended={ended}
+                          aiSpeaking={aiSpeaking}
+                          onAiComplete={handleAiComplete}
+                        />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <style>{`
+          .phone-holo-wrap {
+            position: relative;
+          }
+          .phone-holo-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 2.8rem;
+            background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 200% 100%;
+            animation: holo-shift 3s linear infinite;
+            filter: blur(8px);
+            opacity: 0.3;
+            z-index: 0;
+          }
+          .phone-holo-wrap::after {
+            content: '';
+            position: absolute;
+            inset: -1.5px;
+            border-radius: 2.6rem;
+            background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
+            background-size: 200% 100%;
+            animation: holo-shift 3s linear infinite;
+            opacity: 0.5;
+            z-index: 1;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1.5px;
+          }
+          @keyframes holo-shift {
+            to { background-position: -200% 0; }
+          }
+          .trynow-hide-scrollbar::-webkit-scrollbar { display: none; }
+          .trynow-hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+          .trynow-cursor {
+            animation: trynow-blink 0.5s step-end infinite;
+          }
+          @keyframes trynow-blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+          }
+        `}</style>
+      </div>
+    )
+  }
 
   return (
     <section id="try-it-live" className="py-14 lg:py-20 bg-neutral-offWhite scroll-mt-20">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -394,18 +594,17 @@ const TryNowSection = () => {
             className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
           >
             <Phone className="w-4 h-4" />
-            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Experience AI Live</span>
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Voice Agent: Cogni<span className="text-fuchsia-500">Voice</span></span>
           </motion.div>
           <motion.h2 variants={fadeInUp} className="section-title hero-display">
-            See Our AI <span className="text-gradient">In Action</span>
+            Try It <span className="text-gradient">Live</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="section-subtitle">
-            Watch how our AI receptionist handles a real call — then try it yourself.
+            Listen to a live call: from greeting to booked appointment.
           </motion.p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-12 items-center">
-          {/* Left Column — CTA Cards */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -469,7 +668,6 @@ const TryNowSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column — Phone Mockup */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 50 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -477,21 +675,19 @@ const TryNowSection = () => {
             transition={{ duration: 0.8, ease: 'easeOut' }}
             className="relative flex justify-center mt-8 lg:mt-0"
           >
-            <div className="phone-holo-wrap w-[240px] sm:w-[260px] lg:w-[300px]">
-              <div className="relative bg-gray-950 rounded-[2.5rem] p-[3px] z-10 shadow-2xl">
-                <div className="bg-white rounded-[2.3rem] overflow-hidden">
+            <div className="phone-holo-wrap w-[260px] sm:w-[280px] lg:w-[300px]">
+              <div className="relative bg-white rounded-[2.5rem] p-[3px] z-10 shadow-2xl shadow-blue-100/40">
+                <div className="bg-white rounded-[2.3rem] overflow-hidden border border-gray-100">
                   <div className="aspect-[9/19] flex flex-col">
-                    {/* Notch */}
-                    <div className={`flex justify-center pt-1.5 pb-0.5 ${stage <= 1 ? 'bg-slate-800' : 'bg-white'}`}>
-                      <div className={`w-20 h-5 rounded-full flex items-center justify-center ${stage <= 1 ? 'bg-gray-900' : 'bg-gray-100'}`}>
-                        <div className={`w-2 h-2 rounded-full ${stage <= 1 ? 'bg-gray-700' : 'bg-gray-300'}`} />
+                    <div className="flex justify-center pt-1.5 pb-0.5 bg-white">
+                      <div className="w-20 h-5 rounded-full bg-gray-100 flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-gray-300" />
                       </div>
                     </div>
 
-                    <StatusBar light={stage <= 1} />
+                    <StatusBar />
 
-                    {/* Screen Content */}
-                    <div className="flex-1 overflow-hidden">
+                    <div className="flex-1 overflow-hidden min-h-0">
                       <AnimatePresence mode="wait">
                         {stage === 0 && (
                           <motion.div key="incoming" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="h-full">
@@ -511,7 +707,7 @@ const TryNowSection = () => {
                               timer={timer}
                               ended={ended}
                               aiSpeaking={aiSpeaking}
-                              showTyping={showTyping}
+                              onAiComplete={handleAiComplete}
                             />
                           </motion.div>
                         )}
@@ -540,32 +736,41 @@ const TryNowSection = () => {
         .phone-holo-wrap::before {
           content: '';
           position: absolute;
-          inset: -6px;
+          inset: -4px;
           border-radius: 2.8rem;
           background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
           background-size: 200% 100%;
           animation: holo-shift 3s linear infinite;
-          filter: blur(14px);
-          opacity: 0.75;
+          filter: blur(8px);
+          opacity: 0.3;
           z-index: 0;
         }
         .phone-holo-wrap::after {
           content: '';
           position: absolute;
-          inset: -2px;
+          inset: -1.5px;
           border-radius: 2.6rem;
           background: linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #06b6d4, #3b82f6, #8b5cf6, #ec4899);
           background-size: 200% 100%;
           animation: holo-shift 3s linear infinite;
-          opacity: 0.9;
+          opacity: 0.5;
           z-index: 1;
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
-          padding: 2px;
+          padding: 1.5px;
         }
         @keyframes holo-shift {
           to { background-position: -200% 0; }
+        }
+        .trynow-hide-scrollbar::-webkit-scrollbar { display: none; }
+        .trynow-hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .trynow-cursor {
+          animation: trynow-blink 0.5s step-end infinite;
+        }
+        @keyframes trynow-blink {
+          0%, 49% { opacity: 1; }
+          50%, 100% { opacity: 0; }
         }
       `}</style>
     </section>

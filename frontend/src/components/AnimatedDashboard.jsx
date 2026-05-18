@@ -146,9 +146,9 @@ const AnimatedDashboard = () => {
           <div className="space-y-2">
             <p className="text-xs font-bold text-gray-700 mb-2">Recent Activity</p>
             {[
-              { icon: CheckCircle, color: 'green', text: 'Appointment scheduled', time: '2m ago' },
-              { icon: Phone, color: 'blue', text: 'Call transferred to Dr. Smith', time: '5m ago' },
-              { icon: Clock, color: 'orange', text: 'Reminder sent to patient', time: '8m ago' }
+              { icon: CheckCircle, bg: 'bg-green-50', text: 'Appointment scheduled', time: '2m ago', iconColor: 'text-green-600' },
+              { icon: Phone, bg: 'bg-blue-50', text: 'Call transferred to Dr. Smith', time: '5m ago', iconColor: 'text-blue-600' },
+              { icon: Clock, bg: 'bg-orange-50', text: 'Reminder sent to patient', time: '8m ago', iconColor: 'text-orange-600' }
             ].map((activity, i) => (
               <motion.div
                 key={i}
@@ -157,8 +157,8 @@ const AnimatedDashboard = () => {
                 transition={{ delay: 1 + i * 0.2 }}
                 className="flex items-center gap-2.5 bg-white rounded-lg p-2.5 border border-gray-200"
               >
-                <div className={`w-8 h-8 rounded-lg bg-${activity.color}-50 flex items-center justify-center flex-shrink-0`}>
-                  <activity.icon className={`w-4 h-4 text-${activity.color}-600`} />
+                <div className={`w-8 h-8 rounded-lg ${activity.bg} flex items-center justify-center flex-shrink-0`}>
+                  <activity.icon className={`w-4 h-4 ${activity.iconColor}`} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-semibold text-gray-900 truncate">{activity.text}</p>

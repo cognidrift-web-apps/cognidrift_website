@@ -25,6 +25,7 @@ const SiriWaveBackground = () => {
       const rect = canvas.getBoundingClientRect()
       canvas.width = rect.width * dpr
       canvas.height = rect.height * dpr
+      ctx.setTransform(1, 0, 0, 1, 0, 0)
       ctx.scale(dpr, dpr)
     }
 
@@ -52,8 +53,8 @@ const SiriWaveBackground = () => {
 
           const taper = Math.sin(Math.PI * ratio)
           const centerFade = 1 - Math.pow(Math.abs(ratio - 0.5) * 2, 4) * 0.3
-          const wave = Math.sin(normalizedX * 0.5 + t * line.speed + line.offset) *
-                       Math.cos(normalizedX * 0.3 + t)
+          const wave = Math.sin(normalizedX * 0.5 - t * line.speed + line.offset) *
+                       Math.cos(normalizedX * 0.3 - t)
 
           const y = height / 2 + wave * taper * centerFade * AMPLITUDE * (height * 0.15)
 

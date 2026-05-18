@@ -322,7 +322,7 @@ const CogniChat = () => {
             className="text-center mt-10"
           >
             <Link
-              to="/products/web-chatbot/pricing"
+              to="/products/cognichat/pricing"
               className="inline-flex items-center gap-2 text-primary-600 font-bold hover:text-primary-700 transition-colors"
             >
               Compare all plans in detail

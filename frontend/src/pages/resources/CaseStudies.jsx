@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { FaUserMd, FaHome, FaBalanceScale } from 'react-icons/fa'
 import { BsGraphUpArrow, BsLightningChargeFill } from 'react-icons/bs'
 import { useEffect, useState, useRef } from 'react'
+import { fadeInUp, staggerContainer, scaleIn } from '../../utils/motionVariants'
 
 // Animated circular progress component
 const CircularProgress = ({ value, maxValue = 100, label, suffix = '%', color = 'primary', delay = 0 }) => {
@@ -180,23 +181,8 @@ const AnimatedBar = ({ value, label, color = 'primary', delay = 0, maxValue = 10
   )
 }
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-}
 
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 }
-  }
-}
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: 'easeOut' } }
-}
 
 const CaseStudies = () => {
   // Primary blue color scheme (matching text-gradient)

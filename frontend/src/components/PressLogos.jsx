@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { fadeInUp } from '../utils/motionVariants'
 
 const PressLogos = () => {
   const pressLogos = [
@@ -10,10 +11,6 @@ const PressLogos = () => {
     { name: 'VentureBeat', logo: 'https://cdn.prod.website-files.com/5f3c19f18169b62a0d0bf387/60d33bef8cd8c04eb825a046_venturebeat-logo.svg' }
   ]
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-  }
 
   return (
     <section className="relative py-16 bg-neutral-offWhite border-y border-neutral-border overflow-hidden">

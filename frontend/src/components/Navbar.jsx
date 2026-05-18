@@ -86,9 +86,9 @@ const Navbar = () => {
           { name: 'CogniChat', description: 'AI chatbot for websites & messaging', path: '/products/cognichat', icon: Bot, iconColor: 'bg-blue-100/70 text-blue-600' },
           { name: 'CogniReach Calls', description: 'AI-powered outbound calling campaigns', path: '/products/cognireach-calls', icon: PhoneCall, iconColor: 'bg-blue-100/70 text-blue-600' },
           { name: 'CogniReach SMS', description: 'AI-powered SMS outreach campaigns', path: '/products/cognireach-sms', icon: Smartphone, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'CogniHub', description: 'Multi-model AI workspace for teams', path: '/products/cognihub', icon: Sparkles, iconColor: 'bg-purple-100/70 text-purple-600' },
+          { name: 'CogniHub', description: 'Multi-model AI workspace for teams', path: '/products/cognihub', icon: Sparkles, iconColor: 'bg-blue-100/70 text-blue-600' },
           { name: 'CogniFlow', description: 'AI workflow automation', path: '/products/cogniflow', icon: TrendingUp, iconColor: 'bg-blue-100/70 text-blue-600' },
-          { name: 'CogniAvatar', description: 'AI digital human for engagement', path: '/contact', icon: UserCircle, iconColor: 'bg-purple-100/70 text-purple-600', badge: 'Coming Soon' },
+          { name: 'CogniAvatar', description: 'AI digital human for engagement', path: '/contact', icon: UserCircle, iconColor: 'bg-blue-100/70 text-blue-600', badge: 'Coming Soon' },
         ]
       },
       {

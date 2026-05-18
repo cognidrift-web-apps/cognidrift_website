@@ -1,6 +1,6 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
-import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones, Mic } from 'lucide-react'
+import { Phone, Calendar, Clock, CheckCircle2, ArrowRight, MessageSquare, Zap, Shield, Globe, BarChart3, Users, Headphones, Mic, Bot } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import CogniVoicePricingCards from '../../components/CogniVoicePricingCards'
 import { usePageAnimation } from '../../utils/useFirstMount'
@@ -212,167 +212,346 @@ const CogniVoice = () => {
         </div>
       </section>
 
-      {/* Deploy Anywhere Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
-        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12 sm:mb-16"
-          >
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-              Deploy <span className="text-blue-600">Anywhere</span>
-            </h2>
-            <p className="text-base sm:text-lg text-text-secondary max-w-2xl mx-auto">
-              One AI receptionist, two ways to connect with customers
-            </p>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
+      {/* Phone Line Section — visual left, text right */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left — Phone Visual */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="group"
+              transition={{ duration: 0.6 }}
+              className="flex justify-center"
             >
-              <motion.div
-                whileHover={{ y: -6, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative h-full bg-white rounded-2xl p-6 sm:p-8 border-2 border-blue-200 overflow-hidden shadow-md hover:shadow-xl shadow-blue-500/20 transition-all duration-500"
-              >
-                <div className="absolute inset-0 bg-blue-50 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  {/* Mini Phone Call Mockup */}
-                  <div className="mb-5 bg-gray-900 rounded-xl p-3 shadow-inner">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                      <span className="text-[11px] text-gray-400 font-mono">Live Call</span>
+              <div className="relative">
+                <div className="w-[230px] sm:w-[260px] bg-white rounded-[2rem] p-[3px] shadow-xl shadow-blue-200/40 border border-blue-100/30">
+                  <div className="rounded-[1.85rem] overflow-hidden">
+                    {/* Call Screen — top half */}
+                    <div className="bg-gradient-to-b from-blue-600 via-blue-500 to-blue-400 px-4 pt-5 pb-4 text-center">
+                      <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm mx-auto mb-2 flex items-center justify-center">
+                        <Users className="w-6 h-6 text-white" />
+                      </div>
+                      <p className="text-[13px] text-white font-semibold">Sarah Mitchell</p>
+                      <p className="text-[10px] text-white/60 font-mono mt-0.5">(555) 234-5678</p>
+                      <p className="text-[11px] text-white/80 font-mono mt-1.5">02:14</p>
+                      <div className="flex items-center justify-center gap-1.5 mt-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse" />
+                        <span className="text-[9px] text-green-200 font-medium">AI Connected</span>
+                      </div>
                     </div>
-                    <div className="space-y-1.5">
-                      <div className="flex gap-2 items-start">
-                        <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Phone className="w-2.5 h-2.5 text-blue-400" />
+                    {/* Live Transcript — bottom half */}
+                    <div className="bg-white">
+                      <div className="px-3 py-1.5 border-b border-gray-100 flex items-center gap-1.5">
+                        <div className="w-1 h-1 rounded-full bg-blue-500" />
+                        <span className="text-[9px] text-blue-600 font-semibold uppercase tracking-wider">Live Transcript</span>
+                      </div>
+                      <div className="px-3 py-2.5 space-y-2.5">
+                        {/* AI message — right aligned */}
+                        <div className="flex items-start gap-2 flex-row-reverse">
+                          <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Bot className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <p className="text-[10px] text-gray-700 leading-relaxed text-right flex-1">Good morning! How can I help you today?</p>
                         </div>
-                        <div className="bg-gradient-to-br from-indigo-500/80 to-purple-600/80 rounded-lg px-2.5 py-1.5 max-w-[85%]">
-                          <p className="text-[11px] text-white/90 leading-relaxed">Hello! How can I help you today?</p>
+                        {/* Caller message — left aligned */}
+                        <div className="flex items-start gap-2">
+                          <div className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Users className="w-3 h-3 text-gray-500" />
+                          </div>
+                          <p className="text-[10px] text-gray-700 leading-relaxed flex-1">I need to see Dr. Chen</p>
+                        </div>
+                        {/* AI message — right aligned */}
+                        <div className="flex items-start gap-2 flex-row-reverse">
+                          <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Bot className="w-3 h-3 text-blue-600" />
+                          </div>
+                          <p className="text-[10px] text-gray-700 leading-relaxed text-right flex-1">Dr. Chen has an opening tomorrow at 2 PM. Want me to book it?</p>
+                        </div>
+                        {/* Caller message — left aligned */}
+                        <div className="flex items-start gap-2">
+                          <div className="w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Users className="w-3 h-3 text-gray-500" />
+                          </div>
+                          <p className="text-[10px] text-gray-700 leading-relaxed flex-1">Yes, please</p>
+                        </div>
+                        {/* Booked */}
+                        <div className="flex items-center gap-1.5 bg-green-50 rounded-lg px-2.5 py-1.5 border border-green-200">
+                          <CheckCircle2 className="w-3 h-3 text-green-500 flex-shrink-0" />
+                          <p className="text-[9px] text-green-700 font-medium">Booked — SMS sent</p>
                         </div>
                       </div>
-                      <div className="flex gap-2 items-start justify-end">
-                        <div className="bg-white/10 backdrop-blur-sm rounded-lg px-2.5 py-1.5 max-w-[85%] border border-white/10">
-                          <p className="text-[11px] text-gray-300 leading-relaxed">I need to book an appointment</p>
+                    </div>
+                    {/* Waveform */}
+                    <div className="bg-white border-t border-gray-100 px-3 py-2 flex items-center justify-center gap-[3px] h-[28px]">
+                      {[...Array(28)].map((_, i) => {
+                        const center = 14
+                        const dist = Math.abs(i - center) / center
+                        const maxH = 20 - dist * 14
+                        return (
+                          <motion.div
+                            key={i}
+                            animate={{ height: [2, maxH, 2] }}
+                            transition={{ duration: 0.6 + Math.random() * 0.3, repeat: Infinity, delay: i * 0.04, ease: 'easeInOut' }}
+                            className="w-[2.5px] bg-gradient-to-t from-blue-500 to-blue-300 rounded-full"
+                          />
+                        )
+                      })}
+                    </div>
+                    {/* Call Controls */}
+                    <div className="bg-gray-50 border-t border-gray-100 px-4 py-2.5 flex items-center justify-around">
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center">
+                          <Mic className="w-3 h-3 text-gray-500" />
                         </div>
+                        <span className="text-[7px] text-gray-400">Mute</span>
                       </div>
-                      <div className="flex gap-2 items-start">
-                        <div className="w-4 h-4 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <Phone className="w-2.5 h-2.5 text-blue-400" />
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center">
+                          <Headphones className="w-3 h-3 text-gray-500" />
                         </div>
-                        <div className="bg-gradient-to-br from-indigo-500/80 to-purple-600/80 rounded-lg px-2.5 py-1.5 max-w-[85%]">
-                          <p className="text-[11px] text-white/90 leading-relaxed">Let me check availability...</p>
+                        <span className="text-[7px] text-gray-400">Speaker</span>
+                      </div>
+                      <div className="flex flex-col items-center gap-0.5">
+                        <div className="w-7 h-7 rounded-full bg-red-500 flex items-center justify-center">
+                          <Phone className="w-3 h-3 text-white rotate-[135deg]" />
                         </div>
+                        <span className="text-[7px] text-gray-400">End</span>
                       </div>
                     </div>
                   </div>
-
-                  <motion.div
-                    whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    className="inline-flex w-12 h-12 bg-blue-50 rounded-xl items-center justify-center mb-4 shadow-md"
-                  >
-                    <Phone className="w-6 h-6 text-blue-600" />
-                  </motion.div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">Phone Line</h3>
-                  <p className="text-text-secondary leading-relaxed mb-4">Your AI receptionist answers inbound calls 24/7. Customers call your business number and speak naturally with the AI.</p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center gap-2 text-sm text-text-secondary">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                      Toll-free or local numbers
-                    </li>
-                    <li className="flex items-center gap-2 text-sm text-text-secondary">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                      Call recording & transcription
-                    </li>
-                    <li className="flex items-center gap-2 text-sm text-text-secondary">
-                      <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                      Transfer to live agents
-                    </li>
-                  </ul>
                 </div>
-              </motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.08, 0.2] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -inset-4 rounded-[2.5rem] bg-blue-400/25 blur-2xl -z-10"
+                />
+              </div>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="group"
-            >
+            {/* Right — Text Content */}
+            <div>
               <motion.div
-                whileHover={{ y: -6, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="relative h-full bg-white rounded-2xl p-6 sm:p-8 border-2 border-purple-200 overflow-hidden shadow-md hover:shadow-xl shadow-purple-500/20 transition-all duration-500"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full mb-5"
               >
-                <div className="absolute inset-0 bg-purple-50 opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  {/* Mini Browser Mockup */}
-                  <div className="mb-5 bg-gray-100 rounded-xl overflow-hidden shadow-inner">
-                    <div className="bg-gray-200 px-3 py-1.5 flex items-center gap-2">
-                      <div className="flex gap-1">
-                        <div className="w-2 h-2 rounded-full bg-red-400" />
-                        <div className="w-2 h-2 rounded-full bg-yellow-400" />
-                        <div className="w-2 h-2 rounded-full bg-green-400" />
-                      </div>
-                      <div className="flex-1 bg-white rounded-md px-2 py-0.5 text-[9px] text-gray-400 font-mono">yourwebsite.com</div>
+                <Phone className="w-4 h-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">Phone Line</span>
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4"
+              >
+                Your AI Receptionist, <span className="text-blue-600">24/7</span>
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-base sm:text-lg text-text-secondary leading-relaxed mb-8"
+              >
+                Your AI answers every inbound call with a natural voice. It greets callers, books appointments, and routes conversations — so your team focuses on what matters.
+              </motion.p>
+              <ul className="space-y-4">
+                {[
+                  'Call recording & full transcription',
+                  'Smart transfer to live agents',
+                  '50+ languages supported',
+                  'Calendar integration & auto-booking',
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                    className="flex items-start gap-3"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-text-primary font-medium">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Web Widget Section — text left, visual right */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left — Text Content */}
+            <div className="order-2 lg:order-1">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full mb-5"
+              >
+                <Mic className="w-4 h-4" />
+                <span className="text-xs font-bold uppercase tracking-wider">Web Widget</span>
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4"
+              >
+                Voice AI on <span className="text-blue-600">Your Website</span>
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-base sm:text-lg text-text-secondary leading-relaxed mb-8"
+              >
+                Add a voice-enabled widget to any page. Visitors click to speak with your AI directly in the browser — no downloads, no phone calls needed.
+              </motion.p>
+              <ul className="space-y-4">
+                {[
+                  'One-line embed code',
+                  'Custom branding & voice',
+                  'Works on all devices',
+                  'Real-time voice transcription',
+                  'Multilingual support',
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
+                    className="flex items-start gap-3"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <span className="text-text-primary font-medium">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Right — Browser with Voice Widget */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex justify-center order-1 lg:order-2"
+            >
+              <div className="relative w-[280px] sm:w-[320px]">
+                <div className="bg-white rounded-xl overflow-hidden shadow-xl shadow-blue-200/40 border border-blue-100/30">
+                  {/* Browser Chrome */}
+                  <div className="bg-gray-50 px-3 py-2 flex items-center gap-2 border-b border-gray-100">
+                    <div className="flex gap-1.5">
+                      <div className="w-[8px] h-[8px] rounded-full bg-[#ff5f57]" />
+                      <div className="w-[8px] h-[8px] rounded-full bg-[#febc2e]" />
+                      <div className="w-[8px] h-[8px] rounded-full bg-[#28c840]" />
                     </div>
-                    <div className="relative p-3 h-24 bg-gradient-to-br from-gray-50 to-white">
-                      <div className="absolute bottom-2 right-2">
-                        <div className="bg-gradient-to-br from-indigo-500 to-purple-600 w-10 h-10 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/30">
-                          <Mic className="w-5 h-5 text-white" />
+                    <div className="flex-1 bg-white rounded px-2 py-0.5 text-[9px] text-gray-400 font-mono border border-gray-100">yourbusiness.com</div>
+                  </div>
+                  {/* Page with widget */}
+                  <div className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50/20 p-3">
+                    {/* Fake page content */}
+                    <div className="space-y-1.5 mb-3">
+                      <div className="h-2.5 w-20 bg-gray-200/50 rounded" />
+                      <div className="h-2 w-28 bg-gray-100/60 rounded" />
+                      <div className="h-2 w-16 bg-gray-100/40 rounded" />
+                    </div>
+                    {/* Voice Widget Popup — the conversation */}
+                    <div className="bg-white rounded-xl shadow-lg border border-blue-100/50 overflow-hidden">
+                      {/* Widget header */}
+                      <div className="bg-gradient-to-r from-blue-500 to-blue-600 px-3 py-2 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Mic className="w-3 h-3 text-white/80" />
+                          <span className="text-[10px] text-white font-semibold">Voice Assistant</span>
                         </div>
-                        <div className="absolute -top-10 -left-28 bg-white rounded-xl shadow-lg px-3 py-2 border border-gray-100 w-32">
-                          <p className="text-[9px] text-gray-600 leading-relaxed">Listening...</p>
-                          <div className="flex gap-0.5 mt-1">
-                            {[...Array(8)].map((_, i) => (
-                              <motion.div
-                                key={i}
-                                animate={{ height: [3, 8 + Math.random() * 6, 3] }}
-                                transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.08 }}
-                                className="w-1 bg-purple-400 rounded-full"
-                              />
-                            ))}
-                          </div>
+                        <div className="flex items-center gap-1">
+                          <div className="w-1.5 h-1.5 rounded-full bg-green-300 animate-pulse" />
+                          <span className="text-[9px] text-white/70">Live</span>
                         </div>
                       </div>
+                      {/* Chat transcript with icons */}
+                      <div className="px-2.5 py-2.5 space-y-2">
+                        {/* AI message — right aligned */}
+                        <div className="flex items-start gap-1.5 flex-row-reverse">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Bot className="w-2.5 h-2.5 text-blue-600" />
+                          </div>
+                          <p className="text-[9px] text-gray-700 leading-relaxed text-right flex-1">Hi! I'm the voice assistant for Acme Clinic. How can I help?</p>
+                        </div>
+                        {/* Visitor message — left aligned */}
+                        <div className="flex items-start gap-1.5">
+                          <div className="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Users className="w-2.5 h-2.5 text-gray-500" />
+                          </div>
+                          <p className="text-[9px] text-gray-700 leading-relaxed flex-1">Do you have any openings this week?</p>
+                        </div>
+                        {/* AI message — right aligned */}
+                        <div className="flex items-start gap-1.5 flex-row-reverse">
+                          <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Bot className="w-2.5 h-2.5 text-blue-600" />
+                          </div>
+                          <p className="text-[9px] text-gray-700 leading-relaxed text-right flex-1">Yes! Wednesday at 10 AM or Friday at 3 PM. Which works better?</p>
+                        </div>
+                        {/* Visitor message — left aligned */}
+                        <div className="flex items-start gap-1.5">
+                          <div className="w-4 h-4 rounded-full bg-gray-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <Users className="w-2.5 h-2.5 text-gray-500" />
+                          </div>
+                          <p className="text-[9px] text-gray-700 leading-relaxed flex-1">Wednesday please</p>
+                        </div>
+                        {/* Booked */}
+                        <div className="flex items-center gap-1.5 bg-green-50 rounded-lg px-2.5 py-1.5 border border-green-200">
+                          <CheckCircle2 className="w-3 h-3 text-green-500 flex-shrink-0" />
+                          <p className="text-[9px] text-green-700 font-medium">Booked for Wed 10 AM — confirmed</p>
+                        </div>
+                      </div>
+                      {/* Waveform bar */}
+                      <div className="border-t border-gray-100 px-3 py-2 flex items-center justify-center gap-[2.5px] h-[24px]">
+                        {[...Array(24)].map((_, i) => {
+                          const center = 12
+                          const dist = Math.abs(i - center) / center
+                          const maxH = 16 - dist * 11
+                          return (
+                            <motion.div
+                              key={i}
+                              animate={{ height: [2, maxH, 2] }}
+                              transition={{ duration: 0.6 + Math.random() * 0.3, repeat: Infinity, delay: i * 0.04, ease: 'easeInOut' }}
+                              className="w-[2.5px] bg-gradient-to-t from-blue-500 to-blue-300 rounded-full"
+                            />
+                          )
+                        })}
+                      </div>
+                    </div>
+                    {/* FAB button */}
+                    <div className="flex justify-end mt-2">
+                      <motion.div
+                        animate={{ scale: [1, 1.08, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-400/30"
+                      >
+                        <Mic className="w-3.5 h-3.5 text-white" />
+                      </motion.div>
                     </div>
                   </div>
-
-                  <motion.div
-                    whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                    className="inline-flex w-12 h-12 bg-purple-50 rounded-xl items-center justify-center mb-4 shadow-md"
-                  >
-                    <Mic className="w-6 h-6 text-purple-600" />
-                  </motion.div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-text-primary mb-3">Web Widget</h3>
-                  <p className="text-text-secondary leading-relaxed mb-4">Embed a voice-enabled widget on your website. Visitors click to speak with your AI directly in the browser.</p>
-                  <ul className="space-y-2">
-                    <li className="flex items-center gap-2 text-sm text-text-secondary">
-                      <CheckCircle2 className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                      One-line embed code
-                    </li>
-                    <li className="flex items-center gap-2 text-sm text-text-secondary">
-                      <CheckCircle2 className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                      Custom branding
-                    </li>
-                    <li className="flex items-center gap-2 text-sm text-text-secondary">
-                      <CheckCircle2 className="w-4 h-4 text-purple-600 flex-shrink-0" />
-                      Works on mobile
-                    </li>
-                  </ul>
                 </div>
-              </motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.05, 0.15] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="absolute -inset-4 rounded-2xl bg-blue-400/20 blur-2xl -z-10"
+                />
+              </div>
             </motion.div>
           </div>
         </div>

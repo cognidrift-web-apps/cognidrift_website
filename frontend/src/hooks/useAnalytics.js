@@ -1,10 +1,9 @@
 import ReactGA from 'react-ga4'
 
-// Initialize Google Analytics
-// Replace 'G-XXXXXXXXXX' with your actual GA4 Measurement ID
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'
+const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
 
 export const initGA = () => {
+  if (!GA_MEASUREMENT_ID) return
   ReactGA.initialize(GA_MEASUREMENT_ID, {
     gaOptions: {
       siteSpeedSampleRate: 100
