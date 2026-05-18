@@ -1,16 +1,21 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Check, ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
+import { Check, ArrowRight, ChevronDown, Sparkles, Star } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import CogniHubPricingCards from '../../components/CogniHubPricingCards'
-import { addOns, billingTerms, faqs } from '../../data/cognihubPricing'
+import {
+  managedPlans,
+  comparisonRows,
+  addOns,
+  conciergeSetup,
+  billingTerms,
+  faqs,
+} from '../../data/cognihubPricing'
 import { fadeInUp, staggerContainer } from '../../utils/motionVariants'
 
 const CogniHubPricing = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(0)
-
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -24,8 +29,8 @@ const CogniHubPricing = () => {
       {/* Hero Header */}
       <section className="pt-24 sm:pt-28 lg:pt-32 pb-16 bg-white relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-30">
-          <div className="absolute -top-40 -left-40 w-96 h-96 bg-purple-300 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-indigo-400 rounded-full blur-3xl"></div>
+          <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary-300 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-accent-indigo rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative max-w-content mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -36,7 +41,7 @@ const CogniHubPricing = () => {
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 bg-purple-600 text-white px-5 py-2 rounded-full mb-6"
+              className="inline-flex items-center gap-2 bg-primary-600 text-white px-5 py-2 rounded-full mb-6"
             >
               <Sparkles className="w-4 h-4" />
               <span className="text-sm font-bold uppercase tracking-widest">CogniHub Pricing</span>
@@ -47,7 +52,7 @@ const CogniHubPricing = () => {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-primary mb-6"
               style={{ fontFamily: 'Montserrat, sans-serif' }}
             >
-              Flexible, transparent{' '}
+              Simple, transparent{' '}
               <span className="text-gradient">pricing</span>
             </motion.h1>
 
@@ -71,6 +76,94 @@ const CogniHubPricing = () => {
       <section className="pb-16 sm:pb-20 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <CogniHubPricingCards />
+        </div>
+      </section>
+
+      {/* Comparison Table */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
+              Compare plans <span className="text-gradient">at a glance</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="overflow-x-auto"
+          >
+            <div className="min-w-[640px] bg-white rounded-2xl shadow-lg border border-neutral-border overflow-hidden">
+              {/* Header */}
+              <div className="grid grid-cols-5 gap-0 bg-primary-600 text-white font-bold text-sm">
+                <div className="p-4"></div>
+                {managedPlans.map((plan) => (
+                  <div key={plan.name} className="p-4 text-center">
+                    {plan.name}
+                    {plan.popular && <Star className="w-3.5 h-3.5 inline ml-1" />}
+                  </div>
+                ))}
+              </div>
+
+              {/* Rows */}
+              {comparisonRows.map((row, index) => (
+                <div
+                  key={index}
+                  className={`grid grid-cols-5 gap-0 border-t border-neutral-border ${
+                    index % 2 === 0 ? 'bg-white' : 'bg-neutral-offWhite'
+                  }`}
+                >
+                  <div className="p-4 font-medium text-text-primary text-sm">{row.label}</div>
+                  {row.values.map((value, vIndex) => (
+                    <div key={vIndex} className="p-4 text-center text-sm text-text-secondary">
+                      {value === true ? (
+                        <div className="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                          <Check className="w-3.5 h-3.5 text-green-600" />
+                        </div>
+                      ) : value === false ? (
+                        <span className="text-text-muted">—</span>
+                      ) : (
+                        <span className="font-medium">{value}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Overage Info */}
+      <section className="py-16 sm:py-20 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-6">
+              Run out of actions? <span className="text-gradient">No surprises.</span>
+            </h2>
+            <div className="text-left bg-neutral-offWhite rounded-2xl p-6 sm:p-8 border border-neutral-border space-y-4 text-text-secondary leading-relaxed">
+              <p>
+                On Managed plans, Lite models stay available at overage rates so <span className="font-bold text-text-primary">you are never locked out</span>. Standard and Premium models lock until you upgrade or purchase a top-up pack.
+              </p>
+              <p>
+                We alert you at 80%, 90%, and 100% of your actions so there are no surprises. If the math makes sense, we will recommend upgrading. It is usually cheaper than top-ups.
+              </p>
+              <p>
+                On BYOK plans, usage is unlimited — you pay providers directly through your own API keys. No action limits, no overage.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -105,10 +198,46 @@ const CogniHubPricing = () => {
                 className="bg-white rounded-2xl p-6 shadow-md border border-neutral-border hover:shadow-lg transition-shadow"
               >
                 <p className="text-lg font-bold text-text-primary mb-1">{addon.name}</p>
-                <p className="text-purple-600 font-bold text-sm mb-3">{addon.price}</p>
+                <p className="text-primary-600 font-bold text-sm mb-3">{addon.price}</p>
                 <p className="text-sm text-text-secondary leading-relaxed">{addon.description}</p>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Concierge Setup */}
+      <section className="py-16 sm:py-20 bg-neutral-offWhite">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-primary-50 to-white rounded-2xl p-6 sm:p-10 border-2 border-primary-100 shadow-lg"
+          >
+            <div className="text-center mb-8">
+              <p className="text-sm font-bold text-primary-600 uppercase tracking-wider mb-2">Included Free</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-text-primary mb-2">
+                Concierge Setup
+              </h2>
+              <p className="text-text-secondary">
+                <span className="font-bold text-text-primary">$999 value</span> — waived for founding customers.
+              </p>
+              <p className="text-sm text-text-secondary mt-2">
+                Our team configures your CogniHub workspace for you. No technical skills required. You are live in days, not weeks.
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              {conciergeSetup.map((item, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-primary-100 rounded-full flex items-center justify-center mt-0.5">
+                    <Check className="w-3.5 h-3.5 text-primary-600" />
+                  </div>
+                  <span className="text-text-secondary leading-relaxed">{item}</span>
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
       </section>
@@ -136,14 +265,12 @@ const CogniHubPricing = () => {
             {billingTerms.map((term, index) => (
               <div
                 key={index}
-                className={`flex items-start gap-3 px-6 py-4 border-t border-neutral-border first:border-t-0 ${
+                className={`grid grid-cols-1 sm:grid-cols-3 gap-0 border-t border-neutral-border first:border-t-0 ${
                   index % 2 === 0 ? 'bg-white' : 'bg-neutral-offWhite'
                 }`}
               >
-                <div className="flex-shrink-0 w-6 h-6 bg-purple-100 rounded-full flex items-center justify-center mt-0.5">
-                  <Check className="w-3.5 h-3.5 text-purple-600" />
-                </div>
-                <span className="text-sm text-text-secondary leading-relaxed">{term}</span>
+                <div className="p-4 sm:p-5 font-bold text-text-primary text-sm">{term.label}</div>
+                <div className="p-4 sm:p-5 sm:col-span-2 text-sm text-text-secondary leading-relaxed">{term.value}</div>
               </div>
             ))}
           </motion.div>
@@ -178,8 +305,8 @@ const CogniHubPricing = () => {
                   <div
                     className={`bg-white rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
                       isOpen
-                        ? 'border-purple-500 shadow-xl shadow-purple-500/10'
-                        : 'border-neutral-border hover:border-purple-300 shadow-md hover:shadow-lg'
+                        ? 'border-primary-500 shadow-xl shadow-primary-500/10'
+                        : 'border-neutral-border hover:border-primary-300 shadow-md hover:shadow-lg'
                     }`}
                   >
                     <button
@@ -187,14 +314,14 @@ const CogniHubPricing = () => {
                       className="w-full px-6 py-5 flex items-center justify-between gap-4 text-left"
                     >
                       <h3 className={`text-base sm:text-lg font-bold leading-tight transition-colors duration-200 ${
-                        isOpen ? 'text-purple-600' : 'text-text-primary'
+                        isOpen ? 'text-primary-600' : 'text-text-primary'
                       }`}>
                         {faq.question}
                       </h3>
                       <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className={`flex-shrink-0 ${isOpen ? 'text-purple-600' : 'text-text-muted'}`}
+                        className={`flex-shrink-0 ${isOpen ? 'text-primary-600' : 'text-text-muted'}`}
                       >
                         <ChevronDown className="w-5 h-5" />
                       </motion.div>
@@ -210,7 +337,7 @@ const CogniHubPricing = () => {
                           className="overflow-hidden"
                         >
                           <div className="px-6 pb-5">
-                            <div className="h-px bg-gradient-to-r from-purple-200 to-transparent mb-4"></div>
+                            <div className="h-px bg-gradient-to-r from-primary-200 to-transparent mb-4"></div>
                             <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
                               {faq.answer}
                             </p>
@@ -233,16 +360,16 @@ const CogniHubPricing = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl sm:rounded-3xl p-8 sm:p-12 lg:p-16 text-center relative overflow-hidden border-2 border-purple-100"
+            className="bg-gradient-to-br from-blue-50 to-primary-50 rounded-2xl sm:rounded-3xl p-8 sm:p-12 lg:p-16 text-center relative overflow-hidden border-2 border-primary-100"
           >
             <div className="absolute inset-0 opacity-20 pointer-events-none">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+              <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
             </div>
 
             <div className="relative z-10">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-primary mb-4">
-                Ready to get <span className="text-gradient">started</span>?
+                Ready to try <span className="text-gradient">CogniHub</span>?
               </h2>
               <p className="text-base sm:text-lg text-text-secondary max-w-xl mx-auto mb-8">
                 Start your 14-day free trial. Setup fee waived. No credit card required.
@@ -252,7 +379,7 @@ const CogniHubPricing = () => {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-purple-600 text-white font-bold text-lg rounded-xl shadow-lg hover:bg-purple-700 hover:-translate-y-1 transition-all duration-300"
+                    className="btn-primary px-8 py-4 text-lg"
                   >
                     Start Free Trial
                     <ArrowRight className="w-5 h-5" />
@@ -262,7 +389,7 @@ const CogniHubPricing = () => {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-purple-50 transition-all duration-300"
+                    className="border-2 border-primary-600 text-primary-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-primary-50 transition-all duration-300"
                   >
                     Talk to Sales
                   </motion.button>

@@ -129,7 +129,7 @@ const CogniChatPricing = () => {
                           <Check className="w-3.5 h-3.5 text-green-600" />
                         </div>
                       ) : value === false ? (
-                        <span className="text-text-muted text-lg">-</span>
+                        <span className="text-text-muted">—</span>
                       ) : (
                         <span className="font-medium">{value}</span>
                       )}

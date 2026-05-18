@@ -207,6 +207,37 @@ export const byokPlans = [
   },
 ]
 
+export const comparisonRows = [
+  { label: 'Monthly price (Managed)', values: ['$69', '$129', '$249', '$499'] },
+  { label: 'Monthly price (BYOK)', values: ['$29', '$49', '$99', '$199'] },
+  { label: 'Team members', values: ['Up to 3', 'Up to 5', 'Up to 10', 'Up to 25'] },
+  { label: 'AI actions (Managed)', values: ['1,000', '3,000', '10,000', '30,000'] },
+  { label: 'AI usage (BYOK)', values: ['Unlimited', 'Unlimited', 'Unlimited', 'Unlimited'] },
+  { label: 'Model access', values: ['Lite + Standard', 'Lite + Standard', 'All (Premium)', 'All (Premium)'] },
+  { label: 'Knowledge bases', values: ['1', '3', '10', 'Unlimited'] },
+  { label: 'AI agents', values: ['3', '10', 'Unlimited', 'Unlimited'] },
+  { label: 'Image generation', values: [true, true, true, true] },
+  { label: 'Content studio', values: [true, true, true, true] },
+  { label: 'Code interpreter & artifacts', values: [false, true, true, true] },
+  { label: 'MCP tool connections', values: [false, true, true, true] },
+  { label: 'Agent sharing', values: [false, false, true, true] },
+  { label: 'SSO / OAuth / LDAP', values: [false, false, true, true] },
+  { label: 'Advanced agent analytics', values: [false, false, false, true] },
+  { label: 'Scheduled agent runs', values: [false, false, false, true] },
+  { label: 'API triggers', values: [false, false, false, true] },
+  { label: 'Self-host option', values: [false, false, false, true] },
+  { label: 'Support', values: ['Email (48hr)', 'Email+chat (24hr)', 'Priority (12hr)', 'Priority+phone (4hr)'] },
+]
+
+export const conciergeSetup = [
+  'Workspace configured with your team members and roles',
+  'Knowledge bases loaded with your business documents and data',
+  'AI agents built for your key workflows (reports, drafts, research)',
+  'Model access and permissions configured per team',
+  'Integrations connected and tested (calendar, tools, MCP)',
+  '30 days of post-launch tuning (we refine based on real usage)',
+]
+
 export const addOns = [
   { name: 'Extra users', price: '$5/user/mo', description: 'Add team members beyond your tier limit' },
   { name: 'Action top-up (100)', price: '$10', description: 'One-time pack of 100 AI actions (Managed only)' },
@@ -215,13 +246,13 @@ export const addOns = [
 ]
 
 export const billingTerms = [
-  'Monthly billing, billed at start of each period',
-  'Annual billing saves 10% on every month',
-  '14-day free trial, no credit card required',
-  'Setup fee ($999) waived through summer 2026',
-  'AI actions reset monthly, do not roll over (Managed)',
-  'Upgrade instantly with prorated billing',
-  'Cancel anytime on monthly plans',
+  { label: 'Monthly billing', value: 'Billed at the start of each month. Cancel anytime.' },
+  { label: 'Annual billing', value: 'Pay annually and save 10% on every month.' },
+  { label: 'Free trial', value: '14 days. No credit card required. Full access to your selected plan.' },
+  { label: 'Setup fee', value: '$999 value — waived through summer 2026.' },
+  { label: 'AI actions (Managed)', value: 'Reset monthly, do not roll over. Top-up packs available.' },
+  { label: 'Upgrade', value: 'Instant. Prorated billing for the current month.' },
+  { label: 'Cancellation', value: 'Monthly plans: cancel anytime. Annual plans: honored through term.' },
 ]
 
 export const faqs = [

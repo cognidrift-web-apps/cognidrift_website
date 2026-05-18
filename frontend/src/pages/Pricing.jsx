@@ -14,7 +14,7 @@ const Pricing = () => {
       icon: Zap,
       subtitle: 'For new solopreneurs with 1-10 calls / day',
       monthlyPrice: 99,
-      yearlyPrice: 79, // 20% discount
+      yearlyPrice: 89,
       description: 'Everything you need to create a custom AI receptionist that answers questions, schedules appointments, and more.',
       features: [
         'Setup in Minutes',
@@ -36,7 +36,7 @@ const Pricing = () => {
       icon: Building2,
       subtitle: 'For small teams of 1-5 with 10-25 calls / day',
       monthlyPrice: 149,
-      yearlyPrice: 119, // 20% discount
+      yearlyPrice: 134,
       description: 'Experience more advanced features, unlimited workflows, API integrations, and detailed data analytics and insights.',
       features: [
         'Everything on Starter',
@@ -214,7 +214,7 @@ const Pricing = () => {
               className="inline-flex items-center gap-1 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold"
             >
               <Sparkles className="w-4 h-4" />
-              Save 20%
+              Save 10%
             </motion.span>
           </motion.div>
         </motion.div>
