@@ -60,7 +60,7 @@ const CogniHubPricing = () => {
               variants={fadeInUp}
               className="text-lg sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed mb-4"
             >
-              Two ways to use CogniHub. <span className="font-semibold text-text-primary">Managed</span> — we handle AI infrastructure and bill per action. <span className="font-semibold text-text-primary">BYOK</span> — bring your own API keys and pay providers directly; we charge only the platform fee.
+              Two ways to use CogniHub. <span className="font-semibold text-text-primary">Managed</span>, we handle AI infrastructure and bill per action. <span className="font-semibold text-text-primary">BYOK</span>, bring your own API keys and pay providers directly. We charge only the platform fee.
             </motion.p>
             <motion.p
               variants={fadeInUp}
@@ -127,7 +127,7 @@ const CogniHubPricing = () => {
                           <Check className="w-3.5 h-3.5 text-green-600" />
                         </div>
                       ) : value === false ? (
-                        <span className="text-text-muted">—</span>
+                        <span className="text-text-muted">-</span>
                       ) : (
                         <span className="font-medium">{value}</span>
                       )}
@@ -160,7 +160,7 @@ const CogniHubPricing = () => {
                 We alert you at 80%, 90%, and 100% of your actions so there are no surprises. If the math makes sense, we will recommend upgrading. It is usually cheaper than top-ups.
               </p>
               <p>
-                On BYOK plans, usage is unlimited — you pay providers directly through your own API keys. No action limits, no overage.
+                On BYOK plans, usage is unlimited. You pay providers directly through your own API keys. No action limits, no overage.
               </p>
             </div>
           </motion.div>
@@ -221,7 +221,7 @@ const CogniHubPricing = () => {
                 Concierge Setup
               </h2>
               <p className="text-text-secondary">
-                <span className="font-bold text-text-primary">$999 value</span> — waived for founding customers.
+                <span className="font-bold text-text-primary">$999 value</span>. Waived for founding customers.
               </p>
               <p className="text-sm text-text-secondary mt-2">
                 Our team configures your CogniHub workspace for you. No technical skills required. You are live in days, not weeks.

@@ -137,7 +137,7 @@ export const addOns = [
   { name: 'CRM integration', price: '$39/mo', description: 'Direct sync to HubSpot, Salesforce, or other CRM platforms' },
   { name: 'Custom AI voice', price: '$50/mo', description: 'Match the AI voice to your brand personality' },
   { name: 'Extended call archive', price: '$10/mo', description: 'Keep recordings for 1 year instead of 90 days' },
-  { name: 'Parallel calling lines', price: '$10/mo per line', description: 'Handle multiple simultaneous calls — add concurrent lines beyond your plan limit' },
+  { name: 'Parallel calling lines', price: '$10/mo per line', description: 'Handle multiple simultaneous calls by adding concurrent lines beyond your plan limit' },
 ]
 
 export const conciergeSetup = [
@@ -162,7 +162,7 @@ export const billingTerms = [
 export const faqs = [
   {
     question: 'What happens if I go over my minutes?',
-    answer: 'Calls keep coming through at $1.00 per extra minute. We never cut off your calls — your customers never hear a busy signal. We send alerts at 80%, 90%, and 100% usage so you can upgrade before overages add up.',
+    answer: 'Calls keep coming through at $1.00 per extra minute. We never cut off your calls and your customers never hear a busy signal. We send alerts at 80%, 90%, and 100% usage so you can upgrade before overages add up.',
   },
   {
     question: 'Can I change my plan later?',
@@ -174,7 +174,7 @@ export const faqs = [
   },
   {
     question: 'What does the 14-day trial include?',
-    answer: 'Full access to your selected plan. We set up your AI, connect your calendar, and give you a dedicated phone number. If it is not for you, cancel before the trial ends — no charge.',
+    answer: 'Full access to your selected plan. We set up your AI, connect your calendar, and give you a dedicated phone number. If it is not for you, cancel before the trial ends, no charge.',
   },
   {
     question: 'What if my AI says something wrong?',
@@ -182,7 +182,7 @@ export const faqs = [
   },
   {
     question: 'Do I need to be technical to use this?',
-    answer: 'Not at all. We set everything up for you. Your dashboard lets you see calls, listen to recordings, read transcripts, check analytics, and customize your AI agent — no code or technical skills needed.',
+    answer: 'Not at all. We set everything up for you. Your dashboard lets you see calls, listen to recordings, read transcripts, check analytics, and customize your AI agent, all without any code or technical skills.',
   },
   {
     question: 'Can I keep my existing phone number?',
@@ -194,10 +194,10 @@ export const faqs = [
   },
   {
     question: 'Do you support multiple locations?',
-    answer: 'Yes. Professional includes 2 phone numbers, and Enterprise includes up to 3. Need more? Add extra numbers at $10/month each — each location gets its own local number and customized greeting.',
+    answer: 'Yes. Professional includes 2 phone numbers, and Enterprise includes up to 3. Need more? Add extra numbers at $10/month each. Each location gets its own local number and customized greeting.',
   },
   {
     question: 'Can I connect my CRM?',
-    answer: 'Every plan includes free webhook and Zapier integration — connect to any tool without extra cost. For direct CRM sync (HubSpot, Salesforce, and others), add our CRM integration for $39/month.',
+    answer: 'Every plan includes free webhook and Zapier integration to connect to any tool without extra cost. For direct CRM sync (HubSpot, Salesforce, and others), add our CRM integration for $39/month.',
   },
 ]

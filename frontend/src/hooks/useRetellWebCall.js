@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { RetellWebClient } from 'retell-client-js-sdk'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cognidrift-send-and-receive-sms-production.up.railway.app'
 
 export const useRetellWebCall = () => {
   const [callStatus, setCallStatus] = useState('idle') // 'idle' | 'connecting' | 'connected' | 'ended' | 'error'

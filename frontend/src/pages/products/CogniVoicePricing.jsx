@@ -129,7 +129,7 @@ const CogniVoicePricing = () => {
                           <Check className="w-3.5 h-3.5 text-green-600" />
                         </div>
                       ) : value === false ? (
-                        <span className="text-text-muted">—</span>
+                        <span className="text-text-muted">-</span>
                       ) : (
                         <span className="font-medium">{value}</span>
                       )}
@@ -223,7 +223,7 @@ const CogniVoicePricing = () => {
                 Concierge Setup
               </h2>
               <p className="text-text-secondary">
-                <span className="font-bold text-text-primary">$999 value</span> — waived for founding customers.
+                <span className="font-bold text-text-primary">$999 value</span>. Waived for founding customers.
               </p>
               <p className="text-sm text-text-secondary mt-2">
                 Our team configures your AI receptionist for you. No technical skills required. You are live in days, not weeks.

@@ -109,6 +109,7 @@ const PricingCards = ({ plans: flatPlans, tracks, gridClass, renderUnits }) => {
 
       {/* Pricing Cards Grid */}
       <motion.div
+        key={pricingTrack ?? 'default'}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}

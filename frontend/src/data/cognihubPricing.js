@@ -111,7 +111,7 @@ export const byokPlans = [
     name: 'Starter',
     price: 29,
     annualPrice: 26,
-    subtitle: 'Bring your own API keys — full control',
+    subtitle: 'Bring your own API keys, full control',
     users: 3,
     actions: 'Unlimited',
     modelAccess: 'Lite + Standard',
@@ -249,7 +249,7 @@ export const billingTerms = [
   { label: 'Monthly billing', value: 'Billed at the start of each month. Cancel anytime.' },
   { label: 'Annual billing', value: 'Pay annually and save 10% on every month.' },
   { label: 'Free trial', value: '14 days. No credit card required. Full access to your selected plan.' },
-  { label: 'Setup fee', value: '$999 value — waived through summer 2026.' },
+  { label: 'Setup fee', value: '$999 value. Waived through summer 2026.' },
   { label: 'AI actions (Managed)', value: 'Reset monthly, do not roll over. Top-up packs available.' },
   { label: 'Upgrade', value: 'Instant. Prorated billing for the current month.' },
   { label: 'Cancellation', value: 'Monthly plans: cancel anytime. Annual plans: honored through term.' },
@@ -258,7 +258,7 @@ export const billingTerms = [
 export const faqs = [
   {
     question: 'What is the difference between Managed and BYOK?',
-    answer: 'Managed means CogniDrift handles all AI infrastructure — you pay one bill and AI usage is included as "actions." BYOK (Bring Your Own Keys) means you plug in your own OpenAI/Anthropic/Google API keys and pay providers directly. CogniDrift charges only the platform fee.',
+    answer: 'Managed means CogniDrift handles all AI infrastructure. You pay one bill and AI usage is included as "actions." BYOK (Bring Your Own Keys) means you plug in your own OpenAI/Anthropic/Google API keys and pay providers directly. CogniDrift charges only the platform fee.',
   },
   {
     question: 'What counts as an AI action?',
@@ -278,7 +278,7 @@ export const faqs = [
   },
   {
     question: 'Is there a free trial?',
-    answer: 'Yes — 14 days free on any plan, no credit card required.',
+    answer: 'Yes. 14 days free on any plan, no credit card required.',
   },
   {
     question: 'Can I self-host CogniHub?',
@@ -286,6 +286,6 @@ export const faqs = [
   },
   {
     question: 'How do AI agents work?',
-    answer: 'Agents are custom AI workflows that execute multi-step tasks using tools, API actions, and your knowledge bases. Create agents on any tier — actions are consumed per agent run step.',
+    answer: 'Agents are custom AI workflows that execute multi-step tasks using tools, API actions, and your knowledge bases. Create agents on any tier. Actions are consumed per agent run step.',
   },
 ]

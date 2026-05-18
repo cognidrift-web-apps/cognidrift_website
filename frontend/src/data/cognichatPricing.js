@@ -19,7 +19,7 @@ export const plans = [
       'AI assistant on your website, Slack, and Teams',
       'Teach your AI about your business (upload docs, FAQs, product info)',
       'AI captures customer details and intent automatically',
-      'Smart Insights — your AI tells you what each customer wanted and what to do next',
+      'Smart Insights: your AI tells you what each customer wanted and what to do next',
       'Transfer to your team when the AI needs a human (unlimited team members)',
       'Customize your AI assistant\'s greeting, personality, and tone',
       'Custom widget branding (your logo, your colors)',
@@ -51,7 +51,7 @@ export const plans = [
       '1 dedicated phone number for text messaging',
       '2 chats at the same time',
       'Connect your tools (Zapier, webhooks)',
-      'Concierge setup — we build and configure your AI for you',
+      'Concierge setup: we build and configure your AI for you',
       'Email and chat support (24-hour response)',
     ],
   },
@@ -188,7 +188,7 @@ export const billingTerms = [
 export const faqs = [
   {
     question: 'What happens if I go over my customer chats?',
-    answer: 'Chats keep coming through at $0.30 per extra chat. Your AI never stops answering — your customers never see a "we are offline" message. We send alerts at 80%, 90%, and 100% usage so you can upgrade before extras add up.',
+    answer: 'Chats keep coming through at $0.30 per extra chat. Your AI never stops answering and your customers never see a "we are offline" message. We send alerts at 80%, 90%, and 100% usage so you can upgrade before extras add up.',
   },
   {
     question: 'Can I change my plan later?',
@@ -200,7 +200,7 @@ export const faqs = [
   },
   {
     question: 'What does the 14-day trial include?',
-    answer: 'Full access to your selected plan. We set up your AI, connect your channels, and configure your widget. If it is not for you, cancel before the trial ends — no charge.',
+    answer: 'Full access to your selected plan. We set up your AI, connect your channels, and configure your widget. If it is not for you, cancel before the trial ends, no charge.',
   },
   {
     question: 'What if my AI gives a wrong answer?',
@@ -208,7 +208,7 @@ export const faqs = [
   },
   {
     question: 'Do I need to be technical to use this?',
-    answer: 'Not at all. We set everything up for you (Starter and above). Your dashboard lets you view conversations, read transcripts, check analytics, see Smart Insights, and customize your AI — no code or technical skills needed.',
+    answer: 'Not at all. We set everything up for you (Starter and above). Your dashboard lets you view conversations, read transcripts, check analytics, see Smart Insights, and customize your AI, all without any code or technical skills.',
   },
   {
     question: 'How does "Teach your AI" work?',
@@ -220,19 +220,19 @@ export const faqs = [
   },
   {
     question: 'What does "Transfer to your team" mean?',
-    answer: 'When the AI cannot answer a question or the customer asks to speak to a person, the conversation is instantly transferred to someone on your team. Any team member can respond — there is no limit on how many people on your team can use CogniChat.',
+    answer: 'When the AI cannot answer a question or the customer asks to speak to a person, the conversation is instantly transferred to someone on your team. Any team member can respond and there is no limit on how many people on your team can use CogniChat.',
   },
   {
     question: 'Which channels are included?',
-    answer: 'Essentials includes web chat, Slack, and Teams. Starter and above adds SMS and WhatsApp. You do not pay extra for any channel — it is all included in your plan price.',
+    answer: 'Essentials includes web chat, Slack, and Teams. Starter and above adds SMS and WhatsApp. You do not pay extra for any channel. It is all included in your plan price.',
   },
   {
     question: 'Can I connect my CRM?',
-    answer: 'Every plan includes free Zapier and webhook integration — connect to any tool without extra cost. For direct CRM sync (HubSpot, Salesforce, and others), add our CRM integration for $29/month, or it is included with Growth (1 CRM) and Professional (all CRMs).',
+    answer: 'Every plan includes free Zapier and webhook integration to connect to any tool without extra cost. For direct CRM sync (HubSpot, Salesforce, and others), add our CRM integration for $29/month, or it is included with Growth (1 CRM) and Professional (all CRMs).',
   },
   {
     question: 'What languages does CogniChat support?',
-    answer: 'Your AI assistant can chat in 30+ languages automatically. It detects the customer\'s language and responds naturally — no configuration needed.',
+    answer: 'Your AI assistant can chat in 30+ languages automatically. It detects the customer\'s language and responds naturally, no configuration needed.',
   },
   {
     question: 'Is my data secure?',
@@ -240,6 +240,6 @@ export const faqs = [
   },
   {
     question: 'What is a "customer chat"?',
-    answer: 'One customer chat = one customer reaching out with a question or request. It includes every message in that interaction — whether that is 3 messages or 30. The chat ends after 24 hours of silence. If the same customer comes back the next day with a new question, that counts as a new chat.',
+    answer: 'One customer chat = one customer reaching out with a question or request. It includes every message in that interaction, whether that is 3 messages or 30. The chat ends after 24 hours of silence. If the same customer comes back the next day with a new question, that counts as a new chat.',
   },
 ]
