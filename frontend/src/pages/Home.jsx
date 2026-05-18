@@ -1,49 +1,29 @@
 import SEOMeta from '../components/SEOMeta'
 import { Link } from 'react-router-dom'
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useRef, useEffect, useState, lazy, Suspense } from 'react'
 import Typed from 'typed.js'
-// import Testimonials from '../components/Testimonials' // Hidden for future use
-// import ClientLogos from '../components/ClientLogos' // Hidden for future use
 import TrustBadges from '../components/TrustBadges'
-// import DemoCalls from '../components/DemoCalls' // Hidden for future use
-import VideoShowcaseSection from '../components/VideoShowcaseSection'
 import FloatingNotifications from '../components/FloatingNotifications'
 import SiriWaveBackground from '../components/SiriWaveBackground'
 import Orb from '../components/ui/Orb'
+import NotificationCard from '../components/ui/NotificationCard'
+import FeatureCard from '../components/ui/FeatureCard'
+import WorkflowStep from '../components/ui/WorkflowStep'
+import IndustryCard from '../components/ui/IndustryCard'
+import StatItem from '../components/ui/StatItem'
+import { fadeInUp, staggerContainer } from '../utils/motionVariants'
+import { SiOpenai, SiMeta } from 'react-icons/si'
+import { ClaudeIcon, GeminiIcon } from '../components/ui/AIProviderIcons'
+import { features, industries, integrations, stats } from '../data/homePageData'
 
-const ScrollStack = lazy(() => import('../components/ScrollStack'))
 const TryNowSection = lazy(() => import('../components/TryNowSection'))
 const AnimatedDashboard = lazy(() => import('../components/AnimatedDashboard'))
 const MultiChannelShowcase = lazy(() => import('../components/MultiChannelShowcase'))
 const AnimatedCalendar = lazy(() => import('../components/AnimatedCalendar'))
+const CogniHubShowcase = lazy(() => import('../components/CogniHubShowcase'))
+const VideoShowcaseSection = lazy(() => import('../components/VideoShowcaseSection'))
 import useRetellWebCall from '../hooks/useRetellWebCall'
-import {
-  SiSalesforce,
-  SiHubspot,
-  SiZoho,
-  SiGooglecalendar,
-  SiMicrosoftoutlook,
-  SiSlack,
-  SiTwilio,
-  SiZapier,
-  SiGoogle,
-  SiMicrosoftteams,
-  SiNotion,
-  SiAirtable,
-  SiMailchimp,
-  SiStripe,
-  SiShopify,
-  SiWordpress,
-  SiSquarespace,
-  SiIntercom,
-  SiZendesk,
-  SiAsana,
-  SiTrello,
-  SiGithub,
-  SiDropbox,
-  SiFigma
-} from 'react-icons/si'
 import {
   Phone,
   Clock,
@@ -55,13 +35,9 @@ import {
   Globe,
   Users,
   Building2,
-  Stethoscope,
-  Home as HomeIcon,
-  Briefcase,
   ArrowRight,
-  Play,
   Check,
-  CheckCircle,
+
   PhoneCall,
   Bot,
   Bell,
@@ -69,174 +45,8 @@ import {
   Mic,
   Sparkles,
   TrendingUp,
-  PhoneOff,
   Loader2
 } from 'lucide-react'
-
-// Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-}
-
-// Counter animation hook
-const useCounter = (end, duration = 2000, inView) => {
-  const [count, setCount] = useState(0)
-
-  useEffect(() => {
-    if (!inView) return
-    let startTime
-    const animate = (timestamp) => {
-      if (!startTime) startTime = timestamp
-      const progress = Math.min((timestamp - startTime) / duration, 1)
-      setCount(Math.floor(progress * end))
-      if (progress < 1) requestAnimationFrame(animate)
-    }
-    requestAnimationFrame(animate)
-  }, [end, duration, inView])
-
-  return count
-}
-
-// Notification Card Component
-const NotificationCard = ({ avatar, name, title, action, time, delay, className }) => (
-  <motion.div
-    initial={{ opacity: 0, x: 50, y: 20 }}
-    animate={{ opacity: 1, x: 0, y: 0 }}
-    transition={{ delay, duration: 0.6, ease: 'easeOut' }}
-    className={`notification-card ${className}`}
-  >
-    <div className="avatar bg-primary-100 flex items-center justify-center text-primary-600 font-semibold">
-      {avatar}
-    </div>
-    <div className="content">
-      <p className="text-sm text-text-primary">
-        <span className="font-semibold">{name}</span>
-        <span className="text-text-secondary">, {title}</span>
-      </p>
-      <p className="text-xs text-text-muted">{action}</p>
-    </div>
-    <span className="badge">{time}</span>
-  </motion.div>
-)
-
-// Feature Card Component - Enhanced with Better Typography & Hover
-const FeatureCard = ({ icon: Icon, title, description, index }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? 'visible' : 'hidden'}
-      variants={fadeInUp}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ scale: 1.05, y: -8 }}
-      className="card-feature group"
-    >
-      <div className="icon-wrapper">
-        <Icon className="w-6 h-6 text-primary-600" />
-      </div>
-      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-text-primary mb-2 sm:mb-3" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
-      <p className="text-sm sm:text-base text-text-secondary leading-relaxed">{description}</p>
-    </motion.div>
-  )
-}
-
-// Workflow Step Component
-const WorkflowStep = ({ number, icon: Icon, title, description, isLast }) => (
-  <div className="workflow-step">
-    <div className="step-icon">
-      <Icon className="w-8 h-8" />
-    </div>
-    <div className="step-number absolute -top-2 -right-2 w-8 h-8 bg-primary-600 text-white text-sm rounded-full flex items-center justify-center font-bold">
-      {number}
-    </div>
-    <h4 className="text-lg font-semibold text-text-primary mb-2">{title}</h4>
-    <p className="text-sm text-text-secondary max-w-[200px]">{description}</p>
-  </div>
-)
-
-// Industry Card Component - Enhanced with Hover Scale
-const IndustryCard = ({ icon: Icon, title, description, features, isActive, iconBgColor, iconTextColor }) => (
-  <motion.div
-    whileHover={{ y: -8, scale: 1.02 }}
-    transition={{ type: "spring", stiffness: 300 }}
-    className={`group relative p-5 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl border-2 cursor-pointer overflow-hidden transition-all duration-300 h-full flex flex-col ${isActive
-        ? 'border-primary-600 bg-primary-50 shadow-xl'
-        : 'border-neutral-border bg-white hover:border-primary-300 hover:shadow-xl'
-      }`}
-  >
-    {/* Hover gradient background */}
-    <div className={`absolute inset-0 bg-primary-50 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}></div>
-
-    {/* Icon with animation */}
-    <motion.div
-      className={`relative w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 sm:mb-5 mx-auto transition-shadow ${
-        iconBgColor
-          ? `${iconBgColor}`
-          : isActive
-            ? 'bg-primary-600 text-white shadow-lg'
-            : 'bg-primary-50 text-primary-600 shadow-sm group-hover:shadow-md'
-      }`}
-      whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <Icon className={`w-6 h-6 sm:w-7 sm:h-7 ${iconTextColor || ''}`} />
-
-      {/* Pulse ring on hover */}
-      <motion.div
-        className={`absolute inset-0 rounded-xl sm:rounded-2xl bg-primary-400 opacity-0 group-hover:opacity-20`}
-        animate={{ scale: [1, 1.3, 1] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      />
-    </motion.div>
-
-    {/* Title */}
-    <h3 className="relative text-lg sm:text-xl lg:text-2xl font-bold text-text-primary mb-2 sm:mb-3 text-center group-hover:text-primary-600 transition-colors duration-300" style={{ fontFamily: 'Montserrat, sans-serif' }}>{title}</h3>
-
-    {/* Description */}
-    <p className="relative text-sm sm:text-base text-text-secondary mb-4 sm:mb-5 leading-relaxed text-center">{description}</p>
-
-    {/* Features list */}
-    <ul className="relative space-y-2 sm:space-y-3 flex-grow">
-      {features.map((feature, i) => (
-        <li key={i} className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-text-secondary font-medium">
-          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary-600 flex-shrink-0" />
-          {feature}
-        </li>
-      ))}
-    </ul>
-
-    {/* Animated corner accent */}
-    <motion.div
-      className="absolute top-0 right-0 w-20 h-20 bg-primary-500 opacity-0 group-hover:opacity-5 rounded-bl-full transition-opacity duration-300"
-    />
-  </motion.div>
-)
-
-// Stat Item Component
-const StatItem = ({ number, suffix, label }) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-  const count = useCounter(number, 2000, isInView)
-
-  return (
-    <div ref={ref} className="stat-item">
-      <div className="stat-number">{count}{suffix}</div>
-      <div className="stat-label">{label}</div>
-    </div>
-  )
-}
 
 const Home = () => {
   const [activeIndustry, setActiveIndustry] = useState(0)
@@ -267,117 +77,6 @@ const Home = () => {
       typed.destroy()
     }
   }, [])
-
-  const features = [
-    {
-      icon: Clock,
-      title: '24/7 Availability',
-      description: 'Never miss a call. Your AI receptionist works around the clock, even on holidays.'
-    },
-    {
-      icon: MessageSquare,
-      title: 'Natural Conversations',
-      description: 'Advanced AI that understands context and responds naturally like a human.'
-    },
-    {
-      icon: Calendar,
-      title: 'Smart Scheduling',
-      description: 'Automatically book appointments and sync with your calendar systems.'
-    },
-    {
-      icon: Phone,
-      title: 'Intelligent Routing',
-      description: 'Route calls to the right person or department based on intent detection.'
-    },
-    {
-      icon: BarChart3,
-      title: 'Analytics Dashboard',
-      description: 'Get insights into call patterns, customer needs, and conversion rates.'
-    },
-    {
-      icon: Globe,
-      title: 'Multi-language',
-      description: 'Communicate with customers in multiple languages seamlessly.'
-    },
-    {
-      icon: Zap,
-      title: 'CRM Integration',
-      description: 'Connect with Salesforce, HubSpot, and other popular CRM platforms.'
-    },
-    {
-      icon: Shield,
-      title: 'Enterprise Security',
-      description: 'HIPAA-ready infrastructure with enterprise-grade encryption.'
-    }
-  ]
-
-  const industries = [
-    {
-      icon: Stethoscope,
-      title: 'Healthcare',
-      description: 'HIPAA-compliant AI for medical practices and clinics.',
-      features: ['Patient scheduling', 'Insurance verification', 'Prescription refills', 'Appointment reminders'],
-      iconBgColor: 'bg-blue-100/70',
-      iconTextColor: 'text-blue-600'
-    },
-    {
-      icon: Shield,
-      title: 'Insurance',
-      description: 'Handle claims inquiries and policy questions 24/7.',
-      features: ['Claims status updates', 'Policy information', 'Quote requests', 'Agent routing'],
-      iconBgColor: 'bg-blue-100/70',
-      iconTextColor: 'text-blue-600'
-    },
-    {
-      icon: HomeIcon,
-      title: 'Real Estate',
-      description: 'Qualify leads and schedule property viewings automatically.',
-      features: ['Lead qualification', 'Showing scheduling', 'Property inquiries', 'Agent matching'],
-      iconBgColor: 'bg-blue-100/70',
-      iconTextColor: 'text-blue-600'
-    },
-    {
-      icon: Building2,
-      title: 'Professional Services',
-      description: 'Custom solutions for law firms, accounting, and consulting.',
-      features: ['Consultation booking', 'Client intake', 'Document requests', 'Follow-up calls'],
-      iconBgColor: 'bg-blue-100/70',
-      iconTextColor: 'text-blue-600'
-    }
-  ]
-
-  const integrations = [
-    { name: 'Salesforce', icon: SiSalesforce },
-    { name: 'HubSpot', icon: SiHubspot },
-    { name: 'Zoho', icon: SiZoho },
-    { name: 'Google Calendar', icon: SiGooglecalendar },
-    { name: 'Zapier', icon: SiZapier },
-    { name: 'Outlook', icon: SiMicrosoftoutlook },
-    { name: 'Slack', icon: SiSlack },
-    { name: 'Twilio', icon: SiTwilio },
-    { name: 'Google Ads', icon: SiGoogle },
-    { name: 'Teams', icon: SiMicrosoftteams },
-    { name: 'Notion', icon: SiNotion },
-    { name: 'Airtable', icon: SiAirtable },
-    { name: 'Mailchimp', icon: SiMailchimp },
-    { name: 'Stripe', icon: SiStripe },
-    { name: 'Shopify', icon: SiShopify },
-    { name: 'WordPress', icon: SiWordpress },
-    { name: 'Squarespace', icon: SiSquarespace },
-    { name: 'Intercom', icon: SiIntercom },
-    { name: 'Zendesk', icon: SiZendesk },
-    { name: 'Asana', icon: SiAsana },
-    { name: 'Trello', icon: SiTrello },
-    { name: 'GitHub', icon: SiGithub },
-    { name: 'Dropbox', icon: SiDropbox },
-    { name: 'Figma', icon: SiFigma }
-  ]
-
-  const stats = [
-    { number: 67, suffix: '%', label: 'Calls outside business hours' },
-    { number: 1200, suffix: '+', label: 'Average cost per missed lead' },
-    { number: 35, suffix: '%', label: 'Reduction in no-shows' }
-  ]
 
   return (
     <div className="bg-white overflow-hidden">
@@ -550,7 +249,9 @@ const Home = () => {
       </Suspense>
 
       {/* Video Showcase Section */}
-      <VideoShowcaseSection />
+      <Suspense fallback={null}>
+        <VideoShowcaseSection />
+      </Suspense>
 
       {/* Problem Section - COMMENTED OUT
       <section className="relative py-16 sm:py-20 lg:py-32 bg-white overflow-hidden">
@@ -711,10 +412,10 @@ const Home = () => {
               className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
             >
               <Zap className="w-4 h-4" />
-              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Omnichannel AI</span>
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">AI Chatbot: Cogni<span className="text-fuchsia-500">Chat</span></span>
             </motion.div>
             <motion.h2 variants={fadeInUp} className="section-title hero-display">
-              Your AI<span className="text-gradient"> Web Widget</span>
+              Your AI<span className="text-gradient"> ChatBot</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
               A simple, powerful process that transforms how you answer queries.
@@ -783,6 +484,124 @@ const Home = () => {
             <Link to="/products/cognichat">
               <button className="btn-primary animate-glow">
                 See How It Works
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CogniHub Section */}
+      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-100px' }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.div
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6"
+            >
+              <Sparkles className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">AI Workspace: Cogni<span className="text-fuchsia-500">Hub</span></span>
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              Every AI Model.<span className="text-gradient"> One Workspace.</span>
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              One workspace for every AI model. Build custom agents, share with your team, and unify your AI costs.
+            </motion.p>
+          </motion.div>
+
+          {/* Two Column Layout: Text + Visual */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center mt-10 sm:mt-16">
+            {/* Left: Workflow Steps */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+              variants={staggerContainer}
+              className="space-y-6"
+            >
+              {[
+                { icon: Sparkles, title: 'Pick Your Model', desc: 'Choose from leading AI models', bgColor: 'bg-blue-500/10', textColor: 'text-blue-500', showModelIcons: true },
+                { icon: MessageSquare, title: 'Ask Anything', desc: 'Generate reports, draft emails, analyze data', bgColor: 'bg-purple-500/10', textColor: 'text-purple-500' },
+                { icon: BarChart3, title: 'Get Rich Output', desc: 'Charts, files, and code — not just text', bgColor: 'bg-indigo-500/10', textColor: 'text-indigo-500' },
+                { icon: Bot, title: 'Build Custom Agents', desc: 'Create AI agents tailored to your workflows', bgColor: 'bg-orange-500/10', textColor: 'text-orange-500' },
+                { icon: Zap, title: 'Connect Your Tools', desc: 'Integrate with Salesforce, HubSpot, Slack, and more', bgColor: 'bg-cyan-500/10', textColor: 'text-cyan-500' },
+                { icon: Users, title: 'Share With Your Team', desc: 'One workspace, shared agents, one bill', bgColor: 'bg-green-500/10', textColor: 'text-green-500' }
+              ].map((step, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeInUp}
+                  whileHover={{ x: 10, scale: 1.02 }}
+                  className="flex items-start gap-5 group"
+                >
+                  <div className={`relative flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl ${step.bgColor} flex items-center justify-center transition-all`}>
+                    <step.icon className={`w-6 h-6 sm:w-7 sm:h-7 ${step.textColor}`} />
+                    <div className="absolute -top-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 bg-white rounded-full border-2 sm:border-4 border-white flex items-center justify-center shadow-md">
+                      <span className="text-xs sm:text-sm font-black text-gray-900">{i + 1}</span>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-1 sm:mb-2 group-hover:text-primary-600 transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
+                      {step.desc}
+                    </p>
+                    {step.showModelIcons && (
+                      <div className="flex items-center gap-2 mt-2.5 flex-wrap">
+                        <div className="w-7 h-7 rounded-full bg-[#10a37f] flex items-center justify-center" title="GPT">
+                          <SiOpenai className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <div className="w-7 h-7 rounded-full bg-[#D97757] flex items-center justify-center" title="Claude">
+                          <ClaudeIcon className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <div className="w-7 h-7 rounded-full bg-[#4285f4] flex items-center justify-center" title="Gemini">
+                          <GeminiIcon className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <div className="w-7 h-7 rounded-full bg-[#f97316] flex items-center justify-center" title="Mistral">
+                          <span className="text-[10px] font-black text-white">M</span>
+                        </div>
+                        <div className="w-7 h-7 rounded-full bg-[#0668E1] flex items-center justify-center" title="Llama">
+                          <SiMeta className="w-3.5 h-3.5 text-white" />
+                        </div>
+                        <div className="w-7 h-7 rounded-full bg-[#7c3aed] flex items-center justify-center" title="DeepSeek">
+                          <span className="text-[9px] font-black text-white">DS</span>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Right: CogniHub Showcase */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <Suspense fallback={null}><CogniHubShowcase /></Suspense>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+            className="text-center mt-12"
+          >
+            <Link to="/products/cognihub">
+              <button className="btn-primary animate-glow">
+                Explore CogniHub
                 <ChevronRight className="w-5 h-5" />
               </button>
             </Link>

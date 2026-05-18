@@ -2,7 +2,7 @@ import SEOMeta from '../../components/SEOMeta'
 import { motion } from 'framer-motion'
 import { Calendar, User, ArrowLeft, ArrowRight, Clock } from 'lucide-react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
-import { blogPosts } from './Blog'
+import { blogPosts } from '../../data/blogPosts'
 import { useState, useEffect } from 'react'
 
 const API_BASE = import.meta.env.VITE_API_URL || ''

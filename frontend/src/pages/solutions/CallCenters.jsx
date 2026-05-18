@@ -8,28 +8,8 @@ import {
   TrendingUp, MessageSquare, Zap, Target, Award, BarChart3,
   Globe, Shield, Cpu, PhoneCall, Settings, Activity
 } from 'lucide-react'
-
-// Animated Counter Component
-const AnimatedCounter = ({ end, duration = 2, suffix = '', prefix = '' }) => {
-  const [count, setCount] = useState(0)
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-
-  useEffect(() => {
-    if (isInView) {
-      let startTime
-      const animate = (timestamp) => {
-        if (!startTime) startTime = timestamp
-        const progress = Math.min((timestamp - startTime) / (duration * 1000), 1)
-        setCount(Math.floor(progress * end))
-        if (progress < 1) requestAnimationFrame(animate)
-      }
-      requestAnimationFrame(animate)
-    }
-  }, [isInView, end, duration])
-
-  return <span ref={ref}>{prefix}{count}{suffix}</span>
-}
+import AnimatedCounter from '../../components/ui/AnimatedCounter'
+import SectionCard from '../../components/ui/SectionCard'
 
 // Real-time Metrics Dashboard
 const LiveMetricsDashboard = () => {
@@ -144,111 +124,6 @@ const WaveVisualization = ({ color }) => {
         />
       ))}
     </div>
-  )
-}
-
-// Section Card Component
-const SectionCard = ({
-  icon: Icon,
-  title,
-  description,
-  features,
-  stats,
-  visual,
-  color,
-  bgGradient,
-  iconBg,
-  accentColor,
-  index
-}) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="relative rounded-3xl overflow-hidden bg-white shadow-xl border border-gray-100"
-    >
-      {/* Top Accent Bar */}
-      <div className={`h-1.5 ${accentColor}`} />
-
-      <div className="grid lg:grid-cols-2">
-        {/* Content Side */}
-        <div className={`p-8 lg:p-10 ${bgGradient}`}>
-          {/* Header */}
-          <div className="flex items-start gap-4 mb-8">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 10 }}
-              className={`w-16 h-16 ${iconBg} rounded-2xl flex items-center justify-center shadow-lg relative`}
-            >
-              <Icon className={`w-8 h-8 ${color}`} />
-              {/* Pulse effect */}
-              <motion.div
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.5, 0, 0.5]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className={`absolute inset-0 ${iconBg} rounded-2xl`}
-              />
-            </motion.div>
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{title}</h3>
-              <p className="text-gray-600">{description}</p>
-            </div>
-          </div>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-3 gap-3 mb-8">
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-                transition={{ delay: 0.3 + idx * 0.1 }}
-                className="bg-white/80 backdrop-blur-sm rounded-xl p-4 text-center shadow-sm border border-gray-100"
-              >
-                <div className={`text-2xl font-bold ${color}`}>
-                  <AnimatedCounter end={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-                </div>
-                <div className="text-xs text-gray-500 mt-1">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Features List */}
-          <div className="space-y-3">
-            {features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                transition={{ delay: 0.4 + idx * 0.1 }}
-                className="flex items-center gap-3 bg-white/60 backdrop-blur-sm rounded-xl px-4 py-3"
-              >
-                <CheckCircle2 className={`w-5 h-5 ${color} flex-shrink-0`} />
-                <span className="text-gray-700 text-sm font-medium">{feature}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Visual Side */}
-        <div className="p-8 lg:p-10 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-full max-w-sm"
-          >
-            {visual}
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
   )
 }
 
@@ -567,7 +442,7 @@ const CallCenters = () => {
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-10">
           {sections.map((section, index) => (
-            <SectionCard key={index} {...section} index={index} />
+            <SectionCard key={index} {...section} index={index} variant="split" pulseIcon />
           ))}
         </div>
         </div>

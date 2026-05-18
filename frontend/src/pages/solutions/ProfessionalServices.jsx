@@ -1,6 +1,6 @@
 import SEOMeta from '../../components/SEOMeta'
 import { motion, useInView } from 'framer-motion'
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Scale, Calculator, Shield, Home, Briefcase, Megaphone,
@@ -8,30 +8,10 @@ import {
   Users, TrendingUp, MessageSquare, FileText, DollarSign,
   Zap, Target, Award, Building2, Gavel, PieChart, BarChart3
 } from 'lucide-react'
+import AnimatedCounter from '../../components/ui/AnimatedCounter'
+import SectionCard from '../../components/ui/SectionCard'
 
-// Animated Counter Component
-const AnimatedCounter = ({ end, duration = 2, suffix = '', prefix = '' }) => {
-  const [count, setCount] = useState(0)
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-
-  useEffect(() => {
-    if (isInView) {
-      let startTime
-      const animate = (timestamp) => {
-        if (!startTime) startTime = timestamp
-        const progress = Math.min((timestamp - startTime) / (duration * 1000), 1)
-        setCount(Math.floor(progress * end))
-        if (progress < 1) requestAnimationFrame(animate)
-      }
-      requestAnimationFrame(animate)
-    }
-  }, [isInView, end, duration])
-
-  return <span ref={ref}>{prefix}{count}{suffix}</span>
-}
-
-// Animated Donut Chart
+// Animated Donut Chart (page-specific visual component)
 const DonutChart = ({ segments, size = 120 }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
@@ -67,7 +47,7 @@ const DonutChart = ({ segments, size = 120 }) => {
   )
 }
 
-// Animated Line Chart
+// Animated Line Chart (page-specific visual component)
 const LineChart = ({ data, color }) => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true })
@@ -102,104 +82,6 @@ const LineChart = ({ data, color }) => {
         />
       ))}
     </svg>
-  )
-}
-
-// Professional Section Card Component
-const SectionCard = ({
-  icon: Icon,
-  title,
-  description,
-  features,
-  stats,
-  visual,
-  color,
-  bgGradient,
-  iconBg,
-  index
-}) => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const isReversed = index % 2 === 1
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="relative rounded-3xl overflow-hidden bg-white shadow-xl border border-gray-100"
-    >
-      <div className={`grid lg:grid-cols-5 ${isReversed ? 'direction-rtl' : ''}`}>
-        {/* Content Side - 3 columns */}
-        <div className={`lg:col-span-3 p-8 lg:p-10 ${bgGradient} ${isReversed ? 'lg:order-2' : ''}`}>
-          {/* Header */}
-          <div className="flex items-start gap-4 mb-8">
-            <motion.div
-              whileHover={{ scale: 1.1, rotate: 5 }}
-              className={`w-16 h-16 ${iconBg} rounded-2xl flex items-center justify-center shadow-lg relative`}
-            >
-              <Icon className={`w-8 h-8 ${color}`} />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className={`absolute -top-1 -right-1 w-4 h-4 rounded-full ${iconBg} shadow`}
-              />
-            </motion.div>
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">{title}</h3>
-              <p className="text-gray-600">{description}</p>
-            </div>
-          </div>
-
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-2 gap-3 mb-8">
-            {features.map((feature, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, x: isReversed ? 20 : -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: isReversed ? 20 : -20 }}
-                transition={{ delay: 0.3 + idx * 0.1 }}
-                className="flex items-center gap-3 bg-white/80 backdrop-blur-sm rounded-xl px-4 py-3 shadow-sm"
-              >
-                <CheckCircle2 className={`w-5 h-5 ${color} flex-shrink-0`} />
-                <span className="text-gray-700 text-sm font-medium">{feature}</span>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Stats */}
-          <div className="flex flex-wrap gap-6">
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-                transition={{ delay: 0.5 + idx * 0.1 }}
-                className="bg-white rounded-xl px-5 py-4 shadow-sm text-center"
-              >
-                <div className={`text-2xl font-bold ${color}`}>
-                  <AnimatedCounter end={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-                </div>
-                <div className="text-xs text-gray-500 mt-1">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Visual Side - 2 columns */}
-        <div className={`lg:col-span-2 p-8 lg:p-10 bg-gradient-to-br from-gray-50 to-white flex items-center justify-center ${isReversed ? 'lg:order-1' : ''}`}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative"
-          >
-            {visual}
-          </motion.div>
-        </div>
-      </div>
-    </motion.div>
   )
 }
 
@@ -618,7 +500,7 @@ const ProfessionalServices = () => {
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-8">
           {sections.map((section, index) => (
-            <SectionCard key={index} {...section} index={index} />
+            <SectionCard key={index} {...section} index={index} variant="wide" reversed={index % 2 === 1} />
           ))}
         </div>
         </div>
