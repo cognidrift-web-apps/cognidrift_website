@@ -2,46 +2,56 @@ import SEOMeta from '../components/SEOMeta'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { getCalApi } from '@calcom/embed-react'
-import LiveSupportVisualization from '../components/LiveSupportVisualization'
-import GlobalAvailabilityMap from '../components/GlobalAvailabilityMap'
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cognidrift-send-and-receive-sms-production.up.railway.app'
-
 import {
   Mail,
   Phone,
-  MapPin,
   Send,
   Clock,
-  MessageSquare,
   Calendar,
-  ArrowRight,
   Check,
   AlertCircle,
-  Building2,
+  ChevronDown,
   Stethoscope,
+  Briefcase,
   Home as HomeIcon,
-  Briefcase
+  Building2,
+  MessageSquare
 } from 'lucide-react'
 import { fadeInUp, staggerContainer } from '../utils/motionVariants'
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cognidrift-send-and-receive-sms-production.up.railway.app'
 
+const industries = [
+  { value: '', label: 'Select your industry', icon: null },
+  { value: 'healthcare', label: 'Healthcare', icon: Stethoscope },
+  { value: 'insurance', label: 'Insurance', icon: Briefcase },
+  { value: 'real-estate', label: 'Real Estate', icon: HomeIcon },
+  { value: 'professional-services', label: 'Professional Services', icon: Building2 },
+  { value: 'other', label: 'Other', icon: MessageSquare }
+]
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
+    industry: '',
     message: ''
   })
 
   const [status, setStatus] = useState({ type: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  // Initialize Cal.com
   useEffect(() => {
     (async function () {
-      const cal = await getCalApi()
+      const cal = await getCalApi({ namespace: 'cognidrift-booking' })
+      cal('inline', {
+        elementOrSelector: '#cal-booking-widget',
+        calLink: 'cognidrift',
+        layout: 'month_view',
+        config: { theme: 'light' }
+      })
       cal('ui', {
         styles: { branding: { brandColor: '#2563eb' } },
         hideEventTypeDetails: false,
@@ -65,9 +75,7 @@ const Contact = () => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
 
@@ -78,7 +86,7 @@ const Contact = () => {
           type: 'success',
           message: data.message || "Thank you! We'll be in touch within 24 hours."
         })
-        setFormData({ name: '', email: '', company: '', message: '' })
+        setFormData({ name: '', email: '', phone: '', company: '', industry: '', message: '' })
       } else {
         setStatus({
           type: 'error',
@@ -96,68 +104,17 @@ const Contact = () => {
     }
   }
 
-  const industries = [
-    { value: 'healthcare', label: 'Healthcare', icon: Stethoscope },
-    { value: 'insurance', label: 'Insurance', icon: Briefcase },
-    { value: 'real-estate', label: 'Real Estate', icon: HomeIcon },
-    { value: 'professional-services', label: 'Professional Services', icon: Building2 },
-    { value: 'other', label: 'Other', icon: MessageSquare }
-  ]
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email Us',
-      details: 'contact@cognidrift.com',
-      subtitle: 'We respond within 24 hours',
-      link: 'mailto:contact@cognidrift.com'
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      details: '+1 (844) 584-1083',
-      subtitle: 'Mon-Fri, 9am-6pm EST',
-      link: 'tel:+18445841083'
-    },
-    {
-      icon: Calendar,
-      title: 'Book a Demo',
-      details: 'Schedule a 15-min call',
-      subtitle: 'See our AI in action',
-      link: '#'
-    }
-  ]
-
-  const benefits = [
-    'No commitment required',
-    '15-minute demo call',
-    'See AI handle real calls',
-    'Custom pricing discussion'
-  ]
-
-  // Initialize Cal.com inline embed - shows all event types
-  useEffect(() => {
-    (async function () {
-      const cal = await getCalApi({ namespace: "cognidrift-booking" })
-      cal("inline", {
-        elementOrSelector: "#cal-booking-widget",
-        calLink: "cognidrift",
-        layout: "month_view",
-        config: {
-          theme: "light"
-        }
-      })
-    })()
-  }, [])
+  const inputClass = 'w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all'
 
   return (
     <div className="bg-white min-h-screen">
       <SEOMeta
-        title="Contact Us - Get Started with AI Workflow Automation"
-        description="Contact CogniDrift to learn how our AI workflow automation and AI agents for business can transform your operations. Book a demo today."
-        keywords="AI workflow automation, AI consulting services, book AI demo"
+        title="Contact Us - Get Started with AI Automation"
+        description="Contact CogniDrift to learn how our AI products can automate calls, chats, and workflows for your business. Book a demo today."
+        keywords="AI automation, AI voice agent, AI chatbot, book AI demo, contact CogniDrift"
         url="/contact"
       />
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 bg-neutral-offWhite overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -172,30 +129,22 @@ const Contact = () => {
             variants={staggerContainer}
             className="text-center max-w-3xl mx-auto"
           >
-            <motion.span
-              variants={fadeInUp}
-              className="section-eyebrow"
-            >
+            <motion.span variants={fadeInUp} className="section-eyebrow">
               Get Started
             </motion.span>
-            <motion.h1
-              variants={fadeInUp}
-              className="section-title hero-display !mb-4"
-            >
-              Let's Transform Your<br /><span className="text-gradient">Customer Communications</span>
+            <motion.h1 variants={fadeInUp} className="section-title hero-display !mb-4">
+              Let's Build Your<br />
+              <span className="text-gradient">AI-Powered Business</span>
             </motion.h1>
-            <motion.p
-              variants={fadeInUp}
-              className="section-subtitle !mb-0"
-            >
-              Book a demo to see how CogniDrift can help your business <span className="font-bold text-text-primary">never miss another call</span>.
+            <motion.p variants={fadeInUp} className="section-subtitle !mb-0">
+              See how CogniDrift automates calls, chats, and workflows so your team can focus on what matters.
             </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-24 bg-white">
+      <section className="py-16 sm:py-20 lg:py-28 bg-white">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             {/* Contact Form */}
@@ -206,14 +155,16 @@ const Contact = () => {
               variants={staggerContainer}
             >
               <motion.div variants={fadeInUp}>
-                <h2 className="section-title hero-display mb-2">Book Your <span className="text-gradient">Demo</span></h2>
+                <h2 className="section-title hero-display !text-3xl sm:!text-4xl mb-2">
+                  Get in <span className="text-gradient">Touch</span>
+                </h2>
                 <p className="text-text-secondary mb-8">
-                  Fill out the form and we'll get back to you within 24 hours.
+                  Fill out the form and we will get back to you within 24 hours.
                 </p>
               </motion.div>
-              
-              <motion.form variants={fadeInUp} onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+
+              <motion.form variants={fadeInUp} onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid md:grid-cols-2 gap-5">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
                       Your Name *
@@ -225,7 +176,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all"
+                      className={inputClass}
                       placeholder="John Doe"
                     />
                   </div>
@@ -241,30 +192,69 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all"
+                      className={inputClass}
                       placeholder="john@company.com"
                     />
                   </div>
                 </div>
 
+                <div className="grid md:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="phone" className="block text-sm font-medium text-text-primary mb-2">
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className={inputClass}
+                      placeholder="+1 (555) 123-4567"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-text-primary mb-2">
+                      Company Name
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className={inputClass}
+                      placeholder="Your Company"
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-text-primary mb-2">
-                    Company Name
+                  <label htmlFor="industry" className="block text-sm font-medium text-text-primary mb-2">
+                    Industry
                   </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all"
-                    placeholder="Your Company"
-                  />
+                  <div className="relative">
+                    <select
+                      id="industry"
+                      name="industry"
+                      value={formData.industry}
+                      onChange={handleChange}
+                      className={`${inputClass} appearance-none pr-10`}
+                    >
+                      {industries.map((ind) => (
+                        <option key={ind.value} value={ind.value}>
+                          {ind.label}
+                        </option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-muted pointer-events-none" />
+                  </div>
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
-                    Tell us about your needs
+                    How can we help?
                   </label>
                   <textarea
                     id="message"
@@ -272,8 +262,8 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     rows="4"
-                    className="w-full px-4 py-3 bg-neutral-offWhite border border-neutral-border rounded-xl text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent transition-all resize-none"
-                    placeholder="What challenges are you looking to solve with AI voice automation?"
+                    className={`${inputClass} resize-none`}
+                    placeholder="Tell us about your business and what you are looking to automate."
                   ></textarea>
                 </div>
 
@@ -302,80 +292,116 @@ const Contact = () => {
                   className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed animate-glow"
                 >
                   <Send className="w-5 h-5" />
-                  {isSubmitting ? 'Sending...' : 'Request Demo'}
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </motion.form>
             </motion.div>
 
             {/* Cal.com Booking Widget */}
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={staggerContainer}
               className="space-y-6"
             >
-              {/* Header */}
               <motion.div variants={fadeInUp}>
                 <h3 className="text-2xl font-bold text-text-primary mb-2">
-                  Schedule Your Demo
+                  Or Book a Demo
                 </h3>
                 <p className="text-text-secondary">
-                  Pick a time that works best for you
+                  Pick a time that works for you
                 </p>
               </motion.div>
 
-              {/* Cal.com Embed */}
-              <motion.div 
+              <motion.div
                 variants={fadeInUp}
                 className="bg-white rounded-2xl shadow-lg overflow-hidden border border-neutral-border"
                 style={{ minHeight: '630px' }}
               >
-                <div 
+                <div
                   id="cal-booking-widget"
                   style={{ width: '100%', height: '100%', minHeight: '630px' }}
                 />
               </motion.div>
-
-              {/* Contact Info Cards - Compact */}
-              <motion.div variants={fadeInUp} className="grid grid-cols-1 gap-3 pt-4">
-                <div className="flex items-center gap-3 p-4 bg-neutral-offWhite rounded-xl">
-                  <div className="w-10 h-10 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-text-primary">Email Us</p>
-                    <a href="mailto:contact@cognidrift.com" className="text-sm text-primary-600 hover:underline">
-                      contact@cognidrift.com
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-3 p-4 bg-neutral-offWhite rounded-xl">
-                  <div className="w-10 h-10 bg-primary-50 rounded-lg flex items-center justify-center text-primary-600">
-                    <Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-text-primary">Call Us</p>
-                    <a href="tel:+18445841083" className="text-sm text-primary-600 hover:underline">
-                      +1 (844) 584-1083
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Response Time */}
-              <motion.div variants={fadeInUp} className="flex items-center gap-4 p-6 bg-neutral-offWhite rounded-2xl">
-                <div className="w-12 h-12 bg-accent-cyan/10 rounded-xl flex items-center justify-center text-accent-cyan">
-                  <Clock className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="font-semibold text-text-primary">Average Response Time</p>
-                  <p className="text-text-secondary">We typically respond within 2 hours during business hours</p>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Contact Info Strip */}
+      <section className="py-16 sm:py-20 bg-neutral-offWhite">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-6"
+          >
+            <motion.a
+              href="mailto:contact@cognidrift.com"
+              variants={fadeInUp}
+              whileHover={{ y: -4 }}
+              className="flex items-center gap-4 p-6 bg-white rounded-2xl border border-neutral-border shadow-sm hover:shadow-md transition-all"
+            >
+              <div className="w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Mail className="w-6 h-6 text-primary-600" />
+              </div>
+              <div>
+                <p className="font-semibold text-text-primary">Email Us</p>
+                <p className="text-sm text-primary-600">contact@cognidrift.com</p>
+                <p className="text-xs text-text-muted mt-0.5">We respond within 24 hours</p>
+              </div>
+            </motion.a>
+
+            <motion.a
+              href="tel:+18445841083"
+              variants={fadeInUp}
+              whileHover={{ y: -4 }}
+              className="flex items-center gap-4 p-6 bg-white rounded-2xl border border-neutral-border shadow-sm hover:shadow-md transition-all"
+            >
+              <div className="w-12 h-12 bg-primary-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Phone className="w-6 h-6 text-primary-600" />
+              </div>
+              <div>
+                <p className="font-semibold text-text-primary">Company</p>
+                <p className="text-sm text-primary-600">+1 (844) 584-1083</p>
+                <p className="text-xs text-text-muted mt-0.5">Mon to Fri, 9am to 6pm EST</p>
+              </div>
+            </motion.a>
+
+            <motion.a
+              href="tel:+15754181944"
+              variants={fadeInUp}
+              whileHover={{ y: -4 }}
+              className="flex items-center gap-4 p-6 bg-white rounded-2xl border border-neutral-border shadow-sm hover:shadow-md transition-all"
+            >
+              <div className="w-12 h-12 bg-accent-cyan/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                <Phone className="w-6 h-6 text-accent-cyan" />
+              </div>
+              <div>
+                <p className="font-semibold text-text-primary">Direct Line</p>
+                <p className="text-sm text-primary-600">+1 (575) 418-1944</p>
+                <p className="text-xs text-text-muted mt-0.5">Call or text anytime</p>
+              </div>
+            </motion.a>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-3 mt-8 p-4 bg-white rounded-xl border border-neutral-border max-w-md mx-auto"
+          >
+            <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Clock className="w-5 h-5 text-green-600" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-text-primary">Average Response Time</p>
+              <p className="text-xs text-text-secondary">Under 2 hours during business hours</p>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
