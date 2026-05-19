@@ -12,7 +12,13 @@ import {
   ArrowRight,
   Building2,
   Clock,
-  Gem
+  Gem,
+  Linkedin,
+  GraduationCap,
+  Cpu,
+  TrendingUp,
+  Brain,
+  BarChart3
 } from 'lucide-react'
 import { fadeInUp, staggerContainer } from '../utils/motionVariants'
 
@@ -34,6 +40,49 @@ const About = () => {
 
     return () => typed.destroy()
   }, [])
+
+  const team = [
+    {
+      name: 'Qudrat E Alahy Ratul',
+      role: 'Co-Founder, CEO',
+      initials: 'QR',
+      gradient: 'from-primary-500 to-blue-600',
+      icon: GraduationCap,
+      bio: 'PhD in Computing from Boise State University. Assistant Professor at Utah Valley University specializing in Machine Learning, NLP, and Interpretable AI. Former ML Engineer at Intel and Senior Software Engineer at Samsung R&D. Published researcher in adversarial robustness and ML interpretability. Brings deep technical expertise in building AI systems that actually work for real businesses.',
+      linkedin: 'https://www.linkedin.com/in/ratulalahy/',
+      tags: ['Machine Learning', 'NLP', 'AI Research']
+    },
+    {
+      name: 'Fahim Iqbal',
+      role: 'Co-Founder, COO',
+      initials: 'FI',
+      gradient: 'from-purple-500 to-indigo-600',
+      icon: TrendingUp,
+      bio: 'Over 20 years in the technology industry spanning software development, IT infrastructure, and business operations. Extensive experience scaling technology companies from the ground up. Oversees product delivery, operations, and customer success at CogniDrift, ensuring every client gets maximum value from our AI platform.',
+      linkedin: '#',
+      tags: ['Operations', 'Product Delivery', 'Strategy']
+    },
+    {
+      name: 'Toufiqe Imroze',
+      role: 'AI Consultant',
+      initials: 'TI',
+      gradient: 'from-cyan-500 to-teal-600',
+      icon: Brain,
+      bio: 'Specializes in designing and deploying AI solutions for businesses across industries. Helps CogniDrift clients identify the highest-impact automation opportunities and architects custom AI workflows that integrate seamlessly with existing tools and processes.',
+      linkedin: '#',
+      tags: ['AI Strategy', 'Workflow Design', 'Integration']
+    },
+    {
+      name: 'Sadman Rahman',
+      role: 'Sales Executive',
+      initials: 'SR',
+      gradient: 'from-orange-500 to-red-500',
+      icon: BarChart3,
+      bio: 'Drives growth by connecting businesses with the right CogniDrift solutions for their needs. Deep understanding of how AI automation solves real operational challenges across healthcare, real estate, insurance, and professional services.',
+      linkedin: '#',
+      tags: ['B2B Sales', 'Client Relations', 'Growth']
+    }
+  ]
 
   const values = [
     {
@@ -122,7 +171,7 @@ const About = () => {
               From Vision to <span className="text-gradient">Reality</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="section-subtitle">
-              See how we've grown from a simple idea to an industry-leading AI platform
+              See how we went from a simple idea to a full AI automation platform
             </motion.p>
           </motion.div>
           
@@ -137,8 +186,105 @@ const About = () => {
         </div>
       </section>
 
+      {/* Team Section */}
+      <section className="py-16 sm:py-20 lg:py-28 bg-white">
+        <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="section-header"
+          >
+            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 sm:px-5 py-2 rounded-full mb-4 sm:mb-6">
+              <Users className="w-4 h-4" />
+              <span className="text-xs sm:text-sm font-bold uppercase tracking-wider">Our Team</span>
+            </motion.div>
+            <motion.h2 variants={fadeInUp} className="section-title hero-display">
+              The People Behind <span className="text-gradient">CogniDrift</span>
+            </motion.h2>
+            <motion.p variants={fadeInUp} className="section-subtitle">
+              Researchers, engineers, and operators building AI that works for real businesses.
+            </motion.p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-2 gap-8 mt-12"
+          >
+            {team.map((member) => {
+              const MemberIcon = member.icon
+              return (
+                <motion.div
+                  key={member.name}
+                  variants={fadeInUp}
+                  whileHover={{ y: -6 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  className="group relative bg-white border-2 border-neutral-border hover:border-primary-200 rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-primary-50 opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+
+                  <div className="relative flex flex-col sm:flex-row gap-6">
+                    {/* Avatar */}
+                    <div className="flex-shrink-0">
+                      <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-2xl bg-gradient-to-br ${member.gradient} flex items-center justify-center shadow-lg`}>
+                        <span className="text-white font-bold text-2xl sm:text-3xl" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          {member.initials}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-3 mb-1">
+                        <h3 className="text-lg sm:text-xl font-bold text-text-primary group-hover:text-primary-600 transition-colors" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+                          {member.name}
+                        </h3>
+                        {member.linkedin && member.linkedin !== '#' && (
+                          <a
+                            href={member.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex-shrink-0 w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center text-blue-600 hover:bg-blue-100 transition-colors"
+                          >
+                            <Linkedin className="w-4 h-4" />
+                          </a>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-2 mb-3">
+                        <MemberIcon className="w-4 h-4 text-primary-500" />
+                        <span className="text-sm font-semibold text-primary-600">{member.role}</span>
+                      </div>
+
+                      <p className="text-sm text-text-secondary leading-relaxed mb-4">
+                        {member.bio}
+                      </p>
+
+                      <div className="flex flex-wrap gap-2">
+                        {member.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-neutral-offWhite text-text-secondary border border-neutral-border"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Values Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-neutral-offWhite">
         <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
             initial="hidden"
