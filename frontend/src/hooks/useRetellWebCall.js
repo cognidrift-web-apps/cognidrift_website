@@ -3,6 +3,9 @@ import { RetellWebClient } from 'retell-client-js-sdk'
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cognidrift-send-and-receive-sms-production.up.railway.app'
 
+// Friendly message shown to visitors instead of raw technical errors
+const MAINTENANCE_MESSAGE = "Down for maintenance. We're making a few quick updates to improve your experience."
+
 export const useRetellWebCall = () => {
   const [callStatus, setCallStatus] = useState('idle') // 'idle' | 'connecting' | 'connected' | 'ended' | 'error'
   const [error, setError] = useState(null)
@@ -37,7 +40,7 @@ export const useRetellWebCall = () => {
 
       retellClientRef.current.on('error', (err) => {
         console.error('Retell error:', err)
-        setError(err.message || 'An error occurred during the call')
+        setError(MAINTENANCE_MESSAGE)
         setCallStatus('error')
         // Reset to idle after showing error
         setTimeout(() => {
@@ -83,11 +86,11 @@ export const useRetellWebCall = () => {
     } catch (err) {
       console.error('Error starting call:', err)
 
-      let errorMessage = 'Failed to start call'
+      // Keep the mic message (the visitor can fix that); hide everything else
+      // behind the maintenance notice. The real error is still in the console.
+      let errorMessage = MAINTENANCE_MESSAGE
       if (err.name === 'NotAllowedError') {
         errorMessage = 'Microphone access denied. Please allow microphone access to make a call.'
-      } else if (err.message) {
-        errorMessage = err.message
       }
 
       setError(errorMessage)
