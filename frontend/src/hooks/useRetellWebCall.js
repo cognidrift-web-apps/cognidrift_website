@@ -1,7 +1,8 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { RetellWebClient } from 'retell-client-js-sdk'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://cognidrift-send-and-receive-sms-production.up.railway.app'
+// Web calls are created by the Vercel function in frontend/api/create-web-call.js (same origin)
+const CREATE_WEB_CALL_URL = '/api/create-web-call'
 
 // Friendly message shown to visitors instead of raw technical errors
 const MAINTENANCE_MESSAGE = "Down for maintenance. We're making a few quick updates to improve your experience."
@@ -62,7 +63,7 @@ export const useRetellWebCall = () => {
       await navigator.mediaDevices.getUserMedia({ audio: true })
 
       // Get access token from backend
-      const response = await fetch(`${API_BASE_URL}/api/create-web-call`, {
+      const response = await fetch(CREATE_WEB_CALL_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -77,8 +78,12 @@ export const useRetellWebCall = () => {
 
       // Initialize client and start call
       const client = initializeClient()
+      // v3 create-web-call returns connection details that must be passed through
       await client.startCall({
         accessToken: data.access_token,
+        callId: data.call_id,
+        transport: data.transport,
+        iceServers: data.ice_servers,
         sampleRate: 24000,
         emitRawAudioSamples: false
       })
